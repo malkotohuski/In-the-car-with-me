@@ -5,11 +5,13 @@ import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomePage from './screens/Home/Home';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
+    <SafeAreaView style={{flex: 1}}>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} />
@@ -17,6 +19,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomePage} />
       </Stack.Navigator>
     </NavigationContainer>
+    </SafeAreaView>
   );
 }
 
@@ -91,7 +94,7 @@ function RegisterScreen() {
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
-      <Button title="Register" onPress={handleRegister} />
+      <Button title="Submit" onPress={handleRegister} />
     </View>
   );
 }
