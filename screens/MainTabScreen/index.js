@@ -1,7 +1,8 @@
 import React from "react";
-
-
-const Drawer = creteDrawerNavigation();
+import Login from "../Login";
+import {DrawerContent} from '../DrawerContent/drawerContent';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import Register from "../Register";
 
 const screenStyles = {
     headerStyle: {
