@@ -35,20 +35,22 @@ function HomePage() {
       <View style={styles.content}>
       <View style={styles.menuImages}>
       {menuItems.map((item, index) => (
-            <TouchableOpacity
-              key={index}
-              style={styles.menuItem}
-              onPress={() =>
-                item.label.toLowerCase() === 'tires' ? '/tires' : `/${item.label.toLowerCase()}`
-              }
-            >
-              <View style={styles.menuImageContainer}>
-              <Image source={{ uri: item.image }} style={styles.menuImage} />
+  <TouchableOpacity
+    key={index}
+    style={styles.menuItem}
+    onPress={() => {
+      // You can add navigation logic here to navigate to the corresponding screen.
+      // For now, let's just display the label of the selected item.
+      console.log(`Selected item: ${item.label}`);
+    }}
+  >
+    <View style={styles.menuImageContainer}>
+      <Image source={{ uri: item.image }} style={styles.menuImage} />
+    </View>
+    <Text style={styles.menuLabel}>{item.label}</Text>
+  </TouchableOpacity>
+))}
 
-              </View>
-              <Text style={styles.menuLabel}>{item.label}</Text>
-            </TouchableOpacity>
-          ))}
         
       
     </View>
