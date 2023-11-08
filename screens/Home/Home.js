@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, Button, StyleSheet, TouchableOpacity  } from 'react-native';
-import menuItems from './MenuItems';
+import {useNavigation} from '@react-navigation/native';
 
 const images = [
   require('../../images/images1.png'), // Replace with your image file paths
@@ -9,6 +9,7 @@ const images = [
 ];
 
 function HomePage() {
+  const navigation = useNavigation();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -21,11 +22,11 @@ function HomePage() {
     };
   }, []);
 
-/*   const rows = [];
-  for (let i = 0; i < menuItems.length; i += 2) {
-    const rowItems = menuItems.slice(i, i + 2);
-    rows.push(rowItems);
-  } */
+  const handleTires = () => {
+      navigation.navigate('Tires');
+      console.log('sad');
+  };
+
 
   return (
     <View style={styles.homepage}>
@@ -34,24 +35,23 @@ function HomePage() {
       </View>
       <View style={styles.content}>
       <View style={styles.menuImages}>
-      {menuItems.map((item, index) => (
-  <TouchableOpacity
-    key={index}
-    style={styles.menuItem}
-    onPress={() => {
-      // You can add navigation logic here to navigate to the corresponding screen.
-      // For now, let's just display the label of the selected item.
-      console.log(`Selected item: ${item.label}`);
-    }}
-  >
-    <View style={styles.menuImageContainer}>
-      <Image source={{ uri: item.image }} style={styles.menuImage} />
-    </View>
-    <Text style={styles.menuLabel}>{item.label}</Text>
-  </TouchableOpacity>
-))}
 
-        
+    <Button title='Tires'  onPress={handleTires}/>
+
+     
+ {/*  <TouchableOpacity
+  style={styles.menuItem}
+        onPress={() => {
+          navigation.navigate('Tires'); // Navigate to the "TiresSearchMenu" screen
+        }}
+      >
+    <View style={styles.menuImageContainer}>
+      
+    </View>
+    
+  </TouchableOpacity> */}
+
+
       
     </View>
         {/* Your content goes here */}
