@@ -1,9 +1,6 @@
 import React from "react";
 import Login from "../Login";
-import {DrawerContent} from '../DrawerContent/drawerContent';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import Register from "../Register";
-import TiresSearchMenu from "../Category/Tires";
 
 const screenStyles = {
     headerStyle: {
@@ -13,7 +10,7 @@ const screenStyles = {
   };
 
 
-export const Navigator = () => {
+export const Drawer = () => {
     return (
         <Drawer.Navigator drawerContent={props => <drawerContent {...props} />}>
             <Drawer.Screen
@@ -31,16 +28,6 @@ export const Navigator = () => {
             component={Register}
             option={{
                 title: 'Register',
-                ...screenStyles,
-                headerShown:false,
-            }}
-            >
-            </Drawer.Screen>
-            <Drawer.Screen
-            name="Tires"
-            component={TiresSearchMenu}
-            option={{
-                title: 'Tires',
                 ...screenStyles,
                 headerShown:false,
             }}

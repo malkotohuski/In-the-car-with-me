@@ -7,21 +7,23 @@ import HomePage from './screens/Home/Home';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Login from './screens/Login';
 import Register from './screens/Register';
-import TiresSearchMenu from './screens/Category/Tires';
+import Tires from './screens/Category/Tires';
+import Navigator from './screens/MainTabScreen/AppNavigator';
 
-const Stack = createStackNavigator();
+/* const Stack = createStackNavigator(); */
 
 export default function App() {
   return (
     <SafeAreaView style={{flex: 1}}>
-    <NavigationContainer>
+      <Navigator />
+   {/*  <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="Tires" component={TiresSearchMenu} />
+        <Stack.Screen name="Tires" component={Tires} />
       </Stack.Navigator>
-    </NavigationContainer>
+    </NavigationContainer> */}
     </SafeAreaView>
   );
 }
