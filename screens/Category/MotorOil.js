@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { MultipleSelectList } from 'react-native-dropdown-select-list'
 
-function Tires() {
+function motorOil() {
     const [selected, setSelected] = useState([]);
 
     const types = [
@@ -22,5 +22,5 @@ function Tires() {
     )
 };
 
-export default Tires;
+export default motorOil;
 

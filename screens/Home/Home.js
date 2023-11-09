@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TextInput, Button, StyleSheet, TouchableOpacity  } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { View, Text, Image, TextInput, Button, StyleSheet, TouchableOpacity } from 'react-native';
 
 const images = [
-  require('../../images/images1.png'), // Replace with your image file paths
-  require('../../images/images2.jpg'),
-  require('../../images/images1.png'),
+  require('../../images/suspension.jpg'), // Replace with your image file paths
+  require('../../images/images3.jpg'),
+  require('../../images/tires.jpg'),
+  require('../../images/gearbox.jpg'),
+  require('../../images/motorOil.jpg'),
 ];
 
 function HomePage({ navigation }) {
-  
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -24,6 +25,12 @@ function HomePage({ navigation }) {
 
   const handlerTires = () => {
     navigation.navigate('Tires')
+    console.log('Tires clicked !!!');
+  }
+
+  const handlerMotorOil = () => {
+    navigation.navigate('MotorOil')
+    console.log('Motor oil clicked !!!');
   }
 
   return (
@@ -32,14 +39,19 @@ function HomePage({ navigation }) {
         <Image source={images[currentImageIndex]} style={styles.adImage} />
       </View>
       <View style={styles.content}>
-      <View style={styles.menuImages}>
-        <View>
-    <TouchableOpacity style={styles.tiresButton} onPress={handlerTires} >
-      <Text>Tires</Text>
-      </TouchableOpacity>
-      </View>
- 
-    </View>
+        <View style={styles.menuImages}>
+          <View>
+            <TouchableOpacity style={styles.tiresButton} onPress={handlerTires} >
+              <Text>Tires</Text>
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity style={styles.tiresButton} onPress={handlerMotorOil} >
+              <Text>Motor Oil</Text>
+            </TouchableOpacity>
+          </View>
+
+        </View>
         {/* Your content goes here */}
         <Text style={styles.heading}>AUTO GARAGE</Text>
         <Text>Everything for your car</Text>
@@ -74,10 +86,12 @@ const styles = StyleSheet.create({
     padding: 5,
     height: '50%',
     backgroundColor: '#f0f0f0',
+    overflow: 'hidden', // Add this line to hide overflowing content
   },
   adImage: {
     width: '100%',
     height: '100%',
+    resizeMode: 'cover', // Add this line to ensure the entire image is visible
   },
   content: {
     flex: 2,
@@ -110,10 +124,13 @@ const styles = StyleSheet.create({
     color: '#f0f0f0',
     borderRadius: 3,
   },
+  menuImages: {
+  },
   tiresButton: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 10,
+    marginBottom: 5,
   }
   // Add styles for the footer here
 });
