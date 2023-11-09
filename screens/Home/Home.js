@@ -8,8 +8,8 @@ const images = [
   require('../../images/images1.png'),
 ];
 
-function HomePage() {
-  const navigation = useNavigation();
+function HomePage({ navigation }) {
+  
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -22,11 +22,9 @@ function HomePage() {
     };
   }, []);
 
-  const handleTires = () => {
-      navigation.navigate('Tires');
-      console.log('sad');
-  };
-
+  const handlerTires = () => {
+    navigation.navigate('Tires')
+  }
 
   return (
     <View style={styles.homepage}>
@@ -35,24 +33,12 @@ function HomePage() {
       </View>
       <View style={styles.content}>
       <View style={styles.menuImages}>
-
-    <Button title='Tires'  onPress={handleTires}/>
-
-     
- {/*  <TouchableOpacity
-  style={styles.menuItem}
-        onPress={() => {
-          navigation.navigate('Tires'); // Navigate to the "TiresSearchMenu" screen
-        }}
-      >
-    <View style={styles.menuImageContainer}>
-      
-    </View>
-    
-  </TouchableOpacity> */}
-
-
-      
+        <View>
+    <TouchableOpacity style={styles.tiresButton} onPress={handlerTires} >
+      <Text>Tires</Text>
+      </TouchableOpacity>
+      </View>
+ 
     </View>
         {/* Your content goes here */}
         <Text style={styles.heading}>AUTO GARAGE</Text>
@@ -124,6 +110,11 @@ const styles = StyleSheet.create({
     color: '#f0f0f0',
     borderRadius: 3,
   },
+  tiresButton: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+  }
   // Add styles for the footer here
 });
 export default HomePage;
