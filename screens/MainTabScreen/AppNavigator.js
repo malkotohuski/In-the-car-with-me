@@ -13,17 +13,64 @@ const Stack = createStackNavigator();
 
 
 export default function Navigator() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="Apps">
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="Tires" component={Tires} />
-        <Stack.Screen name="Motor Oil" component={motorOil} />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName="Apps">
+                <Stack.Screen name="Login" component={Login}
+                    options={{
+                        title: 'Login',
+                        headerStyle: {
+                            backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }} />
+                <Stack.Screen name="Register" component={Register} options={{
+                    title: 'Register',
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }} />
+                <Stack.Screen name="Home" component={HomePage} options={{
+                    title: 'My home',
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                }} />
+                <Stack.Screen name="Tires" component={Tires}
+                    options={{
+                        title: 'Tires',
+                        headerStyle: {
+                            backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }} />
+                <Stack.Screen name="Motor Oil" component={motorOil}
+                    options={{
+                        title: 'Motor Oil',
+                        headerStyle: {
+                            backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }} />
+            </Stack.Navigator>
+        </NavigationContainer>
+    )
 }
-
 
