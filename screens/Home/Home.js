@@ -34,6 +34,11 @@ function HomePage({ navigation }) {
         console.log('Motor oil clicked !!!');
     }
 
+    const handlerEngen = () => {
+        navigation.navigate('Engen')
+        console.log('Engen clicked !!!');
+    }
+
     return (
         <View style={styles.homepage}>
             <View style={styles.adBox}>
@@ -49,6 +54,11 @@ function HomePage({ navigation }) {
                     <View>
                         <TouchableOpacity style={styles.tiresButton} onPress={handlerMotorOil} >
                             <Text>Motor Oil</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <TouchableOpacity style={styles.tiresButton} onPress={handlerEngen} >
+                            <Text>Engen </Text>
                         </TouchableOpacity>
                     </View>
 
