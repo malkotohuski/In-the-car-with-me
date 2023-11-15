@@ -1,32 +1,56 @@
-import * as React from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-
-function Feed() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Feed Screen</Text>
-        </View>
-    );
-}
-
-function Article() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Article Screen</Text>
-        </View>
-    );
-}
+import HomePage from '../Home/Home';
+import Login from '../Login';
+import Register from '../Register';
 
 const Drawer = createDrawerNavigator();
 
-export default function MyDrawer() {
+function Nav() {
     return (
-        <Drawer.Navigator useLegacyImplementation>
-            <Drawer.Screen name="Feed" component={Feed} />
-            <Drawer.Screen name="Article" component={Article} />
-        </Drawer.Navigator>
+        <NavigationContainer>
+            <Drawer.Navigator initialRouteName="Home">
+                <Drawer.Screen name="Home" component={HomePage}
+                    options={{
+                        title: 'Home',
+                        headerStyle: {
+                            backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+                <Drawer.Screen name="Login" component={Login}
+                    options={{
+                        title: 'Login',
+                        headerStyle: {
+                            backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+                <Drawer.Screen name="Register" component={Register}
+                    options={{
+                        title: 'Register',
+                        headerStyle: {
+                            backgroundColor: '#f4511e',
+                        },
+                        headerTintColor: '#fff',
+                        headerTitleStyle: {
+                            fontWeight: 'bold',
+                        },
+                    }}
+                />
+            </Drawer.Navigator>
+        </NavigationContainer>
     );
 }
+
+export default Nav;
 

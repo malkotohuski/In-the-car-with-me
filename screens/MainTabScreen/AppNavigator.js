@@ -7,7 +7,7 @@ import Login from '../Login';
 import Register from '../Register';
 import HomePage from '../Home/Home';
 import Tires from '../Category/Tires';
-import motorOil from '../Category/MotorOil';
+import MotorOil from '../Category/MotorOil';
 
 const Stack = createStackNavigator();
 
@@ -58,7 +58,7 @@ export default function Navigator() {
                             fontWeight: 'bold',
                         },
                     }} />
-                <Stack.Screen name="Motor Oil" component={motorOil}
+                <Stack.Screen name="Motor Oil" component={MotorOil}
                     options={{
                         title: 'Motor Oil',
                         headerStyle: {
