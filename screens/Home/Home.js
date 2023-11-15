@@ -30,7 +30,7 @@ function HomePage({ navigation }) {
     }
 
     const handlerMotorOil = () => {
-        navigation.navigate('MotorOil')
+        navigation.navigate('Motor Oil')
         console.log('Motor oil clicked !!!');
     }
 
