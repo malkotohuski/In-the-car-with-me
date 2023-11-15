@@ -34,9 +34,14 @@ function HomePage({ navigation }) {
         console.log('Motor oil clicked !!!');
     }
 
-    const handlerEngen = () => {
-        navigation.navigate('Engen')
-        console.log('Engen clicked !!!');
+    const handlerSuspension = () => {
+        navigation.navigate('Suspension')
+        console.log('Suspension clicked !!!');
+    }
+
+    const handlerCarBody = () => {
+        navigation.navigate('Car body')
+        console.log('Car body clicked !!!');
     }
 
     return (
@@ -57,8 +62,13 @@ function HomePage({ navigation }) {
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerEngen} >
-                            <Text>Engen </Text>
+                        <TouchableOpacity style={styles.tiresButton} onPress={handlerSuspension} >
+                            <Text>Suspension </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <View>
+                        <TouchableOpacity style={styles.tiresButton} onPress={handlerCarBody} >
+                            <Text>Car body </Text>
                         </TouchableOpacity>
                     </View>
 
