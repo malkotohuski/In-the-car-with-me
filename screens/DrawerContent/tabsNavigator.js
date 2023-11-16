@@ -7,6 +7,7 @@ import Register from '../Register';
 import MyAccount from '../Account';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
+import Basket from '../Basket';
 
 
 const Tab = createBottomTabNavigator();
@@ -90,6 +91,30 @@ function MyTabs() {
                                     fontSize: 16,
                                 }}>
                                 Register
+                            </Text>
+                        </TouchableOpacity>
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="Basket"
+                component={Basket}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <TouchableOpacity
+                            style={{ alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => navigation.navigate('Basket')}>
+                            <Icon
+                                name="shopping-basket"
+                                size={30}
+                                color={focused ? '#e32f45' : '#748c94'}
+                            />
+                            <Text
+                                style={{
+                                    color: focused ? '#000' : '#748c94',
+                                    fontSize: 16,
+                                }}>
+                                Basket
                             </Text>
                         </TouchableOpacity>
                     )
