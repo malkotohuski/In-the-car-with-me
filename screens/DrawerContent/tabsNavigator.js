@@ -8,6 +8,7 @@ import MyAccount from '../Account';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import Basket from '../Basket';
+import Video from '../Video';
 
 
 const Tab = createBottomTabNavigator();
@@ -28,6 +29,13 @@ function MyTabs() {
                 name="Home"
                 component={HomePage}
                 options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
@@ -52,6 +60,13 @@ function MyTabs() {
                 name="Account"
                 component={MyAccount}
                 options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
@@ -76,6 +91,13 @@ function MyTabs() {
                 name="Register"
                 component={Register}
                 options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
@@ -100,6 +122,13 @@ function MyTabs() {
                 name="Basket"
                 component={Basket}
                 options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
@@ -115,6 +144,37 @@ function MyTabs() {
                                     fontSize: 16,
                                 }}>
                                 Basket
+                            </Text>
+                        </TouchableOpacity>
+                    )
+                }}
+            />
+            <Tab.Screen
+                name="Video"
+                component={Video}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                    tabBarIcon: ({ focused }) => (
+                        <TouchableOpacity
+                            style={{ alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => navigation.navigate('Video')}>
+                            <Icon
+                                name="video-collection"
+                                size={30}
+                                color={focused ? '#e32f45' : '#748c94'}
+                            />
+                            <Text
+                                style={{
+                                    color: focused ? '#000' : '#748c94',
+                                    fontSize: 16,
+                                }}>
+                                Video
                             </Text>
                         </TouchableOpacity>
                     )
