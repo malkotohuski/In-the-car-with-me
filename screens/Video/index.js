@@ -1,26 +1,31 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+
+
 import { WebView } from 'react-native-webview';
 
 export default function Video() {
     const youtubeVideoIds = [
-        'your_youtube_video_id_1',
-        'your_youtube_video_id_2',
-        'your_youtube_video_id_3',
+        's9zHW602IqI',
+        'KPe18UIJ6gU',
+        'WfdHEAHtI_E',
+        '7klci6lUuAk',
         // Add more video IDs as needed
     ];
 
     return (
-        <View style={styles.container}>
-            {youtubeVideoIds.map((videoId) => (
-                <View key={videoId} style={styles.videoContainer}>
-                    <WebView
-                        source={{ uri: `https://www.youtube.com/embed/${videoId}` }}
-                        style={styles.video}
-                    />
-                </View>
-            ))}
-        </View>
+        <ScrollView style={styles.scrollView}>
+            <View style={styles.container}>
+                {youtubeVideoIds.map((videoId) => (
+                    <View key={videoId} style={styles.videoContainer}>
+                        <WebView
+                            source={{ uri: `https://www.youtube.com/embed/${videoId}` }}
+                            style={styles.video}
+                        />
+                    </View>
+                ))}
+            </View>
+        </ScrollView>
     );
 };
 
@@ -35,5 +40,9 @@ const styles = StyleSheet.create({
     },
     video: {
         flex: 1,
+    },
+    scrollView: {
+        backgroundColor: 'grey',
+        marginHorizontal: 20,
     },
 });
