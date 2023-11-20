@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from '../Home/styles';
 
-export default function Login() {
-    const navigation = useNavigation();
-
+export default function Login({ navigation, route }) {
+    /* const navigation = useNavigation(); */
+    const { onLogin } = route.params;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -17,11 +17,14 @@ export default function Login() {
         } else {
             alert('Login failed. Please check your credentials.');
         }
+        onLogin();
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Login</Text>
+            <TouchableOpacity onPress={handleLogin}>
+                <Text style={styles.title}>Login</Text>
+            </TouchableOpacity>
             <TextInput
                 style={styles.input}
                 placeholder="Email"
