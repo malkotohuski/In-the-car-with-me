@@ -1,11 +1,12 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import Navigator from './screens/MainTabScreen/AppNavigator';
-import Nav from './screens/DrawerContent/drawerContent';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import MyTabs from './screens/DrawerContent/tabsNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-import Login from './screens/Login';
+import Navigator from './screens/MainTabScreen/AppNavigator';
+
+const Drawer = createDrawerNavigator();
 
 export default function App() {
     return (

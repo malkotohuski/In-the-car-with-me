@@ -78,6 +78,13 @@ function MyTabs() {
                     },
                 })}
                 options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
