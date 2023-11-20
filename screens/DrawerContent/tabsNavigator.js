@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import HomePage from '../Home/Home';
 import Login from '../Login';
-import Register from '../Register';
 import MyAccount from '../Account';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from '@react-navigation/native';
 import Basket from '../Basket';
 import Video from '../Video';
 
@@ -15,6 +15,21 @@ const Tab = createBottomTabNavigator();
 
 function MyTabs() {
     const navigation = useNavigation();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    // Update isLoggedIn state based on user login status
+    const onLogin = () => {
+        setIsLoggedIn(true);
+        navigation.navigate('Garage');
+    };
+
+    useEffect(() => {
+        // If the user is logged in, navigate to the Home screen
+        if (isLoggedIn) {
+            navigation.navigate('Home');
+        }
+    }, [isLoggedIn, navigation]);
+
     return (
         <Tab.Navigator
             screenOptions={{
@@ -26,22 +41,16 @@ function MyTabs() {
             }}
         >
             <Tab.Screen
-                name="Home"
-                component={HomePage}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#f4511e',
-                    },
-                    headerTintColor: '#fff',
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                    },
+                name="Login"
+                component={Login}
+                options={({ route }) => ({
+                    headerShown: false,
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => navigation.navigate('Home')}>
+                            onPress={() => navigation.navigate('Login')}>
                             <Icon
-                                name="home"
+                                name={focused ? 'login' : 'car-repair'} // Change icon based on focus
                                 size={30}
                                 color={focused ? '#e32f45' : '#748c94'}
                             />
@@ -50,12 +59,69 @@ function MyTabs() {
                                     color: focused ? '#000' : '#748c94',
                                     fontSize: 16,
                                 }}>
+                                {focused ? 'Login' : 'Garage'}
+                            </Text>
+                        </TouchableOpacity>
+                    ),
+                })}
+                initialParams={{ onLogin }}
+            />
+            <Tab.Screen
+                name="Home"
+                component={HomePage}
+                listeners={({ route }) => ({
+                    tabPress: (e) => {
+                        // Prevent navigation to Home if not logged in
+                        if (!isLoggedIn) {
+                            e.preventDefault();
+                        }
+                    },
+                })}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <TouchableOpacity
+                            style={{ alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => navigation.navigate('Home')}>
+                            <Icon
+                                name="home"
+                                size={30}
+                                color={isLoggedIn ? '#e32f45' : '#748c94'}
+                            />
+                            <Text
+                                style={{
+                                    color: isLoggedIn ? '#000' : '#748c94',
+                                    fontSize: 16,
+                                }}>
                                 Home
                             </Text>
                         </TouchableOpacity>
                     )
                 }}
             />
+            {/*  <Tab.Screen
+                name="Garage"
+                component={Garage}
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <TouchableOpacity
+                            style={{ alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => navigation.navigate('Garage')}>
+                            <Icon
+                                name="settings" // Replace with your icon for Garage
+                                size={30}
+                                color={focused ? '#e32f45' : '#748c94'}
+                            />
+                            <Text
+                                style={{
+                                    color: focused ? '#000' : '#748c94',
+                                    fontSize: 16,
+                                }}>
+                                Garage
+                            </Text>
+                        </TouchableOpacity>
+                    ),
+                }}
+            /> */}
             <Tab.Screen
                 name="Account"
                 component={MyAccount}
@@ -87,37 +153,7 @@ function MyTabs() {
                     )
                 }}
             />
-            <Tab.Screen
-                name="Register"
-                component={Register}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#f4511e',
-                    },
-                    headerTintColor: '#fff',
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                    },
-                    tabBarIcon: ({ focused }) => (
-                        <TouchableOpacity
-                            style={{ alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => navigation.navigate('Register')}>
-                            <Icon
-                                name="app-registration"
-                                size={30}
-                                color={focused ? '#e32f45' : '#748c94'}
-                            />
-                            <Text
-                                style={{
-                                    color: focused ? '#000' : '#748c94',
-                                    fontSize: 16,
-                                }}>
-                                Register
-                            </Text>
-                        </TouchableOpacity>
-                    )
-                }}
-            />
+
             <Tab.Screen
                 name="Basket"
                 component={Basket}

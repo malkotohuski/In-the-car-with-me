@@ -5,6 +5,7 @@ import Navigator from './screens/MainTabScreen/AppNavigator';
 import Nav from './screens/DrawerContent/drawerContent';
 import MyTabs from './screens/DrawerContent/tabsNavigator';
 import { NavigationContainer } from '@react-navigation/native';
+import Login from './screens/Login';
 
 export default function App() {
     return (
