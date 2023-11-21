@@ -5,7 +5,7 @@ import styles from '../Home/styles';
 
 export default function Login({ navigation, route }) {
     /* const navigation = useNavigation(); */
-    const { onLogin } = route.params;
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -17,7 +17,7 @@ export default function Login({ navigation, route }) {
         } else {
             alert('Login failed. Please check your credentials.');
         }
-        onLogin();
+
     };
 
     return (

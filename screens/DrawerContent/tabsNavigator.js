@@ -9,6 +9,7 @@ import Login from '../Login';
 import MyAccount from '../Account';
 import Basket from '../Basket';
 import Video from '../Video';
+import Garage from '../Garage';
 
 
 const Tab = createBottomTabNavigator();
@@ -43,28 +44,41 @@ function MyTabs() {
             <Tab.Screen
                 name="Login"
                 component={Login}
-                options={({ route }) => ({
-                    headerShown: false,
+                listeners={({ route }) => ({
+                    tabPress: (e) => {
+                        // Prevent navigation to Home if not logged in
+                        if (!isLoggedIn) {
+                            e.preventDefault();
+                        }
+                    },
+                })}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => navigation.navigate('Login')}>
+                            onPress={() => navigation.navigate('Home')}>
                             <Icon
-                                name={focused ? 'login' : 'car-repair'} // Change icon based on focus
+                                name="directions-car"
                                 size={30}
-                                color={focused ? '#e32f45' : '#748c94'}
+                                color={isLoggedIn ? '#e32f45' : '#748c94'}
                             />
                             <Text
                                 style={{
-                                    color: focused ? '#000' : '#748c94',
+                                    color: isLoggedIn ? '#000' : '#748c94',
                                     fontSize: 16,
                                 }}>
-                                {focused ? 'Login' : 'Garage'}
+                                Garage
                             </Text>
                         </TouchableOpacity>
-                    ),
-                })}
-                initialParams={{ onLogin }}
+                    )
+                }}
             />
             <Tab.Screen
                 name="Home"
