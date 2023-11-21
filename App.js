@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import MyTabs from './screens/DrawerContent/tabsNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-import Navigator from './screens/MainTabScreen/AppNavigator';
+
 
 const Drawer = createDrawerNavigator();
 

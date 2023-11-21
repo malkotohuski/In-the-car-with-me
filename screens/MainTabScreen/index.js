@@ -1,6 +1,10 @@
 import React from "react";
 import Login from "../Login";
 import Register from "../Register";
+import { DrawerContent } from '../DrawerContent/drawerContent';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import MyTabs from "../DrawerContent/tabsNavigator";
+import Garage from "../Garage";
 
 const screenStyles = {
     headerStyle: {
@@ -28,6 +32,26 @@ export const Drawer = () => {
                 component={Register}
                 option={{
                     title: 'Register',
+                    ...screenStyles,
+                    headerShown: false,
+                }}
+            >
+            </Drawer.Screen>
+            <Drawer.Screen
+                name="MyTabs"
+                component={MyTabs}
+                option={{
+                    title: 'MyTabs',
+                    ...screenStyles,
+                    headerShown: false,
+                }}
+            >
+            </Drawer.Screen>
+            <Drawer.Screen
+                name="Garage"
+                component={Garage}
+                option={{
+                    title: 'Garage',
                     ...screenStyles,
                     headerShown: false,
                 }}

@@ -63,7 +63,7 @@ function MyTabs() {
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => navigation.navigate('Home')}>
+                            onPress={() => navigation.navigate('Garage')}>
                             <Icon
                                 name="directions-car"
                                 size={30}
