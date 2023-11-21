@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-export default function MyAccount() {
+const Stack = createStackNavigator();
+
+export default function MyAccount({ navigation }) {
 
     const [name, setName] = useState('');
     const [lastname, setLastname] = useState('');
@@ -14,6 +18,12 @@ export default function MyAccount() {
         // For simplicity, let's assume the user selects a local image file
         /*     setProfilePic(require('./path/to/defaultProfilePic.jpg')); */
     };
+
+    const navigateToCarRepair = () => {
+        // Navigate to the Car Repair screen
+        navigation.navigate('Garage');
+    };
+
     return (
         <View style={styles.container}>
             {/* Container for profile picture at top right */}
@@ -46,9 +56,23 @@ export default function MyAccount() {
                 onChangeText={(text) => setEmail(text)}
                 keyboardType="email-address"
             />
+            {/* Car Repair Icon Button */}
+            <TouchableOpacity onPress={navigateToCarRepair}>
+                <Icon
+                    name="directions-car"
+                    style={styles.carRepairIcon}
+                />
+            </TouchableOpacity>
         </View>
     );
 };
+
+const CarRepairScreen = () => (
+    <View style={styles.container}>
+        <Text>Car Repair Screen</Text>
+        {/* Add content for the Car Repair screen */}
+    </View>
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -74,5 +98,11 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 25,
         marginBottom: 8,
+    },
+    carRepairIcon: {
+        width: 50,
+        height: 50,
+        marginBottom: 8,
+        fontSize: 50
     },
 });
