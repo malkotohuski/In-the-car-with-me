@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, Button, TouchableOpacity, Switch } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 import styles from './styles';
+
 
 const images = [
     require('../../images/suspension.jpg'), // Replace with your image file paths
@@ -11,8 +14,16 @@ const images = [
 ];
 
 function HomePage({ navigation }) {
-
+    const { t } = useTranslation();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isItalian, setIsItalian] = useState(false);
+
+    const changeLanguage = (lng) => {
+        i18next.changeLanguage(lng);
+        setIsItalian(lng === 'it');
+    };
+
+
 
     useEffect(() => {
         const changeImageInterval = setInterval(() => {
@@ -50,38 +61,46 @@ function HomePage({ navigation }) {
                 <Image source={images[currentImageIndex]} style={styles.adImage} />
             </View>
             <View style={styles.content}>
+                <View style={styles.languageSwitch}>
+                    <Text>English</Text>
+                    <Switch
+                        value={isItalian}
+                        onValueChange={(value) => changeLanguage(value ? 'it' : 'en')}
+                    />
+                    <Text>Italian</Text>
+                </View>
                 <View style={styles.menuImages}>
                     <View>
                         <TouchableOpacity style={styles.tiresButton} onPress={handlerTires} >
-                            <Text>Tires</Text>
+                            <Text>{t('Tires')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
                         <TouchableOpacity style={styles.tiresButton} onPress={handlerMotorOil} >
-                            <Text>Motor Oil</Text>
+                            <Text>{t('Motor Oil')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
                         <TouchableOpacity style={styles.tiresButton} onPress={handlerSuspension} >
-                            <Text>Suspension </Text>
+                            <Text>{t('Suspension')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
                         <TouchableOpacity style={styles.tiresButton} onPress={handlerCarBody} >
-                            <Text>Car body </Text>
+                            <Text>{t('Car body')}</Text>
                         </TouchableOpacity>
                     </View>
 
                 </View>
                 {/* Your content goes here */}
-                <Text style={styles.heading}>AUTO GARAGE</Text>
-                <Text>Everything for your car</Text>
+                <Text style={styles.heading}>{t('AUTO GARAGE')}</Text>
+                <Text>{t('Everything for your car')}</Text>
                 <View style={styles.searchBox}>
                     <TextInput
                         style={styles.searchField}
-                        placeholder="Search here"
+                        placeholder={t('Search here')}
                     />
-                    <Button title="Search" style={styles.searchButton} />
+                    <Button title={t('Search')} style={styles.searchButton} />
                 </View>
             </View>
             <View style={styles.adBox}>
@@ -94,3 +113,39 @@ function HomePage({ navigation }) {
 }
 
 export default HomePage;
+
+i18next.init({
+    interpolation: { escapeValue: false },
+    lng: 'en',
+    resources: {
+        en: {
+            translation: {
+                'Tires': 'Tires',
+                'Motor Oil': 'Motor Oil',
+                'Suspension': 'Suspension',
+                'Car body': 'Car body',
+                'AUTO GARAGE': 'AUTO GARAGE',
+                'Everything for your car': 'Everything for your car',
+                'Search here': 'Search here',
+                'Search': 'Search',
+            }
+        },
+        it: {
+            translation: {
+                'Tires': 'Pneumatici',
+                'Motor Oil': 'Olio motore',
+                'Suspension': 'Sospensione',
+                'Car body': 'Carrozzeria',
+                'AUTO GARAGE': 'GARAGE AUTOMATICO',
+                'Everything for your car': 'Tutto per la tua macchina',
+                'Search here': 'Cerca qui',
+                'Search': 'Ricerca',
+            }
+        },
+        fr: {
+            translation: {
+                // French translations go here
+            }
+        }
+    }
+});
