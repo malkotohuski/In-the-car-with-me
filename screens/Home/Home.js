@@ -63,13 +63,15 @@ function HomePage({ navigation }) {
                 <Image source={images[currentImageIndex]} style={styles.adImage} />
             </View>
             <View style={styles.content}>
-                <View style={styles.languageSwitch}>
-                    <Text>English</Text>
-                    <Switch
-                        value={isItalian}
-                        onValueChange={(value) => changeLanguage(value ? 'it' : 'en')}
-                    />
-                    <Text>Italian</Text>
+                <View style={styles.languageSwitchContainer}>
+                    <View style={styles.languageSwitch}>
+                        <Text>English</Text>
+                        <Switch
+                            value={isItalian}
+                            onValueChange={(value) => changeLanguage(value ? 'it' : 'en')}
+                        />
+                        <Text>Italian</Text>
+                    </View>
                 </View>
                 <View style={styles.menuImages}>
                     <View>
