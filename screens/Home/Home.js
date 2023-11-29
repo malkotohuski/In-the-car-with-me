@@ -1,7 +1,8 @@
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, Button, TouchableOpacity, Switch } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
 import styles from './styles';
 
 
@@ -12,6 +13,7 @@ const images = [
     require('../../images/gearbox.jpg'),
     require('../../images/motorOil.jpg'),
 ];
+
 
 function HomePage({ navigation }) {
     const { t } = useTranslation();
@@ -114,10 +116,11 @@ function HomePage({ navigation }) {
 
 export default HomePage;
 
-i18next.init({
+i18next.use(initReactI18next).init({
     interpolation: { escapeValue: false },
     lng: 'en',
     resources: {
+
         en: {
             translation: {
                 'Tires': 'Tires',
@@ -137,7 +140,7 @@ i18next.init({
                 'Suspension': 'Sospensione',
                 'Car body': 'Carrozzeria',
                 'AUTO GARAGE': 'GARAGE AUTOMATICO',
-                'Everything for your car': 'Tutto per la tua macchina',
+                'Everything for your car': 'Tutto per la tua auto',
                 'Search here': 'Cerca qui',
                 'Search': 'Ricerca',
             }
