@@ -82,5 +82,15 @@ export default StyleSheet.create({
     buttonSeparator: {
         height: 10,
     },
+    languageSwitchContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        padding: 10, // Add padding for spacing
+    },
+    languageSwitch: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
 });
 
