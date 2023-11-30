@@ -6,13 +6,13 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: '50%',
+        height: '100%',
     },
     adBox: {
         flex: 1,
         width: '20%',
         padding: 5,
-        height: '50%',
+        height: '80%',
         backgroundColor: '#f0f0f0',
         overflow: 'hidden', // Add this line to hide overflowing content
     },
