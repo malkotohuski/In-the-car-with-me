@@ -84,13 +84,17 @@ export default StyleSheet.create({
     },
     languageSwitchContainer: {
         flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        padding: 10, // Add padding for spacing
+        justifyContent: 'space-around',
+        padding: 10,
     },
-    languageSwitch: {
-        flexDirection: 'row',
+    languageButton: {
         alignItems: 'center',
+    },
+    flagImage: {
+        width: 50, // Adjust the size as needed
+        height: 50, // Adjust the size as needed
+        borderRadius: 25, // Half of the width and height to make it round
+        marginBottom: 5, // Adjust the spacing as needed
     },
 });
 

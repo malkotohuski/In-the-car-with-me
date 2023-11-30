@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TextInput, Button, TouchableOpacity, Switch } from 'react-native';
+import { View, Text, Image, TextInput, Button, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
 
@@ -64,15 +64,28 @@ function HomePage({ navigation }) {
             </View>
             <View style={styles.content}>
                 <View style={styles.languageSwitchContainer}>
-                    <View style={styles.languageSwitch}>
+                    <TouchableOpacity
+                        style={styles.languageButton}
+                        onPress={() => changeLanguage('en')}
+                    >
+                        <Image
+                            source={require('../../images/eng-flag.png')} // Replace with the path to your English flag image
+                            style={styles.flagImage}
+                        />
                         <Text>English</Text>
-                        <Switch
-                            value={isItalian}
-                            onValueChange={(value) => changeLanguage(value ? 'it' : 'en')}
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.languageButton}
+                        onPress={() => changeLanguage('it')}
+                    >
+                        <Image
+                            source={require('../../images/ita-flag.jpg')} // Replace with the path to your Italian flag image
+                            style={styles.flagImage}
                         />
                         <Text>Italian</Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
+
                 <View style={styles.menuImages}>
                     <View>
                         <TouchableOpacity style={styles.tiresButton} onPress={handlerTires} >
