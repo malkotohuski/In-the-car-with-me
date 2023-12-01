@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TextInput, Button, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
 
@@ -18,11 +18,11 @@ const images = [
 function HomePage({ navigation }) {
     const { t } = useTranslation();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isItalian, setIsItalian] = useState(false);
+    const [isBulgaria, setisBulgaria] = useState(false);
 
     const changeLanguage = (lng) => {
         i18next.changeLanguage(lng);
-        setIsItalian(lng === 'it');
+        setisBulgaria(lng === 'bg');
     };
 
 
@@ -37,24 +37,24 @@ function HomePage({ navigation }) {
         };
     }, []);
 
-    const handlerTires = () => {
-        navigation.navigate('Tires')
-        console.log('Tires clicked !!!');
+    const handlerVehicle = () => {
+        navigation.navigate('Vehicle');
+        console.log('Vehicle clicked !!!');
     }
 
-    const handlerMotorOil = () => {
-        navigation.navigate('Motor Oil')
-        console.log('Motor oil clicked !!!');
+    const handlerRouteRequest = () => {
+        navigation.navigate('RouteRequest')
+        console.log('RouteRequest clicked !!!');
     }
 
-    const handlerSuspension = () => {
-        navigation.navigate('Suspension')
-        console.log('Suspension clicked !!!');
+    const handlerRouteViewer = () => {
+        navigation.navigate('RouteViewer')
+        console.log('RouteViewer !!!');
     }
 
-    const handlerCarBody = () => {
-        navigation.navigate('Car body')
-        console.log('Car body clicked !!!');
+    const handlerReporting = () => {
+        navigation.navigate('Reporting')
+        console.log('Reporting clicked !!!');
     }
 
     return (
@@ -69,55 +69,64 @@ function HomePage({ navigation }) {
                         onPress={() => changeLanguage('en')}
                     >
                         <Image
-                            source={require('../../images/eng-flag.png')} // Replace with the path to your English flag image
+                            source={require('../../images/engl-flag.png')} // Replace with the path to your English flag image
                             style={styles.flagImage}
                         />
-                        <Text>English</Text>
+                        <Text>{t('English')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.languageButton}
-                        onPress={() => changeLanguage('it')}
+                        onPress={() => changeLanguage('bg')}
                     >
                         <Image
-                            source={require('../../images/ita-flag.jpg')} // Replace with the path to your Italian flag image
+                            source={require('../../images/bulg-flag.png')} // Replace with the path to your Italian flag image
                             style={styles.flagImage}
                         />
-                        <Text>Italian</Text>
+                        <Text>{t('Bulgarian')}</Text>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.menuImages}>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerTires} >
-                            <Text>{t('Tires')}</Text>
+                        <TouchableOpacity style={styles.tiresButton} onPress={handlerVehicle} >
+                            <Text>{t('Register your vehicle')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerMotorOil} >
-                            <Text>{t('Motor Oil')}</Text>
+                        <TouchableOpacity style={styles.tiresButton} onPress={handlerRouteRequest} >
+                            <Text>{t('Route request')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerSuspension} >
-                            <Text>{t('Suspension')}</Text>
+                        <TouchableOpacity style={styles.tiresButton} onPress={handlerRouteViewer} >
+                            <Text>{t('View routes')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerCarBody} >
-                            <Text>{t('Car body')}</Text>
+                        <TouchableOpacity style={styles.tiresButton} onPress={handlerReporting} >
+                            <Text>{t('Reporting')}</Text>
                         </TouchableOpacity>
                     </View>
 
                 </View>
                 {/* Your content goes here */}
-                <Text style={styles.heading}>{t('AUTO GARAGE')}</Text>
-                <Text>{t('Everything for your car')}</Text>
+                <Text style={styles.heading}>{t('The Car with ME')}</Text>
+                <Text style={styles.moto}>{t('We travel freely')}</Text>
                 <View style={styles.searchBox}>
-                    <TextInput
-                        style={styles.searchField}
-                        placeholder={t('Search here')}
-                    />
-                    <Button title={t('Search')} style={styles.searchButton} />
+                    <View style={styles.searchContainer}>
+                        <TextInput
+                            style={styles.searchField}
+                            placeholder={t('Search here')}
+                        />
+                    </View>
+                    <TouchableOpacity
+                        style={styles.searchButton}
+                        onPress={() => {
+                            // Handle search button press
+                        }}
+                    >
+                        <Text style={styles.searchButtonText}>{t('Search')}</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={styles.adBox}>
@@ -135,35 +144,55 @@ i18next.use(initReactI18next).init({
     interpolation: { escapeValue: false },
     lng: 'en',
     resources: {
-
         en: {
             translation: {
-                'Tires': 'Tires',
-                'Motor Oil': 'Motor Oil',
-                'Suspension': 'Suspension',
-                'Car body': 'Car body',
-                'AUTO GARAGE': 'AUTO GARAGE',
-                'Everything for your car': 'Everything for your car',
+                'Register your vehicle': 'Register your vehicle',
+                'Route request': 'Route request',
+                'View routes': 'View routes',
+                'Reporting': 'Reporting',
+                'The Car with ME': 'The Car with ME',
+                'We travel freely': 'We travel freely',
                 'Search here': 'Search here',
                 'Search': 'Search',
+                'Categories': 'Categories',
+                'Car': 'Car',
+                'Vehicle': 'Vehicle',
+                'Garage': 'Garage',
+                'Home': 'Home',
+                'Account': 'Account',
+                'Video': 'Video',
+                'Motorcycle': 'Motorcycle',
+                'A minibus': 'A minibus',
+                'A bus': 'A bus',
+                'Select vehicle': 'Select vehicle',
+                'English': 'English',
+                'Bulgarian': 'Bulgarian',
             }
         },
-        it: {
+        bg: {
             translation: {
-                'Tires': 'Pneumatici',
-                'Motor Oil': 'Olio motore',
-                'Suspension': 'Sospensione',
-                'Car body': 'Carrozzeria',
-                'AUTO GARAGE': 'GARAGE AUTOMATICO',
-                'Everything for your car': 'Tutto per la tua auto',
-                'Search here': 'Cerca qui',
-                'Search': 'Ricerca',
+                'Register your vehicle': 'Регистрирай автомобила си ',
+                'Route request': 'Запитване за маршрут',
+                'View routes': 'Преглед на маршрутите',
+                'Reporting': 'Подаване на сигнал',
+                'The Car with ME': 'Koлaтa c мен ',
+                'We travel freely': 'Пътуваме свободно',
+                'Search here': 'Търсете тук',
+                'Search': 'Търсене ',
+                'Categories': 'Категории',
+                'Car': 'Лек автомобил',
+                'Vehicle': 'Автомобил',
+                'Garage': 'Гараж',
+                'Home': 'Дом',
+                'Account': 'Акаунт',
+                'Video': 'Видео',
+                'Motorcycle': 'Мотоциклет',
+                'A minibus': 'Микробус',
+                'A bus': 'Автобус',
+                'Select vehicle': 'Изберете превозно средство',
+                'English': 'Английски',
+                'Bulgarian': 'Български',
             }
         },
-        fr: {
-            translation: {
-                // French translations go here
-            }
-        }
     }
 });
