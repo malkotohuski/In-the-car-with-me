@@ -10,12 +10,15 @@ import MyAccount from '../Account';
 import Basket from '../Basket';
 import Video from '../Video';
 import Garage from '../Garage';
+import Vehicle from '../Category/Vehicle';
+import { useTranslation } from 'react-i18next';
 
 
 const Tab = createBottomTabNavigator();
 
-function MyTabs() {
+const MyTabs = () => {
     const navigation = useNavigation();
+    const { t } = useTranslation();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     // Update isLoggedIn state based on user login status
@@ -72,9 +75,9 @@ function MyTabs() {
                             <Text
                                 style={{
                                     color: isLoggedIn ? '#000' : '#748c94',
-                                    fontSize: 16,
+                                    fontSize: 14,
                                 }}>
-                                Garage
+                                {t('Garage')}
                             </Text>
                         </TouchableOpacity>
                     )
@@ -111,9 +114,9 @@ function MyTabs() {
                             <Text
                                 style={{
                                     color: isLoggedIn ? '#000' : '#748c94',
-                                    fontSize: 16,
+                                    fontSize: 14,
                                 }}>
-                                Home
+                                {t('Home')}
                             </Text>
                         </TouchableOpacity>
                     )
@@ -166,16 +169,16 @@ function MyTabs() {
                             <Text
                                 style={{
                                     color: focused ? '#000' : '#748c94',
-                                    fontSize: 16,
+                                    fontSize: 14,
                                 }}>
-                                Account
+                                {t('Account')}
                             </Text>
                         </TouchableOpacity>
                     )
                 }}
             />
 
-            <Tab.Screen
+            {/*  <Tab.Screen
                 name="Basket"
                 component={Basket}
                 options={{
@@ -205,7 +208,7 @@ function MyTabs() {
                         </TouchableOpacity>
                     )
                 }}
-            />
+            /> */}
             <Tab.Screen
                 name="Video"
                 component={Video}
@@ -229,12 +232,43 @@ function MyTabs() {
                             <Text
                                 style={{
                                     color: focused ? '#000' : '#748c94',
-                                    fontSize: 16,
+                                    fontSize: 14,
                                 }}>
-                                Video
+                                {t('Video')}
                             </Text>
                         </TouchableOpacity>
                     )
+                }}
+            />
+            <Tab.Screen
+                name="Vehicle"
+                component={Vehicle}
+                options={{
+                    headerStyle: {
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                    tabBarIcon: ({ focused }) => (
+                        <TouchableOpacity
+                            style={{ alignItems: 'center', justifyContent: 'center' }}
+                            onPress={() => navigation.navigate('Vehicle')}>
+                            <Icon
+                                name="settings" // Replace with your icon for NewScreen
+                                size={30}
+                                color={focused ? '#e32f45' : '#748c94'}
+                            />
+                            <Text
+                                style={{
+                                    color: focused ? '#000' : '#748c94',
+                                    fontSize: 14,
+                                }}>
+                                {t('Vehicle')}
+                            </Text>
+                        </TouchableOpacity>
+                    ),
                 }}
             />
         </Tab.Navigator>

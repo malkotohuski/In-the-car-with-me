@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../Login';
 import Register from '../Register';
 import HomePage from '../Home/Home';
-import Tires from '../Category/Tires';
+import Tires from '../Category/Vehicle';
 import MotorOil from '../Category/MotorOil';
 
 const Stack = createStackNavigator();
