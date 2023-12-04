@@ -1,23 +1,23 @@
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
 
 
-const images = [
+/* const images = [
     require('../../images/suspension.jpg'), // Replace with your image file paths
     require('../../images/images3.jpg'),
     require('../../images/tires.jpg'),
     require('../../images/gearbox.jpg'),
     require('../../images/motorOil.jpg'),
-];
+]; */
 
 
 function HomePage({ navigation }) {
     const { t } = useTranslation();
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    /*     const [currentImageIndex, setCurrentImageIndex] = useState(0); */
     const [isBulgaria, setisBulgaria] = useState(false);
 
     const changeLanguage = (lng) => {
@@ -27,15 +27,15 @@ function HomePage({ navigation }) {
 
 
 
-    useEffect(() => {
-        const changeImageInterval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 3000); // Change image every 3 seconds
-
-        return () => {
-            clearInterval(changeImageInterval);
-        };
-    }, []);
+    /*    useEffect(() => {
+           const changeImageInterval = setInterval(() => {
+               setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+           }, 3000); // Change image every 3 seconds
+   
+           return () => {
+               clearInterval(changeImageInterval);
+           };
+       }, []); */
 
     const handlerVehicle = () => {
         navigation.navigate('Vehicle');
@@ -59,9 +59,9 @@ function HomePage({ navigation }) {
 
     return (
         <View style={styles.homepage}>
-            <View style={styles.adBox}>
+            {/*  <View style={styles.adBox}>
                 <Image source={images[currentImageIndex]} style={styles.adImage} />
-            </View>
+            </View> */}
             <View style={styles.content}>
                 <View style={styles.languageSwitchContainer}>
                     <TouchableOpacity
@@ -109,9 +109,11 @@ function HomePage({ navigation }) {
                     </View>
 
                 </View>
-                {/* Your content goes here */}
-                <Text style={styles.heading}>{t('The Car with ME')}</Text>
-                <Text style={styles.moto}>{t('We travel freely')}</Text>
+                <View style={styles.centeredTextContainer}>
+                    {/* Your content goes here */}
+                    <Text style={styles.heading}>{t('In the car with me')}</Text>
+                    <Text style={styles.moto}>{t('We travel freely')}</Text>
+                </View>
                 <View style={styles.searchBox}>
                     <View style={styles.searchContainer}>
                         <TextInput
@@ -129,10 +131,10 @@ function HomePage({ navigation }) {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View style={styles.adBox}>
+            {/*  <View style={styles.adBox}>
                 <Image source={images[currentImageIndex]} style={styles.adImage} />
-                {/* Right Ad Content */}
-            </View>
+              
+            </View> */}
             {/* Footer goes here */}
         </View>
     );
@@ -150,7 +152,7 @@ i18next.use(initReactI18next).init({
                 'Route request': 'Route request',
                 'View routes': 'View routes',
                 'Reporting': 'Reporting',
-                'The Car with ME': 'The Car with ME',
+                'In the car with me': 'In the car with me',
                 'We travel freely': 'We travel freely',
                 'Search here': 'Search here',
                 'Search': 'Search',
@@ -167,6 +169,8 @@ i18next.use(initReactI18next).init({
                 'Select vehicle': 'Select vehicle',
                 'English': 'English',
                 'Bulgarian': 'Bulgarian',
+                'Continue': 'Continue',
+                'Selected': 'Selected',
             }
         },
         bg: {
@@ -175,7 +179,7 @@ i18next.use(initReactI18next).init({
                 'Route request': 'Запитване за маршрут',
                 'View routes': 'Преглед на маршрутите',
                 'Reporting': 'Подаване на сигнал',
-                'The Car with ME': 'Koлaтa c мен ',
+                'In the car with me': 'B колата c мен',
                 'We travel freely': 'Пътуваме свободно',
                 'Search here': 'Търсете тук',
                 'Search': 'Търсене ',
@@ -192,6 +196,8 @@ i18next.use(initReactI18next).init({
                 'Select vehicle': 'Изберете превозно средство',
                 'English': 'Английски',
                 'Bulgarian': 'Български',
+                'Continue': 'Продължи',
+                'Selected': 'Избрано',
             }
         },
     }

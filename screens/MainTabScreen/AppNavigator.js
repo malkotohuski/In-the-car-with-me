@@ -12,7 +12,7 @@ import MotorOil from '../Category/MotorOil';
 const Stack = createStackNavigator();
 
 
-export default function Navigator() {
+export default function Nav() {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Apps">
