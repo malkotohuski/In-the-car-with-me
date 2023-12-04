@@ -122,30 +122,6 @@ const MyTabs = () => {
                     )
                 }}
             />
-            {/*  <Tab.Screen
-                name="Garage"
-                component={Garage}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <TouchableOpacity
-                            style={{ alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => navigation.navigate('Garage')}>
-                            <Icon
-                                name="settings" // Replace with your icon for Garage
-                                size={30}
-                                color={focused ? '#e32f45' : '#748c94'}
-                            />
-                            <Text
-                                style={{
-                                    color: focused ? '#000' : '#748c94',
-                                    fontSize: 16,
-                                }}>
-                                Garage
-                            </Text>
-                        </TouchableOpacity>
-                    ),
-                }}
-            /> */}
             <Tab.Screen
                 name="Account"
                 component={MyAccount}
@@ -177,38 +153,6 @@ const MyTabs = () => {
                     )
                 }}
             />
-
-            {/*  <Tab.Screen
-                name="Basket"
-                component={Basket}
-                options={{
-                    headerStyle: {
-                        backgroundColor: '#f4511e',
-                    },
-                    headerTintColor: '#fff',
-                    headerTitleStyle: {
-                        fontWeight: 'bold',
-                    },
-                    tabBarIcon: ({ focused }) => (
-                        <TouchableOpacity
-                            style={{ alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => navigation.navigate('Basket')}>
-                            <Icon
-                                name="shopping-basket"
-                                size={30}
-                                color={focused ? '#e32f45' : '#748c94'}
-                            />
-                            <Text
-                                style={{
-                                    color: focused ? '#000' : '#748c94',
-                                    fontSize: 16,
-                                }}>
-                                Basket
-                            </Text>
-                        </TouchableOpacity>
-                    )
-                }}
-            /> */}
             <Tab.Screen
                 name="Video"
                 component={Video}
@@ -254,7 +198,7 @@ const MyTabs = () => {
                     tabBarIcon: ({ focused }) => (
                         <TouchableOpacity
                             style={{ alignItems: 'center', justifyContent: 'center' }}
-                            onPress={() => navigation.navigate('Vehicle')}>
+                            onPress={() => navigation.navigate('MyTabs', { screen: 'Vehicle' })}>
                             <Icon
                                 name="settings" // Replace with your icon for NewScreen
                                 size={30}

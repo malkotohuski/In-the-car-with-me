@@ -1,57 +1,66 @@
 import i18next from 'i18next';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { MultipleSelectList } from 'react-native-dropdown-select-list';
 import { useTranslation } from 'react-i18next';
+import { useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function Vehicle() {
+
+const Vehicle = () => {
     const { t } = useTranslation();
     const [selectedVehicle, setSelectedVehicle] = useState(null);
-    const [selectedCategories, setSelectedCategories] = useState([]);
-
+    const navigation = useNavigation();
 
     const vehicleTypes = [
-        { key: '1', value: 'Car' },
-        { key: '2', value: 'Motorcycle' },
-        { key: '3', value: 'A minibus' },
-        { key: '4', value: 'A bus' },
+        { key: '1', value: t('Car') },
+        { key: '2', value: t('Motorcycle') },
+        { key: '3', value: t('A minibus') },
+        { key: '4', value: t('A bus') },
     ];
-
-
-    const translatedVehicleTypes = vehicleTypes.map((type) => ({
-        ...type,
-        value: t(type.value),
-    }));
-
 
     const handleVehicleSelect = (value) => {
         setSelectedVehicle(value);
-        setSelectedCategories([]); // Reset selected categories when a new vehicle is selected
-    };
-
-    const handleCategorySelect = (categories) => {
-        setSelectedCategories(categories);
     };
 
     const handleContinue = () => {
-        // Handle the continue action
-        Alert.alert('Continue button clicked');
+        if (selectedVehicle) {
+            // Navigate to the MarkSeats screen and pass the selected vehicle information
+            navigation.navigate('MarkSeats', { selectedVehicle });
+        } else {
+            // Handle the case where no vehicle is selected
+            Alert.alert('Error', 'Please select a vehicle before continuing');
+        }
     };
+
+    useFocusEffect(
+        useCallback(() => {
+            // Reset the selectedVehicle when the component gains focus
+            setSelectedVehicle(null);
+            handleVehicleSelect(null)
+            // Optionally, you can also reset other states or perform other actions on focus
+
+            // Return a cleanup function (optional)
+            return () => {
+                // Perform cleanup when the component loses focus (if needed)
+            };
+        }, []) // The empty dependency array ensures that this effect runs only once when the component mounts
+    );
 
     return (
         <View style={{ flex: 1 }}>
             <MultipleSelectList
                 setSelected={(val) => handleVehicleSelect(val[0])}
-                data={translatedVehicleTypes}
+                data={vehicleTypes}
                 save={t('value')}
-                onSelect={() => Alert.alert(selectedVehicle)}
-                label={t('Categories')}
+                onSelect={() => {
+                    console.log('You tapped the button!');
+                }}
                 placeholder={t('Select vehicle')}
                 searchable={false}
+                selectedLabel={t('Selected')}
             />
-
             <View>
-
                 <TouchableOpacity
                     onPress={handleContinue}
                     style={{

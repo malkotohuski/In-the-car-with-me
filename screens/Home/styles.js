@@ -42,6 +42,10 @@ export default StyleSheet.create({
         marginHorizontal: 10, // Adjust the margin as needed
         marginBottom: 10,
     },
+    centeredTextContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     moto: {
         fontSize: 20,
         fontWeight: 'bold',
@@ -50,7 +54,7 @@ export default StyleSheet.create({
     },
     searchField: {
         height: 40,
-        width: 200,
+        width: 400,
         borderWidth: 2,
         borderColor: 'gray',
         marginBottom: 10,
@@ -63,7 +67,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        width: 80,
+        width: 100,
     },
     searchButtonText: {
         textAlign: 'center',
@@ -76,6 +80,8 @@ export default StyleSheet.create({
         backgroundColor: '#DDDDDD',
         padding: 10,
         marginBottom: 5,
+        fontSize: 24,
+        fontWeight: 'bold',
     },
     container: {
         flex: 1,

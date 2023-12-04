@@ -5,6 +5,7 @@ import { DrawerContent } from '../DrawerContent/drawerContent';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomePage from '../Home/Home';
 import MyTabs from './tabsNavigator';
+import MarkSeatsScreen from '../Category/MarkSeatsScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -17,7 +18,7 @@ const screenStyles = {
 
 export const Navigator = () => {
     return (
-        <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
+        <Drawer.Navigator>
             <Drawer.Screen
                 name="Login"
                 component={Login}
@@ -41,6 +42,14 @@ export const Navigator = () => {
                 component={HomePage}
                 options={{
                     title: 'Home',
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="MarkSeats"
+                component={MarkSeatsScreen}
+                options={{
+                    title: 'MarkSeats',
                     ...screenStyles,
                 }}
             />
