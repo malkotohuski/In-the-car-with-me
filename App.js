@@ -11,12 +11,12 @@ import { Navigator } from './screens/DrawerContent/drawerContent';
 const Drawer = createDrawerNavigator();
 
 function App() {
-
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <NavigationContainer>
-                <Navigator />
+                <Navigator isLoggedIn={isLoggedIn} />
             </NavigationContainer>
         </SafeAreaView>
     );

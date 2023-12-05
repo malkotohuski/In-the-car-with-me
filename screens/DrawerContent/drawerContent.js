@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomePage from '../Home/Home';
 import MyTabs from './tabsNavigator';
 import MarkSeatsScreen from '../Category/MarkSeatsScreen';
+import Vehicle from '../Category/Vehicle';
 
 const Drawer = createDrawerNavigator();
 
@@ -16,7 +17,22 @@ const screenStyles = {
     headerTintColor: '#fff',
 };
 
-export const Navigator = () => {
+export const Navigator = ({ isLoggedIn }) => {
+
+    const dynamicScreens = [
+        // ... other screens
+        <Drawer.Screen
+            name="Tabs"
+            component={MyTabs}
+            key="Tabs"
+            options={{
+                title: 'Tabs',
+                ...screenStyles,
+                headerShown: false,
+            }}
+        />,
+    ];
+
     return (
         <Drawer.Navigator>
             <Drawer.Screen
@@ -46,6 +62,14 @@ export const Navigator = () => {
                 }}
             />
             <Drawer.Screen
+                name="Vehicle"
+                component={Vehicle}
+                options={{
+                    title: 'Vehicle',
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
                 name="MarkSeats"
                 component={MarkSeatsScreen}
                 options={{
@@ -62,6 +86,7 @@ export const Navigator = () => {
                     headerShown: false,
                 }}
             />
+            {isLoggedIn ? dynamicScreens : null}
         </Drawer.Navigator>
     );
 };
