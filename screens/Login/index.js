@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
+
 import styles from '../Home/styles';
 
 export default function Login({ navigation, route }) {
-    /* const navigation = useNavigation(); */
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         // Add your login logic here
-        if (email === 'user@example.com' && password === 'password') {
+        if (email === 'malkoto' && password === 'password') {
+            // Simulate user authentication (replace with your server logic)
+            const userId = '123'; // Replace with the actual user ID
+            await AsyncStorage.setItem('userId', userId);
+
             // Navigate to the HomeScreen upon successful login
             navigation.navigate('Home');
         } else {
             alert('Login failed. Please check your credentials.');
         }
-
     };
 
     return (
