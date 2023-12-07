@@ -22,7 +22,6 @@ export default function Login({ navigation, route }) {
             alert('Login failed. Please check your credentials.');
         }
     };
-
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={handleLogin}>

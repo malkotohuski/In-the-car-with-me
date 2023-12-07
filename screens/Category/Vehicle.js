@@ -24,7 +24,7 @@ const Vehicle = () => {
     };
 
     const handleContinue = () => {
-        if (selectedVehicle) {
+        if (vehicleTypes) {
             // Navigate to the MarkSeats screen and pass the selected vehicle information
             navigation.navigate('MarkSeats', { selectedVehicle });
         } else {
