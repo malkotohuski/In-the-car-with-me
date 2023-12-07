@@ -41,6 +41,7 @@ function MarkSeatsScreen({ route, navigation }) {
                             justifyContent: 'center',
                             alignItems: 'center',
                             opacity: seatNumber === 1 ? 1 : 1, // Make the first seat not clickable
+                            top: 20
                         }}
                         disabled={seatNumber === 1} // Disable onPress for the first seat
                     >
@@ -64,6 +65,7 @@ function MarkSeatsScreen({ route, navigation }) {
                             backgroundColor: markedSeats.includes(seatNumber) ? 'green' : 'gray',
                             justifyContent: 'center',
                             alignItems: 'center',
+                            top: 70
                         }}
                     >
                         <Text style={{ color: 'white' }}>{seatNumber}</Text>
@@ -86,17 +88,17 @@ function MarkSeatsScreen({ route, navigation }) {
                     style={{
                         flexDirection: 'row',
                         position: 'absolute',
-                        left: side === 'left' ? -20 : undefined,
-                        right: side === 'right' ? -20 : undefined,
-                        top: 10 + (row * 40), // Adjust the spacing between rows
+                        left: side === 'left' ? -30 : undefined,
+                        right: side === 'right' ? -30 : undefined,
+                        top: -30 + (row * 90), // Adjust the spacing between rows
                     }}
                 >
                     {[1, 2].map((tireNumber) => (
                         <View
                             key={tireNumber}
                             style={{
-                                width: 10,
-                                height: 30,
+                                width: 15,
+                                height: 50,
                                 backgroundColor: 'black',
                                 borderRadius: 5,
                                 marginLeft: 1,
@@ -133,6 +135,7 @@ function MarkSeatsScreen({ route, navigation }) {
                         marginVertical: 20, // Increased vertical margin for height
                         flexDirection: 'column', // Arrange the rows vertically
                         alignItems: 'center', // Center the rows horizontally
+                        height: 230
                     }}
                 >
                     {renderSeats()}
