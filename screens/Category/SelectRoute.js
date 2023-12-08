@@ -1,7 +1,17 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { MultipleSelectList } from 'react-native-dropdown-select-list';
+import { Dropdown } from 'react-native-element-dropdown';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+
+const data = [
+    { label: 'Sofia', value: 'Sofia' },
+    { label: 'Plovdiv', value: 'Plovdiv' },
+    { label: 'Varna', value: 'Varna' },
+    { label: 'Burgas', value: 'Burgas' },
+    // Add more cities as needed
+];
 
 function SelectRouteScreen({ route, navigation }) {
     const {
@@ -17,10 +27,22 @@ function SelectRouteScreen({ route, navigation }) {
     const [departureStreet, setDepartureStreet] = useState('');
     const [departureNumber, setDepartureNumber] = useState('');
     const [contactTelefon, setContactTelefon] = useState('')
-    const [selectedCity, setSelectedCity] = useState(null);
+    const [value, setValue] = useState(null);
+    const [isFocus, setIsFocus] = useState(false);
 
     const [arrivalStreet, setArrivalStreet] = useState('');
     const [arrivalNumber, setArrivalNumber] = useState('');
+
+    const renderLabel = () => {
+        if (value || isFocus) {
+            return (
+                <Text style={[styles.label, isFocus && { color: 'blue' }]}>
+                    Dropdown label
+                </Text>
+            );
+        }
+        return null;
+    };
 
     const handleContinue = () => {
         // Handle the continue action with the selected route data
@@ -30,13 +52,7 @@ function SelectRouteScreen({ route, navigation }) {
         // You can navigate back or perform other actions as needed
     };
 
-    const cities = [
-        { label: 'Sofia', value: 'Sofia' },
-        { label: 'Plovdiv', value: 'Plovdiv' },
-        { label: 'Varna', value: 'Varna' },
-        { label: 'Burgas', value: 'Burgas' },
-        // Add more cities as needed
-    ];
+
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -54,18 +70,37 @@ function SelectRouteScreen({ route, navigation }) {
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
                 Departure:
             </Text>
-            <MultipleSelectList
-                setSelected={(val) => setSelectedCity(val[0])}
-                data={cities}
-                save='value'
-                onSelect={() => {
-                    console.log('You tapped the button!');
-                }}
-                placeholder='Select City'
-                searchable={false}
-                selectedLabel='Selected'
-                selectedItems={selectedCity}
-            />
+            <View style={styles.container}>
+                <Dropdown
+                    style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                    placeholderStyle={styles.placeholderStyle}
+                    selectedTextStyle={styles.selectedTextStyle}
+                    inputSearchStyle={styles.inputSearchStyle}
+                    iconStyle={styles.iconStyle}
+                    data={data}
+                    search
+                    maxHeight={300}
+                    labelField="label"
+                    valueField="value"
+                    placeholder={!isFocus ? 'Select City' : '...'}
+                    searchPlaceholder="Search..."
+                    value={value}
+                    onFocus={() => setIsFocus(true)}
+                    onBlur={() => setIsFocus(false)}
+                    onChange={item => {
+                        setValue(item.value);
+                        setIsFocus(false);
+                    }}
+                    renderLeftIcon={() => (
+                        <Icon
+                            style={styles.icon}
+                            color={isFocus ? 'blue' : 'black'}
+                            name="departure-board"
+                            size={20}
+                        />
+                    )}
+                />
+            </View>
             <TextInput
                 placeholder="Street"
                 value={departureStreet}
@@ -91,7 +126,7 @@ function SelectRouteScreen({ route, navigation }) {
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
                 Arrival:
             </Text>
-            <MultipleSelectList
+            {/*  <MultipleSelectList
                 setSelected={(val) => setSelectedCity(val[0])}
                 data={cities}
                 save='value'
@@ -102,7 +137,7 @@ function SelectRouteScreen({ route, navigation }) {
                 searchable={false}
                 selectedLabel='Selected'
                 selectedItems={selectedCity}
-            />
+            /> */}
             <TextInput
                 placeholder="Street"
                 value={arrivalStreet}
@@ -152,3 +187,44 @@ function SelectRouteScreen({ route, navigation }) {
 }
 
 export default SelectRouteScreen;
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: '#f0f0f0',
+        padding: 16,
+    },
+    dropdown: {
+        height: 60,
+        width: 140,
+        borderColor: 'gray',
+        borderWidth: 1.5,
+        borderRadius: 8,
+        paddingHorizontal: 8,
+    },
+    icon: {
+        marginRight: 5,
+    },
+    label: {
+        position: 'absolute',
+        backgroundColor: '#f0f0f0',
+        left: 22,
+        top: 8,
+        zIndex: 999,
+        paddingHorizontal: 8,
+        fontSize: 14,
+    },
+    placeholderStyle: {
+        fontSize: 16,
+    },
+    selectedTextStyle: {
+        fontSize: 16,
+    },
+    iconStyle: {
+        width: 20,
+        height: 20,
+    },
+    inputSearchStyle: {
+        height: 40,
+        fontSize: 16,
+    },
+});
