@@ -1,9 +1,19 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-function MarkSeatsScreen({ route, navigation }) {
+function MarkSeatsScreen({ route }) {
     const { selectedVehicle } = route?.params || {};
     const [markedSeats, setMarkedSeats] = useState([]);
+    const [registrationNumber, setRegistrationNumber] = useState('');
+    const [freePlaces, setFreePlaces] = useState(0);
+
+    const navigation = useNavigation();
+
+    const isValidRegistrationNumber = () => {
+        const regex = /^([A-Za-z]{1,2})([3-6]{2})([0-9]{2})([A-Za-z]{2})$/;
+        return regex.test(registrationNumber);
+    };
 
     const handleSeatPress = (seatNumber) => {
         // Allow marking/unmarking only for seats other than seat 1
@@ -17,10 +27,24 @@ function MarkSeatsScreen({ route, navigation }) {
     };
 
     const handleContinue = () => {
-        // Handle the continue action with the selected vehicle and marked seats
-        console.log(`Selected Vehicle: ${selectedVehicle}, Marked Seats: ${markedSeats}`);
-        // You can navigate back or perform other actions as needed
+        // Validate the registration number
+        if (!isValidRegistrationNumber()) {
+            // Show an alert if the registration number is invalid
+            Alert.alert('Invalid Registration Number', 'Please enter a valid registration number.');
+            return;
+        }
+
+        // Navigate to the "SelectRoute" screen
+        navigation.navigate('SelectRoute', {
+            selectedVehicle,
+            markedSeats,
+            registrationNumber,
+            freePlaces,
+        });
     };
+
+
+    // ... (existing code for renderSeats and renderTires)
 
     // Generate two rows of seats
     const renderSeats = () => {
@@ -115,6 +139,32 @@ function MarkSeatsScreen({ route, navigation }) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>{`Selected Vehicle: ${selectedVehicle}`}</Text>
+            {/* Add a TextInput for the registration number */}
+            <TextInput
+                placeholder="Enter Registration Number"
+                value={registrationNumber}
+                onChangeText={(text) => setRegistrationNumber(text)}
+                style={{
+                    height: 40,
+                    borderColor: 'gray',
+                    borderWidth: 1,
+                    margin: 10,
+                    padding: 5,
+                    textAlign: 'center',
+                }}
+            />
+            {/* Display the registration number if available */}
+            {registrationNumber && <Text>{`Registration Number: ${registrationNumber}`}</Text>}
+
+            {/* Validate the registration number */}
+            {!isValidRegistrationNumber() && <Text style={{ color: 'red' }}>
+                Invalid registration number format
+            </Text>}
+
+            {/* Add a new text for choosing free places */}
+            <Text>{`Choose how many free places you have: ${freePlaces}`}</Text>
+
+
             {/* Wrap renderSeats and renderTires in a View with styling for the car shape */}
             <View
                 style={{
@@ -149,12 +199,13 @@ function MarkSeatsScreen({ route, navigation }) {
                 style={{
                     marginTop: 20,
                     padding: 10,
-                    backgroundColor: 'coral',
+                    backgroundColor: isValidRegistrationNumber() ? 'coral' : 'gray', // Change color based on registrationNumber validity
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontSize: 14,
                     fontWeight: 'bold',
                 }}
+                disabled={!isValidRegistrationNumber()} // Disable button if registrationNumber is invalid
             >
                 <Text style={{ color: 'white' }}>Continue</Text>
             </TouchableOpacity>

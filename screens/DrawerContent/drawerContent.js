@@ -7,6 +7,7 @@ import HomePage from '../Home/Home';
 import MyTabs from './tabsNavigator';
 import MarkSeatsScreen from '../Category/MarkSeatsScreen';
 import Vehicle from '../Category/Vehicle';
+import SelectRouteScreen from '../Category/SelectRoute';
 
 const Drawer = createDrawerNavigator();
 
@@ -74,6 +75,14 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={MarkSeatsScreen}
                 options={{
                     title: 'MarkSeats',
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="SelectRoute"
+                component={SelectRouteScreen}
+                options={{
+                    title: 'SelectRoute',
                     ...screenStyles,
                 }}
             />
