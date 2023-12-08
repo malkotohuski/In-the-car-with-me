@@ -1,5 +1,5 @@
 {
-  "name": "AwesomeProject",
+  "name": "awesomeproject",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,6 +10,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
+    "@ant-design/icons-react-native": "^2.3.2",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-masked-view/masked-view": "^0.3.0",
@@ -21,6 +23,7 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
     "@react-navigation/stack": "^6.3.20",
+    "csv-parser": "^3.0.0",
     "i18next": "^23.7.7",
     "intl": "^1.2.5",
     "intl-pluralrules": "^2.0.1",
@@ -65,5 +68,10 @@
   },
   "engines": {
     "node": ">=16"
-  }
+  },
+  "description": "This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
