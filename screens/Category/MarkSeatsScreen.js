@@ -6,7 +6,7 @@ function MarkSeatsScreen({ route }) {
     const { selectedVehicle } = route?.params || {};
     const [markedSeats, setMarkedSeats] = useState([]);
     const [registrationNumber, setRegistrationNumber] = useState('');
-    const [freePlaces, setFreePlaces] = useState(0);
+
 
     const navigation = useNavigation();
 
@@ -39,7 +39,6 @@ function MarkSeatsScreen({ route }) {
             selectedVehicle,
             markedSeats,
             registrationNumber,
-            freePlaces,
         });
     };
 
@@ -162,7 +161,7 @@ function MarkSeatsScreen({ route }) {
             </Text>}
 
             {/* Add a new text for choosing free places */}
-            <Text>{`Choose how many free places you have: ${freePlaces}`}</Text>
+            <Text>Choose how many free places you have:</Text>
 
 
             {/* Wrap renderSeats and renderTires in a View with styling for the car shape */}
