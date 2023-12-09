@@ -231,6 +231,8 @@ function SelectRouteScreen({ route, navigation }) {
                 <Button
                     title="Date and time of departure"
                     onPress={() => setOpen(true)}
+                    color="#f4511e"
+                    titleStyle={{ marginHorizontal: 20, color: 'black' }}
                 />
                 <DatePicker
                     modal
@@ -249,7 +251,7 @@ function SelectRouteScreen({ route, navigation }) {
                     style={{
                         marginTop: 20,
                         padding: 10,
-                        backgroundColor: 'coral',
+                        backgroundColor: '#f4511e',
                         alignItems: 'center',
                         justifyContent: 'center',
                         fontSize: 14,
@@ -257,7 +259,7 @@ function SelectRouteScreen({ route, navigation }) {
                         width: '80%', // Adjust the width as needed
                     }}
                 >
-                    <Text style={{ color: 'white' }}>Continue</Text>
+                    <Text style={{ color: '#333' }}>Continue</Text>
                 </TouchableOpacity>
             </View>
         </View>

@@ -72,10 +72,10 @@ export const Navigator = ({ isLoggedIn }) => {
                 }}
             />
             <Drawer.Screen
-                name="MarkSeats"
+                name="Mark Seats"
                 component={MarkSeatsScreen}
                 options={{
-                    title: t('MarkSeats'),
+                    title: t('Mark Seats'),
                     ...screenStyles,
                 }}
             />

@@ -182,7 +182,7 @@ i18next.use(initReactI18next).init({
                 'Login': 'Login',
                 'Register': 'Register',
                 'Vehicle': 'Vehicle',
-                'MarkSeats': 'MarkSeats',
+                'Mark Seats': 'Mark Seats',
                 'SelectRoute': 'SelectRoute',
                 'Tabs': 'Tabs',
             }
@@ -223,7 +223,7 @@ i18next.use(initReactI18next).init({
                 'Login': 'Влизам',
                 'Register': 'Регистрирам',
                 'Vehicle': 'Превозно средство',
-                'MarkSeats': 'Маркирайте места',
+                'Mark Seats': 'Маркирайте места',
                 'SelectRoute': 'Изберете Маршрут',
                 'Tabs': 'Раздели'
             }
