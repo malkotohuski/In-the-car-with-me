@@ -26,7 +26,7 @@ const Vehicle = () => {
     const handleContinue = () => {
         if (selectedVehicle !== null) {
             // Navigate to the MarkSeats screen and pass the selected vehicle information
-            navigation.navigate('MarkSeats', { selectedVehicle });
+            navigation.navigate('Mark Seats', { selectedVehicle });
         } else {
             // Handle the case where no vehicle is selected
             Alert.alert(t('Error'), t('Please select a vehicle before continuing'));
