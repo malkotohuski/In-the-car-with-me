@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 function MarkSeatsScreen({ route }) {
-    const { selectedVehicle } = route?.params || {};
+    const { t } = useTranslation();
+    const selectedVehicle = route?.params?.selectedVehicle;
     const [markedSeats, setMarkedSeats] = useState([]);
     const [registrationNumber, setRegistrationNumber] = useState('');
+
 
 
     const navigation = useNavigation();
 
     const isValidRegistrationNumber = () => {
-        const regex = /^([A-Za-z]{1,2})([3-6]{2})([0-9]{2})([A-Za-z]{2})$/;
+        const regex = /^([A-Za-zА-Яа-я]{1,2})([3-6]{2})([0-9]{2})([A-Za-zА-Яа-я]{2})$/
         return regex.test(registrationNumber);
     };
 
@@ -30,12 +33,12 @@ function MarkSeatsScreen({ route }) {
         // Validate the registration number
         if (!isValidRegistrationNumber()) {
             // Show an alert if the registration number is invalid
-            Alert.alert('Invalid Registration Number', 'Please enter a valid registration number.');
+            Alert.alert(t('Invalid Registration Number'), t('Please enter a valid registration number.'));
             return;
         }
 
         // Navigate to the "SelectRoute" screen
-        navigation.navigate('SelectRoute', {
+        navigation.navigate(t('SelectRoute'), {
             selectedVehicle,
             markedSeats,
             registrationNumber,
@@ -137,10 +140,10 @@ function MarkSeatsScreen({ route }) {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>{`Selected Vehicle: ${selectedVehicle}`}</Text>
+            <Text>{t(`Selected Vehicle: ${selectedVehicle?.value || ''}`)}</Text>
             {/* Add a TextInput for the registration number */}
             <TextInput
-                placeholder="Enter Registration Number"
+                placeholder={t('Enter Registration Number')}
                 value={registrationNumber}
                 onChangeText={(text) => setRegistrationNumber(text)}
                 style={{
@@ -157,11 +160,11 @@ function MarkSeatsScreen({ route }) {
 
             {/* Validate the registration number */}
             {!isValidRegistrationNumber() && <Text style={{ color: 'red' }}>
-                Invalid registration number format
+                {t('Invalid registration number format')}
             </Text>}
 
             {/* Add a new text for choosing free places */}
-            <Text>Choose how many free places you have:</Text>
+            <Text>{t('Choose how many free places you have:')}</Text>
 
 
             {/* Wrap renderSeats and renderTires in a View with styling for the car shape */}
@@ -206,7 +209,7 @@ function MarkSeatsScreen({ route }) {
                 }}
                 disabled={!isValidRegistrationNumber()} // Disable button if registrationNumber is invalid
             >
-                <Text style={{ color: 'white' }}>Continue</Text>
+                <Text style={{ color: 'white' }}>{t('Continue')}</Text>
             </TouchableOpacity>
         </View>
     );

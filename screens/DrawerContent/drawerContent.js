@@ -8,6 +8,7 @@ import MyTabs from './tabsNavigator';
 import MarkSeatsScreen from '../Category/MarkSeatsScreen';
 import Vehicle from '../Category/Vehicle';
 import SelectRouteScreen from '../Category/SelectRoute';
+import { useTranslation } from 'react-i18next';
 
 const Drawer = createDrawerNavigator();
 
@@ -19,7 +20,7 @@ const screenStyles = {
 };
 
 export const Navigator = ({ isLoggedIn }) => {
-
+    const { t } = useTranslation();
     const dynamicScreens = [
         // ... other screens
         <Drawer.Screen
@@ -40,7 +41,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 name="Login"
                 component={Login}
                 options={{
-                    title: 'Login',
+                    title: t('Login'),
                     ...screenStyles,
                     headerShown: false,
                 }}
@@ -49,16 +50,16 @@ export const Navigator = ({ isLoggedIn }) => {
                 name="Register"
                 component={Register}
                 options={{
-                    title: 'Register',
+                    title: t('Register'),
                     ...screenStyles,
                     headerShown: false,
                 }}
             />
             <Drawer.Screen
-                name="Home"
+                name='Home'
                 component={HomePage}
                 options={{
-                    title: 'Home',
+                    title: t('Home'),
                     ...screenStyles,
                 }}
             />
@@ -66,7 +67,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 name="Vehicle"
                 component={Vehicle}
                 options={{
-                    title: 'Vehicle',
+                    title: t('Vehicle'),
                     ...screenStyles,
                 }}
             />
@@ -74,7 +75,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 name="MarkSeats"
                 component={MarkSeatsScreen}
                 options={{
-                    title: 'MarkSeats',
+                    title: t('MarkSeats'),
                     ...screenStyles,
                 }}
             />
@@ -82,7 +83,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 name="SelectRoute"
                 component={SelectRouteScreen}
                 options={{
-                    title: 'SelectRoute',
+                    title: t('SelectRoute'),
                     ...screenStyles,
                 }}
             />
@@ -90,7 +91,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 name="Tabs"
                 component={MyTabs}
                 options={{
-                    title: 'Tabs',
+                    title: t('Tabs'),
                     ...screenStyles,
                     headerShown: false,
                 }}
