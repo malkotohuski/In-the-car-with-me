@@ -55,7 +55,7 @@ function SelectRouteScreen({ route, navigation }) {
 
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start', padding: 20 }}>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                 {`Selected Vehicle: ${selectedVehicle}`}
             </Text>
@@ -70,118 +70,130 @@ function SelectRouteScreen({ route, navigation }) {
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
                 Departure:
             </Text>
-            <View style={styles.container}>
-                <Dropdown
-                    style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
-                    placeholderStyle={styles.placeholderStyle}
-                    selectedTextStyle={styles.selectedTextStyle}
-                    inputSearchStyle={styles.inputSearchStyle}
-                    iconStyle={styles.iconStyle}
-                    data={data}
-                    search
-                    maxHeight={300}
-                    labelField="label"
-                    valueField="value"
-                    placeholder={!isFocus ? 'Select City' : '...'}
-                    searchPlaceholder="Search..."
-                    value={value}
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => setIsFocus(false)}
-                    onChange={item => {
-                        setValue(item.value);
-                        setIsFocus(false);
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+                <View style={{ flex: 1, marginRight: 10 }}>
+                    <Dropdown
+                        style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
+                        placeholderStyle={styles.placeholderStyle}
+                        selectedTextStyle={styles.selectedTextStyle}
+                        inputSearchStyle={styles.inputSearchStyle}
+                        iconStyle={styles.iconStyle}
+                        data={data}
+                        search
+                        maxHeight={300}
+                        labelField="label"
+                        valueField="value"
+                        placeholder={!isFocus ? 'Select City' : '...'}
+                        searchPlaceholder="Search..."
+                        value={value}
+                        onFocus={() => setIsFocus(true)}
+                        onBlur={() => setIsFocus(false)}
+                        onChange={item => {
+                            setValue(item.value);
+                            setIsFocus(false);
+                        }}
+                        renderLeftIcon={() => (
+                            <Icon
+                                style={styles.icon}
+                                color={isFocus ? 'blue' : 'black'}
+                                name="departure-board"
+                                size={20}
+                            />
+                        )}
+                    />
+                </View>
+                <View style={{ flex: 1, marginRight: 10 }}>
+                    <TextInput
+                        placeholder="Street"
+                        value={departureStreet}
+                        onChangeText={(text) => setDepartureStreet(text)}
+                        style={{
+                            height: 60,
+                            width: 140,
+                            borderColor: 'gray',
+                            borderWidth: 1.5,
+                            borderRadius: 8,
+                            paddingHorizontal: 8, fontSize: 16
+                        }}
+                    />
+                </View>
+                <TextInput
+                    placeholder="Number"
+                    value={departureNumber}
+                    onChangeText={(text) => setDepartureNumber(text)}
+                    keyboardType="numeric" // Restrict to numeric input
+                    style={{
+                        height: 60,
+                        width: 80,
+                        borderColor: 'gray',
+                        borderWidth: 1.5,
+                        borderRadius: 8,
+                        paddingHorizontal: 8, fontSize: 16
                     }}
-                    renderLeftIcon={() => (
-                        <Icon
-                            style={styles.icon}
-                            color={isFocus ? 'blue' : 'black'}
-                            name="departure-board"
-                            size={20}
-                        />
-                    )}
                 />
             </View>
-            <TextInput
-                placeholder="Street"
-                value={departureStreet}
-                onChangeText={(text) => setDepartureStreet(text)}
-                style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
-            />
-            <TextInput
-                placeholder="Number"
-                value={departureNumber}
-                onChangeText={(text) => setDepartureNumber(text)}
-                keyboardType="numeric" // Restrict to numeric input
-                style={{ borderWidth: 1, padding: 10, marginBottom: 20 }}
-            />
             <TextInput
                 placeholder="Phone number"
                 value={contactTelefon}
                 onChangeText={(text) => setContactTelefon(text)}
-                keyboardType="numeric"  // Restrict to numeric input
-                style={{ borderWidth: 1, padding: 10, marginBottom: 20 }}
+                keyboardType="numeric" // Restrict to numeric input
+                style={{
+                    height: 60,
+                    width: 140,
+                    borderColor: 'gray',
+                    borderWidth: 1.5,
+                    borderRadius: 8,
+                    paddingHorizontal: 8, fontSize: 16
+                }}
             />
 
-            {/* Arrival Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
                 Arrival:
             </Text>
-            {/*  <MultipleSelectList
-                setSelected={(val) => setSelectedCity(val[0])}
-                data={cities}
-                save='value'
-                onSelect={() => {
-                    console.log('You tapped the button!');
-                }}
-                placeholder='Select City'
-                searchable={false}
-                selectedLabel='Selected'
-                selectedItems={selectedCity}
-            /> */}
             <TextInput
                 placeholder="Street"
                 value={arrivalStreet}
                 onChangeText={(text) => setArrivalStreet(text)}
-                style={{ borderWidth: 1, padding: 10, marginBottom: 10 }}
+                style={{ borderWidth: 1, padding: 10, marginBottom: 10, width: '40%', borderRadius: 8, }}
             />
             <TextInput
                 placeholder="Number"
                 value={arrivalNumber}
                 onChangeText={(text) => setArrivalNumber(text)}
-                style={{ borderWidth: 1, padding: 10, marginBottom: 20 }}
+                style={{ borderWidth: 1, padding: 10, marginBottom: 20, width: '20%', borderRadius: 8, }}
             />
-
-            <Button
-                title="Date and time of departure"
-                onPress={() => setOpen(true)}
-            />
-            <DatePicker
-                modal
-                open={open}
-                date={date}
-                onConfirm={(selectedDate) => {
-                    setOpen(false);
-                    setDate(selectedDate);
-                }}
-                onCancel={() => {
-                    setOpen(false);
-                }}
-            />
-
-            <TouchableOpacity
-                onPress={handleContinue}
-                style={{
-                    marginTop: 20,
-                    padding: 10,
-                    backgroundColor: 'coral',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontSize: 14,
-                    fontWeight: 'bold',
-                }}
-            >
-                <Text style={{ color: 'white' }}>Continue</Text>
-            </TouchableOpacity>
+            <View style={{ flex: 1, justifyContent: 'center', padding: 70 }}>
+                <Button
+                    title="Date and time of departure"
+                    onPress={() => setOpen(true)}
+                />
+                <DatePicker
+                    modal
+                    open={open}
+                    date={date}
+                    onConfirm={(selectedDate) => {
+                        setOpen(false);
+                        setDate(selectedDate);
+                    }}
+                    onCancel={() => {
+                        setOpen(false);
+                    }}
+                />
+                <TouchableOpacity
+                    onPress={handleContinue}
+                    style={{
+                        marginTop: 20,
+                        padding: 10,
+                        backgroundColor: 'coral',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 14,
+                        fontWeight: 'bold',
+                    }}
+                >
+                    <Text style={{ color: 'white' }}>Continue</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 }
