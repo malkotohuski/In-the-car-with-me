@@ -29,6 +29,7 @@ function SelectRouteScreen({ route, navigation }) {
     const [contactTelefon, setContactTelefon] = useState('')
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
+    const [isFocuses, setIsFocuses] = useState(false);
 
     const [arrivalStreet, setArrivalStreet] = useState('');
     const [arrivalNumber, setArrivalNumber] = useState('');
@@ -55,7 +56,7 @@ function SelectRouteScreen({ route, navigation }) {
 
 
     return (
-        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'flex-start', padding: 20 }}>
+        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20 }}>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                 {`Selected Vehicle: ${selectedVehicle}`}
             </Text>
@@ -113,7 +114,8 @@ function SelectRouteScreen({ route, navigation }) {
                             borderColor: 'gray',
                             borderWidth: 1.5,
                             borderRadius: 8,
-                            paddingHorizontal: 8, fontSize: 16
+                            paddingHorizontal: 8,
+                            fontSize: 16
                         }}
                     />
                 </View>
@@ -128,41 +130,104 @@ function SelectRouteScreen({ route, navigation }) {
                         borderColor: 'gray',
                         borderWidth: 1.5,
                         borderRadius: 8,
-                        paddingHorizontal: 8, fontSize: 16
+                        paddingHorizontal: 8,
+                        fontSize: 16
                     }}
                 />
             </View>
-            <TextInput
+            {/*  <TextInput
                 placeholder="Phone number"
                 value={contactTelefon}
                 onChangeText={(text) => setContactTelefon(text)}
                 keyboardType="numeric" // Restrict to numeric input
                 style={{
                     height: 60,
-                    width: 140,
+                    width: 180,
                     borderColor: 'gray',
                     borderWidth: 1.5,
                     borderRadius: 8,
-                    paddingHorizontal: 8, fontSize: 16
+                    paddingHorizontal: 8,
+                    fontSize: 16
                 }}
+            /> */}
+            <Icon
+                style={styles.icon}
+                color="black"
+                name="route" // "route" icon from MaterialIcons
+                size={100}
             />
 
+            {/* Arrival Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
                 Arrival:
             </Text>
-            <TextInput
-                placeholder="Street"
-                value={arrivalStreet}
-                onChangeText={(text) => setArrivalStreet(text)}
-                style={{ borderWidth: 1, padding: 10, marginBottom: 10, width: '40%', borderRadius: 8, }}
-            />
-            <TextInput
-                placeholder="Number"
-                value={arrivalNumber}
-                onChangeText={(text) => setArrivalNumber(text)}
-                style={{ borderWidth: 1, padding: 10, marginBottom: 20, width: '20%', borderRadius: 8, }}
-            />
-            <View style={{ flex: 1, justifyContent: 'center', padding: 70 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+                <View style={{ flex: 1, marginRight: 10 }}>
+                    <Dropdown
+                        style={[styles.dropdown, isFocuses && { borderColor: 'red' }]}
+                        placeholderStyle={styles.placeholderStyle}
+                        selectedTextStyle={styles.selectedTextStyle}
+                        inputSearchStyle={styles.inputSearchStyle}
+                        iconStyle={styles.iconStyle}
+                        data={data}
+                        search
+                        maxHeight={300}
+                        labelField="label"
+                        valueField="value"
+                        placeholder={!isFocuses ? 'Select City' : '...'}
+                        searchPlaceholder="Search..."
+                        value={value}
+                        onFocus={() => setIsFocuses(true)}
+                        onBlur={() => setIsFocuses(false)}
+                        onChange={item => {
+                            setValue(item.value);
+                            setIsFocuses(false);
+                        }}
+                        renderLeftIcon={() => (
+                            <Icon
+                                style={styles.icon}
+                                color={isFocuses ? 'red' : 'black'}
+                                name="departure-board"
+                                size={20}
+                            />
+                        )}
+                    />
+                </View>
+                <View style={{ flex: 1, marginRight: 10 }}>
+                    <TextInput
+                        placeholder="Street"
+                        value={arrivalStreet}
+                        onChangeText={(text) => setArrivalStreet(text)}
+                        style={{
+                            height: 60,
+                            width: 140,
+                            borderColor: 'gray',
+                            borderWidth: 1.5,
+                            borderRadius: 8,
+                            paddingHorizontal: 8,
+                            fontSize: 16
+                        }}
+                    />
+                </View>
+                <TextInput
+                    placeholder="Number"
+                    value={arrivalNumber}
+                    onChangeText={(text) => setArrivalNumber(text)}
+                    keyboardType="numeric" // Restrict to numeric input
+                    style={{
+                        height: 60,
+                        width: 80,
+                        borderColor: 'gray',
+                        borderWidth: 1.5,
+                        borderRadius: 8,
+                        paddingHorizontal: 8,
+                        fontSize: 16
+                    }}
+                />
+            </View>
+
+            {/* Centered Date and Continue Button */}
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Button
                     title="Date and time of departure"
                     onPress={() => setOpen(true)}
@@ -189,6 +254,7 @@ function SelectRouteScreen({ route, navigation }) {
                         justifyContent: 'center',
                         fontSize: 14,
                         fontWeight: 'bold',
+                        width: '80%', // Adjust the width as needed
                     }}
                 >
                     <Text style={{ color: 'white' }}>Continue</Text>
@@ -197,6 +263,7 @@ function SelectRouteScreen({ route, navigation }) {
         </View>
     );
 }
+
 
 export default SelectRouteScreen;
 

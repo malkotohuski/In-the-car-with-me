@@ -24,12 +24,12 @@ const Vehicle = () => {
     };
 
     const handleContinue = () => {
-        if (vehicleTypes) {
+        if (selectedVehicle !== null) {
             // Navigate to the MarkSeats screen and pass the selected vehicle information
             navigation.navigate('MarkSeats', { selectedVehicle });
         } else {
             // Handle the case where no vehicle is selected
-            Alert.alert('Error', 'Please select a vehicle before continuing');
+            Alert.alert(t('Error'), t('Please select a vehicle before continuing'));
         }
     };
 
@@ -37,14 +37,7 @@ const Vehicle = () => {
         useCallback(() => {
             // Reset the selectedVehicle when the component gains focus
             setSelectedVehicle(null);
-            handleVehicleSelect(null)
-            // Optionally, you can also reset other states or perform other actions on focus
-
-            // Return a cleanup function (optional)
-            return () => {
-                // Perform cleanup when the component loses focus (if needed)
-            };
-        }, []) // The empty dependency array ensures that this effect runs only once when the component mounts
+        }, [])
     );
 
     return (
@@ -76,9 +69,8 @@ const Vehicle = () => {
                     <Text style={{ color: 'white' }}>{t('Continue')}</Text>
                 </TouchableOpacity>
             </View>
-
         </View>
     );
-}
+};
 
 export default Vehicle;
