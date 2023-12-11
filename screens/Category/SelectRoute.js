@@ -3,17 +3,11 @@ import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet } from 'rea
 import DatePicker from 'react-native-date-picker';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useTranslation } from 'react-i18next';
 
-
-const data = [
-    { label: 'Sofia', value: 'Sofia' },
-    { label: 'Plovdiv', value: 'Plovdiv' },
-    { label: 'Varna', value: 'Varna' },
-    { label: 'Burgas', value: 'Burgas' },
-    // Add more cities as needed
-];
 
 function SelectRouteScreen({ route, navigation }) {
+    const { t } = useTranslation();
     const {
         selectedVehicle,
         markedSeats,
@@ -34,6 +28,15 @@ function SelectRouteScreen({ route, navigation }) {
     const [arrivalStreet, setArrivalStreet] = useState('');
     const [arrivalNumber, setArrivalNumber] = useState('');
 
+    const data = [
+        { label: t('Sofia'), value: t('Sofia') },
+        { label: t('Plovdiv'), value: t('Plovdiv') },
+        { label: t('Varna'), value: t('Varna') },
+        { label: t('Burgas'), value: t('Burgas') },
+        // Add more cities as needed
+    ];
+
+
     const renderLabel = () => {
         if (value || isFocus) {
             return (
@@ -48,7 +51,17 @@ function SelectRouteScreen({ route, navigation }) {
     const handleContinue = () => {
         // Handle the continue action with the selected route data
         console.log(
-            `Selected Vehicle: ${selectedVehicle}, Marked Seats: ${markedSeats}, Registration Number: ${registrationNumber}, Departure Date: ${date}, Departure: ${departureCountry}, ${departureCities.join(', ')}, ${departureStreet}, ${departureNumber}, Arrival: ${arrivalCountry}, ${arrivalCities.join(', ')}, ${arrivalStreet}, ${arrivalNumber}`
+            t(`Selected Vehicle: ${selectedVehicle},
+             Marked Seats: ${markedSeats},
+              Registration Number: ${registrationNumber},
+               Departure Date: ${date},
+                Departure: ${departureCountry},
+                 ${departureCities.join(', ')},
+                  ${departureStreet}, ${departureNumber},
+                   Arrival: ${arrivalCountry},
+                    ${arrivalCities.join(', ')},
+                     ${arrivalStreet},
+                      ${arrivalNumber}`)
         );
         // You can navigate back or perform other actions as needed
     };
@@ -58,18 +71,18 @@ function SelectRouteScreen({ route, navigation }) {
     return (
         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20 }}>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {`Selected Vehicle: ${selectedVehicle}`}
+                {t(`Selected Vehicle: ${selectedVehicle}`)}
             </Text>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {`Marked Seats: ${markedSeats}`}
+                {t(`Marked Seats: ${markedSeats}`)}
             </Text>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {`Registration Number: ${registrationNumber}`}
+                {t(`Registration Number: ${registrationNumber}`)}
             </Text>
 
             {/* Departure Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
-                Departure:
+                {t('Departure:')}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                 <View style={{ flex: 1, marginRight: 10 }}>
@@ -84,8 +97,8 @@ function SelectRouteScreen({ route, navigation }) {
                         maxHeight={300}
                         labelField="label"
                         valueField="value"
-                        placeholder={!isFocus ? 'Select City' : '...'}
-                        searchPlaceholder="Search..."
+                        placeholder={!isFocus ? t('Select City') : '...'}
+                        searchPlaceholder={t("Search...")}
                         value={value}
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
@@ -105,7 +118,7 @@ function SelectRouteScreen({ route, navigation }) {
                 </View>
                 <View style={{ flex: 1, marginRight: 10 }}>
                     <TextInput
-                        placeholder="Street"
+                        placeholder={t("Street")}
                         value={departureStreet}
                         onChangeText={(text) => setDepartureStreet(text)}
                         style={{
@@ -120,7 +133,7 @@ function SelectRouteScreen({ route, navigation }) {
                     />
                 </View>
                 <TextInput
-                    placeholder="Number"
+                    placeholder={t("Number")}
                     value={departureNumber}
                     onChangeText={(text) => setDepartureNumber(text)}
                     keyboardType="numeric" // Restrict to numeric input
@@ -174,8 +187,8 @@ function SelectRouteScreen({ route, navigation }) {
                         maxHeight={300}
                         labelField="label"
                         valueField="value"
-                        placeholder={!isFocuses ? 'Select City' : '...'}
-                        searchPlaceholder="Search..."
+                        placeholder={!isFocuses ? t('Select City') : '...'}
+                        searchPlaceholder={t("Search...")}
                         value={value}
                         onFocus={() => setIsFocuses(true)}
                         onBlur={() => setIsFocuses(false)}
@@ -195,7 +208,7 @@ function SelectRouteScreen({ route, navigation }) {
                 </View>
                 <View style={{ flex: 1, marginRight: 10 }}>
                     <TextInput
-                        placeholder="Street"
+                        placeholder={t("Street")}
                         value={arrivalStreet}
                         onChangeText={(text) => setArrivalStreet(text)}
                         style={{
@@ -210,7 +223,7 @@ function SelectRouteScreen({ route, navigation }) {
                     />
                 </View>
                 <TextInput
-                    placeholder="Number"
+                    placeholder={t("Number")}
                     value={arrivalNumber}
                     onChangeText={(text) => setArrivalNumber(text)}
                     keyboardType="numeric" // Restrict to numeric input
@@ -229,7 +242,7 @@ function SelectRouteScreen({ route, navigation }) {
             {/* Centered Date and Continue Button */}
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Button
-                    title="Date and time of departure"
+                    title={t("Date and time of departure")}
                     onPress={() => setOpen(true)}
                     color="#f4511e"
                     titleStyle={{ marginHorizontal: 20, color: 'black' }}
@@ -259,7 +272,7 @@ function SelectRouteScreen({ route, navigation }) {
                         width: '80%', // Adjust the width as needed
                     }}
                 >
-                    <Text style={{ color: '#333' }}>Continue</Text>
+                    <Text style={{ color: '#333' }}>{t('Continue')}</Text>
                 </TouchableOpacity>
             </View>
         </View>

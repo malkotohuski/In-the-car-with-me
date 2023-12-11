@@ -38,7 +38,7 @@ function MarkSeatsScreen({ route }) {
         }
 
         // Navigate to the "SelectRoute" screen
-        navigation.navigate(t('SelectRoute'), {
+        navigation.navigate(('SelectRoute'), {
             selectedVehicle,
             markedSeats,
             registrationNumber,
