@@ -267,9 +267,9 @@ function SelectRouteScreen({ route, navigation }) {
                         backgroundColor: '#f4511e',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: 14,
+                        fontSize: 16,
                         fontWeight: 'bold',
-                        width: '80%', // Adjust the width as needed
+                        width: '90%', // Adjust the width as needed
                     }}
                 >
                     <Text style={{ color: '#333' }}>{t('Continue')}</Text>
