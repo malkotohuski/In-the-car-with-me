@@ -71,18 +71,18 @@ function SelectRouteScreen({ route, navigation }) {
     return (
         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20 }}>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {t(`Selected Vehicle: ${selectedVehicle}`)}
+                {t('Selected Vehicle:', { selectedVehicle })}
             </Text>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {t(`Marked Seats: ${markedSeats}`)}
+                {t('Marked Seats:', { markedSeats })}
             </Text>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {t(`Registration Number: ${registrationNumber}`)}
+                {t('Registration Number:', { registrationNumber })}
             </Text>
 
             {/* Departure Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
-                {t('Departure:')}
+                {t('Departure:', {})}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                 <View style={{ flex: 1, marginRight: 10 }}>
@@ -122,7 +122,7 @@ function SelectRouteScreen({ route, navigation }) {
                         value={departureStreet}
                         onChangeText={(text) => setDepartureStreet(text)}
                         style={{
-                            height: 60,
+                            height: 70,
                             width: 140,
                             borderColor: 'gray',
                             borderWidth: 1.5,
@@ -138,7 +138,7 @@ function SelectRouteScreen({ route, navigation }) {
                     onChangeText={(text) => setDepartureNumber(text)}
                     keyboardType="numeric" // Restrict to numeric input
                     style={{
-                        height: 60,
+                        height: 70,
                         width: 80,
                         borderColor: 'gray',
                         borderWidth: 1.5,
@@ -172,7 +172,7 @@ function SelectRouteScreen({ route, navigation }) {
 
             {/* Arrival Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
-                Arrival:
+                {t('Arrival:')}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                 <View style={{ flex: 1, marginRight: 10 }}>
@@ -212,7 +212,7 @@ function SelectRouteScreen({ route, navigation }) {
                         value={arrivalStreet}
                         onChangeText={(text) => setArrivalStreet(text)}
                         style={{
-                            height: 60,
+                            height: 70,
                             width: 140,
                             borderColor: 'gray',
                             borderWidth: 1.5,
@@ -228,7 +228,7 @@ function SelectRouteScreen({ route, navigation }) {
                     onChangeText={(text) => setArrivalNumber(text)}
                     keyboardType="numeric" // Restrict to numeric input
                     style={{
-                        height: 60,
+                        height: 70,
                         width: 80,
                         borderColor: 'gray',
                         borderWidth: 1.5,
@@ -242,6 +242,7 @@ function SelectRouteScreen({ route, navigation }) {
             {/* Centered Date and Continue Button */}
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Button
+                    style={styles.button}
                     title={t("Date and time of departure")}
                     onPress={() => setOpen(true)}
                     color="#f4511e"
@@ -272,7 +273,7 @@ function SelectRouteScreen({ route, navigation }) {
                         width: '90%', // Adjust the width as needed
                     }}
                 >
-                    <Text style={{ color: '#333' }}>{t('Continue')}</Text>
+                    <Text style={{ color: '#fff', fontSize: 16 }}>{t('Continue')}</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
         padding: 16,
     },
     dropdown: {
-        height: 60,
+        height: 70,
         width: 140,
         borderColor: 'gray',
         borderWidth: 1.5,
@@ -321,4 +322,13 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 16,
     },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        backgroundColor: 'black',
+    }
 });

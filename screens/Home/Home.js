@@ -192,11 +192,14 @@ i18next.use(initReactI18next).init({
                 'Search...': 'Search...',
                 'Street': 'Street',
                 'Number': 'Number',
-                'Departure': 'Departure',
+                'Departure:': 'Departure:',
                 'Registration Number': 'Registration Number',
                 'Marked Seats': 'Marked Seats',
                 'Selected Vehicle': 'Selected Vehicle',
                 'Date and time of departure': 'Date and time of departure',
+                'Selected Vehicle:': 'Selected Vehicle:',
+                'Marked Seats:': 'Marked Seats:',
+                'Registration Number:': 'Registration Number:',
             }
         },
         bg: {
@@ -245,11 +248,14 @@ i18next.use(initReactI18next).init({
                 'Search...': 'Търсене...',
                 'Street': 'Улица',
                 'Number': 'Номер',
-                'Departure': 'Заминаване',
+                'Departure:': 'Заминаване:',
                 'Registration Number': 'Регистрационен номер',
                 'Marked Seats': 'Маркирани места',
                 'Selected Vehicle': 'Избрано превозно средство',
                 'Date and time of departure': 'Дата и час на заминаване',
+                'Selected Vehicle:': 'Избрано превозно средство:',
+                'Marked Seats:': 'Маркирани места:',
+                'Registration Number:': 'Регистрационен номер:'
             }
         },
     }

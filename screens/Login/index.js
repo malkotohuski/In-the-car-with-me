@@ -14,14 +14,20 @@ export default function Login({ navigation, route }) {
         if (email === 'malkoto' && password === 'password') {
             // Simulate user authentication (replace with your server logic)
             const userId = '123'; // Replace with the actual user ID
-            await AsyncStorage.setItem('userId', userId);
-
-            // Navigate to the HomeScreen upon successful login
-            navigation.navigate('Home');
+            try {
+                // Save user ID to AsyncStorage
+                await AsyncStorage.setItem('userId', userId);
+                // Navigate to the HomeScreen upon successful login
+                navigation.navigate('Home');
+            } catch (error) {
+                console.error('Error saving user ID:', error);
+                // Handle error (e.g., show an error message to the user)
+            }
         } else {
             alert('Login failed. Please check your credentials.');
         }
     };
+
     return (
         <View style={styles.container}>
             <TouchableOpacity onPress={handleLogin}>
