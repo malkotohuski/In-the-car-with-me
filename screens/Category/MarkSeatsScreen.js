@@ -8,8 +8,7 @@ function MarkSeatsScreen({ route }) {
     const selectedVehicle = route?.params?.selectedVehicle;
     const [markedSeats, setMarkedSeats] = useState([]);
     const [registrationNumber, setRegistrationNumber] = useState('');
-
-
+    const [selectedFreePlaces, setSelectedFreePlaces] = useState(0); // New state variable
 
     const navigation = useNavigation();
 
@@ -26,25 +25,35 @@ function MarkSeatsScreen({ route }) {
                 : [...markedSeats, seatNumber];
 
             setMarkedSeats(updatedSeats);
+
+            // Update the selected free places count
+            setSelectedFreePlaces(updatedSeats.length);
         }
+        return markedSeats;
     };
 
     const handleContinue = () => {
-        // Validate the registration number
+        // Validate the registration number and the selected free places count
         if (!isValidRegistrationNumber()) {
             // Show an alert if the registration number is invalid
             Alert.alert(t('Invalid Registration Number'), t('Please enter a valid registration number.'));
             return;
         }
 
-        // Navigate to the "SelectRoute" screen
-        navigation.navigate(('SelectRoute'), {
+        if (selectedFreePlaces === 0) {
+            // Show an alert if no free places are selected
+            Alert.alert(t('No Free Places'), t('Please choose at least one free place.'));
+            return;
+        }
+
+        // Navigate to the "SelectRoute" screen and pass the necessary parameters
+        navigation.navigate('SelectRoute', {
             selectedVehicle,
             markedSeats,
             registrationNumber,
+            selectedFreePlaces,
         });
     };
-
 
     // ... (existing code for renderSeats and renderTires)
 
@@ -140,7 +149,7 @@ function MarkSeatsScreen({ route }) {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>{t(`Selected Vehicle: ${selectedVehicle?.value || ''}`)}</Text>
+            {/*  <Text>{t('Selected Vehicle:')}</Text> */}
             {/* Add a TextInput for the registration number */}
             <TextInput
                 placeholder={t('Enter Registration Number')}
@@ -156,37 +165,41 @@ function MarkSeatsScreen({ route }) {
                 }}
             />
             {/* Display the registration number if available */}
-            {registrationNumber && <Text>{`Registration Number: ${registrationNumber}`}</Text>}
+            {registrationNumber &&
+                <Text>{t('Registration Number:')}</Text>}
+            <Text>{`${registrationNumber}`}</Text>
+
 
             {/* Validate the registration number */}
             {!isValidRegistrationNumber() && <Text style={{ color: 'red' }}>
                 {t('Invalid registration number format')}
             </Text>}
-
             {/* Add a new text for choosing free places */}
             <Text>{t('Choose how many free places you have:')}</Text>
+            <Text>{`${selectedFreePlaces}`}</Text>
+
 
 
             {/* Wrap renderSeats and renderTires in a View with styling for the car shape */}
             <View
                 style={{
-                    flexDirection: 'column', // Arrange the rows, seats, and tires vertically
-                    alignItems: 'center', // Center the rows, seats, and tires horizontally
-                    position: 'relative', // Make sure the absolute positioning works
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    position: 'relative',
                 }}
             >
                 <View
                     style={{
                         borderColor: 'black',
-                        borderTopWidth: 8, // Wider top border
-                        borderBottomWidth: 8, // Wider bottom border
-                        borderLeftWidth: 4, // Default left border width
-                        borderRightWidth: 4, // Default right border width
+                        borderTopWidth: 8,
+                        borderBottomWidth: 8,
+                        borderLeftWidth: 4,
+                        borderRightWidth: 4,
                         borderRadius: 10,
-                        padding: 15, // Increased padding for height
-                        marginVertical: 20, // Increased vertical margin for height
-                        flexDirection: 'column', // Arrange the rows vertically
-                        alignItems: 'center', // Center the rows horizontally
+                        padding: 15,
+                        marginVertical: 20,
+                        flexDirection: 'column',
+                        alignItems: 'center',
                         height: 230
                     }}
                 >
