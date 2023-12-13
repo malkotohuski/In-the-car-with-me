@@ -9,6 +9,7 @@ import MarkSeatsScreen from '../Category/MarkSeatsScreen';
 import Vehicle from '../Category/Vehicle';
 import SelectRouteScreen from '../Category/SelectRoute';
 import { useTranslation } from 'react-i18next';
+import Confirm from '../Category/Confirm';
 
 const Drawer = createDrawerNavigator();
 
@@ -84,6 +85,14 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={SelectRouteScreen}
                 options={{
                     title: t('SelectRoute'),
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="Confirm"
+                component={Confirm}
+                options={{
+                    title: t('Confirm'),
                     ...screenStyles,
                 }}
             />

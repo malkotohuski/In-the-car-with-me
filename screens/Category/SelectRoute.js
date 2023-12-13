@@ -16,11 +16,10 @@ function SelectRouteScreen({ route, navigation }) {
 
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
-
+    const [selectedDateTime, setSelectedDateTime] = useState(null);
 
     const [departureStreet, setDepartureStreet] = useState('');
     const [departureNumber, setDepartureNumber] = useState('');
-    const [contactTelefon, setContactTelefon] = useState('')
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [isFocuses, setIsFocuses] = useState(false);
@@ -49,28 +48,36 @@ function SelectRouteScreen({ route, navigation }) {
     };
 
     const handleContinue = () => {
+        // Validate that a valid date and time are selected
+        if (!date || isNaN(date.getTime())) {
+            // Show an error message or take appropriate action
+            console.log("Please select a valid date and time");
+            return;
+        }
+
+        // Update the selectedDateTime state
+        setSelectedDateTime(date);
+
         // Handle the continue action with the selected route data
         console.log(
-            t(`Selected Vehicle: ${selectedVehicle},
-             Marked Seats: ${markedSeats},
-              Registration Number: ${registrationNumber},
-               Departure Date: ${date},
-                Departure: ${departureCountry},
-                 ${departureCities.join(', ')},
-                  ${departureStreet}, ${departureNumber},
-                   Arrival: ${arrivalCountry},
-                    ${arrivalCities.join(', ')},
-                     ${arrivalStreet},
-                      ${arrivalNumber}`)
+            // ... (previous log code)
         );
-        // You can navigate back or perform other actions as needed
+
+        // Navigate to the "Confirm" screen and pass the necessary parameters
+        navigation.navigate('Confirm', {
+            selectedVehicle,
+            markedSeats,
+            registrationNumber,
+        });
     };
+
+
 
 
 
     return (
         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20 }}>
-            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
+            {/* <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                 {t('Selected Vehicle:', { selectedVehicle })}
             </Text>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
@@ -78,7 +85,7 @@ function SelectRouteScreen({ route, navigation }) {
             </Text>
             <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                 {t('Registration Number:', { registrationNumber })}
-            </Text>
+            </Text> */}
 
             {/* Departure Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
@@ -255,11 +262,20 @@ function SelectRouteScreen({ route, navigation }) {
                     onConfirm={(selectedDate) => {
                         setOpen(false);
                         setDate(selectedDate);
+                        // Update the selectedDateTime state
+                        setSelectedDateTime(selectedDate);
                     }}
                     onCancel={() => {
                         setOpen(false);
                     }}
                 />
+                {selectedDateTime && (
+                    <View style={{ marginTop: 10, }}>
+                        <Text style={{ fontSize: 16, color: 'black' }}>
+                            {t('Selected Date and Time:')} {selectedDateTime.toString()}
+                        </Text>
+                    </View>
+                )}
                 <TouchableOpacity
                     onPress={handleContinue}
                     style={{

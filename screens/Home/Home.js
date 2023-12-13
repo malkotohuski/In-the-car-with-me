@@ -1,3 +1,4 @@
+import i18n from './i18n';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import React, { useState } from 'react';
@@ -142,7 +143,7 @@ function HomePage({ navigation }) {
 
 export default HomePage;
 
-i18next.use(initReactI18next).init({
+/* i18next.use(initReactI18next).init({
     interpolation: { escapeValue: false },
     lng: 'en',
     resources: {
@@ -200,6 +201,8 @@ i18next.use(initReactI18next).init({
                 'Selected Vehicle:': 'Selected Vehicle:',
                 'Marked Seats:': 'Marked Seats:',
                 'Registration Number:': 'Registration Number:',
+                'Confirm': 'Confirm',
+                'Selected Date and Time:': 'Selected Date and Time:',
             }
         },
         bg: {
@@ -255,8 +258,10 @@ i18next.use(initReactI18next).init({
                 'Date and time of departure': 'Дата и час на заминаване',
                 'Selected Vehicle:': 'Избрано превозно средство:',
                 'Marked Seats:': 'Маркирани места:',
-                'Registration Number:': 'Регистрационен номер:'
+                'Registration Number:': 'Регистрационен номер:',
+                'Confirm': 'Потвърдете',
+                'Selected Date and Time:': 'Избрани дата и час:',
             }
         },
     }
-});
+}); */
