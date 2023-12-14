@@ -13,27 +13,50 @@ function Confirm() {
     const registrationNumber = route.params.registrationNumber;
     const { selectedDateTime } = route.params;
 
+    const departureCity = route.params.departureCity;
+    const departureStreet = route.params.departureStreet;
+    const departureNumber = route.params.departureNumber;
+    const arrivalCity = route.params.arrivalCity;
+    const arrivalStreet = route.params.arrivalStreet;
+    const arrivalNumber = route.params.arrivalNumber;
+
     const handleGoBack = () => {
         navigation.navigate('Vehicle'); // Go back to the previous screen
     };
 
     const handleConfirm = () => {
-        navigation.navigate('ViewRoutes'); // Navigate to the ViewRoutes screen
+        navigation.navigate('ViewRoutes', {
+            selectedVehicle,
+            markedSeats,
+            registrationNumber,
+            selectedDateTime,
+            departureCity,
+            departureStreet,
+            departureNumber,
+            arrivalCity,
+            arrivalStreet,
+            arrivalNumber,
+        });
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.headerText}>{t('Confirmation Details')}</Text>
+            <Text style={styles.headerText}>{t('Review')}:</Text>
             <Text style={styles.text}>{t('Vehicle')}: {selectedVehicle}</Text>
             <Text style={styles.text}>{t('Free seats')}: {markedSeats.length}</Text>
             <Text style={styles.text}>{t('Registration Number')}: {registrationNumber}</Text>
-            <Text style={styles.text}>{t('Selected Date and Time')}: {selectedDateTime.toString()}</Text>
+            <Text style={styles.text}>{t('Time and date of departure')}: {selectedDateTime.toString()}</Text>
+            <Text style={styles.text}>{t('Departure')}: {t('Town/Village')} : {departureCity}</Text>
+            <Text style={styles.text}>{t('Street')}: {departureStreet}  {departureNumber}</Text>
+
+            <Text style={styles.text}>{t('Arrival')}: {t('Town/Village')} : {arrivalCity}</Text>
+            <Text style={styles.text}>{t('Street')}: {arrivalStreet}  {arrivalNumber}</Text>
 
             <TouchableOpacity style={styles.button} onPress={handleGoBack}>
-                <Text style={styles.buttonText}>{t('Change')}</Text>
+                <Text style={styles.buttonText}>{t('Make changes')}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={handleConfirm}>
+            <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
                 <Text style={styles.buttonText}>{t('Confirm')}</Text>
             </TouchableOpacity>
         </View>
@@ -46,26 +69,45 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 20,
+        backgroundColor: '#ecf0f1',
     },
     headerText: {
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 24,
         paddingBottom: 20,
+        color: '#2c3e50',
+        borderBottomWidth: 2, // Border bottom for header text
+        borderBottomColor: '#3498db', // Border color
     },
     text: {
         fontWeight: 'bold',
-        fontSize: 20,
-        paddingBottom: 20,
+        fontSize: 18,
+        paddingBottom: 10,
+        color: '#34495e',
+        borderBottomWidth: 1, // Border bottom for regular text
+        borderBottomColor: '#bdc3c7', // Border color
     },
     button: {
         marginTop: 20,
-        padding: 10,
-        backgroundColor: '#f4511e',
+        padding: 15,
+        backgroundColor: '#e74c3c',
         alignItems: 'center',
         justifyContent: 'center',
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
-        width: '90%', // Adjust the width as needed
+        width: '90%',
+        borderRadius: 10,
+    },
+    buttonConfirm: {
+        marginTop: 10,
+        padding: 15,
+        backgroundColor: '#27ae60',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+        width: '90%',
+        borderRadius: 10,
     },
     buttonText: {
         color: '#fff',

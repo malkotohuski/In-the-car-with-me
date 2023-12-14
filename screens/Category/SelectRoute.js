@@ -51,23 +51,6 @@ function SelectRouteScreen({ route, navigation }) {
 
     const handleContinue = () => {
         // Validate that a city is selected
-        if (!arrivalCity) {
-            Alert.alert(t('Error'), t('Please select a city!'));
-            return;
-        }
-
-        // Validate that arrival street is entered
-        if (!arrivalStreet.trim()) {
-            Alert.alert(t('Error'), t('Please select a street!'));
-            return;
-        }
-
-        // Validate that arrival number is entered
-        if (!arrivalNumber.trim()) {
-            Alert.alert(t('Error'), t('Please enter a number!'));
-            return;
-        }
-
         if (!departureCity) {
             Alert.alert(t('Error'), t('Please select a city!'));
             return
@@ -81,6 +64,23 @@ function SelectRouteScreen({ route, navigation }) {
 
         // Validate that departure number is entered
         if (!departureNumber.trim()) {
+            Alert.alert(t('Error'), t('Please enter a number!'));
+            return;
+        }
+
+        if (!arrivalCity) {
+            Alert.alert(t('Error'), t('Please select a city!'));
+            return;
+        }
+
+        // Validate that arrival street is entered
+        if (!arrivalStreet.trim()) {
+            Alert.alert(t('Error'), t('Please select a street!'));
+            return;
+        }
+
+        // Validate that arrival number is entered
+        if (!arrivalNumber.trim()) {
             Alert.alert(t('Error'), t('Please enter a number!'));
             return;
         }
@@ -102,6 +102,12 @@ function SelectRouteScreen({ route, navigation }) {
             markedSeats,
             registrationNumber,
             selectedDateTime,
+            departureCity,
+            departureStreet,
+            departureNumber,
+            arrivalCity,
+            arrivalStreet,
+            arrivalNumber,
         });
     };
 
