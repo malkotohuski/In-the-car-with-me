@@ -10,6 +10,7 @@ import Vehicle from '../Category/Vehicle';
 import SelectRouteScreen from '../Category/SelectRoute';
 import { useTranslation } from 'react-i18next';
 import Confirm from '../Category/Confirm';
+import ViewRoutes from '../Category/ViewRoutes';
 
 const Drawer = createDrawerNavigator();
 
@@ -93,6 +94,14 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={Confirm}
                 options={{
                     title: t('Confirm'),
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="ViewRoutes"
+                component={ViewRoutes}
+                options={{
+                    title: t('ViewRoutes'),
                     ...screenStyles,
                 }}
             />

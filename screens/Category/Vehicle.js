@@ -30,7 +30,7 @@ const Vehicle = () => {
             });
         } else {
             // Handle the case where no vehicle is selected
-            Alert.alert(t('Error'), t('Please select a vehicle before continuing'));
+            Alert.alert(t('Error'), t('Please select a vehicle before continuing!'));
         }
     };
 
