@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import { use } from 'i18next';
 
-function MarkSeatsScreen({ route }) {
+function MarkSeatsScreen() {
     const { t } = useTranslation();
-    const selectedVehicle = route?.params?.selectedVehicle;
+
     const [markedSeats, setMarkedSeats] = useState([]);
     const [registrationNumber, setRegistrationNumber] = useState('');
-    const [selectedFreePlaces, setSelectedFreePlaces] = useState(0); // New state variable
+    const [selectedFreePlaces, setSelectedFreePlaces] = useState(0);
+
+    const route = useRoute();
+    console.log('Route Params:', route.params); // Log the entire route parameters
+
+    const selectedVehicle = route.params.selectedVehicle;
+    console.log('Selected Vehicle:', selectedVehicle); // Log the selected vehicle
+
+    /* const vehicleTypes = route.params.vehicleTypes;
+    console.log('Vehicle Types:', vehicleTypes); // Log the vehicle types */
 
     const navigation = useNavigation();
 
@@ -31,6 +41,10 @@ function MarkSeatsScreen({ route }) {
         }
         return markedSeats;
     };
+
+
+
+
 
     const handleContinue = () => {
         // Validate the registration number and the selected free places count
@@ -149,6 +163,16 @@ function MarkSeatsScreen({ route }) {
 
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text
+                style={{ fontSize: 20 }}
+            >
+                {t('Type')}: {selectedVehicle}
+            </Text>
+
+            {/*  <Text>
+                Available Vehicle Types: {JSON.stringify(vehicleTypes)}
+            </Text> */}
+
             {/*  <Text>{t('Selected Vehicle:')}</Text> */}
             {/* Add a TextInput for the registration number */}
             <TextInput
