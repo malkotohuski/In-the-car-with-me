@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTranslation } from 'react-i18next';
-
 
 function SelectRouteScreen({ route, navigation }) {
     const { t } = useTranslation();
@@ -18,14 +17,17 @@ function SelectRouteScreen({ route, navigation }) {
     const [open, setOpen] = useState(false);
     const [selectedDateTime, setSelectedDateTime] = useState(null);
 
+    const [departureCity, setdepartureCity] = useState(null);
     const [departureStreet, setDepartureStreet] = useState('');
     const [departureNumber, setDepartureNumber] = useState('');
+
+    const [arrivalCity, setarrivalCity] = useState(null);
+    const [arrivalStreet, setArrivalStreet] = useState('');
+    const [arrivalNumber, setArrivalNumber] = useState('');
+
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [isFocuses, setIsFocuses] = useState(false);
-
-    const [arrivalStreet, setArrivalStreet] = useState('');
-    const [arrivalNumber, setArrivalNumber] = useState('');
 
     const data = [
         { label: t('Sofia'), value: t('Sofia') },
@@ -48,17 +50,48 @@ function SelectRouteScreen({ route, navigation }) {
     };
 
     const handleContinue = () => {
-        // Validate that a valid date and time are selected
-        if (!date || isNaN(date.getTime())) {
-            // Show an error message or take appropriate action
-            console.log("Please select a valid date and time");
+        // Validate that a city is selected
+        if (!arrivalCity) {
+            Alert.alert(t('Error'), t('Please select a city!'));
             return;
         }
 
-        // Update the selectedDateTime state
-        setSelectedDateTime(date);
+        // Validate that arrival street is entered
+        if (!arrivalStreet.trim()) {
+            Alert.alert(t('Error'), t('Please select a street!'));
+            return;
+        }
 
-        // Handle the continue action with the selected route data
+        // Validate that arrival number is entered
+        if (!arrivalNumber.trim()) {
+            Alert.alert(t('Error'), t('Please enter a number!'));
+            return;
+        }
+
+        if (!departureCity) {
+            Alert.alert(t('Error'), t('Please select a city!'));
+            return
+        }
+
+        // Validate that departure street is entered
+        if (!departureStreet.trim()) {
+            Alert.alert(t('Error'), t('Please select a street!'));
+            return;
+        }
+
+        // Validate that departure number is entered
+        if (!departureNumber.trim()) {
+            Alert.alert(t('Error'), t('Please enter a number!'));
+            return;
+        }
+
+        // Validate that a valid date and time are selected
+        if (!selectedDateTime || isNaN(selectedDateTime.getTime())) {
+            Alert.alert(t('Error'), t('Please select a date and time!'));
+            return;
+        }
+
+        // If all validations pass, proceed to the next screen
         console.log(
             // ... (previous log code)
         );
@@ -68,9 +101,9 @@ function SelectRouteScreen({ route, navigation }) {
             selectedVehicle,
             markedSeats,
             registrationNumber,
+            selectedDateTime,
         });
     };
-
 
 
 
@@ -106,11 +139,11 @@ function SelectRouteScreen({ route, navigation }) {
                         valueField="value"
                         placeholder={!isFocus ? t('Select City') : '...'}
                         searchPlaceholder={t("Search...")}
-                        value={value}
+                        value={departureCity}  // Use departureCity for Departure dropdown
                         onFocus={() => setIsFocus(true)}
                         onBlur={() => setIsFocus(false)}
                         onChange={item => {
-                            setValue(item.value);
+                            setdepartureCity(item.value);
                             setIsFocus(false);
                         }}
                         renderLeftIcon={() => (
@@ -196,11 +229,11 @@ function SelectRouteScreen({ route, navigation }) {
                         valueField="value"
                         placeholder={!isFocuses ? t('Select City') : '...'}
                         searchPlaceholder={t("Search...")}
-                        value={value}
+                        value={arrivalCity}  // Use arrivalCity for Arrival dropdown
                         onFocus={() => setIsFocuses(true)}
                         onBlur={() => setIsFocuses(false)}
                         onChange={item => {
-                            setValue(item.value);
+                            setarrivalCity(item.value);
                             setIsFocuses(false);
                         }}
                         renderLeftIcon={() => (

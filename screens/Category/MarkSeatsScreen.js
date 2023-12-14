@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { use } from 'i18next';
 
 function MarkSeatsScreen() {
     const { t } = useTranslation();
@@ -12,13 +11,10 @@ function MarkSeatsScreen() {
     const [selectedFreePlaces, setSelectedFreePlaces] = useState(0);
 
     const route = useRoute();
-    console.log('Route Params:', route.params); // Log the entire route parameters
+    /*     console.log('Route Params:', route.params); // Log the entire route parameters */
 
     const selectedVehicle = route.params.selectedVehicle;
-    console.log('Selected Vehicle:', selectedVehicle); // Log the selected vehicle
-
-    /* const vehicleTypes = route.params.vehicleTypes;
-    console.log('Vehicle Types:', vehicleTypes); // Log the vehicle types */
+    /*  console.log('Selected Vehicle:', selectedVehicle); // Log the selected vehicle */
 
     const navigation = useNavigation();
 
@@ -36,15 +32,10 @@ function MarkSeatsScreen() {
 
             setMarkedSeats(updatedSeats);
 
-            // Update the selected free places count
-            setSelectedFreePlaces(updatedSeats.length);
+            // Update the selected free places count as the total number of marked seats
+            setSelectedFreePlaces(updatedSeats.join('').length);
         }
-        return markedSeats;
     };
-
-
-
-
 
     const handleContinue = () => {
         // Validate the registration number and the selected free places count
@@ -56,7 +47,7 @@ function MarkSeatsScreen() {
 
         if (selectedFreePlaces === 0) {
             // Show an alert if no free places are selected
-            Alert.alert(t('No Free Places'), t('Please choose at least one free place.'));
+            Alert.alert(t('No place selected!'), t('Please choose how many seats you have available!'));
             return;
         }
 
