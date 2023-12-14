@@ -1,11 +1,9 @@
-import i18next from 'i18next';
 import React, { useState, useCallback } from 'react';
-import { MultipleSelectList } from 'react-native-dropdown-select-list';
+import RNPickerSelect from 'react-native-picker-select';
 import { useTranslation } from 'react-i18next';
-import { useFocusEffect } from '@react-navigation/native'; // Import useFocusEffect
+import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 
 const Vehicle = () => {
     const { t } = useTranslation();
@@ -13,10 +11,10 @@ const Vehicle = () => {
     const navigation = useNavigation();
 
     const vehicleTypes = [
-        { key: '1', value: t('Car') },
-        { key: '2', value: t('Motorcycle') },
-        { key: '3', value: t('A minibus') },
-        { key: '4', value: t('A bus') },
+        { label: t('Car'), value: t('Car') },
+        { label: t('Motorcycle'), value: t('Motorcycle') },
+        { label: t('A minibus'), value: t('A minibus') },
+        { label: t('A bus'), value: t('A bus') },
     ];
 
     const handleVehicleSelect = (value) => {
@@ -26,7 +24,10 @@ const Vehicle = () => {
     const handleContinue = () => {
         if (selectedVehicle !== null) {
             // Navigate to the MarkSeats screen and pass the selected vehicle information
-            navigation.navigate('Mark Seats', { selectedVehicle });
+            navigation.navigate('Mark Seats', {
+                selectedVehicle: selectedVehicle,  // Pass the selected value directly
+                vehicleTypes: vehicleTypes,
+            });
         } else {
             // Handle the case where no vehicle is selected
             Alert.alert(t('Error'), t('Please select a vehicle before continuing'));
@@ -42,16 +43,11 @@ const Vehicle = () => {
 
     return (
         <View style={{ flex: 1 }}>
-            <MultipleSelectList
-                setSelected={(val) => handleVehicleSelect(val[0])}
-                data={vehicleTypes}
-                save={t('value')}
-                onSelect={() => {
-                    console.log('You tapped the button!');
-                }}
-                placeholder={t('Select vehicle')}
-                searchable={false}
-                selectedLabel={t('Selected')}
+            <RNPickerSelect
+                items={vehicleTypes}
+                placeholder={{ label: t('Select vehicle'), value: null }}
+                onValueChange={(value) => handleVehicleSelect(value)}
+                value={selectedVehicle}
             />
             <View>
                 <TouchableOpacity

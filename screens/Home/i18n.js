@@ -18,7 +18,6 @@ i18next.use(initReactI18next).init({
                 'Search': 'Search',
                 'Categories': 'Categories',
                 'Car': 'Car',
-                'Vehicle': 'Vehicle',
                 'Garage': 'Garage',
                 'Home': 'Home',
                 'Account': 'Account',
@@ -62,6 +61,8 @@ i18next.use(initReactI18next).init({
                 'Registration Number:': 'Registration Number:',
                 'Confirm': 'Confirm',
                 'Selected Date and Time:': 'Selected Date and Time:',
+                'Type': 'Type',
+                'Free seats': 'Free seats',
             }
         },
         bg: {
@@ -77,7 +78,6 @@ i18next.use(initReactI18next).init({
                 'Search': 'Търсене ',
                 'Categories': 'Категории',
                 'Car': 'Лек автомобил',
-                'Vehicle': 'Автомобил',
                 'Garage': 'Гараж',
                 'Home': 'Дом',
                 'Account': 'Акаунт',
@@ -121,6 +121,8 @@ i18next.use(initReactI18next).init({
                 'Registration Number:': 'Регистрационен номер:',
                 'Confirm': 'Потвърдете',
                 'Selected Date and Time:': 'Избрани дата и час:',
+                'Type': 'Тип',
+                'Free seats': 'Свободни места',
             }
         },
     }
