@@ -5,7 +5,6 @@ import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTranslation } from 'react-i18next';
 
-
 function SelectRouteScreen({ route, navigation }) {
     const { t } = useTranslation();
     const {

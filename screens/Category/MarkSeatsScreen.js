@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import { use } from 'i18next';
 
 function MarkSeatsScreen() {
     const { t } = useTranslation();
@@ -16,9 +15,6 @@ function MarkSeatsScreen() {
 
     const selectedVehicle = route.params.selectedVehicle;
     console.log('Selected Vehicle:', selectedVehicle); // Log the selected vehicle
-
-    /* const vehicleTypes = route.params.vehicleTypes;
-    console.log('Vehicle Types:', vehicleTypes); // Log the vehicle types */
 
     const navigation = useNavigation();
 
@@ -36,15 +32,10 @@ function MarkSeatsScreen() {
 
             setMarkedSeats(updatedSeats);
 
-            // Update the selected free places count
-            setSelectedFreePlaces(updatedSeats.length);
+            // Update the selected free places count as the total number of marked seats
+            setSelectedFreePlaces(updatedSeats.join('').length);
         }
-        return markedSeats;
     };
-
-
-
-
 
     const handleContinue = () => {
         // Validate the registration number and the selected free places count
