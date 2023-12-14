@@ -11,10 +11,10 @@ function MarkSeatsScreen() {
     const [selectedFreePlaces, setSelectedFreePlaces] = useState(0);
 
     const route = useRoute();
-    console.log('Route Params:', route.params); // Log the entire route parameters
+    /*     console.log('Route Params:', route.params); // Log the entire route parameters */
 
     const selectedVehicle = route.params.selectedVehicle;
-    console.log('Selected Vehicle:', selectedVehicle); // Log the selected vehicle
+    /*  console.log('Selected Vehicle:', selectedVehicle); // Log the selected vehicle */
 
     const navigation = useNavigation();
 
@@ -47,7 +47,7 @@ function MarkSeatsScreen() {
 
         if (selectedFreePlaces === 0) {
             // Show an alert if no free places are selected
-            Alert.alert(t('No Free Places'), t('Please choose at least one free place.'));
+            Alert.alert(t('No place selected!'), t('Please choose how many seats you have available!'));
             return;
         }
 

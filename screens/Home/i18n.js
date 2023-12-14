@@ -61,8 +61,16 @@ i18next.use(initReactI18next).init({
                 'Registration Number:': 'Registration Number:',
                 'Confirm': 'Confirm',
                 'Selected Date and Time:': 'Selected Date and Time:',
+                'Selected Date and Time': 'Selected Date and Time',
                 'Type': 'Type',
                 'Free seats': 'Free seats',
+                'Error': 'Error',
+                'Please select a street!': 'Please select a street!',
+                'Please enter a number!': 'Please enter a number!',
+                'Please select a city!': 'Please select a city!',
+                'Please select a date and time!': 'Please select a date and time!',
+                'No place selected!': 'No place selected!',
+                'Please choose how many seats you have available!': 'Please choose how many seats you have available!',
             }
         },
         bg: {
@@ -121,8 +129,16 @@ i18next.use(initReactI18next).init({
                 'Registration Number:': 'Регистрационен номер:',
                 'Confirm': 'Потвърдете',
                 'Selected Date and Time:': 'Избрани дата и час:',
+                'Selected Date and Time': 'Избрани дата и час',
                 'Type': 'Тип',
                 'Free seats': 'Свободни места',
+                'Error': 'Грешка',
+                'Please select a street!': 'Моля, изберете улица!',
+                'Please enter a number!': 'Моля, посочете номер!',
+                'Please select a city!': 'Моля, изберете град!',
+                'Please select a date and time!': 'Моля , изберете дата и час !',
+                'No place selected!': 'Няма избрано място !',
+                'Please choose how many seats you have available!': 'Моля , изберете с колко места разполагате !',
             }
         },
     }
