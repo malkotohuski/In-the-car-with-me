@@ -80,6 +80,12 @@ i18next.use(initReactI18next).init({
                 'Arrival': 'Arrival',
                 'Make changes': 'Make changes',
                 'Route': 'Route',
+                'Departure city address': 'Departure city address',
+                'Arrival city address': 'Arrival city address',
+                'Free seats': 'Free seats',
+                'with registration number': 'with registration number',
+                'Departure address': 'Departure address',
+                'Arrival address': 'Arrival address',
             }
         },
         bg: {
@@ -157,6 +163,12 @@ i18next.use(initReactI18next).init({
                 'Arrival': 'Пристигане ',
                 'Make changes': 'Направи промени',
                 'Route': 'Маршрут',
+                'Departure city address': 'Град на заминаване адрес',
+                'Arrival city address': 'Град на пристигане адрес',
+                'Free seats': 'Свободни места',
+                'with registration number': 'с регистрационен номер',
+                'Departure address': 'Aдрес на заминаване',
+                'Arrival address': 'Адрес на пристигане',
             }
         },
     }

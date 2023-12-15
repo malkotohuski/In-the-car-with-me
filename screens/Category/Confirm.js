@@ -1,11 +1,13 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useNavigation } from '@react-navigation/native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 
 function Confirm() {
     const { t } = useTranslation();
     const navigation = useNavigation();
+    const { addRoute } = useRouteContext();
 
     const route = useRoute();
     const selectedVehicle = route.params.selectedVehicle;
@@ -25,7 +27,7 @@ function Confirm() {
     };
 
     const handleConfirm = () => {
-        navigation.navigate('ViewRoutes', {
+        const newRoute = {
             selectedVehicle,
             markedSeats,
             registrationNumber,
@@ -36,7 +38,11 @@ function Confirm() {
             arrivalCity,
             arrivalStreet,
             arrivalNumber,
-        });
+        };
+
+        addRoute(newRoute); // Save the route using the context
+
+        navigation.navigate('ViewRoutes'); // Navigate to ViewRoutes
     };
 
     return (
