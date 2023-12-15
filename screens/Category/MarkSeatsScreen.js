@@ -19,7 +19,7 @@ function MarkSeatsScreen() {
     const navigation = useNavigation();
 
     const isValidRegistrationNumber = () => {
-        const regex = /^([A-ZA-ZА-ЯА-Я]{1,2})([3-6]{2})([0-9]{2})([A-ZA-ZА-ЯА-Я]{2})$/
+        const regex = /^([A-ZA-ZА-ЯА-Я]{1,2})([0-9]{4})([A-ZA-ZА-ЯА-Я]{2})$/
         return regex.test(registrationNumber);
     };
 
