@@ -11,6 +11,7 @@ import SelectRouteScreen from '../Category/SelectRoute';
 import { useTranslation } from 'react-i18next';
 import Confirm from '../Category/Confirm';
 import ViewRoutes from '../Category/ViewRoutes';
+import ReportingScreen from '../ReportingScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -102,6 +103,14 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={ViewRoutes}
                 options={{
                     title: t('ViewRoutes'),
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="Reporting"
+                component={ReportingScreen}
+                options={{
+                    title: t('Reporting'),
                     ...screenStyles,
                 }}
             />
