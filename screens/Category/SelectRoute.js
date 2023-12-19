@@ -15,7 +15,6 @@ function SelectRouteScreen({ route, navigation }) {
     } = route.params;
 
     const cities = CitySelector();
-    console.log(cities);
 
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
@@ -125,7 +124,7 @@ function SelectRouteScreen({ route, navigation }) {
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
                 {t('Departure:', {})}
             </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25 }}>
                 <View style={{ flex: 1, marginRight: 10 }}>
                     <Dropdown
                         style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
@@ -135,7 +134,7 @@ function SelectRouteScreen({ route, navigation }) {
                         iconStyle={styles.iconStyle}
                         data={cities}
                         search
-                        maxHeight={300}
+                        maxHeight={165}
                         labelField="label"
                         valueField="value"
                         placeholder={!isFocus ? t('Select City') : '...'}
@@ -225,7 +224,7 @@ function SelectRouteScreen({ route, navigation }) {
                         iconStyle={styles.iconStyle}
                         data={cities}
                         search
-                        maxHeight={300}
+                        maxHeight={165}
                         labelField="label"
                         valueField="value"
                         placeholder={!isFocuses ? t('Select City') : '...'}

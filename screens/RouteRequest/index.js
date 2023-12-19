@@ -5,13 +5,15 @@ import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import CitySelector from '../../server/Cities/cities';
 
+
 const RouteRequestScreen = ({ navigation }) => {
     const { t } = useTranslation();
     const [fromLocation, setFromLocation] = useState(null);
     const [toLocation, setToLocation] = useState('');
     const [isFocus, setIsFocus] = useState(false);
     const cities = CitySelector();
-    console.log(cities);
+
+
 
     const submitRouteRequest = () => {
         if (!fromLocation || !toLocation) {
