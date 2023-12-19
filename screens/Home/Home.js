@@ -42,7 +42,7 @@ function HomePage({ navigation }) {
     }
 
     const handlerRouteRequest = () => {
-        navigation.navigate('RouteRequest')
+        navigation.navigate('Route request')
         console.log('RouteRequest clicked !!!');
     }
 
