@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Text, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import CitySelector from '../../server/Cities/cities';
 
 const RouteRequestScreen = ({ navigation }) => {
     const { t } = useTranslation();
     const [fromLocation, setFromLocation] = useState(null);
     const [toLocation, setToLocation] = useState('');
     const [isFocus, setIsFocus] = useState(false);
-    const [isFocuses, setIsFocuses] = useState(false);
-    const [value, setValue] = useState(null);
-    const [departureCity, setdepartureCity] = useState(null);
-
-    const data = [
-        { label: t('Sofia'), value: t('Sofia') },
-        { label: t('Plovdiv'), value: t('Plovdiv') },
-        { label: t('Varna'), value: t('Varna') },
-        { label: t('Burgas'), value: t('Burgas') },
-        // Add more cities as needed
-    ];
+    const cities = CitySelector();
+    console.log(cities);
 
     const submitRouteRequest = () => {
         if (!fromLocation || !toLocation) {
@@ -48,7 +40,7 @@ const RouteRequestScreen = ({ navigation }) => {
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
                     iconStyle={styles.iconStyle}
-                    data={data}
+                    data={cities}
                     search
                     maxHeight={300}
                     labelField="label"
@@ -79,7 +71,7 @@ const RouteRequestScreen = ({ navigation }) => {
                     selectedTextStyle={styles.selectedTextStyle}
                     inputSearchStyle={styles.inputSearchStyle}
                     iconStyle={styles.iconStyle}
-                    data={data}
+                    data={cities}
                     search
                     maxHeight={300}
                     labelField="label"

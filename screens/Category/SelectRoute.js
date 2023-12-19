@@ -4,6 +4,7 @@ import DatePicker from 'react-native-date-picker';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useTranslation } from 'react-i18next';
+import CitySelector from '../../server/Cities/cities';
 
 function SelectRouteScreen({ route, navigation }) {
     const { t } = useTranslation();
@@ -12,6 +13,9 @@ function SelectRouteScreen({ route, navigation }) {
         markedSeats,
         registrationNumber,
     } = route.params;
+
+    const cities = CitySelector();
+    console.log(cities);
 
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
@@ -28,15 +32,6 @@ function SelectRouteScreen({ route, navigation }) {
     const [value, setValue] = useState(null);
     const [isFocus, setIsFocus] = useState(false);
     const [isFocuses, setIsFocuses] = useState(false);
-
-    const data = [
-        { label: t('Sofia'), value: t('Sofia') },
-        { label: t('Plovdiv'), value: t('Plovdiv') },
-        { label: t('Varna'), value: t('Varna') },
-        { label: t('Burgas'), value: t('Burgas') },
-        // Add more cities as needed
-    ];
-
 
     const renderLabel = () => {
         if (value || isFocus) {
@@ -138,7 +133,7 @@ function SelectRouteScreen({ route, navigation }) {
                         selectedTextStyle={styles.selectedTextStyle}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={styles.iconStyle}
-                        data={data}
+                        data={cities}
                         search
                         maxHeight={300}
                         labelField="label"
@@ -228,7 +223,7 @@ function SelectRouteScreen({ route, navigation }) {
                         selectedTextStyle={styles.selectedTextStyle}
                         inputSearchStyle={styles.inputSearchStyle}
                         iconStyle={styles.iconStyle}
-                        data={data}
+                        data={cities}
                         search
                         maxHeight={300}
                         labelField="label"
