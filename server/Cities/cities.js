@@ -259,6 +259,7 @@ const CitySelector = () => {
         { "label": t('Mortagonovo'), "value": t('Mortagonovo') },
         { "label": t('Izvorsko'), "value": t('Izvorsko') },
         { "label": t('Dobroslavtsi'), "value": t('Dobroslavtsi') },
+
     ];
 
     return cities;
