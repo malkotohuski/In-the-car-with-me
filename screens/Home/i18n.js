@@ -86,6 +86,9 @@ i18next.use(initReactI18next).init({
                 'with registration number': 'with registration number',
                 'Departure address': 'Departure address',
                 'Arrival address': 'Arrival address',
+                'From': 'From',
+                'To': 'To',
+                'Enter a route': 'Enter a route',
             }
         },
         bg: {
@@ -169,6 +172,9 @@ i18next.use(initReactI18next).init({
                 'with registration number': 'с регистрационен номер',
                 'Departure address': 'Aдрес на заминаване',
                 'Arrival address': 'Адрес на пристигане',
+                'From': 'От',
+                'To': 'До',
+                'Enter a route': 'Въведете маршрут',
             }
         },
     }

@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import Confirm from '../Category/Confirm';
 import ViewRoutes from '../Category/ViewRoutes';
 import ReportingScreen from '../ReportingScreen';
+import RouteRequestScreen from '../RouteRequest';
 
 const Drawer = createDrawerNavigator();
 
@@ -99,10 +100,10 @@ export const Navigator = ({ isLoggedIn }) => {
                 }}
             />
             <Drawer.Screen
-                name="ViewRoutes"
+                name="View routes"
                 component={ViewRoutes}
                 options={{
-                    title: t('ViewRoutes'),
+                    title: t('View routes'),
                     ...screenStyles,
                 }}
             />
@@ -115,6 +116,14 @@ export const Navigator = ({ isLoggedIn }) => {
                 }}
             />
             <Drawer.Screen
+                name="Route request"
+                component={RouteRequestScreen}
+                options={{
+                    title: t('Route request'),
+                    ...screenStyles,
+                }}
+            />
+            {/*  <Drawer.Screen
                 name="Tabs"
                 component={MyTabs}
                 options={{
@@ -122,7 +131,7 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     headerShown: false,
                 }}
-            />
+            /> */}
             {isLoggedIn ? dynamicScreens : null}
         </Drawer.Navigator>
     );

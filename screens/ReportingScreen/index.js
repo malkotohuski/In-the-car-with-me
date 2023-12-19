@@ -36,18 +36,35 @@ const ReportingScreen = () => {
             console.warn('Please choose a photo or video.');
             return;
         }
-
-        const emailConfig = {
-            subject: 'Reporting Issue',
-            body: `Problem Description: ${problemDescription}\nVehicle Number: ${vehicleNumber}`,
-            recipients: ['malkotohuski@gmail.com'], // Replace with a valid email address
+        const serverEndpoint = 'https://your-backend-server.com/report';
+        const reportData = {
+            problemDescription,
+            vehicleNumber,
             attachment: {
-                path: attachment.uri,
+                uri: attachment.uri,
                 type: attachment.type,
                 name: attachment.fileName,
             },
-        }
+        };
 
+        // Make a POST request to the server
+        fetch(serverEndpoint, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reportData),
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response from the server
+                console.log('Report sent successfully:', data);
+                // You can perform any additional actions here, such as showing a confirmation message
+            })
+            .catch(error => {
+                console.error('Error sending report:', error);
+                // Handle errors, e.g., show an error message to the user
+            });
     };
 
     return (
