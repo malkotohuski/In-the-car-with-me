@@ -42,7 +42,7 @@ function Confirm() {
 
         addRoute(newRoute); // Save the route using the context
 
-        navigation.navigate('ViewRoutes'); // Navigate to ViewRoutes
+        navigation.navigate('View routes'); // Navigate to ViewRoutes
     };
 
     return (
@@ -75,23 +75,23 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#ecf0f1',
+        backgroundColor: 'grey',
     },
     headerText: {
         fontWeight: 'bold',
         fontSize: 24,
-        paddingBottom: 20,
-        color: '#2c3e50',
-        borderBottomWidth: 2, // Border bottom for header text
-        borderBottomColor: '#3498db', // Border color
+        paddingBottom: 10,
+        color: '#000',
+        borderBottomWidth: 3, // Border bottom for header text
+        borderBottomColor: '#000', // Border color
     },
     text: {
         fontWeight: 'bold',
         fontSize: 18,
         paddingBottom: 10,
-        color: '#34495e',
+        color: '#000',
         borderBottomWidth: 1, // Border bottom for regular text
-        borderBottomColor: '#bdc3c7', // Border color
+        borderBottomColor: '#000', // Border color
     },
     button: {
         marginTop: 20,

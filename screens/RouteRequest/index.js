@@ -33,9 +33,19 @@ const RouteRequestScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10, marginLeft: 30, fontSize: 30, fontWeight: 'bold' }}>{t('Enter a route')}</Text>
+            <Text
+                style={{
+                    flex: 1, justifyContent: 'center',
+                    alignItems: 'center', padding: 10,
+                    fontSize: 30, fontWeight: 'bold'
+                }}>
+                {t('Create a route')}
+            </Text>
             <View style={{ flex: 1, marginRight: 10 }}>
-                <Text >{t('')}</Text>
+                <Text
+                    style={styles.cityText}
+                >{t('From')}
+                </Text>
                 <Dropdown
                     style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
                     placeholderStyle={styles.placeholderStyle}
@@ -67,6 +77,10 @@ const RouteRequestScreen = ({ navigation }) => {
                 />
             </View>
             <View style={{ flex: 1, marginRight: 10 }}>
+                <Text
+                    style={styles.cityText}
+                >{t('To')}
+                </Text>
                 <Dropdown
                     style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
                     placeholderStyle={styles.placeholderStyle}
@@ -109,7 +123,7 @@ const RouteRequestScreen = ({ navigation }) => {
                     fontWeight: 'bold',
                 }}
             >
-                <Text style={{ color: 'white' }}>{t('Continue')}</Text>
+                <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold' }}>{t('Continue')}</Text>
             </TouchableOpacity>
         </View>
     );
@@ -120,14 +134,34 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         justifyContent: 'center',
+        backgroundColor: 'grey',
     },
     input: {
         height: 40,
-        borderColor: 'gray',
+        borderColor: 'black',
         borderWidth: 1,
         marginBottom: 16,
         padding: 8,
     },
+    placeholderStyle: {
+        fontSize: 14,
+        fontWeight: 900,
+        borderBottomWidth: 3, // Border bottom for header text
+        borderBottomColor: '#000', // Border color
+    },
+    selectedTextStyle: {
+        fontSize: 20,
+        fontWeight: 'bold'
+    },
+    inputSearchStyle: {
+        height: 40,
+        fontSize: 16,
+    },
+    cityText: {
+        alignItems: 'center',
+        fontSize: 16,
+        fontWeight: 'bold',
+    }
 });
 
 export default RouteRequestScreen;

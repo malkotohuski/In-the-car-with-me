@@ -77,7 +77,7 @@ function MarkSeatsScreen() {
                             width: 30,
                             height: 30,
                             margin: 5,
-                            backgroundColor: seatNumber === 1 ? 'red' : markedSeats.includes(seatNumber) ? 'green' : 'gray',
+                            backgroundColor: seatNumber === 1 ? 'red' : markedSeats.includes(seatNumber) ? 'green' : 'black',
                             justifyContent: 'center',
                             alignItems: 'center',
                             opacity: seatNumber === 1 ? 1 : 1, // Make the first seat not clickable
@@ -102,13 +102,13 @@ function MarkSeatsScreen() {
                             width: 30,
                             height: 30,
                             margin: 5,
-                            backgroundColor: markedSeats.includes(seatNumber) ? 'green' : 'gray',
+                            backgroundColor: markedSeats.includes(seatNumber) ? 'green' : 'black',
                             justifyContent: 'center',
                             alignItems: 'center',
                             top: 70
                         }}
                     >
-                        <Text style={{ color: 'white' }}>{seatNumber}</Text>
+                        <Text style={{ color: 'white', fontWeight: 'bold' }}>{seatNumber}</Text>
                     </TouchableOpacity>
                 ))}
             </View>
@@ -153,9 +153,9 @@ function MarkSeatsScreen() {
     };
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'grey' }}>
             <Text
-                style={{ fontSize: 20 }}
+                style={{ fontSize: 20, fontWeight: 'bold', color: 'black' }}
             >
                 {t('Type')}: {selectedVehicle}
             </Text>
@@ -172,8 +172,8 @@ function MarkSeatsScreen() {
                 onChangeText={(text) => setRegistrationNumber(text)}
                 style={{
                     height: 40,
-                    borderColor: 'gray',
-                    borderWidth: 1,
+                    borderColor: 'black',
+                    borderWidth: 2,
                     margin: 10,
                     padding: 5,
                     textAlign: 'center',
@@ -190,8 +190,12 @@ function MarkSeatsScreen() {
                 {t('Invalid registration number format')}
             </Text>}
             {/* Add a new text for choosing free places */}
-            <Text>{t('Choose how many free places you have:')}</Text>
-            <Text>{`${selectedFreePlaces}`}</Text>
+            <Text
+                style={{ fontSize: 20, fontWeight: 'bold' }}
+            >{t('Choose how many free places you have:')}</Text>
+            <Text
+                style={{ fontSize: 20, fontWeight: 'bold' }}
+            >{`${selectedFreePlaces}`}</Text>
 
 
 
@@ -227,9 +231,9 @@ function MarkSeatsScreen() {
             <TouchableOpacity
                 onPress={handleContinue}
                 style={{
-                    marginTop: 20,
+                    marginTop: 0,
                     padding: 10,
-                    backgroundColor: isValidRegistrationNumber() ? 'coral' : 'gray', // Change color based on registrationNumber validity
+                    backgroundColor: isValidRegistrationNumber() ? 'coral' : 'black', // Change color based on registrationNumber validity
                     alignItems: 'center',
                     justifyContent: 'center',
                     fontSize: 14,
