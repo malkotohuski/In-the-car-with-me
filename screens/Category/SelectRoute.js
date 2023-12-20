@@ -109,7 +109,7 @@ function SelectRouteScreen({ route, navigation }) {
 
 
     return (
-        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20 }}>
+        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20, backgroundColor: 'grey' }}>
             {/* <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
                 {t('Selected Vehicle:', { selectedVehicle })}
             </Text>
@@ -124,7 +124,7 @@ function SelectRouteScreen({ route, navigation }) {
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
                 {t('Departure:', {})}
             </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25, }}>
                 <View style={{ flex: 1, marginRight: 10 }}>
                     <Dropdown
                         style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
@@ -156,19 +156,20 @@ function SelectRouteScreen({ route, navigation }) {
                         )}
                     />
                 </View>
-                <View style={{ flex: 1, marginRight: 10 }}>
+                <View style={{ flex: 1, marginLeft: 40 }}>
                     <TextInput
                         placeholder={t("Street")}
                         value={departureStreet}
                         onChangeText={(text) => setDepartureStreet(text)}
                         style={{
                             height: 70,
-                            width: 140,
-                            borderColor: 'gray',
+                            width: 130,
+                            borderColor: 'black',
                             borderWidth: 1.5,
                             borderRadius: 8,
                             paddingHorizontal: 8,
-                            fontSize: 16
+                            fontSize: 16,
+                            fontWeight: 'bold'
                         }}
                     />
                 </View>
@@ -179,12 +180,13 @@ function SelectRouteScreen({ route, navigation }) {
                     keyboardType="numeric" // Restrict to numeric input
                     style={{
                         height: 70,
-                        width: 80,
-                        borderColor: 'gray',
+                        width: 50,
+                        borderColor: 'black',
                         borderWidth: 1.5,
                         borderRadius: 8,
                         paddingHorizontal: 8,
-                        fontSize: 16
+                        fontSize: 16,
+                        fontWeight: 'bold'
                     }}
                 />
             </View>
@@ -246,19 +248,20 @@ function SelectRouteScreen({ route, navigation }) {
                         )}
                     />
                 </View>
-                <View style={{ flex: 1, marginRight: 10 }}>
+                <View style={{ flex: 1, marginLeft: 40 }}>
                     <TextInput
                         placeholder={t("Street")}
                         value={arrivalStreet}
                         onChangeText={(text) => setArrivalStreet(text)}
                         style={{
                             height: 70,
-                            width: 140,
-                            borderColor: 'gray',
+                            width: 130,
+                            borderColor: 'black',
                             borderWidth: 1.5,
                             borderRadius: 8,
                             paddingHorizontal: 8,
-                            fontSize: 16
+                            fontSize: 16,
+                            fontWeight: 'bold',
                         }}
                     />
                 </View>
@@ -269,12 +272,13 @@ function SelectRouteScreen({ route, navigation }) {
                     keyboardType="numeric" // Restrict to numeric input
                     style={{
                         height: 70,
-                        width: 80,
-                        borderColor: 'gray',
+                        width: 50,
+                        borderColor: 'black',
                         borderWidth: 1.5,
                         borderRadius: 8,
                         paddingHorizontal: 8,
-                        fontSize: 16
+                        fontSize: 16,
+                        fontWeight: 'bold',
                     }}
                 />
             </View>
@@ -317,7 +321,7 @@ function SelectRouteScreen({ route, navigation }) {
                         backgroundColor: '#f4511e',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: 'bold',
                         width: '90%', // Adjust the width as needed
                     }}
@@ -339,8 +343,8 @@ const styles = StyleSheet.create({
     },
     dropdown: {
         height: 70,
-        width: 140,
-        borderColor: 'gray',
+        width: 180,
+        borderColor: 'black',
         borderWidth: 1.5,
         borderRadius: 8,
         paddingHorizontal: 8,
@@ -358,10 +362,12 @@ const styles = StyleSheet.create({
         fontSize: 14,
     },
     placeholderStyle: {
-        fontSize: 16,
+        fontSize: 14,
+        fontWeight: 900
     },
     selectedTextStyle: {
-        fontSize: 16,
+        fontSize: 20,
+        fontWeight: 'bold'
     },
     iconStyle: {
         width: 20,

@@ -7,6 +7,7 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         height: '100%',
+        backgroundColor: 'grey'
     },
     adBox: {
         flex: 1,
@@ -21,11 +22,11 @@ export default StyleSheet.create({
         height: '100%',
         resizeMode: 'cover', // Add this line to ensure the entire image is visible
     },
-    content: {
-        flex: 2,
-        width: '60%',
-        padding: 10,
-    },
+    /*  content: {
+         flex: 2,
+         width: '60%',
+         padding: 10,
+     }, */
     heading: {
         fontSize: 24,
         fontWeight: 'bold',
@@ -56,31 +57,68 @@ export default StyleSheet.create({
         height: 40,
         width: 400,
         borderWidth: 2,
-        borderColor: 'gray',
+        borderColor: 'black',
         marginBottom: 10,
         paddingHorizontal: 10,
     },
     searchButton: {
-        height: 40,
+        height: 70,
         backgroundColor: 'coral',
         borderRadius: 3,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
-        width: 100,
+        width: 200,
     },
     searchButtonText: {
         textAlign: 'center',
         color: 'white',
-        fontSize: 14,
+        fontSize: 20,
         fontWeight: 'bold',
     },
-    tiresButton: {
+    routeRequestButton: {
         alignItems: 'center',
-        backgroundColor: '#DDDDDD',
+        backgroundColor: 'blue',
         padding: 10,
         marginBottom: 5,
         fontSize: 24,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderColor: 'black'
+    },
+    vehicleButton: {
+        alignItems: 'center',
+        backgroundColor: 'blue',
+        padding: 10,
+        marginBottom: 5,
+        fontSize: 24,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderColor: 'black'
+    },
+    routeViewerButton: {
+        alignItems: 'center',
+        backgroundColor: 'yellow',
+        padding: 10,
+        marginBottom: 5,
+        fontSize: 24,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderColor: 'black'
+    },
+    reportingButton: {
+        alignItems: 'center',
+        backgroundColor: 'yellow',
+        padding: 10,
+        marginBottom: 5,
+        fontSize: 24,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderColor: 'black'
+    },
+    textButtons: {
+        color: 'black',
+        fontSize: 16,
         fontWeight: 'bold',
     },
     container: {
@@ -88,6 +126,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
+        backgroundColor: 'grey'
     },
     title: {
         fontSize: 24,
@@ -98,7 +137,7 @@ export default StyleSheet.create({
         width: '100%',
         height: 40,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: 'black',
         marginBottom: 10,
         paddingHorizontal: 10,
     },
@@ -118,6 +157,20 @@ export default StyleSheet.create({
         height: 50, // Adjust the size as needed
         borderRadius: 25, // Half of the width and height to make it round
         marginBottom: 5, // Adjust the spacing as needed
+    },
+    loginButtons: {
+        alignItems: 'center',
+        backgroundColor: 'coral',
+        padding: 10,
+        marginBottom: 1,
+        fontSize: 16,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderColor: 'black'
+    },
+    buttonsContent: {
+        margin: 140,
+        width: 250,
     },
 });
 

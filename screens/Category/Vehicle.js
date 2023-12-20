@@ -42,7 +42,7 @@ const Vehicle = () => {
     );
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: 'grey' }}>
             <RNPickerSelect
                 items={vehicleTypes}
                 placeholder={{ label: t('Select vehicle'), value: null }}
@@ -53,16 +53,16 @@ const Vehicle = () => {
                 <TouchableOpacity
                     onPress={handleContinue}
                     style={{
-                        marginTop: 10,
+                        marginTop: 100,
                         padding: 10,
                         backgroundColor: 'coral',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        fontSize: 14,
+                        fontSize: 20,
                         fontWeight: 'bold',
                     }}
                 >
-                    <Text style={{ color: 'white' }}>{t('Continue')}</Text>
+                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', }}>{t('Continue')}</Text>
                 </TouchableOpacity>
             </View>
         </View>

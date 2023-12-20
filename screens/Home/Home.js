@@ -58,10 +58,7 @@ function HomePage({ navigation }) {
 
     return (
         <View style={styles.homepage}>
-            {/*  <View style={styles.adBox}>
-                <Image source={images[currentImageIndex]} style={styles.adImage} />
-            </View> */}
-            <View style={styles.content}>
+            <View >
                 <View style={styles.languageSwitchContainer}>
                     <TouchableOpacity
                         style={styles.languageButton}
@@ -87,23 +84,31 @@ function HomePage({ navigation }) {
 
                 <View style={styles.menuImages}>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerVehicle} >
-                            <Text>{t('Register your vehicle')}</Text>
+                        <TouchableOpacity style={styles.vehicleButton} onPress={handlerVehicle} >
+                            <Text
+                                style={styles.textButtons}
+                            >{t('Register your vehicle')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerRouteRequest} >
-                            <Text>{t('Route request')}</Text>
+                        <TouchableOpacity style={styles.routeRequestButton} onPress={handlerRouteRequest} >
+                            <Text
+                                style={styles.textButtons}
+                            >{t('Route request')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerRouteViewer} >
-                            <Text>{t('View routes')}</Text>
+                        <TouchableOpacity style={styles.routeViewerButton} onPress={handlerRouteViewer} >
+                            <Text
+                                style={styles.textButtons}
+                            >{t('View routes')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
-                        <TouchableOpacity style={styles.tiresButton} onPress={handlerReporting} >
-                            <Text>{t('Reporting')}</Text>
+                        <TouchableOpacity style={styles.reportingButton} onPress={handlerReporting} >
+                            <Text
+                                style={styles.textButtons}
+                            >{t('Reporting')}</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -113,21 +118,23 @@ function HomePage({ navigation }) {
                     <Text style={styles.heading}>{t('In the car with me')}</Text>
                     <Text style={styles.moto}>{t('We travel freely')}</Text>
                 </View>
-                <View style={styles.searchBox}>
-                    <View style={styles.searchContainer}>
-                        <TextInput
-                            style={styles.searchField}
-                            placeholder={t('Search here')}
-                        />
+                <View>
+                    <View style={styles.searchBox}>
+                        <View style={styles.searchContainer}>
+                            <TextInput
+                                style={styles.searchField}
+                                placeholder={t('Search here')}
+                            />
+                        </View>
+                        <TouchableOpacity
+                            style={styles.searchButton}
+                            onPress={() => {
+                                // Handle search button press
+                            }}
+                        >
+                            <Text style={styles.searchButtonText}>{t('Search')}</Text>
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.searchButton}
-                        onPress={() => {
-                            // Handle search button press
-                        }}
-                    >
-                        <Text style={styles.searchButtonText}>{t('Search')}</Text>
-                    </TouchableOpacity>
                 </View>
             </View>
             {/*  <View style={styles.adBox}>

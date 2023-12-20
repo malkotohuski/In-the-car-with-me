@@ -1,8 +1,6 @@
 
 
 const allSettlements = () => {
-
-
     const settlements = [
         {
             "Благоевград": {
@@ -59799,8 +59797,31 @@ const allSettlements = () => {
             }
         }
     ]
-    return settlements
+
 }
 
+const filterAndSortSettlements = (allSettlements) => {
+    const result = [];
 
-export default allSettlements;
+    for (const topLevelSettlement in allSettlements()[0]) {
+        const topLevelData = allSettlements()[0][topLevelSettlement];
+
+        for (const nestedSettlement in topLevelData) {
+            const nestedData = topLevelData[nestedSettlement];
+
+            if (nestedData.type === "с.") {
+                result.push(nestedData);
+            }
+        }
+    }
+
+    result.sort((a, b) => a.name.localeCompare(b.name));
+
+    return result;
+};
+
+const sortedSettlements = filterAndSortSettlements(allSettlements);
+
+console.log(sortedSettlements);
+
+export default filterAndSortSettlements;
