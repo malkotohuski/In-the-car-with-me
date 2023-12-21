@@ -7,34 +7,14 @@ import { useTranslation } from 'react-i18next';
 import styles from './styles';
 
 
-/* const images = [
-    require('../../images/suspension.jpg'), // Replace with your image file paths
-    require('../../images/images3.jpg'),
-    require('../../images/tires.jpg'),
-    require('../../images/gearbox.jpg'),
-    require('../../images/motorOil.jpg'),
-]; */
-
-
 function HomePage({ navigation }) {
     const { t } = useTranslation();
-    /*     const [currentImageIndex, setCurrentImageIndex] = useState(0); */
     const [isBulgaria, setisBulgaria] = useState(false);
 
     const changeLanguage = (lng) => {
         i18next.changeLanguage(lng);
         setisBulgaria(lng === 'bg');
     };
-
-    /*    useEffect(() => {
-           const changeImageInterval = setInterval(() => {
-               setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-           }, 3000); // Change image every 3 seconds
-   
-           return () => {
-               clearInterval(changeImageInterval);
-           };
-       }, []); */
 
     const handlerVehicle = () => {
         navigation.navigate('Vehicle');
@@ -58,14 +38,14 @@ function HomePage({ navigation }) {
 
     return (
         <View style={styles.homepage}>
-            <View >
+            <View style={{ flex: 1, justifyContent: 'center' }}>
                 <View style={styles.languageSwitchContainer}>
                     <TouchableOpacity
                         style={styles.languageButton}
                         onPress={() => changeLanguage('en')}
                     >
                         <Image
-                            source={require('../../images/engl-flag.png')} // Replace with the path to your English flag image
+                            source={require('../../images/engl-flag.png')}
                             style={styles.flagImage}
                         />
                         <Text>{t('English')}</Text>
@@ -75,7 +55,7 @@ function HomePage({ navigation }) {
                         onPress={() => changeLanguage('bg')}
                     >
                         <Image
-                            source={require('../../images/bulg-flag.png')} // Replace with the path to your Italian flag image
+                            source={require('../../images/bulg-flag.png')}
                             style={styles.flagImage}
                         />
                         <Text>{t('Bulgarian')}</Text>
@@ -118,30 +98,25 @@ function HomePage({ navigation }) {
                     <Text style={styles.heading}>{t('In the car with me')}</Text>
                     <Text style={styles.moto}>{t('We travel freely')}</Text>
                 </View>
-                <View>
-                    <View style={styles.searchBox}>
-                        <View style={styles.searchContainer}>
-                            <TextInput
-                                style={styles.searchField}
-                                placeholder={t('Search here')}
-                            />
-                        </View>
-                        <TouchableOpacity
-                            style={styles.searchButton}
-                            onPress={() => {
-                                // Handle search button press
-                            }}
-                        >
-                            <Text style={styles.searchButtonText}>{t('Search')}</Text>
-                        </TouchableOpacity>
+
+                <View style={styles.searchBox}>
+                    <View style={styles.searchContainer}>
+                        <TextInput
+                            style={styles.searchField}
+                            placeholder={t('Search here')}
+                        />
                     </View>
+                    <TouchableOpacity
+                        style={styles.searchButton}
+                        onPress={() => {
+
+                        }}
+                    >
+                        <Text style={styles.searchButtonText}>{t('Search')}</Text>
+                    </TouchableOpacity>
                 </View>
+
             </View>
-            {/*  <View style={styles.adBox}>
-                <Image source={images[currentImageIndex]} style={styles.adImage} />
-              
-            </View> */}
-            {/* Footer goes here */}
         </View>
     );
 }

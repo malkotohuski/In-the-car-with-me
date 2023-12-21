@@ -1,4 +1,5 @@
 import React from 'react';
+import { TouchableOpacity } from 'react-native';
 import Register from '../Register';
 import Login from '../Login';
 import { DrawerContent } from '../DrawerContent/drawerContent';
@@ -13,6 +14,8 @@ import Confirm from '../Category/Confirm';
 import ViewRoutes from '../Category/ViewRoutes';
 import ReportingScreen from '../ReportingScreen';
 import RouteRequestScreen from '../RouteRequest';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import AccountManager from '../Account/AccountManager';
 
 const Drawer = createDrawerNavigator();
 
@@ -22,6 +25,8 @@ const screenStyles = {
     },
     headerTintColor: '#fff',
 };
+
+
 
 export const Navigator = ({ isLoggedIn }) => {
     const { t } = useTranslation();
@@ -38,6 +43,19 @@ export const Navigator = ({ isLoggedIn }) => {
             }}
         />,
     ];
+
+    const renderManageAccountsIcon = ({ navigation }) => (
+        <TouchableOpacity
+            style={{ marginRight: 16 }}
+            onPress={() => {
+                // Handle the press event, navigate to the 'AccountManager' screen
+                navigation.navigate('AccountManager');
+            }}
+        >
+            <Icon name="manage-accounts" size={24} color="white" />
+        </TouchableOpacity>
+    );
+
 
     return (
         <Drawer.Navigator>
@@ -66,7 +84,15 @@ export const Navigator = ({ isLoggedIn }) => {
                     title: t('Home'),
                     ...screenStyles,
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => renderManageAccountsIcon({ navigation }),
+                        });
+                    },
+                })}
             />
+
             <Drawer.Screen
                 name="Vehicle"
                 component={Vehicle}
@@ -120,6 +146,15 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={RouteRequestScreen}
                 options={{
                     title: t('Route request'),
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="AccountManager"
+                component={AccountManager}
+                key="AccountManager"
+                options={{
+                    title: 'Account Manager',
                     ...screenStyles,
                 }}
             />

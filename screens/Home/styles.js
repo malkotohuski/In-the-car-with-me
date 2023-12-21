@@ -55,14 +55,14 @@ export default StyleSheet.create({
     },
     searchField: {
         height: 40,
-        width: 400,
+        width: 200,
         borderWidth: 2,
         borderColor: 'black',
         marginBottom: 10,
         paddingHorizontal: 10,
     },
     searchButton: {
-        height: 70,
+        height: 60,
         backgroundColor: 'coral',
         borderRadius: 3,
         alignItems: 'center',
@@ -84,7 +84,8 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: 'black',
+        width: 420
     },
     vehicleButton: {
         alignItems: 'center',
@@ -128,13 +129,16 @@ export default StyleSheet.create({
         padding: 16,
         backgroundColor: 'grey'
     },
+    loginBars: {
+        flex: 1,
+    },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
     },
     input: {
-        width: '100%',
+        width: 200,
         height: 40,
         borderWidth: 1,
         borderColor: 'black',
@@ -142,7 +146,7 @@ export default StyleSheet.create({
         paddingHorizontal: 10,
     },
     buttonSeparator: {
-        height: 10,
+        height: 5,
     },
     languageSwitchContainer: {
         flexDirection: 'row',
@@ -169,8 +173,9 @@ export default StyleSheet.create({
         borderColor: 'black'
     },
     buttonsContent: {
-        margin: 140,
+        margin: 50,
         width: 250,
     },
+
 });
 
