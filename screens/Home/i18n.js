@@ -352,6 +352,9 @@ i18next.use(initReactI18next).init({
                 'Email': 'Email',
                 'Password': 'Password',
                 'Create a route': 'Create a route',
+                'Register here': 'Register here',
+                'Name': 'Name',
+                'password and confirm passowrd do not match': 'password and confirm passowrd do not match',
             }
         },
         bg: {
@@ -700,6 +703,9 @@ i18next.use(initReactI18next).init({
                 'Email': 'Имейл',
                 'Password': 'Парола',
                 'Create a route': 'Създайте маршрут',
+                'Register here': 'Направи регистрация тук',
+                'Name': 'Име',
+                'password and confirm passowrd do not match': 'паролата и паролата за потвърждение не съвпадат'
             }
         },
     }
