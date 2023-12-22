@@ -177,7 +177,6 @@ function SelectRouteScreen({ route, navigation }) {
                     placeholder={t("Number")}
                     value={departureNumber}
                     onChangeText={(text) => setDepartureNumber(text)}
-                    keyboardType="numeric" // Restrict to numeric input
                     style={{
                         height: 70,
                         width: 50,

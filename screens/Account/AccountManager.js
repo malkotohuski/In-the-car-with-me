@@ -3,49 +3,59 @@ import {
     View,
     Text,
     TextInput,
-    Button,
     StyleSheet,
     Image,
     TouchableOpacity,
 } from 'react-native';
-import ImagePicker from 'react-native-image-picker';
+import { useTranslation } from 'react-i18next';
+import ImagePicker from 'react-native-image-crop-picker';
 
-const AccountManager = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+const AccountManager = ({ navigation }) => {
     const [profilePicture, setProfilePicture] = useState(null);
 
-    const handleImagePicker = () => {
-        const options = {
-            title: 'Select Profile Picture',
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            },
-        };
+    // User information states
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
-        ImagePicker.showImagePicker(options, (response) => {
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else {
-                setProfilePicture(response.uri);
+    const { t } = useTranslation();
+
+    const handleImagePicker = async () => {
+        try {
+            const image = await ImagePicker.openPicker({
+                width: 300,
+                height: 300,
+                cropping: true,
+            });
+
+            if (image.path) {
+                // Local image
+                setProfilePicture(image.path);
+            } else if (image.uri) {
+                // Remote image
+                setProfilePicture(image.uri);
             }
-        });
+        } catch (error) {
+            console.log('ImagePicker Error: ', error);
+        }
     };
 
-    const handleChangeUsername = () => {
-        // Add logic for changing username here
-        console.log('Username changed');
+    const handlerAddVehicles = () => {
+        navigation.navigate('Vehicle');
+        console.log('add vehiclesClick !!!');
+    }
+
+    const handleSaveChanges = () => {
+        // Add logic for saving changes here
+        console.log('Changes saved');
     };
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Account Settings</Text>
+            {/* Profile picture */}
             <TouchableOpacity
                 onPress={handleImagePicker}
-                style={styles.profilePictureContainer}
+                style={[styles.profilePictureContainer, styles.topRight]}
             >
                 {profilePicture ? (
                     <Image
@@ -53,30 +63,53 @@ const AccountManager = () => {
                         style={styles.profilePicture}
                     />
                 ) : (
-                    <Text style={styles.addPhotoText}>Add Profile Picture</Text>
+                    <Text style={styles.addPhotoText}>
+                        {t('Add Profile Picture')}
+                    </Text>
                 )}
             </TouchableOpacity>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Username</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Change your username"
-                    onChangeText={(text) => setUsername(text)}
-                    value={username}
-                />
-                <Button title="Change Username" onPress={handleChangeUsername} />
+            <View style={styles.profileInfoContainer}>
+                {/* User information */}
+                <View style={styles.userInfoContainer}>
+                    <Text style={styles.label}>{t('First Name')}</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={t('Enter first name *')}
+                        onChangeText={(text) => setFirstName(text)}
+                        value={firstName}
+                    />
+                    <Text style={styles.label}>{t('Last Name')}</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={t('Enter last name *')}
+                        onChangeText={(text) => setLastName(text)}
+                        value={lastName}
+                    />
+                    <Text style={styles.label}>{t('Phone Number')}</Text>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={t('Enter phone number')}
+                        onChangeText={(text) => setPhoneNumber(text)}
+                        keyboardType="number-pad"
+                        value={phoneNumber}
+                    />
+                    {/*   <Text style={styles.label}>{t('Yours vehicles')}</Text> */}
+                    <TouchableOpacity
+                        style={styles.userVehicle}
+                        onPress={handlerAddVehicles}
+                    >
+                        <Text style={styles.usernameText}>
+                            {t('Add your vehicle')}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={styles.inputContainer}>
-                <Text style={styles.label}>Password</Text>
-                <TextInput
-                    style={styles.input}
-                    placeholder="Reset your password"
-                    secureTextEntry
-                    onChangeText={(text) => setPassword(text)}
-                    value={password}
-                />
-            </View>
-            <Button title="Save Changes" onPress={() => console.log('Changes saved')} />
+            <TouchableOpacity
+                style={styles.usernameChangeButton}
+                onPress={handleSaveChanges}
+            >
+                <Text style={styles.usernameText}>{t('Save changes')}</Text>
+            </TouchableOpacity>
         </View>
     );
 };
@@ -88,9 +121,33 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 16,
     },
-    title: {
+    profileInfoContainer: {
+        flexDirection: 'row', // Arrange profile picture and user info side by side
+        alignItems: 'center',
+    },
+    userInfoContainer: {
+        marginLeft: 16,
+        flex: 1,
+        paddingBottom: 10,
+        marginTop: 10
+    },
+    label: {
         fontSize: 24,
-        marginBottom: 16,
+        marginBottom: 8,
+        fontWeight: 'bold'
+    },
+    topRight: {
+        position: 'absolute',
+        top: 15,
+        right: 0,
+        marginBottom: 15, // Adjust this value as needed for spacing
+        marginRight: 20, // Adjust this value as needed for spacing
+        zIndex: 1, // To ensure it appears on top of other elements
+    },
+    title: {
+        fontSize: 30,
+        marginBottom: 30,
+        fontWeight: 'bold'
     },
     profilePictureContainer: {
         alignItems: 'center',
@@ -117,9 +174,36 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         width: '100%',
-        borderColor: 'gray',
-        borderWidth: 1,
+        borderColor: 'black',
+        borderWidth: 2,
         padding: 8,
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    userVehicle: {
+        alignItems: 'center',
+        backgroundColor: 'coral',
+        padding: 10,
+        marginTop: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderColor: 'black'
+    },
+    usernameChangeButton: {
+        alignItems: 'center',
+        backgroundColor: 'coral',
+        padding: 10,
+        marginBottom: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        borderWidth: 1,
+        borderColor: 'black'
+    },
+    usernameText: {
+        color: 'black',
+        fontSize: 16,
+        fontWeight: 'bold',
     },
 });
 

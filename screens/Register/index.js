@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+
 import styles from '../Home/styles';
 import { useTranslation } from 'react-i18next';
 
 
-export default function Register() {
-  const navigation = useNavigation();
+export default function Register({ navigation }) {
   const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -15,8 +14,7 @@ export default function Register() {
 
   const handleRegister = () => {
     if (email === 'user@example.com' && password === 'password' && confirmPassowrd === 'password') {
-      alert('Registration completed.')
-      navigation.navigate('Home');
+      navigation.navigate('AccountManager');
     } else if (password !== confirmPassowrd) {
       alert(t('password and confirm passowrd do not match'))
     }
@@ -31,7 +29,7 @@ export default function Register() {
       <Text style={styles.title}>{t('Register here')}:</Text>
       <TextInput
         style={styles.input}
-        placeholder={t("Name")}
+        placeholder={t("User name")}
         value={name}
         onChangeText={(text) => setName(text)}
       />
@@ -60,7 +58,7 @@ export default function Register() {
         onPress={handleRegister}
       >
         <Text style={styles.textButtons}>
-          {t("Register")}
+          {t("Continue")}
         </Text>
       </TouchableOpacity>
       <View
@@ -71,7 +69,7 @@ export default function Register() {
         onPress={handlerBackLogin}
       >
         <Text style={styles.textButtons}>
-          {t("Log in")}
+          {t("I have an account")}
         </Text>
       </TouchableOpacity>
     </View>
