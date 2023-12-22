@@ -9,6 +9,13 @@ export default StyleSheet.create({
         height: '100%',
         backgroundColor: 'grey'
     },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        backgroundColor: 'grey'
+    },
     adBox: {
         flex: 1,
         width: '20%',
@@ -122,13 +129,7 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 16,
-        backgroundColor: 'grey'
-    },
+
     loginBars: {
         flex: 1,
     },

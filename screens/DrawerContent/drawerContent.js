@@ -92,7 +92,6 @@ export const Navigator = ({ isLoggedIn }) => {
                     },
                 })}
             />
-
             <Drawer.Screen
                 name="Vehicle"
                 component={Vehicle}
@@ -154,7 +153,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={AccountManager}
                 key="AccountManager"
                 options={{
-                    title: 'Account Manager',
+                    title: t('Create an account'),
                     ...screenStyles,
                 }}
             />
