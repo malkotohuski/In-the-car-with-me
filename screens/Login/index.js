@@ -96,7 +96,7 @@ export default function Login({ navigation, route }) {
                     style={styles.loginButtons}
                     onPress={() => navigation.navigate('Register')} >
                     <Text style={styles.textButtons}>
-                        {t("Register")}
+                        {t("Create your account")}
                     </Text>
                 </TouchableOpacity>
             </View>
