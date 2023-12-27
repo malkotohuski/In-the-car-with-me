@@ -14,12 +14,16 @@ export default function Register({ navigation }) {
 
   const handleRegister = () => {
     if (password === confirmPassowrd) {
-      navigation.navigate('WelcomeScreen', {
-        name,
-        email,
-      });
-    } else if (password !== confirmPassowrd) {
-      alert(t('password and confirm passowrd do not match'))
+      if (email.includes('@') && email.includes('.') && email.length >= 5) {
+        navigation.navigate('WelcomeScreen', {
+          name,
+          email,
+        });
+      } else {
+        alert(t('Invalid email address'));
+      }
+    } else {
+      alert(t('Password and confirm password do not match'));
     }
   };
   /* alert('Registration completed. Name: ' + name + ', Email: ' + email + ', Password: ' + password); */

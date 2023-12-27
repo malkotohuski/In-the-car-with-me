@@ -354,7 +354,7 @@ i18next.use(initReactI18next).init({
                 'Create a route': 'Create a route',
                 'Register here': 'Register here',
                 'Name': 'Name',
-                'password and confirm passowrd do not match': 'password and confirm passowrd do not match',
+                'Password and confirm passowrd do not match': 'Password and confirm passowrd do not match',
                 'I have an account': 'I have an account',
                 'Create your account': 'Create your account',
                 'Create an account': 'Create an account',
@@ -367,6 +367,8 @@ i18next.use(initReactI18next).init({
                 'Enter phone number': 'Enter phone number',
                 'Add your vehicle': 'Add your vehicle',
                 'Save changes': 'Save changes',
+                'User name': 'User name',
+                'Invalid email address': 'Invalid email address',
             }
         },
         bg: {
@@ -717,7 +719,7 @@ i18next.use(initReactI18next).init({
                 'Create a route': 'Създайте маршрут',
                 'Register here': 'Направи регистрация тук',
                 'Name': 'Име',
-                'password and confirm passowrd do not match': 'паролата и паролата за потвърждение не съвпадат',
+                'Password and confirm passowrd do not match': 'Паролата и паролата за потвърждение не съвпадат',
                 'I have an account': 'Имам акаунт',
                 'Create your account': 'Създай  си акаунта',
                 'Create an account': 'Създаване на акаунт',
@@ -730,6 +732,8 @@ i18next.use(initReactI18next).init({
                 'Enter phone number': 'Въведете телефонен номер',
                 'Add your vehicle': 'Добавете автомобила си',
                 'Save changes': 'Запазите промените',
+                'User name': 'Потребителско име',
+                'Invalid email address': 'Невалиден имейл адрес',
             }
         },
     }
