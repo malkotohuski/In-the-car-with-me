@@ -13,8 +13,11 @@ export default function Register({ navigation }) {
   const [confirmPassowrd, setConfirmPassowrd] = useState('');
 
   const handleRegister = () => {
-    if (email === 'user@example.com' && password === 'password' && confirmPassowrd === 'password') {
-      navigation.navigate('AccountManager');
+    if (password === confirmPassowrd) {
+      navigation.navigate('WelcomeScreen', {
+        name,
+        email,
+      });
     } else if (password !== confirmPassowrd) {
       alert(t('password and confirm passowrd do not match'))
     }
@@ -37,7 +40,7 @@ export default function Register({ navigation }) {
         style={styles.input}
         placeholder={t("Email")}
         value={email}
-        onChangeText={(text) => setEmail(text)}
+        onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}

@@ -16,6 +16,8 @@ import ReportingScreen from '../ReportingScreen';
 import RouteRequestScreen from '../RouteRequest';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AccountManager from '../Account/AccountManager';
+import AccountSettings from '../Account/AccountSettings';
+import WelcomeScreen from '../Account/Welcome';
 
 const Drawer = createDrawerNavigator();
 
@@ -49,7 +51,7 @@ export const Navigator = ({ isLoggedIn }) => {
             style={{ marginRight: 16 }}
             onPress={() => {
                 // Handle the press event, navigate to the 'AccountManager' screen
-                navigation.navigate('AccountManager');
+                navigation.navigate('AccountSettings');
             }}
         >
             <Icon name="manage-accounts" size={24} color="white" />
@@ -154,6 +156,24 @@ export const Navigator = ({ isLoggedIn }) => {
                 key="AccountManager"
                 options={{
                     title: t('Create an account'),
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="AccountSettings"
+                component={AccountSettings}
+                key="AccountSettings"
+                options={{
+                    title: t('Account Settings'),
+                    ...screenStyles,
+                }}
+            />
+            <Drawer.Screen
+                name="WelcomeScreen"
+                component={WelcomeScreen}
+                key="WelcomeScreen"
+                options={{
+                    title: t('Welcome'),
                     ...screenStyles,
                 }}
             />
