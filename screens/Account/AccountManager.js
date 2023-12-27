@@ -1,118 +1,63 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
-    TextInput,
     StyleSheet,
     Image,
     TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import ImagePicker from 'react-native-image-crop-picker';
+import { useRoute } from '@react-navigation/native';
 
 const AccountManager = ({ navigation }) => {
-    const [profilePicture, setProfilePicture] = useState(null);
+    const route = useRoute(); // Define route here
 
-    // User information states
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const userName = route.params?.userNickName
+    const name = route.params?.firstName;
+    const userLastName = route.params?.lastName;
+    const userPicture = route.params?.profilePicture;
+    const email = route.params?.userEmail
 
     const { t } = useTranslation();
 
-    const handleImagePicker = async () => {
-        try {
-            const image = await ImagePicker.openPicker({
-                width: 300,
-                height: 300,
-                cropping: true,
-            });
-
-            if (image.path) {
-                // Local image
-                setProfilePicture(image.path);
-            } else if (image.uri) {
-                // Remote image
-                setProfilePicture(image.uri);
-            }
-        } catch (error) {
-            console.log('ImagePicker Error: ', error);
-        }
-    };
-
-    const handlerAddVehicles = () => {
-        navigation.navigate('Vehicle');
-        console.log('add vehiclesClick !!!');
+    const handlerChangeAcountSettings = () => {
+        navigation.navigate('AccountSettings', {
+            firstName: name,
+            lastName: userLastName,
+            profilePicture: userPicture,
+            userEmail: email,
+            userNickName: userName,
+        });
     }
-
-    const handleSaveChanges = () => {
-        // Add logic for saving changes here
-        console.log('Changes saved');
-    };
 
     return (
         <View style={styles.container}>
             {/* Profile picture */}
-            <TouchableOpacity
-                onPress={handleImagePicker}
-                style={[styles.profilePictureContainer, styles.topRight]}
-            >
-                {profilePicture ? (
-                    <Image
-                        source={{ uri: profilePicture }}
-                        style={styles.profilePicture}
-                    />
-                ) : (
-                    <Text style={styles.addPhotoText}>
-                        {t('Add Profile Picture')}
-                    </Text>
-                )}
-            </TouchableOpacity>
-            <View style={styles.profileInfoContainer}>
-                {/* User information */}
-                <View style={styles.userInfoContainer}>
-                    <Text style={styles.label}>{t('First Name')}</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('Enter first name *')}
-                        onChangeText={(text) => setFirstName(text)}
-                        value={firstName}
-                    />
-                    <Text style={styles.label}>{t('Last Name')}</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('Enter last name *')}
-                        onChangeText={(text) => setLastName(text)}
-                        value={lastName}
-                    />
-                    <Text style={styles.label}>{t('Phone Number')}</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('Enter phone number')}
-                        onChangeText={(text) => setPhoneNumber(text)}
-                        keyboardType="number-pad"
-                        value={phoneNumber}
-                    />
-                    {/*   <Text style={styles.label}>{t('Yours vehicles')}</Text> */}
-                    <TouchableOpacity
-                        style={styles.userVehicle}
-                        onPress={handlerAddVehicles}
-                    >
-                        <Text style={styles.usernameText}>
-                            {t('Add your vehicle')}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+            <View style={[styles.profilePictureContainer, styles.topRight]}>
+                <Image source={{ uri: userPicture }} style={styles.profilePicture} />
             </View>
+            {/*User info */}
+            <Text>
+                { }
+            </Text>
+            <Text style={[styles.profilePictureContainer, styles.topLeftUserNames]}>
+                Nick name : {userName}
+            </Text>
+            <Text style={[styles.profilePictureContainer, styles.topLeftNames]}>
+                Names :  {name} {userLastName}
+            </Text>
+            <Text style={[styles.profilePictureContainer, styles.topLeftEmail]}>
+                email : {email}
+            </Text>
             <TouchableOpacity
                 style={styles.usernameChangeButton}
-                onPress={handleSaveChanges}
+                onPress={handlerChangeAcountSettings}
             >
-                <Text style={styles.usernameText}>{t('Save changes')}</Text>
+                <Text style={styles.usernameText}>{t('Change user settings')}</Text>
             </TouchableOpacity>
         </View>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -134,6 +79,36 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 24,
         marginBottom: 8,
+        fontWeight: 'bold'
+    },
+    topLeftUserNames: {
+        position: 'absolute',
+        top: 15,
+        left: 0,
+        marginBottom: 15, // Adjust this value as needed for spacing
+        marginLeft: 20, // Adjust this value as needed for spacing
+        zIndex: 1, // To ensure it appears on top of other elements
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    topLeftNames: {
+        position: 'absolute',
+        top: 55,
+        left: 0,
+        marginBottom: 15, // Adjust this value as needed for spacing
+        marginLeft: 20, // Adjust this value as needed for spacing
+        zIndex: 1, // To ensure it appears on top of other elements
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    topLeftEmail: {
+        position: 'absolute',
+        top: 95,
+        left: 0,
+        marginBottom: 15, // Adjust this value as needed for spacing
+        marginLeft: 20, // Adjust this value as needed for spacing
+        zIndex: 1, // To ensure it appears on top of other elements
+        fontSize: 16,
         fontWeight: 'bold'
     },
     topRight: {
