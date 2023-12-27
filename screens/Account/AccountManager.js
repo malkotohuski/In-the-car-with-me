@@ -37,16 +37,13 @@ const AccountManager = ({ navigation }) => {
                 <Image source={{ uri: userPicture }} style={styles.profilePicture} />
             </View>
             {/*User info */}
-            <Text>
-                { }
-            </Text>
-            <Text style={[styles.profilePictureContainer, styles.topLeftUserNames]}>
+            <Text style={[styles.userInfoContainer, styles.topLeftUserNames]}>
                 Nick name : {userName}
             </Text>
-            <Text style={[styles.profilePictureContainer, styles.topLeftNames]}>
+            <Text style={[styles.userInfoContainer, styles.topLeftNames]}>
                 Names :  {name} {userLastName}
             </Text>
-            <Text style={[styles.profilePictureContainer, styles.topLeftEmail]}>
+            <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
                 email : {email}
             </Text>
             <TouchableOpacity
@@ -65,16 +62,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
+        backgroundColor: 'grey',
     },
     profileInfoContainer: {
         flexDirection: 'row', // Arrange profile picture and user info side by side
         alignItems: 'center',
     },
     userInfoContainer: {
-        marginLeft: 16,
-        flex: 1,
-        paddingBottom: 10,
-        marginTop: 10
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     label: {
         fontSize: 24,

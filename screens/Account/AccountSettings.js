@@ -52,7 +52,7 @@ const AccountSettings = ({ navigation }) => {
     }
 
     const handleSaveChanges = () => {
-        navigation.navigate('WelcomeScreen', {
+        navigation.navigate('AccountManager', {
             firstName,
             lastName,
             profilePicture,
@@ -64,10 +64,10 @@ const AccountSettings = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={[styles.profilePictureContainer, styles.topLeft]}>
+            <Text style={[styles.userTextContainer, styles.topLeft]}>
                 {userNickName}
             </Text>
-            <Text >
+            <Text style={styles.emailContainer}>
                 {userEmail}
             </Text>
             {/* Profile picture */}
@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 16,
+        backgroundColor: 'grey'
     },
     profileInfoContainer: {
         flexDirection: 'row', // Arrange profile picture and user info side by side
@@ -180,6 +181,16 @@ const styles = StyleSheet.create({
     profilePictureContainer: {
         alignItems: 'center',
         marginBottom: 16,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    userTextContainer: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    emailContainer: {
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     profilePicture: {
         width: 100,
