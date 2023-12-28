@@ -21,7 +21,7 @@ export default StyleSheet.create({
         width: '20%',
         padding: 5,
         height: '80%',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#F1F1F1',
         overflow: 'hidden', // Add this line to hide overflowing content
     },
     adImage: {

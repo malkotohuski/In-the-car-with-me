@@ -81,17 +81,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 24,
         paddingBottom: 10,
-        color: '#000',
+        color: '#1b1c1e',
         borderBottomWidth: 3, // Border bottom for header text
-        borderBottomColor: '#000', // Border color
+        borderBottomColor: '#1b1c1e', // Border color
     },
     text: {
         fontWeight: 'bold',
         fontSize: 18,
         paddingBottom: 10,
-        color: '#000',
+        color: '#1b1c1e',
         borderBottomWidth: 1, // Border bottom for regular text
-        borderBottomColor: '#000', // Border color
+        borderBottomColor: '#1b1c1e', // Border color
     },
     button: {
         marginTop: 20,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     buttonText: {
-        color: '#fff',
+        color: '#F1F1F1',
         fontSize: 16,
     },
 });

@@ -147,7 +147,7 @@ const styles = StyleSheet.create({
         fontSize: 14,
         fontWeight: 900,
         borderBottomWidth: 3, // Border bottom for header text
-        borderBottomColor: '#000', // Border color
+        borderBottomColor: '#1b1c1e', // Border color
     },
     selectedTextStyle: {
         fontSize: 20,

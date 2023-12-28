@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert } fr
 import DatePicker from 'react-native-date-picker';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTranslation } from 'react-i18next';
 import CitySelector from '../../server/Cities/cities';
 
@@ -189,25 +190,10 @@ function SelectRouteScreen({ route, navigation }) {
                     }}
                 />
             </View>
-            {/*  <TextInput
-                placeholder="Phone number"
-                value={contactTelefon}
-                onChangeText={(text) => setContactTelefon(text)}
-                keyboardType="numeric" // Restrict to numeric input
-                style={{
-                    height: 60,
-                    width: 180,
-                    borderColor: 'gray',
-                    borderWidth: 1.5,
-                    borderRadius: 8,
-                    paddingHorizontal: 8,
-                    fontSize: 16
-                }}
-            /> */}
-            <Icon
+            <Icons
                 style={styles.icon}
                 color="black"
-                name="route" // "route" icon from MaterialIcons
+                name="routes-clock" // "route" icon from MaterialIcons
                 size={100}
             />
 
