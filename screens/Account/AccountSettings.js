@@ -6,6 +6,7 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
+    Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -46,21 +47,24 @@ const AccountSettings = ({ navigation }) => {
         }
     };
 
-    const handlerAddVehicles = () => {
-        navigation.navigate('Vehicle');
-        console.log('add vehiclesClick !!!');
-    }
+
+
+
 
     const handleSaveChanges = () => {
-        navigation.navigate('AccountManager', {
-            firstName,
-            lastName,
-            profilePicture,
-            userNickName,
-            userEmail,
-        });
-        console.log('Changes saved');
-    };
+        if (firstName.length < 1 && lastName.length < 1) {
+            Alert.alert(t('Please fill in the fields with *'));
+        } else {
+            navigation.navigate('AccountManager', {
+                firstName,
+                lastName,
+                profilePicture,
+                userNickName,
+                userEmail,
+            });
+            console.log('Changes saved');
+        };
+    }
 
     return (
         <View style={styles.container}>
@@ -112,14 +116,7 @@ const AccountSettings = ({ navigation }) => {
                         value={phoneNumber}
                     />
                     {/*   <Text style={styles.label}>{t('Yours vehicles')}</Text> */}
-                    <TouchableOpacity
-                        style={styles.userVehicle}
-                        onPress={handlerAddVehicles}
-                    >
-                        <Text style={styles.usernameText}>
-                            {t('Add your vehicle')}
-                        </Text>
-                    </TouchableOpacity>
+
                 </View>
             </View>
             <TouchableOpacity

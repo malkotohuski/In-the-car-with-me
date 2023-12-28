@@ -47,15 +47,15 @@ const WelcomeScreen = ({ navigation }) => {
                 onLayout={animateCaption}
             >
                 <Text style={styles.captionText}>{t('Welcome')} , {userNickName}</Text>
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={handlerButtonCont}
-                    >
-                        <Text style={styles.text}>{t('Go next step')}</Text>
-                    </TouchableOpacity>
-                </View>
             </Animated.View>
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={handlerButtonCont}
+                >
+                    <Text style={styles.text}>{t('Go next step')}</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };
@@ -83,6 +83,17 @@ const styles = StyleSheet.create({
     captionText: {
         color: 'black',
         fontSize: 24,
+    },
+    buttonContainer: {
+        top: 150
+    },
+    button: {
+        backgroundColor: 'coral',
+        padding: 20,
+    },
+    text: {
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 });
 

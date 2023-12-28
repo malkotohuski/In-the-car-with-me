@@ -371,6 +371,9 @@ i18next.use(initReactI18next).init({
                 'Invalid email address': 'Invalid email address',
                 'Welcome': 'Welcome',
                 'Go next step': 'Go next step',
+                'Account settings': 'Account settings',
+                'Information about your account': 'Information about your account',
+                'Please fill in the fields with': 'Please fill in the fields with',
             }
         },
         bg: {
@@ -738,6 +741,9 @@ i18next.use(initReactI18next).init({
                 'Invalid email address': 'Невалиден имейл адрес',
                 'Welcome': 'Добре дошли',
                 'Go next step': 'Отидете на следващата стъпка',
+                'Account settings': 'Настройки на акаунта',
+                'Information about your account': 'Информация за вашият акаунт',
+                'Please fill in the fields with': 'Моля попълнете полета с *',
             }
         },
     }
