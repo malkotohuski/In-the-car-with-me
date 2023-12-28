@@ -78,7 +78,7 @@ const ReportingScreen = () => {
                 onChangeText={(text) => setProblemDescription(text)}
             />
             <TextInput
-                style={[styles.input, !isValidVehicleNumber && styles.invalidInput]}
+                style={[styles.inputVehicle, !isValidVehicleNumber && styles.invalidInput]}
                 placeholder={t("Enter the vehicle number")}
                 value={vehicleNumber}
                 onChangeText={validateVehicleNumber}
@@ -110,6 +110,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
     },
     input: {
+        height: 120,
+        borderColor: 'gray',
+        borderWidth: 1,
+        marginBottom: 16,
+        padding: 8,
+        borderColor: 'black'
+    },
+    inputVehicle: {
         height: 40,
         borderColor: 'gray',
         borderWidth: 1,

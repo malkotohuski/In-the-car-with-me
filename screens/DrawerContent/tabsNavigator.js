@@ -74,7 +74,7 @@ const MyTabs = () => {
                             />
                             <Text
                                 style={{
-                                    color: isLoggedIn ? '#000' : '#748c94',
+                                    color: isLoggedIn ? '#1b1c1e' : '#748c94',
                                     fontSize: 14,
                                 }}>
                                 {t('Garage')}
@@ -113,7 +113,7 @@ const MyTabs = () => {
                             />
                             <Text
                                 style={{
-                                    color: isLoggedIn ? '#000' : '#748c94',
+                                    color: isLoggedIn ? '#1b1c1e' : '#748c94',
                                     fontSize: 14,
                                 }}>
                                 {t('Home')}
@@ -129,7 +129,7 @@ const MyTabs = () => {
                     headerStyle: {
                         backgroundColor: '#f4511e',
                     },
-                    headerTintColor: '#fff',
+                    headerTintColor: '#F1F1F1',
                     headerTitleStyle: {
                         fontWeight: 'bold',
                     },
@@ -144,7 +144,7 @@ const MyTabs = () => {
                             />
                             <Text
                                 style={{
-                                    color: focused ? '#000' : '#748c94',
+                                    color: focused ? '#1b1c1e' : '#748c94',
                                     fontSize: 14,
                                 }}>
                                 {t('Account')}
@@ -175,7 +175,7 @@ const MyTabs = () => {
                             />
                             <Text
                                 style={{
-                                    color: focused ? '#000' : '#748c94',
+                                    color: focused ? '#1b1c1e' : '#748c94',
                                     fontSize: 14,
                                 }}>
                                 {t('Video')}
@@ -206,7 +206,7 @@ const MyTabs = () => {
                             />
                             <Text
                                 style={{
-                                    color: focused ? '#000' : '#748c94',
+                                    color: focused ? '#1b1c1e' : '#748c94',
                                     fontSize: 14,
                                 }}>
                                 {t('Vehicle')}

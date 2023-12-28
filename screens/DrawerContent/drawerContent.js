@@ -2,7 +2,6 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native';
 import Register from '../Register';
 import Login from '../Login';
-import { DrawerContent } from '../DrawerContent/drawerContent';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import HomePage from '../Home/Home';
 import MyTabs from './tabsNavigator';
@@ -15,6 +14,7 @@ import ViewRoutes from '../Category/ViewRoutes';
 import ReportingScreen from '../ReportingScreen';
 import RouteRequestScreen from '../RouteRequest';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AccountManager from '../Account/AccountManager';
 import AccountSettings from '../Account/AccountSettings';
 import WelcomeScreen from '../Account/Welcome';
@@ -25,7 +25,7 @@ const screenStyles = {
     headerStyle: {
         backgroundColor: '#f4511e',
     },
-    headerTintColor: '#fff',
+    headerTintColor: '#F1F1F1',
 };
 
 
@@ -87,6 +87,9 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Home'),
                     ...screenStyles,
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="home" size={size} color={color} />
+                    ),
                 }}
                 listeners={({ navigation }) => ({
                     focus: () => {
@@ -138,7 +141,9 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('View routes'),
                     ...screenStyles,
-
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="streetview" size={size} color={color} />
+                    ),
                 }}
             />
             <Drawer.Screen
@@ -147,6 +152,9 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Reporting'),
                     ...screenStyles,
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="report" size={size} color={color} />
+                    ),
                 }}
             />
             <Drawer.Screen
@@ -155,6 +163,9 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Route request'),
                     ...screenStyles,
+                    drawerIcon: ({ color, size }) => (
+                        <Icons name="routes" size={size} color={color} />
+                    ),
                 }}
             />
             <Drawer.Screen
@@ -187,15 +198,6 @@ export const Navigator = ({ isLoggedIn }) => {
                     drawerItemStyle: { display: 'none' }
                 }}
             />
-            {/*  <Drawer.Screen
-                name="Tabs"
-                component={MyTabs}
-                options={{
-                    title: t('Tabs'),
-                    ...screenStyles,
-                    headerShown: false,
-                }}
-            /> */}
             {isLoggedIn ? dynamicScreens : null}
         </Drawer.Navigator>
     );
