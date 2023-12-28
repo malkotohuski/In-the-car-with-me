@@ -30,6 +30,11 @@ const AccountManager = ({ navigation }) => {
         });
     }
 
+    const handlerHomeScreen = () => {
+        navigation.navigate('Home');
+        console.log('Home Click !!!');
+    }
+
     return (
         <View style={styles.container}>
             {/* Profile picture */}
@@ -51,6 +56,14 @@ const AccountManager = ({ navigation }) => {
                 onPress={handlerChangeAcountSettings}
             >
                 <Text style={styles.usernameText}>{t('Change user settings')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                style={styles.userVehicle}
+                onPress={handlerHomeScreen}
+            >
+                <Text style={styles.usernameText}>
+                    {t('Lets travel')}
+                </Text>
             </TouchableOpacity>
         </View>
     );

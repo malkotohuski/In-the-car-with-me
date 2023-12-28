@@ -51,7 +51,7 @@ export const Navigator = ({ isLoggedIn }) => {
             style={{ marginRight: 16 }}
             onPress={() => {
                 // Handle the press event, navigate to the 'AccountManager' screen
-                navigation.navigate('AccountSettings');
+                navigation.navigate('AccountManager');
             }}
         >
             <Icon name="manage-accounts" size={24} color="white" />
@@ -68,6 +68,7 @@ export const Navigator = ({ isLoggedIn }) => {
                     title: t('Login'),
                     ...screenStyles,
                     headerShown: false,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -77,6 +78,7 @@ export const Navigator = ({ isLoggedIn }) => {
                     title: t('Register'),
                     ...screenStyles,
                     headerShown: false,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -100,6 +102,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Vehicle'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -108,6 +111,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Mark Seats'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -116,6 +120,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('SelectRoute'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -124,6 +129,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Confirm'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -132,6 +138,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('View routes'),
                     ...screenStyles,
+
                 }}
             />
             <Drawer.Screen
@@ -155,8 +162,9 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={AccountManager}
                 key="AccountManager"
                 options={{
-                    title: t('Create an account'),
+                    title: t('Information about your account'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -164,8 +172,9 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={AccountSettings}
                 key="AccountSettings"
                 options={{
-                    title: t('Account Settings'),
+                    title: t('Create an account'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen
@@ -175,6 +184,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Welcome'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             {/*  <Drawer.Screen
