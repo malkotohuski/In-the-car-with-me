@@ -1,22 +1,16 @@
 {
   "users": [
     {
-      "id": 1703770437281,
-      "username": "sss",
-      "email": "ssss@ggg.ss",
-      "password": "111"
+      "id": 1703771628744,
+      "username": "daniBani",
+      "email": "ddd@gmail.com",
+      "password": "123"
     },
     {
-      "id": 1703770503918,
-      "username": "Shushkata",
-      "email": "malkotohuski@gmail.com",
-      "password": "123321"
-    },
-    {
-      "id": 1703770547443,
-      "username": "Shushkata",
-      "email": "malkotohuski@gmail.com",
-      "password": "111"
+      "id": 1703771670371,
+      "username": "dasniBani",
+      "email": "ddsd@gmail.com",
+      "password": "123"
     }
   ]
 }

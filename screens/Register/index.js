@@ -45,7 +45,7 @@ export default function Register({ navigation }) {
         } catch (error) {
           // Handle any error that occurred during the API call
           console.error('Registration Error:', error);
-          Alert.alert(t('Registration Error'), t('Failed to register. Please try again.'));
+          Alert.alert(t('Registration Error'), t('Email or username is already taken'));
         }
       } else {
         // Invalid email address

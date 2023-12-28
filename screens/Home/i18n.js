@@ -374,6 +374,9 @@ i18next.use(initReactI18next).init({
                 'Account settings': 'Account settings',
                 'Information about your account': 'Information about your account',
                 'Please fill in the fields with': 'Please fill in the fields with',
+                'Registration Error': 'Registration Error',
+                'Email or username is already taken': 'Email or username is already taken',
+                'Please enter a valid email address.': 'Please enter a valid email address.',
             }
         },
         bg: {
@@ -744,6 +747,9 @@ i18next.use(initReactI18next).init({
                 'Account settings': 'Настройки на акаунта',
                 'Information about your account': 'Информация за вашият акаунт',
                 'Please fill in the fields with': 'Моля попълнете полета с *',
+                'Registration Error': 'Грешка при регистрация',
+                'Email or username is already taken': 'Имейлът или потребителското име вече са заети',
+                'Please enter a valid email address.': 'Моля, въведете валиден имейл адрес.'
             }
         },
     }
