@@ -1,10 +1,22 @@
 {
   "users": [
     {
-      "name": "Daniel",
-      "age": 23,
+      "id": 1703770437281,
+      "username": "sss",
+      "email": "ssss@ggg.ss",
+      "password": "111"
+    },
+    {
+      "id": 1703770503918,
+      "username": "Shushkata",
       "email": "malkotohuski@gmail.com",
-      "id": 1
+      "password": "123321"
+    },
+    {
+      "id": 1703770547443,
+      "username": "Shushkata",
+      "email": "malkotohuski@gmail.com",
+      "password": "111"
     }
   ]
 }
