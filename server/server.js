@@ -19,6 +19,14 @@ server.post('/users', (req, res) => {
         return res.status(400).json({ error: 'Invalid input. Please provide username, email, and password.' });
     }
 
+    // Check if a user with the same email or name already exists
+    const existingUserByEmail = router.db.get('users').find({ email: useremail }).value();
+    const existingUserByName = router.db.get('users').find({ username }).value();
+
+    if (existingUserByEmail || existingUserByName) {
+        return res.status(400).json({ error: 'User with the same email or name already exists.' });
+    }
+
     // Simulate user creation (you may want to hash the password in a real scenario)
     const newUser = {
         id: Date.now(),
