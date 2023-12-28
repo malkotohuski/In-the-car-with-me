@@ -3,11 +3,12 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouteContext } from './RouteContext'; // Import your RouteContext
 
-function ViewRoutes() {
+function ViewRoutes({ navigation }) {
     const { routes } = useRouteContext(); // Use the RouteContext
 
-    const handlerSeeView = () => {
-
+    const handlerSeeView = (routeParams) => {
+        navigation.navigate('Confirm', { ...routeParams, showConfirmButton: false, showChangesButton: false, showBackButton: true });
+        console.log('Route view clicked !!!');
     }
 
     return (
@@ -15,12 +16,24 @@ function ViewRoutes() {
             {routes.map((route, index) => (
                 <View key={index} style={styles.routeContainer}>
                     {/* Display route data here */}
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => handlerSeeView({
+                            selectedVehicle: route.selectedVehicle,
+                            markedSeats: route.markedSeats,
+                            registrationNumber: route.registrationNumber,
+                            selectedDateTime: route.selectedDateTime,
+                            departureCity: route.departureCity,
+                            departureStreet: route.departureStreet,
+                            departureNumber: route.departureNumber,
+                            arrivalCity: route.arrivalCity,
+                            arrivalStreet: route.arrivalStreet,
+                            arrivalNumber: route.arrivalNumber,
+                        })}
+                    >
                         <Text
                             style={styles.routeText}
                         >{route.departureCity}-{route.arrivalCity}</Text>
                     </TouchableOpacity>
-                    {/* Add more Text components to display other route data */}
                 </View>
             ))}
         </View>
@@ -33,12 +46,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 20,
-        backgroundColor: '#ecf0f1',
+        backgroundColor: 'grey',
     },
     routeContainer: {
         margin: 10,
         padding: 10,
-        backgroundColor: '#F1F1F1',
+        backgroundColor: 'coral',
         borderRadius: 10,
     },
     routeText: {

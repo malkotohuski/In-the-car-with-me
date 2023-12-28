@@ -14,13 +14,16 @@ function Confirm() {
     const markedSeats = route.params.markedSeats;
     const registrationNumber = route.params.registrationNumber;
     const { selectedDateTime } = route.params;
-
     const departureCity = route.params.departureCity;
     const departureStreet = route.params.departureStreet;
     const departureNumber = route.params.departureNumber;
     const arrivalCity = route.params.arrivalCity;
     const arrivalStreet = route.params.arrivalStreet;
     const arrivalNumber = route.params.arrivalNumber;
+
+    const showConfirmButton = route.params.showConfirmButton !== undefined ? route.params.showConfirmButton : true;
+    const showChangesButton = route.params.showChangesButton !== undefined ? route.params.showChangesButton : true;
+    const showBackButton = route.params.showBackButton !== undefined ? route.params.showBackButton : false;
 
     const handleGoBack = () => {
         navigation.navigate('Vehicle'); // Go back to the previous screen
@@ -45,6 +48,10 @@ function Confirm() {
         navigation.navigate('View routes'); // Navigate to ViewRoutes
     };
 
+    const handlerBackRoutes = () => {
+        navigation.navigate('View routes');
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.headerText}>{t('Review')}:</Text>
@@ -58,13 +65,21 @@ function Confirm() {
             <Text style={styles.text}>{t('Arrival')}: {t('Town/Village')} : {arrivalCity}</Text>
             <Text style={styles.text}>{t('Street')}: {arrivalStreet}  {arrivalNumber}</Text>
 
-            <TouchableOpacity style={styles.button} onPress={handleGoBack}>
-                <Text style={styles.buttonText}>{t('Make changes')}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
-                <Text style={styles.buttonText}>{t('Confirm')}</Text>
-            </TouchableOpacity>
+            {showChangesButton && (
+                <TouchableOpacity style={styles.button} onPress={handleGoBack}>
+                    <Text style={styles.buttonText}>{t('Make changes')}</Text>
+                </TouchableOpacity>
+            )}
+            {showConfirmButton && (
+                <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
+                    <Text style={styles.buttonText}>{t('Confirm')}</Text>
+                </TouchableOpacity>
+            )}
+            {showBackButton && (
+                <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackRoutes}>
+                    <Text style={styles.buttonText}>{t('Back')}</Text>
+                </TouchableOpacity>
+            )}
         </View>
     );
 }

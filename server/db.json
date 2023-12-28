@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "name": "Daniel",
+      "age": 23,
+      "email": "malkotohuski@gmail.com",
+      "id": 1
+    }
+  ]
+}
