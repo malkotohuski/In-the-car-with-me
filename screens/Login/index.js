@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 import { useTranslation } from 'react-i18next';
 import styles from '../Home/styles';
 import i18next from 'i18next';
 
+const API_BASE_URL = 'http://10.0.2.2:3000';
 
 export default function Login({ navigation, route }) {
     const [email, setEmail] = useState('');
@@ -20,21 +22,23 @@ export default function Login({ navigation, route }) {
     };
 
     const handleLogin = async () => {
-        // Add your login logic here
-        if (email === 'malkoto' && password === 'password') {
-            // Simulate user authentication (replace with your server logic)
-            const userId = '123'; // Replace with the actual user ID
-            try {
-                // Save user ID to AsyncStorage
-                await AsyncStorage.setItem('userId', userId);
-                // Navigate to the HomeScreen upon successful login
+        try {
+            const response = await axios.post(`${API_BASE_URL}/login`, {
+                useremail: email,
+                userpassword: password,
+            });
+
+            if (response.status === 200) {
+                // Successful login, navigate to the HomeScreen
                 navigation.navigate('Home');
-            } catch (error) {
-                console.error('Error saving user ID:', error);
-                // Handle error (e.g., show an error message to the user)
+            } else {
+                // Handle login failure (e.g., display an error message)
+                alert(t('Login failed. Please check your credentials.'));
             }
-        } else {
-            alert(t('Login failed. Please check your credentials.'));
+        } catch (error) {
+            // Handle any error that occurred during the API call
+            console.error('Login Error:', error);
+            alert(t('Login failed.Invalid email or password.'));
         }
     };
 

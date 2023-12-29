@@ -11,7 +11,7 @@ server.use(jsonServer.bodyParser);
 server.use(cors());
 
 // Handle user registration
-server.post('/users', (req, res) => {
+server.post('/register', (req, res) => {
     const { username, useremail, userpassword } = req.body;
 
     // Validation (you can add more checks as needed)
@@ -39,6 +39,22 @@ server.post('/users', (req, res) => {
     router.db.get('users').push(newUser).write();
 
     return res.status(201).json(newUser);
+});
+
+// Handle user login
+server.post('/login', (req, res) => {
+    const { useremail, userpassword } = req.body;
+
+    // Find the user by email and password (you might want to hash passwords in a real scenario)
+    const user = router.db.get('users').find({ email: useremail, password: userpassword }).value();
+
+    if (user) {
+        // Successful login
+        return res.status(200).json({ message: 'Login successful' });
+    } else {
+        // Login failed
+        return res.status(401).json({ error: 'Invalid email or password' });
+    }
 });
 
 // Use default router
