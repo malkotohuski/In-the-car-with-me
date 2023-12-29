@@ -377,6 +377,7 @@ i18next.use(initReactI18next).init({
                 'Registration Error': 'Registration Error',
                 'Email or username is already taken': 'Email or username is already taken',
                 'Please enter a valid email address.': 'Please enter a valid email address.',
+                'Login failed.Invalid email or password.': 'Login failed.Invalid email or password.',
             }
         },
         bg: {
@@ -749,7 +750,8 @@ i18next.use(initReactI18next).init({
                 'Please fill in the fields with': 'Моля попълнете полета с *',
                 'Registration Error': 'Грешка при регистрация',
                 'Email or username is already taken': 'Имейлът или потребителското име вече са заети',
-                'Please enter a valid email address.': 'Моля, въведете валиден имейл адрес.'
+                'Please enter a valid email address.': 'Моля, въведете валиден имейл адрес.',
+                'Login failed.Invalid email or password.': 'Неуспешно влизане. Невалиден имейл или парола.',
             }
         },
     }
