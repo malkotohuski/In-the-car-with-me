@@ -1,9 +1,10 @@
-// server.js
+
 const jsonServer = require('json-server');
 const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const cors = require('cors');
+const nodemailer = require('nodemailer');
 
 // Enable CORS, bodyParser and other middlewares
 server.use(middlewares);
@@ -35,10 +36,37 @@ server.post('/register', (req, res) => {
         password: userpassword
     };
 
-    // Add the new user to the "users" collection
-    router.db.get('users').push(newUser).write();
+    // Generate a random confirmation code (you may use a library for this)
+    const confirmationCode = Math.floor(100000 + Math.random() * 900000);
 
-    return res.status(201).json(newUser);
+    // Send confirmation email
+    const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: 'malkotohuski@gmail.com', // replace with your Gmail address
+            pass: 'ymnayjeocfmplvwb', // replace with your Gmail password
+        },
+    });
+
+    const mailOptions = {
+        from: 'malkotohuski@gmail.com', // replace with your Gmail address
+        to: useremail,
+        subject: 'Account Confirmation',
+        text: `Your confirmation code is: ${confirmationCode}`,
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Email confirmation error:', error);
+            return res.status(500).json({ error: 'Failed to send confirmation email.' });
+
+        } else {
+            console.log('Email confirmation sent:', info.response);
+            return res.status(201).json({ newUser, confirmationCode });
+            // Include confirmation code in the response (for testing purposes)
+
+        }
+    });
 });
 
 // Handle user login
