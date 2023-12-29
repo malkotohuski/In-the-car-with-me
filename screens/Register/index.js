@@ -16,45 +16,69 @@ export default function Register({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
+  const [confirmationCode, setConfirmationCode] = useState('');
+  const [showConfirmationCodeInput, setShowConfirmationCodeInput] = useState(false);
 
   const handleRegister = async () => {
-    if (password === confirmPassword) {
-      if (email.includes('@') && email.includes('.') && email.length >= 5) {
-        try {
-          // Make a POST request to the registration endpoint
-          const response = await api.post('/register', {
-            username: name,
-            useremail: email,
-            userpassword: password,
-          });
-
-          console.log('Registration Response:', response);
-
-          if (response.status === 201) {
-            // Registration successful, navigate to the welcome screen
-            navigation.navigate('WelcomeScreen', {
-              name,
-              email,
-              password,
-              confirmationCode: response.data.confirmationCode,
+    if (!showConfirmationCodeInput) {
+      // Continue with the registration process up to sending the confirmation code
+      if (password === confirmPassword) {
+        if (email.includes('@') && email.includes('.') && email.length >= 5) {
+          try {
+            // Make a POST request to the registration endpoint
+            const response = await api.post('/register', {
+              username: name,
+              useremail: email,
+              userpassword: password,
             });
-          } else {
-            // Handle registration failure
-            Alert.alert(t('Registration Error'), t('Failed to register. Please try again.'));
+
+            console.log('Registration Response:', response);
+
+            if (response.status === 201) {
+              // Registration successful, show the confirmation code input field
+              setShowConfirmationCodeInput(true);
+            } else {
+              // Handle registration failure
+              Alert.alert(t('Registration Error'), t('Failed to register. Please try again.'));
+            }
+          } catch (error) {
+            // Handle any error that occurred during the API call
+            console.error('Registration Error:', error);
+            Alert.alert(t('Registration Error'), t('Email or username is already taken'));
           }
-        } catch (error) {
-          // Handle any error that occurred during the API call
-          console.error('Registration Error:', error);
-          Alert.alert(t('Registration Error'), t('Email or username is already taken'));
+        } else {
+          // Invalid email address
+          Alert.alert(t('Invalid email address'), t('Please enter a valid email address.'));
         }
       } else {
-        // Invalid email address
-        Alert.alert(t('Invalid email address'), t('Please enter a valid email address.'));
+        // Passwords do not match
+        Alert.alert(t('Password mismatch'), t('Password and confirm password do not match.'));
       }
     } else {
-      // Passwords do not match
-      Alert.alert(t('Password mismatch'), t('Password and confirm password do not match.'));
+      // Continue with the confirmation code verification step
+      try {
+        // Make a request to the server to verify the confirmation code
+        const verificationResponse = await api.post('/verify-confirmation-code', {
+          email,
+          confirmationCode,
+        });
+
+        if (verificationResponse.status === 200) {
+          // Confirmation code verified, navigate to the welcome screen
+          navigation.navigate('WelcomeScreen', {
+            name,
+            email,
+            password,
+          });
+        } else {
+          // Handle verification failure
+          Alert.alert(t('Verification Error'), t('Invalid confirmation code. Please try again.'));
+        }
+      } catch (error) {
+        // Handle any error that occurred during the API call
+        console.error('Verification Error:', error);
+        Alert.alert(t('Verification Error'), t('Failed to verify confirmation code. Please try again.'));
+      }
     }
   };
 
@@ -91,8 +115,18 @@ export default function Register({ navigation }) {
         value={confirmPassword}
         onChangeText={(text) => setConfirmPassword(text)}
       />
+      {showConfirmationCodeInput && (
+        <TextInput
+          style={styles.input}
+          placeholder={t('Confirmation Code')}
+          value={confirmationCode}
+          onChangeText={(text) => setConfirmationCode(text)}
+        />
+      )}
       <TouchableOpacity style={styles.loginButtons} onPress={handleRegister}>
-        <Text style={styles.textButtons}>{t('Continue')}</Text>
+        <Text style={styles.textButtons}>
+          {!showConfirmationCodeInput ? t('Continue') : t('Verify Confirmation Code')}
+        </Text>
       </TouchableOpacity>
       <View style={{ padding: 10 }}></View>
       <TouchableOpacity style={styles.loginButtons} onPress={handlerBackLogin}>

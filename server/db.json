@@ -29,9 +29,15 @@
       "useremail": "shushkata87@gmail.com",
       "userpassword": "111",
       "id": 1703836660640
+    },
+    {
+      "id": 1703854966764,
+      "username": "aria",
+      "email": "shushkata7@gmail.com",
+      "password": "123",
+      "confirmationCode": null
     }
   ],
-  "register":[
-
-  ]
+  "register": [],
+  "verify-confirmation-code": []
 }
