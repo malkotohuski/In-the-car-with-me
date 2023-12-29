@@ -1,9 +1,9 @@
+// Register.js
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import axios from 'axios';
 import styles from '../Home/styles';
 import { useTranslation } from 'react-i18next';
-
 
 const API_BASE_URL = 'http://10.0.2.2:3000'; // Update with your JSON server URL
 const api = axios.create({
@@ -17,12 +17,13 @@ export default function Register({ navigation }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
+
   const handleRegister = async () => {
     if (password === confirmPassword) {
       if (email.includes('@') && email.includes('.') && email.length >= 5) {
         try {
           // Make a POST request to the registration endpoint
-          const response = await api.post('/users', {
+          const response = await api.post('/register', {
             username: name,
             useremail: email,
             userpassword: password,
@@ -36,12 +37,12 @@ export default function Register({ navigation }) {
               name,
               email,
               password,
+              confirmationCode: response.data.confirmationCode,
             });
           } else {
             // Handle registration failure
             Alert.alert(t('Registration Error'), t('Failed to register. Please try again.'));
           }
-
         } catch (error) {
           // Handle any error that occurred during the API call
           console.error('Registration Error:', error);
