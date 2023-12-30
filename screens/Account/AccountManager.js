@@ -43,13 +43,13 @@ const AccountManager = ({ navigation }) => {
             </View>
             {/*User info */}
             <Text style={[styles.userInfoContainer, styles.topLeftUserNames]}>
-                Nick name : {userName}
+                {t('Nick name')} : {userName}
             </Text>
             <Text style={[styles.userInfoContainer, styles.topLeftNames]}>
-                Names :  {name} {userLastName}
+                {t('Names')} :  {name} {userLastName}
             </Text>
             <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
-                email : {email}
+                {t('Еmail')} : {email}
             </Text>
             <TouchableOpacity
                 style={styles.usernameChangeButton}
