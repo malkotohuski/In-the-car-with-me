@@ -378,6 +378,11 @@ i18next.use(initReactI18next).init({
                 'Email or username is already taken': 'Email or username is already taken',
                 'Please enter a valid email address.': 'Please enter a valid email address.',
                 'Login failed.Invalid email or password.': 'Login failed.Invalid email or password.',
+                'Change user settings': 'Change user settings',
+                'Lets travel': 'Lets travel',
+                'Nick name': 'Nick name',
+                'Names': 'Names',
+                'Еmail': 'Еmail'
             }
         },
         bg: {
@@ -752,6 +757,11 @@ i18next.use(initReactI18next).init({
                 'Email or username is already taken': 'Имейлът или потребителското име вече са заети',
                 'Please enter a valid email address.': 'Моля, въведете валиден имейл адрес.',
                 'Login failed.Invalid email or password.': 'Неуспешно влизане. Невалиден имейл или парола.',
+                'Change user settings': 'Промяна на потребителските настройки',
+                'Lets travel': 'Хайде да пътуваме',
+                'Nick name': 'Псевдоним',
+                'Names': 'Имена',
+                'Еmail': 'Eлектронна поща'
             }
         },
     }
