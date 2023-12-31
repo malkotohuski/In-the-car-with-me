@@ -17,13 +17,13 @@ function generateConfirmationCode() {
 
 // Handle user registration
 server.post('/register', (req, res) => {
-    const { username, useremail, userpassword } = req.body;
+    const { username, useremail, userpassword, fName, lName } = req.body;
 
-    console.log('Registration Request:', { username, useremail, userpassword });
+    console.log('Registration Request:', { username, useremail, userpassword, fName, lName });
 
     // Validation (you can add more checks as needed)
     if (!username || !useremail || !userpassword) {
-        return res.status(400).json({ error: 'Invalid input. Please provide username, email, and password.' });
+        return res.status(400).json({ error: 'Invalid input. Please provide all required fields.' });
     }
 
     // Check if a user with the same email or name already exists
@@ -45,6 +45,8 @@ server.post('/register', (req, res) => {
         username,
         email: useremail,
         password: userpassword,
+        fName,
+        lName,
         confirmationCode, // Assign the confirmation code to the user
     };
 

@@ -31,10 +31,12 @@
       "id": 1703836660640
     },
     {
-      "id": 1703854966764,
-      "username": "aria",
+      "id": 1704024199681,
+      "username": "Палавата Вили",
       "email": "shushkata7@gmail.com",
       "password": "123",
+      "fName": "Вили",
+      "lName": "Спасова",
       "confirmationCode": null
     }
   ],

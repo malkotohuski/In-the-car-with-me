@@ -23,6 +23,9 @@ const AccountSettings = ({ navigation }) => {
 
     const userNickName = route.params?.userNickName
     const userEmail = route.params?.userEmail
+    const userFirstName = route.params?.userFirstName
+    const userLastName = route.params?.userLastName
+    const userImage = route.params.userImage
 
     const { t } = useTranslation();
 
@@ -71,6 +74,9 @@ const AccountSettings = ({ navigation }) => {
             <Text style={[styles.userTextContainer, styles.topLeft]}>
                 {userNickName}
             </Text>
+            <Text>
+                {userFirstName} {userLastName}
+            </Text>
             <Text style={styles.emailContainer}>
                 {userEmail}
             </Text>
@@ -81,7 +87,7 @@ const AccountSettings = ({ navigation }) => {
             >
                 {profilePicture ? (
                     <Image
-                        source={{ uri: profilePicture }}
+                        source={{ uri: userImage }}
                         style={styles.profilePicture}
                     />
                 ) : (
