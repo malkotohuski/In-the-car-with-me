@@ -10,6 +10,9 @@ const WelcomeScreen = ({ navigation }) => {
     const captionAnim = useRef(new Animated.Value(-width)).current;
     const userNickName = route.params?.name
     const userEmail = route.params?.email
+    const userFirstName = route.params?.firstName
+    const userLastName = route.params?.lastName
+    const userImage = route.params?.profilePicture
 
     const animateCaption = () => {
         Animated.timing(captionAnim, {
@@ -24,9 +27,12 @@ const WelcomeScreen = ({ navigation }) => {
     }, []);
 
     const handlerButtonCont = () => {
-        navigation.navigate('AccountSettings', {
+        navigation.navigate('AccountManager', {
             userNickName,
             userEmail,
+            userFirstName,
+            userLastName,
+            userImage
         });
         console.log('go next clicked');
     }

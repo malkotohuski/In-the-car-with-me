@@ -13,18 +13,18 @@ const AccountManager = ({ navigation }) => {
     const route = useRoute(); // Define route here
 
     const userName = route.params?.userNickName
-    const name = route.params?.firstName;
-    const userLastName = route.params?.lastName;
-    const userPicture = route.params?.profilePicture;
+    const name = route.params?.userFirstName;
+    const userLastName = route.params?.userLastName;
+    const userPicture = route.params?.userImage;
     const email = route.params?.userEmail
 
     const { t } = useTranslation();
 
     const handlerChangeAcountSettings = () => {
         navigation.navigate('AccountSettings', {
-            firstName: name,
-            lastName: userLastName,
-            profilePicture: userPicture,
+            userFirstName: name,
+            userLastName: userLastName,
+            userImage: userPicture,
             userEmail: email,
             userNickName: userName,
         });
