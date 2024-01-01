@@ -11,10 +11,12 @@ import {
 import { useTranslation } from 'react-i18next';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useRoute } from '@react-navigation/native';
+import { useAuth } from '../Authentication/AuthContext';
 
 const AccountSettings = ({ navigation }) => {
     const route = useRoute(); // Define route here
     const [profilePicture, setProfilePicture] = useState('');
+    const { state } = useAuth();
 
     // User information states
     const [firstName, setFirstName] = useState('');
@@ -72,13 +74,13 @@ const AccountSettings = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={[styles.userTextContainer, styles.topLeft]}>
-                {userNickName}
+                {state.user.userNickName}
             </Text>
             <Text>
-                {userFirstName} {userLastName}
+                {state.user.userFirstName} {state.user.userLastName}
             </Text>
             <Text style={styles.emailContainer}>
-                {userEmail}
+                {state.user.userEmail}
             </Text>
             {/* Profile picture */}
             <TouchableOpacity

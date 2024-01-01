@@ -8,10 +8,12 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRoute } from '@react-navigation/native';
+import { useAuth } from '../Authentication/AuthContext';
 
 const AccountManager = ({ navigation }) => {
-    const route = useRoute(); // Define route here
+    const { state } = useAuth();
 
+    const route = useRoute(); // Define route here
     const userName = route.params?.userNickName
     const name = route.params?.userFirstName;
     const userLastName = route.params?.userLastName;
@@ -43,13 +45,13 @@ const AccountManager = ({ navigation }) => {
             </View>
             {/*User info */}
             <Text style={[styles.userInfoContainer, styles.topLeftUserNames]}>
-                {t('Nick name')} : {userName}
+                {t('Nick name')} : {state.user.userName}
             </Text>
             <Text style={[styles.userInfoContainer, styles.topLeftNames]}>
-                {t('Names')} :  {name} {userLastName}
+                {t('Names')} :  {state.user.name} {state.user.userLastName}
             </Text>
             <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
-                {t('Еmail')} : {email}
+                {t('Еmail')} : {state.user.email}
             </Text>
             <TouchableOpacity
                 style={styles.usernameChangeButton}

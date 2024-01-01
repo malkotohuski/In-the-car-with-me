@@ -1591,7 +1591,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^18.0.24":
+"@types/react@*", "@types/react@^18.0.24", "@types/react@^18.2.25":
   version "18.2.34"
   dependencies:
     "@types/prop-types" "*"
@@ -1606,6 +1606,11 @@
 
 "@types/stack-utils@^2.0.0":
   version "2.0.2"
+
+"@types/use-sync-external-store@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/@types/use-sync-external-store/-/use-sync-external-store-0.0.3.tgz"
+  integrity sha512-EwmlvuaxPNej9+T4v5AuBPJa2x2UOJVdjCtDHgcDqitUeOtjnJKJ+apYjVcAoBEMjKW1VVFGZLUb5+qqa09XFA==
 
 "@types/yargs-parser@*":
   version "21.0.2"
@@ -4875,7 +4880,7 @@ react-native-webview@^13.6.2:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
-react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@^0.72.6, "react-native@>= 0.64.3", react-native@>=0.40.0, react-native@>=0.57:
+react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@^0.72.6, "react-native@>= 0.64.3", react-native@>=0.40.0, react-native@>=0.57, react-native@>=0.69:
   version "0.72.6"
   dependencies:
     "@jest/create-cache-key-function" "^29.2.1"
@@ -4918,6 +4923,14 @@ react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@^0.72.6, "r
 react-navigation@^5.0.0:
   version "5.0.0"
 
+react-redux@^9.0.4:
+  version "9.0.4"
+  resolved "https://registry.npmjs.org/react-redux/-/react-redux-9.0.4.tgz"
+  integrity sha512-9J1xh8sWO0vYq2sCxK2My/QO7MzUMRi3rpiILP/+tDr8krBHixC6JMM17fMK88+Oh3e4Ae6/sHIhNBgkUivwFA==
+  dependencies:
+    "@types/use-sync-external-store" "^0.0.3"
+    use-sync-external-store "^1.0.0"
+
 react-refresh@^0.4.0:
   version "0.4.3"
 
@@ -4934,7 +4947,7 @@ react-test-renderer@18.2.0:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.0"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, "react@>= 16.8.0", "react@>= 17.0.1", react@>=16, react@>=16.0.0, react@>=16.3.0, react@>=16.8, react@>=16.9.0, react@>=17.0.0, react@18.2.0:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.0, react@^18.2.0, "react@>= 16.8.0", "react@>= 17.0.1", react@>=16, react@>=16.0.0, react@>=16.3.0, react@>=16.8, react@>=16.9.0, react@>=17.0.0, react@18.2.0:
   version "18.2.0"
   dependencies:
     loose-envify "^1.1.0"
@@ -4980,6 +4993,11 @@ recast@^0.21.0:
     esprima "~4.0.0"
     source-map "~0.6.1"
     tslib "^2.0.1"
+
+redux@^5.0.0, redux@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.npmjs.org/redux/-/redux-5.0.1.tgz"
+  integrity sha512-M9/ELqF6fy8FwmkpnF0S3YKOqMyoWJ4+CS5Efg2ct3oY9daQvd/Pc71FpGZsVsbl3Cpb+IIcjBDUnnyBdQbq4w==
 
 reflect.getprototypeof@^1.0.4:
   version "1.0.4"
