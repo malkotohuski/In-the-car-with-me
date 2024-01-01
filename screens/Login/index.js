@@ -6,6 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'; // Import 
 import { useTranslation } from 'react-i18next';
 import styles from '../Home/styles';
 import i18next from 'i18next';
+import { useAuth } from '../Authentication/AuthContext';
 
 const API_BASE_URL = 'http://10.0.2.2:3000';
 
@@ -13,6 +14,7 @@ export default function Login({ navigation, route }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { t } = useTranslation();
+    const { login } = useAuth();
 
     const [isBulgaria, setisBulgaria] = useState(false);
 
@@ -29,7 +31,9 @@ export default function Login({ navigation, route }) {
             });
 
             if (response.status === 200) {
-                // Successful login, navigate to the HomeScreen
+                // Successful login, update the global state with user data
+                login(response.data);
+                // Navigate to the HomeScreen
                 navigation.navigate('Home');
             } else {
                 // Handle login failure (e.g., display an error message)

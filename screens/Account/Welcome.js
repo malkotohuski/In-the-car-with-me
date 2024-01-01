@@ -8,6 +8,7 @@ const { width } = Dimensions.get('window');
 const WelcomeScreen = ({ navigation }) => {
     const route = useRoute(); // Define route here
     const captionAnim = useRef(new Animated.Value(-width)).current;
+
     const userNickName = route.params?.name
     const userEmail = route.params?.email
     const userFirstName = route.params?.firstName

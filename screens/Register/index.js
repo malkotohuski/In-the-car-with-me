@@ -5,6 +5,7 @@ import axios from 'axios';
 import styles from '../Home/styles';
 import { useTranslation } from 'react-i18next';
 import ImagePicker from 'react-native-image-crop-picker';
+import { useAuth } from '../Authentication/AuthContext';
 
 const API_BASE_URL = 'http://10.0.2.2:3000'; // Update with your JSON server URL
 const api = axios.create({
@@ -13,6 +14,7 @@ const api = axios.create({
 
 export default function Register({ navigation }) {
   const { t } = useTranslation();
+  const { login } = useAuth();
   const [name, setName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -62,7 +64,9 @@ export default function Register({ navigation }) {
             console.log('Registration Response:', response);
 
             if (response.status === 201) {
-              // Registration successful, show the confirmation code input field
+              // Registration successful, update the global state with user data
+              login(response.data);
+              // Show the confirmation code input field
               setShowConfirmationCodeInput(true);
             } else {
               // Handle registration failure
