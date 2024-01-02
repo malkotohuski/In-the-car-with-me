@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext } from 'react';
+import React, { createContext, useReducer, useContext, useState } from 'react';
 
 // Action types
 const LOGIN = 'LOGIN';
@@ -36,17 +36,23 @@ const AuthContext = createContext();
 // AuthProvider component
 const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
+    const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const login = (user) => {
+        console.log('Logging in:', user);
         dispatch({ type: LOGIN, payload: user });
+        setUser(user);
+        setLoading(false);
     };
 
     const logout = () => {
+        console.log('Logging out');
         dispatch({ type: LOGOUT });
     };
 
     return (
-        <AuthContext.Provider value={{ state, login, logout }}>
+        <AuthContext.Provider value={{ state, user, loading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
