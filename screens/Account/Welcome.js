@@ -2,15 +2,18 @@ import React, { useRef, useEffect } from 'react';
 import { View, Text, Image, StyleSheet, Animated, TouchableOpacity, Dimensions } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRoute } from '@react-navigation/native';
-import { useAuth } from '../Authentication/AuthContext';
 
 const { width } = Dimensions.get('window');
 
 const WelcomeScreen = ({ navigation }) => {
     const route = useRoute(); // Define route here
     const captionAnim = useRef(new Animated.Value(-width)).current;
-    const { user } = useAuth();
+
     const userNickName = route.params?.name
+    const userEmail = route.params?.email
+    const userFirstName = route.params?.firstName
+    const userLastName = route.params?.lastName
+    const userImage = route.params?.profilePicture
 
     const animateCaption = () => {
         Animated.timing(captionAnim, {
@@ -25,7 +28,13 @@ const WelcomeScreen = ({ navigation }) => {
     }, []);
 
     const handlerButtonCont = () => {
-        navigation.navigate('AccountManager');
+        navigation.navigate('AccountManager', {
+            userNickName,
+            userEmail,
+            userFirstName,
+            userLastName,
+            userImage
+        });
         console.log('go next clicked');
     }
 

@@ -18,7 +18,6 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import AccountManager from '../Account/AccountManager';
 import AccountSettings from '../Account/AccountSettings';
 import WelcomeScreen from '../Account/Welcome';
-import LogoutScreen from '../Logout';
 
 const Drawer = createDrawerNavigator();
 
@@ -46,18 +45,6 @@ export const Navigator = ({ isLoggedIn }) => {
             }}
         />,
     ];
-
-    const renderLogoutIcon = ({ navigation }) => (
-        <TouchableOpacity
-            style={{ marginRight: 16 }}
-            onPress={() => {
-                // Handle the press event, navigate to the 'LogoutScreen'
-                navigation.navigate('LogoutScreen');
-            }}
-        >
-            <Icon name="logout" size={24} color="white" />
-        </TouchableOpacity>
-    );
 
     const renderManageAccountsIcon = ({ navigation }) => (
         <TouchableOpacity
@@ -184,28 +171,11 @@ export const Navigator = ({ isLoggedIn }) => {
             <Drawer.Screen
                 name="AccountManager"
                 component={AccountManager}
+                key="AccountManager"
                 options={{
                     title: t('Information about your account'),
                     ...screenStyles,
-                    drawerItemStyle: { display: 'none' },
-                }}
-                listeners={({ navigation }) => ({
-                    focus: () => {
-                        navigation.setOptions({
-                            headerRight: () => renderLogoutIcon({ navigation }),
-                        });
-                    },
-                })}
-            />
-            <Drawer.Screen
-                name="LogoutScreen"
-                component={LogoutScreen}
-                options={{
-                    title: t('Logout'),
-                    ...screenStyles,
-                    drawerIcon: ({ color, size }) => (
-                        <Icons name="logout" size={size} color={color} />
-                    ),
+                    drawerItemStyle: { display: 'none' }
                 }}
             />
             <Drawer.Screen

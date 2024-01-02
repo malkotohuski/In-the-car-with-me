@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuth } from '../Authentication/AuthContext';
 
-const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
+const API_BASE_URL = 'http://10.0.2.2:3000'; // Update with your JSON server URL
 const api = axios.create({
   baseURL: API_BASE_URL,
 });
@@ -15,7 +15,6 @@ const api = axios.create({
 export default function Register({ navigation }) {
   const { t } = useTranslation();
   const { login } = useAuth();
-
   const [name, setName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -59,7 +58,7 @@ export default function Register({ navigation }) {
               userpassword: password,
               fName: firstName,
               lName: lastName,
-              userImage: profilePicture,
+              img: profilePicture,
             });
 
             console.log('Registration Response:', response);
@@ -99,6 +98,10 @@ export default function Register({ navigation }) {
           // Confirmation code verified, navigate to the welcome screen
           navigation.navigate('WelcomeScreen', {
             name,
+            email,
+            password,
+            firstName,
+            lastName
           });
         } else {
           // Handle verification failure

@@ -10,18 +10,24 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import ImagePicker from 'react-native-image-crop-picker';
+import { useRoute } from '@react-navigation/native';
 import { useAuth } from '../Authentication/AuthContext';
 
 const AccountSettings = ({ navigation }) => {
-    const { user } = useAuth();
-    console.log('dfsdf', user);
-
+    const route = useRoute(); // Define route here
     const [profilePicture, setProfilePicture] = useState('');
+    const { state } = useAuth();
 
     // User information states
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+
+    const userNickName = route.params?.userNickName
+    const userEmail = route.params?.userEmail
+    const userFirstName = route.params?.userFirstName
+    const userLastName = route.params?.userLastName
+    const userImage = route.params.userImage
 
     const { t } = useTranslation();
 
@@ -55,6 +61,11 @@ const AccountSettings = ({ navigation }) => {
             Alert.alert(t('Please fill in the fields with *'));
         } else {
             navigation.navigate('AccountManager', {
+                firstName,
+                lastName,
+                profilePicture,
+                userNickName,
+                userEmail,
             });
             console.log('Changes saved');
         };
@@ -63,13 +74,13 @@ const AccountSettings = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Text style={[styles.userTextContainer, styles.topLeft]}>
-                {user?.user?.username}
+                {state.user.userNickName}
             </Text>
             <Text>
-                {user?.user?.fName} {user?.user?.lName}
+                {state.user.userFirstName} {state.user.userLastName}
             </Text>
             <Text style={styles.emailContainer}>
-                {user?.user?.email}
+                {state.user.userEmail}
             </Text>
             {/* Profile picture */}
             <TouchableOpacity
@@ -78,7 +89,7 @@ const AccountSettings = ({ navigation }) => {
             >
                 {profilePicture ? (
                     <Image
-                        source={{ uri: user?.user?.userImage }}
+                        source={{ uri: userImage }}
                         style={styles.profilePicture}
                     />
                 ) : (

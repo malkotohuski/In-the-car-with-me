@@ -7,16 +7,28 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { useRoute } from '@react-navigation/native';
 import { useAuth } from '../Authentication/AuthContext';
 
 const AccountManager = ({ navigation }) => {
-    const { user } = useAuth();
-    console.log('dfsdf', user);
+    const { state } = useAuth();
+
+    const route = useRoute(); // Define route here
+    const userName = route.params?.userNickName
+    const name = route.params?.userFirstName;
+    const userLastName = route.params?.userLastName;
+    const userPicture = route.params?.userImage;
+    const email = route.params?.userEmail
 
     const { t } = useTranslation();
 
     const handlerChangeAcountSettings = () => {
         navigation.navigate('AccountSettings', {
+            userFirstName: name,
+            userLastName: userLastName,
+            userImage: userPicture,
+            userEmail: email,
+            userNickName: userName,
         });
     }
 
@@ -29,17 +41,17 @@ const AccountManager = ({ navigation }) => {
         <View style={styles.container}>
             {/* Profile picture */}
             <View style={[styles.profilePictureContainer, styles.topRight]}>
-                <Image source={{ uri: user?.user?.userImage }} style={styles.profilePicture} />
+                <Image source={{ uri: userPicture }} style={styles.profilePicture} />
             </View>
             {/*User info */}
             <Text style={[styles.userInfoContainer, styles.topLeftUserNames]}>
-                {t('Nick name')} : {user?.user?.username}
+                {t('Nick name')} : {state.user.userName}
             </Text>
             <Text style={[styles.userInfoContainer, styles.topLeftNames]}>
-                {t('Names')} :  {user?.user?.fName} {user?.user?.lName}
+                {t('Names')} :  {state.user.name} {state.user.userLastName}
             </Text>
             <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
-                {t('Еmail')} : {user?.user?.email}
+                {t('Еmail')} : {state.user.email}
             </Text>
             <TouchableOpacity
                 style={styles.usernameChangeButton}

@@ -1,14 +1,3 @@
 {
-  "users": [
-    {
-      "id": 1704195376788,
-      "username": "Shu",
-      "email": "shushkata7@gmail.com",
-      "password": "123",
-      "fName": "shushkata",
-      "lName": "ddd",
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/00c4e9a9-5d76-4a1b-8663-2ade1a3fd4d5.jpg",
-      "confirmationCode": null
-    }
-  ]
+  "users": []
 }
