@@ -17,9 +17,9 @@ function generateConfirmationCode() {
 
 // Handle user registration
 server.post('/register', (req, res) => {
-    const { username, useremail, userpassword, fName, lName } = req.body;
+    const { username, useremail, userpassword, fName, lName, userImage } = req.body;
 
-    console.log('Registration Request:', { username, useremail, userpassword, fName, lName });
+    console.log('Registration Request:', { username, useremail, userpassword, fName, lName, userImage });
 
     // Validation (you can add more checks as needed)
     if (!username || !useremail || !userpassword) {
@@ -40,17 +40,18 @@ server.post('/register', (req, res) => {
 
     // Simulate user creation (you may want to hash the password in a real scenario)
     const confirmationCode = generateConfirmationCode();
-    const newUser = {
+    const user = {
         id: Date.now(),
         username,
         email: useremail,
         password: userpassword,
         fName,
         lName,
+        userImage,
         confirmationCode, // Assign the confirmation code to the user
     };
 
-    router.db.get('users').push(newUser).write();
+    router.db.get('users').push(user).write();
 
     // Send confirmation email
     const transporter = nodemailer.createTransport({
@@ -74,7 +75,7 @@ server.post('/register', (req, res) => {
             return res.status(500).json({ error: 'Failed to send confirmation email.' });
         } else {
             console.log('Email confirmation sent:', info.response);
-            return res.status(201).json({ newUser, confirmationCode });
+            return res.status(201).json({ user, confirmationCode });
         }
     });
 });
@@ -108,10 +109,10 @@ server.post('/login', (req, res) => {
 
     // Find the user by email and password (you might want to hash passwords in a real scenario)
     const user = router.db.get('users').find({ email: useremail, password: userpassword }).value();
-
+    console.log('sss', user);
     if (user) {
         // Successful login
-        return res.status(200).json({ message: 'Login successful' });
+        return res.status(200).json({ user });
     } else {
         // Login failed
         return res.status(401).json({ error: 'Invalid email or password' });
