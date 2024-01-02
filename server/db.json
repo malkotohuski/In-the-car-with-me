@@ -1,40 +1,13 @@
 {
   "users": [
     {
-      "id": 1703771628744,
-      "username": "daniBani",
-      "email": "ddd@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": 1703771670371,
-      "username": "dasniBani",
-      "email": "ddsd@gmail.com",
-      "password": "123"
-    },
-    {
-      "id": 1703832971241,
-      "username": "Shushkata",
-      "email": "shshukata123,,@sss.ccom",
-      "password": "123"
-    },
-    {
-      "id": 1703836660639,
-      "username": "ddd",
-      "email": "aaa@gmail.cocm",
-      "password": "111"
-    },
-    {
-      "username": "dgyyhuski",
-      "useremail": "shushkata87@gmail.com",
-      "userpassword": "111",
-      "id": 1703836660640
-    },
-    {
-      "id": 1703854966764,
-      "username": "aria",
+      "id": 1704203160608,
+      "username": "sad",
       "email": "shushkata7@gmail.com",
       "password": "123",
+      "fName": "asd",
+      "lName": "asd",
+      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/b528efef-2da4-423d-bbd1-eafd2761f84b.jpg",
       "confirmationCode": null
     }
   ],

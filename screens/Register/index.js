@@ -1,23 +1,50 @@
 // Register.js
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
 import axios from 'axios';
 import styles from '../Home/styles';
 import { useTranslation } from 'react-i18next';
+import ImagePicker from 'react-native-image-crop-picker';
+import { useAuth } from '../Authentication/AuthContext';
 
-const API_BASE_URL = 'http://10.0.2.2:3000'; // Update with your JSON server URL
+const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
 const api = axios.create({
   baseURL: API_BASE_URL,
 });
 
 export default function Register({ navigation }) {
   const { t } = useTranslation();
+  const { login } = useAuth();
+
   const [name, setName] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmationCode, setConfirmationCode] = useState('');
   const [showConfirmationCodeInput, setShowConfirmationCodeInput] = useState(false);
+  const [profilePicture, setProfilePicture] = useState('');
+
+  const handleImagePicker = async () => {
+    try {
+      const image = await ImagePicker.openPicker({
+        width: 300,
+        height: 300,
+        cropping: true,
+      });
+
+      if (image.path) {
+        // Local image
+        setProfilePicture(image.path);
+      } else if (image.uri) {
+        // Remote image
+        setProfilePicture(image.uri);
+      }
+    } catch (error) {
+      console.log('ImagePicker Error: ', error);
+    }
+  };
 
   const handleRegister = async () => {
     if (!showConfirmationCodeInput) {
@@ -30,12 +57,17 @@ export default function Register({ navigation }) {
               username: name,
               useremail: email,
               userpassword: password,
+              fName: firstName,
+              lName: lastName,
+              userImage: profilePicture,
             });
 
             console.log('Registration Response:', response);
 
             if (response.status === 201) {
-              // Registration successful, show the confirmation code input field
+              // Registration successful, update the global state with user data
+              login(response.data);
+              // Show the confirmation code input field
               setShowConfirmationCodeInput(true);
             } else {
               // Handle registration failure
@@ -67,8 +99,6 @@ export default function Register({ navigation }) {
           // Confirmation code verified, navigate to the welcome screen
           navigation.navigate('WelcomeScreen', {
             name,
-            email,
-            password,
           });
         } else {
           // Handle verification failure
@@ -88,12 +118,39 @@ export default function Register({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <TouchableOpacity
+        onPress={handleImagePicker}
+        style={[styles.profilePictureContainer, styles.topRight]}
+      >
+        {profilePicture ? (
+          <Image
+            source={{ uri: profilePicture }}
+            style={styles.profilePicture}
+          />
+        ) : (
+          <Text style={styles.addPhotoText}>
+            {t('Add Profile Picture')}
+          </Text>
+        )}
+      </TouchableOpacity>
       <Text style={styles.title}>{t('Register here')}:</Text>
       <TextInput
         style={styles.input}
         placeholder={t('User name')}
         value={name}
         onChangeText={(text) => setName(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder={t('First name')}
+        value={firstName}
+        onChangeText={(text) => setFirstName(text)}
+      />
+      <TextInput
+        style={styles.input}
+        placeholder={t('Last name')}
+        value={lastName}
+        onChangeText={(text) => setLastName(text)}
       />
       <TextInput
         style={styles.input}

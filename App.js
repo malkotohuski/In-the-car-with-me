@@ -6,6 +6,7 @@ import MyTabs from './screens/DrawerContent/tabsNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import { Navigator } from './screens/DrawerContent/drawerContent';
 import { RouteProvider } from './screens/Category/RouteContext'
+import { AuthProvider } from './screens/Authentication/AuthContext';
 
 
 const Drawer = createDrawerNavigator();
@@ -16,9 +17,9 @@ function App() {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <NavigationContainer>
-                < RouteProvider>
+                < AuthProvider>
                     <Navigator isLoggedIn={isLoggedIn} />
-                </RouteProvider>
+                </AuthProvider>
             </NavigationContainer>
         </SafeAreaView>
     );
