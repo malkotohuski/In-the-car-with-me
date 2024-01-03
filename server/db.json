@@ -1,6 +1,19 @@
 {
   "users": [
     {
+      "id": 1704204367131,
+      "username": "sss",
+      "email": "shushkata7@gmail.com",
+      "password": "123",
+      "fName": "ddd",
+      "lName": "aaa",
+      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/f29ef057-c982-4f68-a390-b20add3b5579.jpg",
+      "confirmationCode": null
+    }
+  ],
+  "register": [],
+  "verify-confirmation-code": [],
+  "routes": []
       "id": 1704195376788,
       "username": "Shu",
       "email": "shushkata7@gmail.com",

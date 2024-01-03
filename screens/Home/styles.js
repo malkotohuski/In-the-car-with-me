@@ -178,8 +178,6 @@ export default StyleSheet.create({
         width: 250,
     },
 
-
-
     profileInfoContainer: {
         flexDirection: 'row', // Arrange profile picture and user info side by side
         alignItems: 'center',
@@ -277,3 +275,6 @@ export default StyleSheet.create({
     },
 });
 
+
+
+   
