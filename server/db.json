@@ -12,5 +12,6 @@
     }
   ],
   "register": [],
-  "verify-confirmation-code": []
+  "verify-confirmation-code": [],
+  "routes": []
 }

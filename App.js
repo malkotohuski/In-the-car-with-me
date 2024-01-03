@@ -18,7 +18,9 @@ function App() {
         <SafeAreaView style={{ flex: 1 }}>
             <NavigationContainer>
                 < AuthProvider>
-                    <Navigator isLoggedIn={isLoggedIn} />
+                    <RouteProvider>
+                        <Navigator isLoggedIn={isLoggedIn} />
+                    </RouteProvider>
                 </AuthProvider>
             </NavigationContainer>
         </SafeAreaView>

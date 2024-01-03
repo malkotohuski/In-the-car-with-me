@@ -5,8 +5,8 @@ const RouteContext = createContext();
 export const RouteProvider = ({ children }) => {
     const [routes, setRoutes] = useState([]);
 
-    const addRoute = (route) => {
-        setRoutes((prevRoutes) => [...prevRoutes, route]);
+    const addRoute = (newRoute) => {
+        setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
     };
 
     return (
