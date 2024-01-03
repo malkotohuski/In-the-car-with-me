@@ -1,27 +1,31 @@
 {
   "users": [
     {
-      "id": 1704204367131,
-      "username": "sss",
+      "id": 1704286420347,
+      "username": "Shushkata",
       "email": "shushkata7@gmail.com",
       "password": "123",
-      "fName": "ddd",
-      "lName": "aaa",
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/f29ef057-c982-4f68-a390-b20add3b5579.jpg",
-      "confirmationCode": null
+      "fName": "Daniel",
+      "lName": "Dimitrov",
+      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/8a9d4c54-1caf-4ef8-87cc-769ee0a6b26f.jpg",
+      "confirmationCode": null,
+      "routes": [
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": 4,
+          "registrationNumber": "СВ4473АН",
+          "selectedDateTime": "2024-01-03T12:54:57.936Z",
+          "departureCity": "Sofia",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Panagyurishte",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1
+        }
+      ]
     }
   ],
   "register": [],
-  "verify-confirmation-code": [],
-  "routes": []
-      "id": 1704195376788,
-      "username": "Shu",
-      "email": "shushkata7@gmail.com",
-      "password": "123",
-      "fName": "shushkata",
-      "lName": "ddd",
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/00c4e9a9-5d76-4a1b-8663-2ade1a3fd4d5.jpg",
-      "confirmationCode": null
-    }
-  ]
+  "verify-confirmation-code": []
 }
