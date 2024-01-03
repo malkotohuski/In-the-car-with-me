@@ -48,7 +48,8 @@ server.post('/register', (req, res) => {
         fName,
         lName,
         userImage,
-        confirmationCode, // Assign the confirmation code to the user
+        confirmationCode,
+        routes: [], // Assign the confirmation code to the user
     };
 
     router.db.get('users').push(user).write();
@@ -78,6 +79,30 @@ server.post('/register', (req, res) => {
             return res.status(201).json({ user, confirmationCode });
         }
     });
+});
+
+server.post('/create-route', (req, res) => {
+    const { userId, route } = req.body;
+
+    // Find the user by ID
+    const user = router.db.get('users').find({ id: userId }).value();
+
+    if (!user) {
+        console.error('User not found');
+        return res.status(404).json({ error: 'User not found.' });
+    }
+
+    // Assign a sequential route number
+    const id = user.routes.length + 1;
+
+    // Add the new route to the user's routes array
+    const newRoute = { ...route, id };
+    user.routes.push(newRoute);
+
+    // Update the user in the database
+    router.db.get('users').find({ id: userId }).assign(user).write();
+
+    return res.status(201).json({ message: 'Route created successfully.', route });
 });
 
 // Verification endpoint

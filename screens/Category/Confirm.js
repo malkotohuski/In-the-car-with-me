@@ -11,7 +11,7 @@ function Confirm() {
 
     const route = useRoute();
     const selectedVehicle = route.params.selectedVehicle;
-    const markedSeats = route.params.markedSeats;
+    const markedSeats = route.params.markedSeats.length;
     const registrationNumber = route.params.registrationNumber;
     const { selectedDateTime } = route.params;
     const departureCity = route.params.departureCity;
@@ -29,7 +29,7 @@ function Confirm() {
         navigation.navigate('Vehicle'); // Go back to the previous screen
     };
 
-    const handleConfirm = () => {
+    const handleConfirm = async () => {
         const newRoute = {
             selectedVehicle,
             markedSeats,
@@ -42,6 +42,31 @@ function Confirm() {
             arrivalStreet,
             arrivalNumber,
         };
+        try {
+            // Make a POST request to the server to create a new route
+            const response = await fetch('http://10.0.2.2:3000/create-route', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId: 1704286420347, // replace with the actual user ID
+                    route: newRoute,
+                }),
+            });
+
+            if (response.ok) {
+                // Route created successfully
+                console.log('Route created successfully');
+                navigation.navigate('View routes'); // Navigate to ViewRoutes
+            } else {
+                // Handle error response
+                const errorData = await response.json();
+                console.error('Failed to create route:', errorData.error);
+            }
+        } catch (error) {
+            console.error('Error creating route:', error);
+        }
 
         addRoute(newRoute); // Save the route using the context
 
