@@ -70,9 +70,20 @@ const ReportingScreen = () => {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require('../../images/report-background.jpg')}
+                style={{
+                    flex: 1,
+                    width: '100%',
+                    height: '100%',
+                    resizeMode: 'cover',
+                    position: 'absolute',
+                }}
+            />
             <TextInput
                 style={styles.input}
                 placeholder={t("Describe the problem")}
+                placeholderTextColor={'#F1F1F1'}
                 multiline
                 value={problemDescription}
                 onChangeText={(text) => setProblemDescription(text)}
@@ -80,6 +91,7 @@ const ReportingScreen = () => {
             <TextInput
                 style={[styles.inputVehicle, !isValidVehicleNumber && styles.invalidInput]}
                 placeholder={t("Enter the vehicle number")}
+                placeholderTextColor={'#F1F1F1'}
                 value={vehicleNumber}
                 onChangeText={validateVehicleNumber}
             />
@@ -106,24 +118,27 @@ const ReportingScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 16,
         backgroundColor: 'grey',
     },
     input: {
         height: 120,
         borderColor: 'gray',
-        borderWidth: 1,
+        borderWidth: 2,
         marginBottom: 16,
         padding: 8,
-        borderColor: 'black'
+        borderColor: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     inputVehicle: {
         height: 40,
         borderColor: 'gray',
-        borderWidth: 1,
+        borderWidth: 2,
         marginBottom: 16,
         padding: 8,
-        borderColor: 'black'
+        borderColor: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
     },
     imagePicker: {
         backgroundColor: 'coral',

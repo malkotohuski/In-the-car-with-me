@@ -1,7 +1,9 @@
 // ViewRoutes.js
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useRouteContext } from './RouteContext'; // Import your RouteContext
+
+
 
 function ViewRoutes({ navigation }) {
     const { routes } = useRouteContext(); // Use the RouteContext
@@ -13,6 +15,16 @@ function ViewRoutes({ navigation }) {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require('../../images/view-routes-backgroud.jpg')}
+                style={{
+                    flex: 1,
+                    width: '100%',
+                    height: '100%',
+                    resizeMode: 'cover',
+                    position: 'absolute',
+                }}
+            />
             {routes.map((route, index) => (
                 <View key={index} style={styles.routeContainer}>
                     {/* Display route data here */}
@@ -43,9 +55,7 @@ function ViewRoutes({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
+        alignItems: 'flex-start',
         backgroundColor: 'grey',
     },
     routeContainer: {
