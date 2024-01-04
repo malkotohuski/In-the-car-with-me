@@ -382,6 +382,7 @@ i18next.use(initReactI18next).init({
                 'Lets travel': 'Lets travel',
                 'Nick name': 'Nick name',
                 'Names': 'Names',
+
                 'Еmail': 'Еmail',
                 'Logout': 'Logout',
                 'Are you sure you want to logout?': 'Are you sure you want to logout?',
@@ -776,6 +777,9 @@ i18next.use(initReactI18next).init({
                 'Last name': 'Фамилия',
                 'Confirm Password': 'Потвърди парола',
                 'Confirmation Code': 'Код за потвърждение',
+
+               
+
             }
         },
     }
