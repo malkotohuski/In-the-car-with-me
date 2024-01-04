@@ -38,6 +38,7 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+        color: '#F1F1F1'
     },
     searchBox: {
         flexDirection: 'column',
@@ -59,14 +60,16 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 20,
         alignItems: 'center',
+        color: '#F1F1F1'
     },
     searchField: {
         height: 40,
         width: 200,
         borderWidth: 2,
-        borderColor: 'black',
+        borderColor: '#F1F1F1',
         marginBottom: 10,
         paddingHorizontal: 10,
+        color: '#F1F1F1'
     },
     searchButton: {
         height: 60,
@@ -85,48 +88,44 @@ export default StyleSheet.create({
     },
     routeRequestButton: {
         alignItems: 'center',
-        backgroundColor: 'blue',
         padding: 10,
         marginBottom: 5,
         fontSize: 24,
         fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: 'black',
+        borderWidth: 2,
+        borderColor: 'white',
         width: 420
     },
     vehicleButton: {
         alignItems: 'center',
-        backgroundColor: 'blue',
         padding: 10,
         marginBottom: 5,
         fontSize: 24,
         fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: 'black'
+        borderWidth: 2,
+        borderColor: 'white'
     },
     routeViewerButton: {
         alignItems: 'center',
-        backgroundColor: 'yellow',
         padding: 10,
         marginBottom: 5,
         fontSize: 24,
         fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: 'black'
+        borderWidth: 2,
+        borderColor: 'white'
     },
     reportingButton: {
         alignItems: 'center',
-        backgroundColor: 'yellow',
         padding: 10,
         marginBottom: 5,
         fontSize: 24,
         fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: 'black'
+        borderWidth: 2,
+        borderColor: 'white',
     },
     textButtons: {
-        color: 'black',
-        fontSize: 16,
+        color: 'white',
+        fontSize: 20,
         fontWeight: 'bold',
     },
 
@@ -142,9 +141,12 @@ export default StyleSheet.create({
         width: 200,
         height: 40,
         borderWidth: 1,
-        borderColor: 'black',
+        borderColor: 'white',
         marginBottom: 10,
         paddingHorizontal: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'white',
     },
     buttonSeparator: {
         height: 5,
@@ -212,9 +214,10 @@ export default StyleSheet.create({
         zIndex: 1, // To ensure it appears on top of other elements
     },
     title: {
-        fontSize: 30,
+        fontSize: 34,
         marginBottom: 30,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: 'white'
     },
     profilePictureContainer: {
         alignItems: 'center',
@@ -237,8 +240,9 @@ export default StyleSheet.create({
     },
     addPhotoText: {
         fontSize: 16,
-        color: 'blue',
+        color: '#F5FDFE',
         textDecorationLine: 'underline',
+        fontWeight: 'bold'
     },
     inputContainer: {
         width: '100%',
@@ -273,6 +277,19 @@ export default StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    //login styles
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
+    },
+    languageText: {
+        fontSize: 23,
+        fontWeight: 'bold',
+        color: 'white'
+    }
 });
 
 

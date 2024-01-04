@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
@@ -48,6 +48,10 @@ export default function Login({ navigation, route }) {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require('../../images/login-background.jpg')}
+                style={styles.backgroundImage}
+            />
             <View >
                 <View style={styles.languageSwitchContainer}>
                     <TouchableOpacity
@@ -58,7 +62,9 @@ export default function Login({ navigation, route }) {
                             source={require('../../images/engl-flag.png')} // Replace with the path to your English flag image
                             style={styles.flagImage}
                         />
-                        <Text>{t('English')}</Text>
+                        <Text
+                            style={styles.languageText}
+                        >{t('English')}</Text>
                     </TouchableOpacity>
                     <View style={{ margin: 60 }}>
 
@@ -71,7 +77,9 @@ export default function Login({ navigation, route }) {
                             source={require('../../images/bulg-flag.png')} // Replace with the path to your Italian flag image
                             style={styles.flagImage}
                         />
-                        <Text>{t('Bulgarian')}</Text>
+                        <Text
+                            style={styles.languageText}
+                        >{t('Bulgarian')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -79,12 +87,14 @@ export default function Login({ navigation, route }) {
                 <Text style={styles.title}>{t('Login')}</Text>
             </TouchableOpacity>
             <TextInput
+                placeholderTextColor={'white'}
                 style={styles.input}
                 placeholder={t("Email")}
                 value={email}
                 onChangeText={(text) => setEmail(text)}
             />
             <TextInput
+                placeholderTextColor={'white'}
                 style={styles.input}
                 placeholder={t("Password")}
                 secureTextEntry={true}

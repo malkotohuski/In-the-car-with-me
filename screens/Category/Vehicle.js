@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import { useTranslation } from 'react-i18next';
 import { useFocusEffect } from '@react-navigation/native';
-import { View, Text, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Vehicle = () => {
@@ -43,7 +43,12 @@ const Vehicle = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: 'grey' }}>
+            <Image
+                source={require('../../images/car-background.jpg')}
+                style={styles.backgroundImage}
+            />
             <RNPickerSelect
+                style={styles.typeVehicle}
                 items={vehicleTypes}
                 placeholder={{ label: t('Select vehicle'), value: null }}
                 onValueChange={(value) => handleVehicleSelect(value)}
@@ -70,3 +75,16 @@ const Vehicle = () => {
 };
 
 export default Vehicle;
+
+const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
+    },
+    typeVehicle: {
+        color: '#F1F1F1'
+    }
+})

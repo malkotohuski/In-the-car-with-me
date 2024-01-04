@@ -118,6 +118,10 @@ export default function Register({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require('../../images/login-background.jpg')}
+        style={styles.backgroundImage}
+      />
       <TouchableOpacity
         onPress={handleImagePicker}
         style={[styles.profilePictureContainer, styles.topRight]}
@@ -135,30 +139,35 @@ export default function Register({ navigation }) {
       </TouchableOpacity>
       <Text style={styles.title}>{t('Register here')}:</Text>
       <TextInput
+        placeholderTextColor={'#F5FDFE'}
         style={styles.input}
         placeholder={t('User name')}
         value={name}
         onChangeText={(text) => setName(text)}
       />
       <TextInput
+        placeholderTextColor={'#F5FDFE'}
         style={styles.input}
         placeholder={t('First name')}
         value={firstName}
         onChangeText={(text) => setFirstName(text)}
       />
       <TextInput
+        placeholderTextColor={'#F5FDFE'}
         style={styles.input}
         placeholder={t('Last name')}
         value={lastName}
         onChangeText={(text) => setLastName(text)}
       />
       <TextInput
+        placeholderTextColor={'#F5FDFE'}
         style={styles.input}
         placeholder={t('Email')}
         value={email}
         onChangeText={setEmail}
       />
       <TextInput
+        placeholderTextColor={'#F5FDFE'}
         style={styles.input}
         placeholder={t('Password')}
         secureTextEntry={true}
@@ -166,6 +175,7 @@ export default function Register({ navigation }) {
         onChangeText={(text) => setPassword(text)}
       />
       <TextInput
+        placeholderTextColor={'#F5FDFE'}
         style={styles.input}
         placeholder={t('Confirm Password')}
         secureTextEntry={true}
@@ -174,6 +184,7 @@ export default function Register({ navigation }) {
       />
       {showConfirmationCodeInput && (
         <TextInput
+          placeholderTextColor={'#F5FDFE'}
           style={styles.input}
           placeholder={t('Confirmation Code')}
           value={confirmationCode}

@@ -382,7 +382,15 @@ i18next.use(initReactI18next).init({
                 'Lets travel': 'Lets travel',
                 'Nick name': 'Nick name',
                 'Names': 'Names',
-                'Еmail': 'Еmail'
+
+                'Еmail': 'Еmail',
+                'Logout': 'Logout',
+                'Are you sure you want to logout?': 'Are you sure you want to logout?',
+                'Yes': 'Yes',
+                'First name': 'First name',
+                'Last name': 'Last name',
+                'Confirm Password': 'Confirm Password',
+                'Confirmation Code': 'Confirmation Code',
             }
         },
         bg: {
@@ -761,7 +769,17 @@ i18next.use(initReactI18next).init({
                 'Lets travel': 'Хайде да пътуваме',
                 'Nick name': 'Псевдоним',
                 'Names': 'Имена',
-                'Еmail': 'Eлектронна поща'
+                'Еmail': 'Eлектронна поща',
+                'Logout': 'Излез от профила си',
+                'Are you sure you want to logout?': 'Сигурни ли сте, че искате да излезете?',
+                'Yes': 'Да',
+                'First name': 'Първо име',
+                'Last name': 'Фамилия',
+                'Confirm Password': 'Потвърди парола',
+                'Confirmation Code': 'Код за потвърждение',
+
+               
+
             }
         },
     }
