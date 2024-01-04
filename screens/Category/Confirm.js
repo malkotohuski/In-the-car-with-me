@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
@@ -79,9 +79,19 @@ function Confirm() {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require('../../images/confirm2-background.jpg')}
+                style={{
+                    flex: 1,
+                    width: '100%',
+                    height: '100%',
+                    resizeMode: 'cover',
+                    position: 'absolute',
+                }}
+            />
             <Text style={styles.headerText}>{t('Review')}:</Text>
             <Text style={styles.text}>{t('Vehicle')}: {selectedVehicle}</Text>
-            <Text style={styles.text}>{t('Free seats')}: {markedSeats.length}</Text>
+            <Text style={styles.text}>{t('Free seats')}: {markedSeats}</Text>
             <Text style={styles.text}>{t('Registration Number')}: {registrationNumber}</Text>
             <Text style={styles.text}>{t('Time and date of departure')}: {selectedDateTime.toString()}</Text>
             <Text style={styles.text}>{t('Departure')}: {t('Town/Village')} : {departureCity}</Text>
@@ -114,7 +124,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: 20,
         backgroundColor: 'grey',
     },
     headerText: {

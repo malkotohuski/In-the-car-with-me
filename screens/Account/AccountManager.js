@@ -27,6 +27,10 @@ const AccountManager = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require('../../images/user-background.jpg')}
+                style={styles.backgroundImage}
+            />
             {/* Profile picture */}
             <View style={[styles.profilePictureContainer, styles.topRight]}>
                 <Image source={{ uri: user?.user?.userImage }} style={styles.profilePicture} />
@@ -64,7 +68,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 16,
         backgroundColor: 'grey',
     },
     profileInfoContainer: {
@@ -178,6 +181,13 @@ const styles = StyleSheet.create({
         color: 'black',
         fontSize: 16,
         fontWeight: 'bold',
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
     },
 });
 

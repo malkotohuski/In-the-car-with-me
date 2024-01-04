@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -110,23 +110,22 @@ function SelectRouteScreen({ route, navigation }) {
 
 
     return (
-        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center', padding: 20, backgroundColor: 'grey' }}>
-            {/* <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {t('Selected Vehicle:', { selectedVehicle })}
-            </Text>
-            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {t('Marked Seats:', { markedSeats })}
-            </Text>
-            <Text style={{ fontWeight: 'bold', fontSize: 20 }}>
-                {t('Registration Number:', { registrationNumber })}
-            </Text> */}
-
-            {/* Departure Information */}
-            <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
+        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Image
+                source={require('../../images/routes2-background.jpg')}
+                style={{
+                    flex: 1,
+                    width: '100%',
+                    height: '100%',
+                    resizeMode: 'cover',
+                    position: 'absolute',
+                }}
+            />
+            <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
                 {t('Departure:', {})}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25, }}>
-                <View style={{ flex: 1, marginRight: 10 }}>
+                <View style={{ flex: 1, marginRight: 10, color: 'black' }}>
                     <Dropdown
                         style={[styles.dropdown, isFocus && { borderColor: 'blue' }]}
                         placeholderStyle={styles.placeholderStyle}
@@ -160,6 +159,7 @@ function SelectRouteScreen({ route, navigation }) {
                 <View style={{ flex: 1, marginLeft: 40 }}>
                     <TextInput
                         placeholder={t("Street")}
+                        placeholderTextColor={'#010101'}
                         value={departureStreet}
                         onChangeText={(text) => setDepartureStreet(text)}
                         style={{
@@ -176,6 +176,7 @@ function SelectRouteScreen({ route, navigation }) {
                 </View>
                 <TextInput
                     placeholder={t("Number")}
+                    placeholderTextColor={'#010101'}
                     value={departureNumber}
                     onChangeText={(text) => setDepartureNumber(text)}
                     style={{
@@ -198,7 +199,7 @@ function SelectRouteScreen({ route, navigation }) {
             />
 
             {/* Arrival Information */}
-            <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20 }}>
+            <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
                 {t('Arrival:')}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
@@ -236,6 +237,7 @@ function SelectRouteScreen({ route, navigation }) {
                 <View style={{ flex: 1, marginLeft: 40 }}>
                     <TextInput
                         placeholder={t("Street")}
+                        placeholderTextColor={'#010101'}
                         value={arrivalStreet}
                         onChangeText={(text) => setArrivalStreet(text)}
                         style={{
@@ -247,11 +249,13 @@ function SelectRouteScreen({ route, navigation }) {
                             paddingHorizontal: 8,
                             fontSize: 16,
                             fontWeight: 'bold',
+                            color: 'black'
                         }}
                     />
                 </View>
                 <TextInput
                     placeholder={t("Number")}
+                    placeholderTextColor={'#010101'}
                     value={arrivalNumber}
                     onChangeText={(text) => setArrivalNumber(text)}
                     keyboardType="numeric" // Restrict to numeric input
@@ -293,7 +297,7 @@ function SelectRouteScreen({ route, navigation }) {
                 />
                 {selectedDateTime && (
                     <View style={{ marginTop: 10, }}>
-                        <Text style={{ fontSize: 16, color: 'black' }}>
+                        <Text style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>
                             {t('Selected Date and Time:')} {selectedDateTime.toString()}
                         </Text>
                     </View>
@@ -311,7 +315,7 @@ function SelectRouteScreen({ route, navigation }) {
                         width: '90%', // Adjust the width as needed
                     }}
                 >
-                    <Text style={{ color: '#fff', fontSize: 16 }}>{t('Continue')}</Text>
+                    <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{t('Continue')}</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -348,11 +352,13 @@ const styles = StyleSheet.create({
     },
     placeholderStyle: {
         fontSize: 14,
-        fontWeight: 900
+        fontWeight: 900,
+        color: 'black',
     },
     selectedTextStyle: {
-        fontSize: 20,
-        fontWeight: 'bold'
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'black'
     },
     iconStyle: {
         width: 20,
@@ -370,5 +376,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         elevation: 3,
         backgroundColor: 'black',
+        fontSize: 16,
+        fontWeight: 'bold'
     }
 });
