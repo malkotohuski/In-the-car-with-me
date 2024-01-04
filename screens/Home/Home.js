@@ -38,6 +38,10 @@ function HomePage({ navigation }) {
 
     return (
         <View style={styles.homepage}>
+            <Image
+                source={require('../../images/home2-background.jpg')}
+                style={styles.backgroundImage}
+            />
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <View style={styles.languageSwitchContainer}>
                     <TouchableOpacity
@@ -48,7 +52,9 @@ function HomePage({ navigation }) {
                             source={require('../../images/engl-flag.png')}
                             style={styles.flagImage}
                         />
-                        <Text>{t('English')}</Text>
+                        <Text
+                            style={styles.languageText}
+                        >{t('English')}</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.languageButton}
@@ -58,7 +64,9 @@ function HomePage({ navigation }) {
                             source={require('../../images/bulg-flag.png')}
                             style={styles.flagImage}
                         />
-                        <Text>{t('Bulgarian')}</Text>
+                        <Text
+                            style={styles.languageText}
+                        >{t('Bulgarian')}</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -103,6 +111,7 @@ function HomePage({ navigation }) {
                     <View style={styles.searchContainer}>
                         <TextInput
                             style={styles.searchField}
+                            placeholderTextColor={'#F5FDFE'}
                             placeholder={t('Search here')}
                         />
                     </View>

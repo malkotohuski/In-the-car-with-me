@@ -35,7 +35,7 @@ const WelcomeScreen = ({ navigation }) => {
         <View style={styles.container}>
             {/* Background Image */}
             <Image
-                source={require('../../images/welocme.webp')}
+                source={require('../../images/welocme-background.jpg')}
                 style={styles.backgroundImage}
             />
 

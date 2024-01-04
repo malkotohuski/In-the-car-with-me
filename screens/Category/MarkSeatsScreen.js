@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, Alert, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
@@ -153,9 +153,19 @@ function MarkSeatsScreen() {
     };
 
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'grey' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
+            <Image
+                source={require('../../images/register-number-background.jpg')}
+                style={{
+                    flex: 1,
+                    width: '100%',
+                    height: '100%',
+                    resizeMode: 'cover',
+                    position: 'absolute',
+                }}
+            />
             <Text
-                style={{ fontSize: 20, fontWeight: 'bold', color: 'black' }}
+                style={{ fontSize: 20, fontWeight: 'bold', color: '#F1F1F1' }}
             >
                 {t('Type')}: {selectedVehicle}
             </Text>
@@ -168,33 +178,41 @@ function MarkSeatsScreen() {
             {/* Add a TextInput for the registration number */}
             <TextInput
                 placeholder={t('Enter Registration Number')}
+                placeholderTextColor={'#F1F1F1'}
                 value={registrationNumber}
                 onChangeText={(text) => setRegistrationNumber(text)}
                 style={{
                     height: 40,
-                    borderColor: 'black',
+                    borderColor: '#F1F1F1',
                     borderWidth: 2,
                     margin: 10,
                     padding: 5,
                     textAlign: 'center',
+                    color: '#F1F1F1',
+                    fontSize: 16,
+                    fontWeight: 'bold'
                 }}
             />
             {/* Display the registration number if available */}
             {registrationNumber &&
-                <Text>{t('Registration Number:')}</Text>}
-            <Text>{`${registrationNumber}`}</Text>
+                <Text
+                    style={{ color: '#F1F1F1', fontSize: 20, fontWeight: 'bold' }}
+                >{t('Registration Number:')}</Text>}
+            <Text
+                style={{ color: '#F1F1F1', fontSize: 20, fontWeight: 'bold' }}
+            >{`${registrationNumber}`}</Text>
 
 
             {/* Validate the registration number */}
-            {!isValidRegistrationNumber() && <Text style={{ color: 'red' }}>
+            {!isValidRegistrationNumber() && <Text style={{ color: 'red', fontSize: 16, fontWeight: 'bold' }}>
                 {t('Invalid registration number format')}
             </Text>}
             {/* Add a new text for choosing free places */}
             <Text
-                style={{ fontSize: 20, fontWeight: 'bold' }}
+                style={{ fontSize: 20, fontWeight: 'bold', color: '#F1F1F1' }}
             >{t('Choose how many free places you have:')}</Text>
             <Text
-                style={{ fontSize: 20, fontWeight: 'bold' }}
+                style={{ fontSize: 20, fontWeight: 'bold', color: '#F1F1F1' }}
             >{`${selectedFreePlaces}`}</Text>
 
 
@@ -232,7 +250,7 @@ function MarkSeatsScreen() {
                 onPress={handleContinue}
                 style={{
                     marginTop: 0,
-                    padding: 10,
+
                     backgroundColor: isValidRegistrationNumber() ? 'coral' : 'black', // Change color based on registrationNumber validity
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -241,7 +259,18 @@ function MarkSeatsScreen() {
                 }}
                 disabled={!isValidRegistrationNumber()} // Disable button if registrationNumber is invalid
             >
-                <Text style={{ color: 'white' }}>{t('Continue')}</Text>
+                <Text
+                    style={{
+                        color: 'white',
+                        backgroundColor: 'coral',
+                        padding: 10,
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        borderRadius: 2,
+                        borderColor: '#F1F1F1',
+                        borderWidth: 2,
+                    }}>
+                    {t('Continue')}</Text>
             </TouchableOpacity>
         </View>
     );
