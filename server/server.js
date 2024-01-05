@@ -82,27 +82,15 @@ server.post('/register', (req, res) => {
 });
 
 server.post('/create-route', (req, res) => {
-    const { userId, route } = req.body;
+    const { route } = req.body;
 
     // Find the user by ID
-    const user = router.db.get('users').find({ id: userId }).value();
-
-    if (!user) {
-        console.error('User not found');
-        return res.status(404).json({ error: 'User not found.' });
-    }
-
-    // Assign a sequential route number
-    const id = user.routes.length + 1;
-
+    const id = router.db.get('routes').size().value() + 1;
     // Add the new route to the user's routes array
     const newRoute = { ...route, id };
-    user.routes.push(newRoute);
+    router.db.get('routes').push(route).write();
 
-    // Update the user in the database
-    router.db.get('users').find({ id: userId }).assign(user).write();
-
-    return res.status(201).json({ message: 'Route created successfully.', route });
+    return res.status(201).json({ message: 'Route created successfully.', route: newRoute });
 });
 
 // Verification endpoint
