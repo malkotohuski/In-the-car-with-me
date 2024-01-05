@@ -50,7 +50,6 @@ function Confirm() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    userId: 1704286420347, // replace with the actual user ID
                     route: newRoute,
                 }),
             });

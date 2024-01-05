@@ -1,12 +1,12 @@
 // ViewRoutes.js
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import { useRouteContext } from './RouteContext'; // Import your RouteContext
-
-
+import { useRouteContext } from './RouteContext';
 
 function ViewRoutes({ navigation }) {
-    const { routes } = useRouteContext(); // Use the RouteContext
+
+    const { routes } = useRouteContext();
+    console.log('dfsdf', routes);
 
     const handlerSeeView = (routeParams) => {
         navigation.navigate('Confirm', { ...routeParams, showConfirmButton: false, showChangesButton: false, showBackButton: true });
