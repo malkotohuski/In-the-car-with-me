@@ -107,6 +107,18 @@
       "arrivalCity": "Панагюрище",
       "arrivalStreet": "1",
       "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": 4,
+      "registrationNumber": "С1111ЗА",
+      "selectedDateTime": "2024-01-08T14:01:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "Зьь",
+      "departureNumber": "1",
+      "arrivalCity": "Sofia",
+      "arrivalStreet": "Ъъх",
+      "arrivalNumber": "7"
     }
   ]
 }

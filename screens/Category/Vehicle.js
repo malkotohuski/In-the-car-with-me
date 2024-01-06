@@ -34,6 +34,11 @@ const Vehicle = () => {
         }
     };
 
+    const handlerBackHome = () => {
+        navigation.navigate('Home')
+        console.log('back to Home');
+    }
+
     useFocusEffect(
         useCallback(() => {
             // Reset the selectedVehicle when the component gains focus
@@ -48,13 +53,26 @@ const Vehicle = () => {
                 style={styles.backgroundImage}
             />
             <RNPickerSelect
-                style={styles.typeVehicle}
                 items={vehicleTypes}
                 placeholder={{ label: t('Select vehicle'), value: null }}
+                placeholderTextColor="white"
                 onValueChange={(value) => handleVehicleSelect(value)}
                 value={selectedVehicle}
+                style={{
+                    inputIOS: {
+                        color: 'white', // Text color for selected item
+                        fontSize: 20,   // Font size for selected item
+                    },
+                    inputAndroid: {
+                        color: 'white', // Text color for selected item
+                        fontSize: 20,   // Font size for selected item
+                    },
+                }}
+                textInputProps={{ underlineColorAndroid: 'transparent' }}
             />
-            <View>
+            <View
+                style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}
+            >
                 <TouchableOpacity
                     onPress={handleContinue}
                     style={{
@@ -68,6 +86,20 @@ const Vehicle = () => {
                     }}
                 >
                     <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', }}>{t('Continue')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={handlerBackHome}
+                    style={{
+                        marginTop: 100,
+                        padding: 10,
+                        backgroundColor: 'coral',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                    }}
+                >
+                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', }}>{t('Back to Home')}</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -85,6 +117,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     typeVehicle: {
-        color: '#F1F1F1'
+        color: '#F1F1F1',
     }
 })
+

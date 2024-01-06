@@ -297,7 +297,7 @@ function SelectRouteScreen({ route, navigation }) {
                 />
                 {selectedDateTime && (
                     <View style={{ marginTop: 10, }}>
-                        <Text style={{ fontSize: 16, color: 'white', fontWeight: 'bold' }}>
+                        <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}>
                             {t('Selected Date and Time:')} {selectedDateTime.toString()}
                         </Text>
                     </View>
