@@ -382,6 +382,7 @@ i18next.use(initReactI18next).init({
                 'Lets travel': 'Lets travel',
                 'Nick name': 'Nick name',
                 'Names': 'Names',
+
                 'Еmail': 'Еmail',
                 'Logout': 'Logout',
                 'Are you sure you want to logout?': 'Are you sure you want to logout?',
@@ -782,6 +783,10 @@ i18next.use(initReactI18next).init({
                 'Back to Home': 'Обратно в къщи',
                 'Back to Vehicle': 'Обратно към превозното средство',
                 'Back': 'Обратно',
+
+
+               
+
             }
         },
     }
