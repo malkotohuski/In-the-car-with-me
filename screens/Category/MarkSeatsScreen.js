@@ -60,6 +60,10 @@ function MarkSeatsScreen() {
         });
     };
 
+    const handlerBackToVehicle = () => {
+        navigation.navigate('Vehicle')
+    }
+
     // ... (existing code for renderSeats and renderTires)
 
     // Generate two rows of seats
@@ -204,7 +208,7 @@ function MarkSeatsScreen() {
 
 
             {/* Validate the registration number */}
-            {!isValidRegistrationNumber() && <Text style={{ color: 'red', fontSize: 16, fontWeight: 'bold' }}>
+            {!isValidRegistrationNumber() && <Text style={{ color: '#FF4500', fontSize: 20, fontWeight: 'bold' }}>
                 {t('Invalid registration number format')}
             </Text>}
             {/* Add a new text for choosing free places */}
@@ -250,7 +254,6 @@ function MarkSeatsScreen() {
                 onPress={handleContinue}
                 style={{
                     marginTop: 0,
-
                     backgroundColor: isValidRegistrationNumber() ? 'coral' : 'black', // Change color based on registrationNumber validity
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -271,6 +274,30 @@ function MarkSeatsScreen() {
                         borderWidth: 2,
                     }}>
                     {t('Continue')}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+                onPress={handlerBackToVehicle}
+                style={{
+                    marginTop: 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                    padding: 20
+                }}
+            >
+                <Text
+                    style={{
+                        color: 'white',
+                        backgroundColor: 'coral',
+                        padding: 10,
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        borderRadius: 2,
+                        borderColor: '#F1F1F1',
+                        borderWidth: 2,
+                    }}>
+                    {t('Back to Vehicle')}</Text>
             </TouchableOpacity>
         </View>
     );

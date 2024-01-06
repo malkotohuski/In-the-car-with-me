@@ -71,6 +71,17 @@ export const Navigator = ({ isLoggedIn }) => {
         </TouchableOpacity>
     );
 
+    const renderBackButtonIcon = ({ navigation }) => (
+        <TouchableOpacity
+            style={{ marginRight: 16 }}
+            onPress={() => {
+                navigation.goBack()
+            }}
+        >
+            <Icon name="manage-accounts" size={24} color="white" />
+        </TouchableOpacity>
+    );
+
 
     return (
         <Drawer.Navigator>
@@ -120,6 +131,13 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => renderBackButtonIcon({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
                 name="Mark Seats"
