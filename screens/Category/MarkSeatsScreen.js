@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import styles from '../Home/styles';
 
 function MarkSeatsScreen() {
     const { t } = useTranslation();
@@ -255,10 +256,13 @@ function MarkSeatsScreen() {
                 style={{
                     marginTop: 0,
                     backgroundColor: isValidRegistrationNumber() ? 'coral' : 'black', // Change color based on registrationNumber validity
+                    height: 60,
+                    backgroundColor: 'coral',
+                    borderRadius: 3,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: 14,
-                    fontWeight: 'bold',
+                    padding: 10,
+                    width: 200,
                 }}
                 disabled={!isValidRegistrationNumber()} // Disable button if registrationNumber is invalid
             >
@@ -266,36 +270,35 @@ function MarkSeatsScreen() {
                     style={{
                         color: 'white',
                         backgroundColor: 'coral',
-                        padding: 10,
                         fontSize: 20,
                         fontWeight: 'bold',
-                        borderRadius: 2,
-                        borderColor: '#F1F1F1',
-                        borderWidth: 2,
                     }}>
                     {t('Continue')}</Text>
             </TouchableOpacity>
+            <View
+                style={{
+                    padding: 10
+                }}
+            >
+            </View>
             <TouchableOpacity
                 onPress={handlerBackToVehicle}
                 style={{
-                    marginTop: 0,
+                    height: 60,
+                    backgroundColor: 'coral',
+                    borderRadius: 3,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: 14,
-                    fontWeight: 'bold',
-                    padding: 20
+                    padding: 10,
+                    width: 200,
                 }}
             >
                 <Text
                     style={{
                         color: 'white',
                         backgroundColor: 'coral',
-                        padding: 10,
                         fontSize: 20,
                         fontWeight: 'bold',
-                        borderRadius: 2,
-                        borderColor: '#F1F1F1',
-                        borderWidth: 2,
                     }}>
                     {t('Back to Vehicle')}</Text>
             </TouchableOpacity>

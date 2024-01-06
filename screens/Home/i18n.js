@@ -390,6 +390,9 @@ i18next.use(initReactI18next).init({
                 'Last name': 'Last name',
                 'Confirm Password': 'Confirm Password',
                 'Confirmation Code': 'Confirmation Code',
+                'Back to Home': 'Back to Home',
+                'Back to Vehicle': 'Back to Vehicle',
+                'Back': 'Back',
             }
         },
         bg: {
@@ -776,6 +779,9 @@ i18next.use(initReactI18next).init({
                 'Last name': 'Фамилия',
                 'Confirm Password': 'Потвърди парола',
                 'Confirmation Code': 'Код за потвърждение',
+                'Back to Home': 'Обратно в къщи',
+                'Back to Vehicle': 'Обратно към превозното средство',
+                'Back': 'Обратно',
             }
         },
     }

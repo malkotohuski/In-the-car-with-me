@@ -75,31 +75,18 @@ const Vehicle = () => {
             >
                 <TouchableOpacity
                     onPress={handleContinue}
-                    style={{
-                        marginTop: 100,
-                        padding: 10,
-                        backgroundColor: 'coral',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: 20,
-                        fontWeight: 'bold',
-                    }}
+                    style={styles.buttons}
                 >
                     <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', }}>{t('Continue')}</Text>
                 </TouchableOpacity>
+                <View
+                    style={styles.betweenButtons}
+                ></View>
                 <TouchableOpacity
                     onPress={handlerBackHome}
-                    style={{
-                        marginTop: 100,
-                        padding: 10,
-                        backgroundColor: 'coral',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: 20,
-                        fontWeight: 'bold',
-                    }}
+                    style={styles.buttons}
                 >
-                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', }}>{t('Back to Home')}</Text>
+                    <Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold', }}>{t('Back')}</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -118,6 +105,18 @@ const styles = StyleSheet.create({
     },
     typeVehicle: {
         color: '#F1F1F1',
+    },
+    buttons: {
+        height: 60,
+        backgroundColor: 'coral',
+        borderRadius: 3,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        width: 200,
+    },
+    betweenButtons: {
+        padding: 10
     }
 })
 
