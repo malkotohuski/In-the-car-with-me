@@ -19,6 +19,7 @@ import AccountManager from '../Account/AccountManager';
 import AccountSettings from '../Account/AccountSettings';
 import WelcomeScreen from '../Account/Welcome';
 import LogoutScreen from '../Logout';
+import SettingsScreen from '../Settings/SettingsScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -196,6 +197,17 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     drawerIcon: ({ color, size }) => (
                         <Icons name="routes" size={size} color={color} />
+                    ),
+                }}
+            />
+            <Drawer.Screen
+                name="SettingsScreen"
+                component={SettingsScreen}
+                options={{
+                    title: t('Settings'),
+                    ...screenStyles,
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="settings" size={size} color={color} />
                     ),
                 }}
             />

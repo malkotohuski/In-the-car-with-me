@@ -93,11 +93,20 @@ function Confirm() {
             <Text style={styles.text}>{t('Free seats')}: {markedSeats}</Text>
             <Text style={styles.text}>{t('Registration Number')}: {registrationNumber}</Text>
             <Text style={styles.text}>{t('Time and date of departure')}: {selectedDateTime.toString()}</Text>
-            <Text style={styles.text}>{t('Departure')}: {t('Town/Village')} : {departureCity}</Text>
-            <Text style={styles.text}>{t('Street')}: {departureStreet}  {departureNumber}</Text>
 
-            <Text style={styles.text}>{t('Arrival')}: {t('Town/Village')} : {arrivalCity}</Text>
-            <Text style={styles.text}>{t('Street')}: {arrivalStreet}  {arrivalNumber}</Text>
+            {/* Departure Section */}
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionHeaderText}>{t('Departure')}:</Text>
+                <Text style={styles.text}>{t('Town/Village')}: {departureCity}</Text>
+                <Text style={styles.text}>{t('Street')}: {departureStreet}  {departureNumber}</Text>
+            </View>
+
+            {/* Arrival Section */}
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionHeaderText}>{t('Arrival')}:</Text>
+                <Text style={styles.text}>{t('Town/Village')}: {arrivalCity}</Text>
+                <Text style={styles.text}>{t('Street')}: {arrivalStreet}  {arrivalNumber}</Text>
+            </View>
 
             {showChangesButton && (
                 <TouchableOpacity style={styles.button} onPress={handleGoBack}>
@@ -166,6 +175,20 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#F1F1F1',
         fontSize: 16,
+    },
+    sectionContainer: {
+        marginTop: 10,
+        marginBottom: 20,
+        padding: 10,
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+        borderRadius: 10,
+        width: '90%',
+    },
+    sectionHeaderText: {
+        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#1b1c1e',
+        marginBottom: 5,
     },
 });
 

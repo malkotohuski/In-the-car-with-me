@@ -1,6 +1,6 @@
 // ViewRoutes.js
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import { useRouteContext } from './RouteContext';
 
 function ViewRoutes({ navigation }) {
@@ -14,49 +14,50 @@ function ViewRoutes({ navigation }) {
     }
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.mainContainer}>
             <Image
                 source={require('../../images/view-routes-backgroud.jpg')}
-                style={{
-                    flex: 1,
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                    position: 'absolute',
-                }}
+                style={styles.backgroundImage}
             />
-            {routes.map((route, index) => (
-                <View key={index} style={styles.routeContainer}>
-                    {/* Display route data here */}
-                    <TouchableOpacity
-                        onPress={() => handlerSeeView({
-                            selectedVehicle: route.selectedVehicle,
-                            markedSeats: route.markedSeats,
-                            registrationNumber: route.registrationNumber,
-                            selectedDateTime: route.selectedDateTime,
-                            departureCity: route.departureCity,
-                            departureStreet: route.departureStreet,
-                            departureNumber: route.departureNumber,
-                            arrivalCity: route.arrivalCity,
-                            arrivalStreet: route.arrivalStreet,
-                            arrivalNumber: route.arrivalNumber,
-                        })}
-                    >
-                        <Text
-                            style={styles.routeText}
-                        >{route.departureCity}-{route.arrivalCity}</Text>
-                    </TouchableOpacity>
+            <ScrollView style={styles.scrollView}>
+                <View style={styles.container}>
+                    {routes.map((route, index) => (
+                        <View key={index} style={styles.routeContainer}>
+                            {/* Display route data here */}
+                            <TouchableOpacity
+                                onPress={() => handlerSeeView({
+                                    selectedVehicle: route.selectedVehicle,
+                                    markedSeats: route.markedSeats,
+                                    registrationNumber: route.registrationNumber,
+                                    selectedDateTime: route.selectedDateTime,
+                                    departureCity: route.departureCity,
+                                    departureStreet: route.departureStreet,
+                                    departureNumber: route.departureNumber,
+                                    arrivalCity: route.arrivalCity,
+                                    arrivalStreet: route.arrivalStreet,
+                                    arrivalNumber: route.arrivalNumber,
+                                })}
+                            >
+                                <Text style={styles.routeText}>{route.departureCity}-{route.arrivalCity}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    ))}
                 </View>
-            ))}
-        </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
+
 const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+    },
+    scrollView: {
+    },
     container: {
         flex: 1,
         alignItems: 'flex-start',
-        backgroundColor: 'grey',
     },
     routeContainer: {
         margin: 10,
@@ -67,6 +68,13 @@ const styles = StyleSheet.create({
     routeText: {
         fontSize: 20,
         fontWeight: 'bold',
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
     },
 });
 
