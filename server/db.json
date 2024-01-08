@@ -119,6 +119,18 @@
       "arrivalCity": "Sofia",
       "arrivalStreet": "Ъъх",
       "arrivalNumber": "7"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": 1,
+      "registrationNumber": "СВ1234ДД",
+      "selectedDateTime": "2024-01-08T13:03:24.496Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Targovishte",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
     }
   ]
 }
