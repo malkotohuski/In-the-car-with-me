@@ -8,10 +8,20 @@ function ViewRoutes({ navigation }) {
     const { routes } = useRouteContext();
     console.log('dfsdf', routes);
 
+    const [form, setForm] = useState({
+        darkMode: true,
+        wifi: false,
+        showCollaborators: true,
+        accessibilityMode: false,
+    });
+
     const handlerSeeView = (routeParams) => {
         navigation.navigate('Confirm', { ...routeParams, showConfirmButton: false, showChangesButton: false, showBackButton: true });
         console.log('Route view clicked !!!');
     }
+
+    const isDarkMode = form.darkMode;
+    const sectionStyle = isDarkMode ? styles.darkSection : styles.section;
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -19,10 +29,12 @@ function ViewRoutes({ navigation }) {
                 source={require('../../images/view-routes-backgroud.jpg')}
                 style={styles.backgroundImage}
             />
-            <ScrollView style={styles.scrollView}>
+            <ScrollView style={[styles.scrollView,
+            isDarkMode && styles.containerDark,
+            ]}>
                 <View style={styles.container}>
                     {routes.map((route, index) => (
-                        <View key={index} style={styles.routeContainer}>
+                        <View key={index} style={sectionStyle}>
                             {/* Display route data here */}
                             <TouchableOpacity
                                 onPress={() => handlerSeeView({
@@ -75,6 +87,15 @@ const styles = StyleSheet.create({
         height: '100%',
         resizeMode: 'cover',
         position: 'absolute',
+    },
+    containerDark: {
+        backgroundColor: '#333333', // Dark mode background color
+    },
+    section: {
+        paddingHorizontal: 24,
+        backgroundColor: '#999',
+        borderRadius: 8,
+        marginBottom: 12,
     },
 });
 
