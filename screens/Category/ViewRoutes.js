@@ -1,4 +1,3 @@
-// ViewRoutes.js
 import React, { useState } from 'react';
 import {
     View,
@@ -11,8 +10,11 @@ import {
     TextInput
 } from 'react-native';
 import { useRouteContext } from './RouteContext';
+import { useTranslation } from 'react-i18next';
 
 function ViewRoutes({ navigation }) {
+
+    const { t } = useTranslation();
     const [enteredDepartureCity, setEnteredDepartureCity] = useState('');
     const [enteredArrivalCity, setEnteredArrivalCity] = useState('');
     const { routes } = useRouteContext();
@@ -45,13 +47,13 @@ function ViewRoutes({ navigation }) {
             <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter Departure City"
+                    placeholder={t("Enter Departure City")}
                     value={enteredDepartureCity}
                     onChangeText={(text) => setEnteredDepartureCity(text)}
                 />
                 <TextInput
                     style={styles.input}
-                    placeholder="Enter Arrival City"
+                    placeholder={t("Enter Arrival City")}
                     value={enteredArrivalCity}
                     onChangeText={(text) => setEnteredArrivalCity(text)}
                 />
@@ -112,7 +114,7 @@ const styles = StyleSheet.create({
     },
     input: {
         flex: 1,
-        height: 40,
+        height: 60,
         borderColor: 'gray',
         borderWidth: 1,
         borderRadius: 10,
