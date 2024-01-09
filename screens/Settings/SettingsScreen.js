@@ -32,7 +32,8 @@ const SECTIONS = [
             },
             {
                 id: 'navigation',
-                color: '#32c759',
+                icon: 'navigation',
+                color: '#191A19',
                 label: 'Location',
                 type: 'link',
             },
@@ -76,11 +77,42 @@ const SECTIONS = [
 
 const SettingsScreen = () => {
     const [toggleValues, setToggleValues] = useState({});
+    const [darkMode, setDarkMode] = useState(false);
+
     const handleToggleSwitch = (id) => {
         setToggleValues((prevValues) => ({
             ...prevValues,
             [id]: !prevValues[id],
         }));
+
+        if (id === 'darkMode') {
+            setDarkMode(!toggleValues[id]);
+        }
+    };
+
+    const getContainerStyle = () => {
+        return {
+            flex: 1,
+            backgroundColor: darkMode ? '#101010' : '#fff', // Adjust background color for dark mode
+            padding: 15,
+        };
+    };
+
+    const getSectionHeaderStyle = () => {
+        return {
+            fontSize: 18,
+            fontWeight: 'bold',
+            marginTop: 15,
+            marginBottom: 10,
+            color: darkMode ? '#fff' : '#000', // Adjust text color for dark mode
+        };
+    };
+
+    const getListItemContainerStyle = () => {
+        return {
+            borderBottomWidth: 1,
+            borderColor: darkMode ? '#101010' : '#ddd', // Adjust border color for dark mode
+        };
     };
 
     const renderItem = (item) => {
@@ -90,12 +122,14 @@ const SettingsScreen = () => {
                 return (
                     <ListItem
                         key={item.id}
-                        containerStyle={styles.listItemContainer}
-                        onPress={() => console.log(`Pressed ${item.label}`)} // You can replace this with your action
+                        containerStyle={getListItemContainerStyle()}
+                        onPress={() => console.log(`Pressed ${item.label}`)}
                     >
                         <Icon name={item.icon} color={item.color} />
-                        <ListItem.Content>
-                            <ListItem.Title>{item.label}</ListItem.Title>
+                        <ListItem.Content >
+                            <ListItem.Title style={{ color: darkMode ? '#000' : '#000' }}>
+                                {item.label}
+                            </ListItem.Title>
                         </ListItem.Content>
                         <ListItem.Chevron />
                     </ListItem>
@@ -105,11 +139,13 @@ const SettingsScreen = () => {
                 return (
                     <ListItem
                         key={item.id}
-                        containerStyle={styles.listItemContainer}
+                        containerStyle={getListItemContainerStyle()}
                     >
                         <Icon name={item.icon} color={item.color} />
                         <ListItem.Content>
-                            <ListItem.Title>{item.label}</ListItem.Title>
+                            <ListItem.Title style={{ color: darkMode ? '#000' : '#000' }}>
+                                {item.label}
+                            </ListItem.Title>
                         </ListItem.Content>
                         <Switch
                             value={toggleValues[item.id] || false}
@@ -125,10 +161,10 @@ const SettingsScreen = () => {
 
     return (
         <ScrollView>
-            <View style={styles.container}>
+            <View style={getContainerStyle()}>
                 {SECTIONS.map((section) => (
                     <View key={section.header}>
-                        <Text style={styles.sectionHeader}>{section.header}</Text>
+                        <Text style={getSectionHeaderStyle()}>{section.header}</Text>
                         {section.items.map((item) => renderItem(item))}
                     </View>
                 ))}
