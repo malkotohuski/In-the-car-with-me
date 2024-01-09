@@ -1,83 +1,87 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { ListItem, Icon } from 'react-native-elements'; // You may need to install these components if not already done
+import { ListItem, Icon } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 
 
-const SECTIONS = [
-    {
-        header: 'preferences',
-        icon: 'settings',
-        items: [
-            {
-                id: 'language',
-                icon: 'map',
-                color: '#fe9488',
-                label: 'Language',
-                type: 'language'
-            },
-            {
-                id: 'darkMode',
-                icon: 'dark-mode',
-                color: '#007afe',
-                label: 'Dark Mode',
-                type: 'toggle',
-            },
-            {
-                id: 'wifi',
-                icon: 'wifi',
-                color: '#007afe',
-                label: 'Use Wi-Fi',
-                type: 'toggle',
-            },
-            {
-                id: 'navigation',
-                icon: 'navigation',
-                color: '#191A19',
-                label: 'Location',
-                type: 'link',
-            },
-            {
-                id: 'showCollaborators',
-                icon: 'manage-accounts',
-                color: '#32c759',
-                label: 'Show Collaborators',
-                type: 'toggle',
-            },
-            {
-                id: 'accessibilityMode',
-                icon: 'airplanemode-on',
-                color: '#32c759',
-                label: 'Accessibility Mode',
-                type: 'toggle',
-            },
-            { icon: 'library-music', color: '#fd2d54', label: 'Sounds', type: 'link' },
-            { icon: 'home-repair-service', color: '#fd2d54', label: 'Tools', type: 'link' },
-        ],
-    },
-    {
-        header: 'help',
-        icon: 'help',
-        items: [
-            { icon: 'save', color: '#8c8d91', label: 'Report Bug', type: 'link' },
-            { icon: 'mail', color: '#007afe', label: 'Contact Us', type: 'link' },
-        ],
-    },
-    {
-        header: 'content',
-        icon: 'format-align-center',
-        items: [
-            { icon: 'save', color: '#32c759', label: 'Saved', type: 'link' },
-            { icon: 'download', color: '#fd2d54', label: 'Download', type: 'link' },
-            { icon: 'insert-drive-file', color: '#007afe', label: 'Storage', type: 'link' },
-            { icon: 'info', color: '#fe9488', label: 'Info', type: 'link' },
-        ],
-    },
-];
 
 const SettingsScreen = () => {
     const [toggleValues, setToggleValues] = useState({});
     const [darkMode, setDarkMode] = useState(false);
+    const { t } = useTranslation();
+
+    const SECTIONS = [
+        {
+            header: t('Preferences'),
+            icon: 'settings',
+            items: [
+                {
+                    id: 'language',
+                    icon: 'map',
+                    color: '#fe9488',
+                    label: t('Language'),
+                    type: 'language'
+                },
+                {
+                    id: 'darkMode',
+                    icon: 'dark-mode',
+                    color: '#007afe',
+                    label: t('Dark mode'),
+                    type: 'toggle',
+                },
+                {
+                    id: 'wifi',
+                    icon: 'wifi',
+                    color: '#007afe',
+                    label: t('Use Wi-Fi'),
+                    type: 'toggle',
+                },
+                {
+                    id: 'navigation',
+                    icon: 'navigation',
+                    color: '#191A19',
+                    label: t('Location'),
+                    type: 'link',
+                },
+                {
+                    id: 'showCollaborators',
+                    icon: 'manage-accounts',
+                    color: '#32c759',
+                    label: t('Show Collaborators'),
+                    type: 'toggle',
+                },
+                {
+                    id: 'accessibilityMode',
+                    icon: 'airplanemode-on',
+                    color: '#32c759',
+                    label: t('Accessibility Mode'),
+                    type: 'toggle',
+                },
+                { icon: 'library-music', color: '#fd2d54', label: t('Sounds'), type: 'link' },
+                { icon: 'home-repair-service', color: '#fd2d54', label: t('Tools'), type: 'link' },
+            ],
+        },
+        {
+            header: t('Help'),
+            icon: 'help',
+            items: [
+                { icon: 'save', color: '#8c8d91', label: t('Report Bug'), type: 'link' },
+                { icon: 'mail', color: '#007afe', label: t('Contact Us'), type: 'link' },
+            ],
+        },
+        {
+            header: t('Content'),
+            icon: 'format-align-center',
+            items: [
+                { icon: 'save', color: '#32c759', label: t('Saved'), type: 'link' },
+                { icon: 'download', color: '#fd2d54', label: t('Download'), type: 'link' },
+                { icon: 'insert-drive-file', color: '#007afe', label: t('Storage'), type: 'link' },
+                { icon: 'info', color: '#fe9488', label: t('Info'), type: 'link' },
+            ],
+        },
+    ];
 
     const handleToggleSwitch = (id) => {
         setToggleValues((prevValues) => ({
