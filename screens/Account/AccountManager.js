@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     },
     topRight: {
         position: 'absolute',
-        top: 15,
+        top: 3,
         right: 0,
         marginBottom: 15, // Adjust this value as needed for spacing
         marginRight: 20, // Adjust this value as needed for spacing
