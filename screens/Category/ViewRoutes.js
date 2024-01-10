@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     View,
     Text,
@@ -7,36 +7,58 @@ import {
     Image,
     ScrollView,
     SafeAreaView,
-    TextInput
+    TextInput,
 } from 'react-native';
 import { useRouteContext } from './RouteContext';
 import { useTranslation } from 'react-i18next';
 
 function ViewRoutes({ navigation }) {
-
     const { t } = useTranslation();
     const [enteredDepartureCity, setEnteredDepartureCity] = useState('');
     const [enteredArrivalCity, setEnteredArrivalCity] = useState('');
-    const { routes } = useRouteContext();
-    console.log('dfsdf', routes);
-
-
+    const { routes, deleteRoute } = useRouteContext(); // Assuming you have a routes array in your context
+    console.log('Routes is :', routes);
 
     const handlerSeeView = (routeParams) => {
         navigation.navigate('Confirm', {
             ...routeParams,
             showConfirmButton: false,
             showChangesButton: false,
-            showBackButton: true
+            showBackButton: true,
         });
-        console.log('Route view clicked !!!');
-    }
+        console.log('Route view clicked !');
+    };
 
-    const filteredRoutes = routes.filter(
-        (route) =>
-            route.departureCity.toLowerCase().includes(enteredDepartureCity.toLowerCase()) &&
-            route.arrivalCity.toLowerCase().includes(enteredArrivalCity.toLowerCase())
-    );
+    const filterAndDeleteExpiredRoutes = () => {
+        const currentDate = new Date();
+
+        routes.forEach((route) => {
+            const routeDate = new Date(route.selectedDateTime);
+            if (routeDate <= currentDate) {
+                // Assuming each route has a unique identifier (like an 'id' field)
+                // Call the deleteRoute function from your context to delete the expired route
+                deleteRoute(route.id);
+            }
+        });
+    };
+
+    useEffect(() => {
+        const intervalId = setInterval(filterAndDeleteExpiredRoutes, 60000); // 1 minute interval
+
+        return () => clearInterval(intervalId); // Cleanup the interval when unmounted
+    }, []);
+
+    const filteredRoutes = routes
+        .filter(
+            (route) =>
+                route.departureCity.toLowerCase().includes(enteredDepartureCity.toLowerCase()) &&
+                route.arrivalCity.toLowerCase().includes(enteredArrivalCity.toLowerCase())
+        )
+        .filter((route) => {
+            const routeDate = new Date(route.selectedDateTime);
+            return routeDate >= new Date();
+        });
+
 
     return (
         <SafeAreaView style={styles.mainContainer}>
