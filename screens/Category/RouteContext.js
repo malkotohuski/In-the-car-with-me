@@ -6,7 +6,6 @@ const API_BASE_URL = 'http://10.0.2.2:3000';
 const RouteContext = createContext();
 
 export const RouteProvider = ({ children }) => {
-
     const [routes, setRoutes] = useState([]);
 
     useEffect(() => {
@@ -19,31 +18,44 @@ export const RouteProvider = ({ children }) => {
 
             if (response.status === 200) {
                 console.log('asdad', response);
-                // Successful login, update the global state with user data
                 setRoutes(response.data);
             } else {
-                // Handle login failure (e.g., display an error message)
                 alert(t('Login failed. Please check your credentials.'));
             }
         } catch (error) {
-            // Handle any error that occurred during the API call
             console.error('Login Error:', error);
             alert(t('Login failed.Invalid email or password.'));
         }
-
     }
 
     const addRoute = (newRoute) => {
         setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
-
     };
+
+    const deleteRoute = (routeId) => {
+        setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
+    };
+
+    useEffect(() => {
+        // Fetch routes initially
+        fetchAllRoutes();
+        // Set up interval for subsequent fetches
+        const intervalId = setInterval(fetchAllRoutes, 60000); // 1 minute interval
+
+        return () => clearInterval(intervalId); // Cleanup the interval when unmounted
+    }, []);
+
     return (
-        <RouteContext.Provider value={{ routes, addRoute }}>
+        <RouteContext.Provider value={{ routes, addRoute, deleteRoute }}>
             {children}
         </RouteContext.Provider>
     );
 };
 
 export const useRouteContext = () => {
-    return useContext(RouteContext);
+    const context = useContext(RouteContext);
+    if (!context) {
+        throw new Error('useRouteContext must be used within a RouteProvider');
+    }
+    return context;
 };
