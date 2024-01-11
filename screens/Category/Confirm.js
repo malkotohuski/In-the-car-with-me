@@ -11,7 +11,7 @@ function Confirm() {
 
     const route = useRoute();
     const selectedVehicle = route.params.selectedVehicle;
-    const markedSeats = route.params.markedSeats.length;
+    const markedSeats = route.params.markedSeats;
     const registrationNumber = route.params.registrationNumber;
     const { selectedDateTime } = route.params;
     const departureCity = route.params.departureCity;
@@ -24,6 +24,7 @@ function Confirm() {
     const showConfirmButton = route.params.showConfirmButton !== undefined ? route.params.showConfirmButton : true;
     const showChangesButton = route.params.showChangesButton !== undefined ? route.params.showChangesButton : true;
     const showBackButton = route.params.showBackButton !== undefined ? route.params.showBackButton : false;
+    const routeRequestButton = route.params.showBackButton !== undefined ? route.params.showBackButton : false;
 
     const handleGoBack = () => {
         navigation.navigate('Vehicle'); // Go back to the previous screen
@@ -76,6 +77,10 @@ function Confirm() {
         navigation.navigate('View routes');
     }
 
+    const handlerRouteRequest = () => {
+        navigation.navigate('RouteDetails', { markedSeats });
+    };
+
     return (
         <View style={styles.container}>
             <Image
@@ -121,6 +126,11 @@ function Confirm() {
             {showBackButton && (
                 <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackRoutes}>
                     <Text style={styles.buttonText}>{t('Back')}</Text>
+                </TouchableOpacity>
+            )}
+            {routeRequestButton && (
+                <TouchableOpacity style={styles.buttonConfirm} onPress={handlerRouteRequest}>
+                    <Text style={styles.buttonText}>{t('Route request')}</Text>
                 </TouchableOpacity>
             )}
         </View>

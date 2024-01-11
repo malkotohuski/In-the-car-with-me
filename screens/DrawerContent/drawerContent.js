@@ -20,6 +20,7 @@ import AccountSettings from '../Account/AccountSettings';
 import WelcomeScreen from '../Account/Welcome';
 import LogoutScreen from '../Logout';
 import SettingsScreen from '../Settings/SettingsScreen';
+import RouteDetails from '../RequestScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -244,6 +245,15 @@ export const Navigator = ({ isLoggedIn }) => {
                 key="AccountSettings"
                 options={{
                     title: t('Create an account'),
+                    ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="RouteDetails"
+                component={RouteDetails}
+                options={{
+                    title: t('Route Details'),
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}

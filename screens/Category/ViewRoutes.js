@@ -25,6 +25,7 @@ function ViewRoutes({ navigation }) {
             showConfirmButton: false,
             showChangesButton: false,
             showBackButton: true,
+            routeRequestButton: true,
         });
         console.log('Route view clicked !');
     };

@@ -413,6 +413,8 @@ i18next.use(initReactI18next).init({
                 'Download': 'Download',
                 'Storage': 'Storage',
                 'Info': 'Info',
+                'Route Details': 'Route Details',
+                'Trip request': 'Trip request',
             }
         },
         bg: {
@@ -822,6 +824,8 @@ i18next.use(initReactI18next).init({
                 'Download': 'Изтегли',
                 'Storage': 'Съхранение',
                 'Info': 'Информация',
+                'Route Details': 'Подробности за маршрута',
+                'Trip request': 'Заявка за пътуване',
             }
         },
     }
