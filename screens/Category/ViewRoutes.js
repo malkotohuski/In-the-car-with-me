@@ -46,7 +46,7 @@ function ViewRoutes({ navigation }) {
         const intervalId = setInterval(filterAndDeleteExpiredRoutes, 60000); // 1 minute interval
 
         return () => clearInterval(intervalId); // Cleanup the interval when unmounted
-    }, []);
+    });
 
     const filteredRoutes = routes
         .filter(
@@ -101,6 +101,9 @@ function ViewRoutes({ navigation }) {
                                 })
                             }
                         >
+                            <Text style={styles.routeText}>
+                                {new Date(route.selectedDateTime).toLocaleDateString()} {/* Displaying date without time */}
+                            </Text>
                             <Text style={styles.routeText}>
                                 {route.departureCity}-{route.arrivalCity}
                             </Text>

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, TextInput, Alert, Image } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
-import styles from '../Home/styles';
 
 function MarkSeatsScreen() {
     const { t } = useTranslation();
@@ -10,6 +9,7 @@ function MarkSeatsScreen() {
     const [markedSeats, setMarkedSeats] = useState([]);
     const [registrationNumber, setRegistrationNumber] = useState('');
     const [selectedFreePlaces, setSelectedFreePlaces] = useState(0);
+    const [showInvalidRegistrationAlert, setShowInvalidRegistrationAlert] = useState(false);
 
     const route = useRoute();
     /*     console.log('Route Params:', route.params); // Log the entire route parameters */
@@ -44,6 +44,9 @@ function MarkSeatsScreen() {
             // Show an alert if the registration number is invalid
             Alert.alert(t('Invalid Registration Number'), t('Please enter a valid registration number.'));
             return;
+        } else {
+            // Reset the state when the registration number is valid
+            setShowInvalidRegistrationAlert(false);
         }
 
         if (selectedFreePlaces === 0) {
@@ -191,7 +194,6 @@ function MarkSeatsScreen() {
                     borderColor: '#F1F1F1',
                     borderWidth: 2,
                     margin: 10,
-                    padding: 5,
                     textAlign: 'center',
                     color: '#F1F1F1',
                     fontSize: 16,
@@ -209,9 +211,11 @@ function MarkSeatsScreen() {
 
 
             {/* Validate the registration number */}
-            {!isValidRegistrationNumber() && <Text style={{ color: '#FF4500', fontSize: 20, fontWeight: 'bold' }}>
-                {t('Invalid registration number format')}
-            </Text>}
+            {showInvalidRegistrationAlert && (
+                <Text style={{ color: '#FF4500', fontSize: 20, fontWeight: 'bold' }}>
+                    {t('Invalid registration number format')}
+                </Text>
+            )}
             {/* Add a new text for choosing free places */}
             <Text
                 style={{ fontSize: 20, fontWeight: 'bold', color: '#F1F1F1' }}
@@ -219,9 +223,6 @@ function MarkSeatsScreen() {
             <Text
                 style={{ fontSize: 20, fontWeight: 'bold', color: '#F1F1F1' }}
             >{`${selectedFreePlaces}`}</Text>
-
-
-
             {/* Wrap renderSeats and renderTires in a View with styling for the car shape */}
             <View
                 style={{
@@ -242,7 +243,7 @@ function MarkSeatsScreen() {
                         marginVertical: 20,
                         flexDirection: 'column',
                         alignItems: 'center',
-                        height: 230
+                        height: 200
                     }}
                 >
                     {renderSeats()}
@@ -264,7 +265,7 @@ function MarkSeatsScreen() {
                     padding: 10,
                     width: 200,
                 }}
-                disabled={!isValidRegistrationNumber()} // Disable button if registrationNumber is invalid
+
             >
                 <Text
                     style={{
@@ -284,13 +285,13 @@ function MarkSeatsScreen() {
             <TouchableOpacity
                 onPress={handlerBackToVehicle}
                 style={{
-                    height: 60,
+                    height: 80,
                     backgroundColor: 'coral',
                     borderRadius: 3,
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 10,
-                    width: 200,
+                    width: 280,
                 }}
             >
                 <Text

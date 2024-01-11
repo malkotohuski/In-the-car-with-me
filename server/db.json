@@ -695,6 +695,78 @@
       "arrivalCity": "Targovishte",
       "arrivalStreet": "1",
       "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": 1,
+      "registrationNumber": "С1234АС",
+      "selectedDateTime": "2024-01-11T08:01:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Sofia",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": 1,
+      "registrationNumber": "СВ1234АА",
+      "selectedDateTime": "2024-01-11T08:07:00.000Z",
+      "departureCity": "Търговище",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "София",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": 1,
+      "registrationNumber": "СВ1234АА",
+      "selectedDateTime": "2024-01-11T09:20:00.000Z",
+      "departureCity": "Търговище",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "София",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": 1,
+      "registrationNumber": "СВ1234АА",
+      "selectedDateTime": "2024-01-12T09:23:00.000Z",
+      "departureCity": "Търговище",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "София",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": 1,
+      "registrationNumber": "СВ1234АА",
+      "selectedDateTime": "2024-01-11T09:26:00.000Z",
+      "departureCity": "Пловдив",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Видин",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": 1,
+      "registrationNumber": "СВ1234АА",
+      "selectedDateTime": "2024-01-11T09:36:00.000Z",
+      "departureCity": "Русе",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Разград",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
     }
   ]
 }
