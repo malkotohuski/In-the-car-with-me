@@ -4,6 +4,7 @@ const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 const cors = require('cors');
 const nodemailer = require('nodemailer');
+const axios = require('axios');
 
 // Enable CORS, bodyParser and other middlewares
 server.use(middlewares);
@@ -115,6 +116,56 @@ server.post('/verify-confirmation-code', (req, res) => {
 
     return res.status(200).json({ message: 'Confirmation code verified.' });
 });
+
+// New endpoint to send a request to the "imala" server
+server.post('/send-request-to-email', async (req, res) => {
+    const { email, text } = req.body;
+
+    console.log('Send Request to Email:', { email, text });
+
+    try {
+        // Retrieve the user by email
+        const user = router.db.get('users').find({ email }).value();
+
+        if (!user) {
+            console.error('User not found with email:', email);
+            return res.status(404).json({ error: 'User not found.' });
+        }
+
+        // Create a transporter for sending emails
+        const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'malkotohuski@gmail.com', // replace with your Gmail address
+                pass: 'ymnayjeocfmplvwb', // replace with your Gmail password
+            },
+        });
+
+        // Send the email to the user's email address
+        const emailOptions = {
+            from: 'malkotohuski@gmail.com', // replace with your Gmail address
+            to: user.email,
+            subject: 'Your Subject',
+            text: `Hello ${user.username},\n\n${text}`,
+        };
+
+        transporter.sendMail(emailOptions, (error, info) => {
+            if (error) {
+                console.error('Email sending error:', error);
+                return res.status(500).json({ error: 'Failed to send email.' });
+            } else {
+                console.log('Email sent successfully:', info.response);
+                return res.status(200).json({ message: 'Email sent successfully.' });
+            }
+        });
+
+    } catch (error) {
+        // Handle errors appropriately
+        console.error('Email Server Error:', error);
+        return res.status(500).json({ error: 'Failed to send request to Email server.' });
+    }
+});
+
 
 // Handle user login
 server.post('/login', (req, res) => {

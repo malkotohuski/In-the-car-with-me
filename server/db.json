@@ -767,6 +767,47 @@
       "arrivalCity": "Разград",
       "arrivalStreet": "1",
       "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": 1,
+      "registrationNumber": "СВ1234АА",
+      "selectedDateTime": "2024-01-11T10:36:00.000Z",
+      "departureCity": "Плевен",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Силистра",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Мотоциклет",
+      "markedSeats": 2,
+      "registrationNumber": "СВ1234АА",
+      "selectedDateTime": "2024-01-11T11:36:00.000Z",
+      "departureCity": "Плевен",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Силистра",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        2,
+        5,
+        4,
+        3
+      ],
+      "registrationNumber": "А1234АД",
+      "selectedDateTime": "2024-01-11T13:42:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "12",
+      "arrivalCity": "Panagyurishte",
+      "arrivalStreet": "2",
+      "arrivalNumber": "31"
     }
   ]
 }
