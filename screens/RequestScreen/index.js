@@ -26,14 +26,30 @@ function RouteDetails() {
 
             console.log('Sending trip request to:', routeCreatorEmail);
 
-            const emailResponse = await api.post('/send-request-to-email', {
-                email: routeCreatorEmail,
-                text: 'Your desired text here', // Replace with the actual text you want to send
-            });
+            Alert.alert(
+                'Confirm',
+                'Do you want to approve requests for your route?',
+                [
+                    {
+                        text: 'Cancel',
+                        style: 'cancel',
+                    },
+                    {
+                        text: 'OK',
+                        onPress: async () => {
+                            const emailResponse = await api.post('/send-request-to-email', {
+                                email: routeCreatorEmail,
+                                text: t('You have a new request for your route.'), // Replace with the actual text you want to send
+                            });
 
-            // Handle the response from the Email server if needed
-            console.log('Email Response:', emailResponse);
-            Alert.alert('Success', 'Trip request sent successfully.');
+                            // Handle the response from the Email server if needed
+                            console.log('Email Response:', emailResponse);
+                            Alert.alert('Success', 'Trip request sent successfully.');
+                        },
+                    },
+                ],
+                { cancelable: false }
+            );
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
             console.error('Email Server Error:', emailError);
@@ -41,6 +57,10 @@ function RouteDetails() {
             // You can show an alert or handle the error in a way that fits your application
         }
     };
+
+    const handlerBackToViewRoute = () => {
+        navigation.navigate('View routes')
+    }
 
     return (
         <View style={styles.container}>
@@ -68,7 +88,7 @@ function RouteDetails() {
                 <Text style={styles.buttonText}>{t('Trip request')}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonConfirm} onPress={() => navigation.goBack()}>
+            <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackToViewRoute}>
                 <Text style={styles.buttonText}>{t('Back')}</Text>
             </TouchableOpacity>
         </View>
