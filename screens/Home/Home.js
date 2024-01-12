@@ -89,7 +89,7 @@ function HomePage({ navigation }) {
                         <TouchableOpacity style={styles.routeViewerButton} onPress={handlerRouteViewer} >
                             <Text
                                 style={styles.textButtons}
-                            >{t('View routes')}</Text>
+                            >{t('Requests')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>

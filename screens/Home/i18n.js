@@ -416,6 +416,8 @@ i18next.use(initReactI18next).init({
                 'Info': 'Info',
                 'Route Details': 'Route Details',
                 'Trip request': 'Trip request',
+                'You have a new request for your route.': 'You have a new request for your route.',
+                'Requests': 'Requests',
             }
         },
         bg: {
@@ -827,6 +829,8 @@ i18next.use(initReactI18next).init({
                 'Info': 'Информация',
                 'Route Details': 'Подробности за маршрута',
                 'Trip request': 'Заявка за пътуване',
+                'You have a new request for your route.': 'Имате нова заявка за ваш маршрут .',
+                'Requests': 'Заявки',
             }
         },
     }

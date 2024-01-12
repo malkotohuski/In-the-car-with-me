@@ -808,6 +808,21 @@
       "arrivalCity": "Panagyurishte",
       "arrivalStreet": "2",
       "arrivalNumber": "31"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4,
+        3
+      ],
+      "registrationNumber": "СВ7732ФА",
+      "selectedDateTime": "2024-01-12T15:47:00.000Z",
+      "departureCity": "Targovishte",
+      "departureStreet": "som1",
+      "departureNumber": "12",
+      "arrivalCity": "Rakitovo",
+      "arrivalStreet": "som2",
+      "arrivalNumber": "1"
     }
   ]
 }
