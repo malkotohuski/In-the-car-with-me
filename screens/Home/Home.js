@@ -75,7 +75,7 @@ function HomePage({ navigation }) {
                         <TouchableOpacity style={styles.vehicleButton} onPress={handlerVehicle} >
                             <Text
                                 style={styles.textButtons}
-                            >{t('Register your vehicle')}</Text>
+                            >{t('Create a route')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>

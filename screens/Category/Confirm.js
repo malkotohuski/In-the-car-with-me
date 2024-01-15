@@ -95,9 +95,9 @@ function Confirm() {
             />
             <Text style={styles.headerText}>{t('Review')}:</Text>
             <Text style={styles.text}>{t('Vehicle')}: {selectedVehicle}</Text>
-            <Text style={styles.text}>{t('Free seats')}: {markedSeats}</Text>
+            <Text style={styles.text}>{t('Free seats')}: {markedSeats.length}</Text>
             <Text style={styles.text}>{t('Registration Number')}: {registrationNumber}</Text>
-            <Text style={styles.text}>{t('Time and date of departure')}: {selectedDateTime.toString()}</Text>
+            <Text style={styles.text}>{t('Time and date of departure')}: {selectedDateTime.toLocaleString()}</Text>
 
             {/* Departure Section */}
             <View style={styles.sectionContainer}>
