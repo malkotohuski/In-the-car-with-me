@@ -103,7 +103,7 @@ function ViewRoutes({ navigation }) {
                             }
                         >
                             <Text style={styles.routeText}>
-                                {new Date(route.selectedDateTime).toLocaleDateString()} {/* Displaying date without time */}
+                                {new Date(route.selectedDateTime).toLocaleString()} {/* Displaying date without time */}
                             </Text>
                             <Text style={styles.routeText}>
                                 {route.departureCity}-{route.arrivalCity}

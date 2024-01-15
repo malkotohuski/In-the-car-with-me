@@ -823,6 +823,36 @@
       "arrivalCity": "Rakitovo",
       "arrivalStreet": "som2",
       "arrivalNumber": "1"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        2,
+        4,
+        5
+      ],
+      "registrationNumber": "С2677АН",
+      "selectedDateTime": "2024-01-19T12:10:00.000Z",
+      "departureCity": "София",
+      "departureStreet": "Бели мел",
+      "departureNumber": "10",
+      "arrivalCity": "Панагюрище",
+      "arrivalStreet": "Добри Войников",
+      "arrivalNumber": "13"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "А4221АВ",
+      "selectedDateTime": "2024-01-16T13:40:00.000Z",
+      "departureCity": "Пловдив",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Габрово",
+      "arrivalStreet": "2",
+      "arrivalNumber": "2"
     }
   ]
 }
