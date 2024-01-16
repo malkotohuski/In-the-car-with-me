@@ -20,7 +20,7 @@ import AccountSettings from '../Account/AccountSettings';
 import WelcomeScreen from '../Account/Welcome';
 import LogoutScreen from '../Logout';
 import SettingsScreen from '../Settings/SettingsScreen';
-import RouteDetails from '../RequestScreen';
+import { RouteRequestApprovalScreen, RouteDetails } from '../RequestScreen/index'
 
 const Drawer = createDrawerNavigator();
 
@@ -254,6 +254,15 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={RouteDetails}
                 options={{
                     title: t('Route Details'),
+                    ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="RouteRequestApprovalScreen"
+                component={RouteRequestApprovalScreen}
+                options={{
+                    title: t('RouteRequestApprovalScreen'),
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}
