@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     captionContainer: {
         position: 'absolute',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)', // Adjust the background color and opacity
+        backgroundColor: '#f1f1f1', // Adjust the background color and opacity
         padding: 20,
         borderRadius: 10,
         top: 100
