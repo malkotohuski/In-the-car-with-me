@@ -867,6 +867,20 @@
       "arrivalCity": "Пазарджик",
       "arrivalStreet": "2",
       "arrivalNumber": "2"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С2223АА",
+      "selectedDateTime": "2024-01-16T16:52:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Sofia",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1"
     }
   ]
 }
