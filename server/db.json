@@ -853,6 +853,20 @@
       "arrivalCity": "Габрово",
       "arrivalStreet": "2",
       "arrivalNumber": "2"
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        2
+      ],
+      "registrationNumber": "РА2253СА",
+      "selectedDateTime": "2024-01-18T10:31:00.000Z",
+      "departureCity": "Панагюрище",
+      "departureStreet": "1",
+      "departureNumber": "2",
+      "arrivalCity": "Пазарджик",
+      "arrivalStreet": "2",
+      "arrivalNumber": "2"
     }
   ]
 }

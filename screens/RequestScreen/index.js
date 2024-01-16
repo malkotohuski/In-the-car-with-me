@@ -5,6 +5,46 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { useAuth } from '../Authentication/AuthContext';
 import axios from 'axios';
 
+function RouteRequestApprovalScreen({ route }) {
+    const { t } = useTranslation();
+    const navigation = useNavigation();
+    const { user } = useAuth();
+    const { requestingUser } = route.params; // Passed user details from the previous screen
+
+    const handleApproveRequest = () => {
+        // Implement the logic to approve the route request
+        // You may want to send a notification or update the database accordingly
+        // After handling the request, you can navigate back to the previous screen
+        navigation.navigate('RouteDetails');
+    };
+
+    const handleRejectRequest = () => {
+        // Implement the logic to reject the route request
+        // You may want to send a notification or update the database accordingly
+        // After handling the request, you can navigate back to the previous screen
+        navigation.navigate('RouteDetails');
+    };
+
+    return (
+        <View style={styles.container}>
+            {/* Display user details who wants to use the route */}
+            <Text style={styles.headerText}>{t('Route Request Details')}:</Text>
+            <Text style={styles.text}>{t('Nick name')}: {requestingUser.username}</Text>
+            <Text style={styles.text}>{t('Names')}: {requestingUser.fName} {requestingUser.lName}</Text>
+            <Text style={styles.text}>{t('Email')}: {requestingUser.email}</Text>
+
+            {/* Add buttons to approve or reject the route request */}
+            <TouchableOpacity style={styles.buttonConfirm} onPress={handleApproveRequest}>
+                <Text style={styles.buttonText}>{t('Approve Request')}</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.buttonConfirm} onPress={handleRejectRequest}>
+                <Text style={styles.buttonText}>{t('Reject Request')}</Text>
+            </TouchableOpacity>
+        </View>
+    );
+}
+
 const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -50,6 +90,7 @@ function RouteDetails() {
                 ],
                 { cancelable: false }
             );
+            navigation.navigate('RouteRequestApprovalScreen', { requestingUser: user?.user });
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
             console.error('Email Server Error:', emailError);
@@ -135,4 +176,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default RouteDetails;
+export { RouteDetails, RouteRequestApprovalScreen };
