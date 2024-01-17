@@ -52,6 +52,8 @@ function ViewRoutes({ navigation }) {
     const filteredRoutes = routes
         .filter(
             (route) =>
+                route.departureCity &&
+                route.arrivalCity &&
                 route.departureCity.toLowerCase().includes(enteredDepartureCity.toLowerCase()) &&
                 route.arrivalCity.toLowerCase().includes(enteredArrivalCity.toLowerCase())
         )

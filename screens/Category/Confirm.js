@@ -31,6 +31,7 @@ function Confirm() {
     };
 
     const handleConfirm = async () => {
+        const userId = 1705505759437;
         const newRoute = {
             selectedVehicle,
             markedSeats,
@@ -51,6 +52,7 @@ function Confirm() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
+                    userId,
                     route: newRoute,
                 }),
             });
@@ -72,6 +74,7 @@ function Confirm() {
 
         navigation.navigate('View routes'); // Navigate to ViewRoutes
     };
+
 
     const handlerBackRoutes = () => {
         navigation.navigate('View routes');

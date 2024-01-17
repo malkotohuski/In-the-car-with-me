@@ -18,9 +18,9 @@ function generateConfirmationCode() {
 
 // Handle user registration
 server.post('/register', (req, res) => {
-    const { username, useremail, userpassword, fName, lName, userImage } = req.body;
+    const { username, useremail, userpassword, fName, lName, userImage, routes } = req.body;
 
-    console.log('Registration Request:', { username, useremail, userpassword, fName, lName, userImage });
+    console.log('Registration Request:', { username, useremail, userpassword, fName, lName, userImage, routes });
 
     // Validation (you can add more checks as needed)
     if (!username || !useremail || !userpassword) {
@@ -50,7 +50,7 @@ server.post('/register', (req, res) => {
         lName,
         userImage,
         confirmationCode,
-        routes: [], // Assign the confirmation code to the user
+        routes: []
     };
 
     router.db.get('users').push(user).write();
@@ -83,16 +83,24 @@ server.post('/register', (req, res) => {
 });
 
 server.post('/create-route', (req, res) => {
-    const { route } = req.body;
+    const { userId, route } = req.body;
 
     // Find the user by ID
-    const id = router.db.get('routes').size().value() + 1;
+    const user = router.db.get('users').find({ id: userId }).value();
+
+    if (!user) {
+        return res.status(404).json({ error: 'User not found.' });
+    }
+
     // Add the new route to the user's routes array
-    const newRoute = { ...route, id };
-    router.db.get('routes').push(route).write();
+    const newRoute = { ...route, id: Date.now() };
+    user.routes.push(newRoute);
+
+    // Update the user in the database
+    router.db.get('users').find({ id: userId }).assign(user).write();
 
     return res.status(201).json({ message: 'Route created successfully.', route: newRoute });
-});
+})
 
 // Verification endpoint
 server.post('/verify-confirmation-code', (req, res) => {
