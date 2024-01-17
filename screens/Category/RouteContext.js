@@ -1,3 +1,5 @@
+
+
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -14,10 +16,9 @@ export const RouteProvider = ({ children }) => {
 
     const fetchAllRoutes = async () => {
         try {
-            const response = await axios.get(`${API_BASE_URL}/routes`);
+            const response = await axios.get(`${API_BASE_URL}/users`);
 
             if (response.status === 200) {
-                console.log('asdad', response);
                 setRoutes(response.data);
             } else {
                 alert(t('Login failed. Please check your credentials.'));
@@ -36,14 +37,29 @@ export const RouteProvider = ({ children }) => {
         setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
     };
 
-    useEffect(() => {
-        // Fetch routes initially
+    const filterAndDeleteExpiredRoutes = async () => {
+        const currentDate = new Date();
+
+        for (const route of routes) {
+            const routeDate = new Date(route.selectedDateTime);
+
+            if (routeDate <= currentDate) {
+                await axios.delete(`${API_BASE_URL}/users/${route.id}`);
+                deleteRoute(route.id);
+            }
+        }
+
+        // Fetch routes again after deletions
         fetchAllRoutes();
-        // Set up interval for subsequent fetches
-        const intervalId = setInterval(fetchAllRoutes, 60000); // 1 minute interval
+    };
+
+
+
+    useEffect(() => {
+        const intervalId = setInterval(filterAndDeleteExpiredRoutes, 20000); // 1 minute interval
 
         return () => clearInterval(intervalId); // Cleanup the interval when unmounted
-    }, []);
+    }, [routes]);
 
     return (
         <RouteContext.Provider value={{ routes, addRoute, deleteRoute }}>
