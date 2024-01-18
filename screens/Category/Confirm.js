@@ -3,11 +3,13 @@ import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
+import { useAuth } from '../Authentication/AuthContext';
 
 function Confirm() {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const { addRoute } = useRouteContext();
+    const { user } = useAuth();
 
     const route = useRoute();
     const selectedVehicle = route.params.selectedVehicle;
@@ -31,7 +33,9 @@ function Confirm() {
     };
 
     const handleConfirm = async () => {
-        const userId = 1705505759437;
+        const userId = user?.user?.id;
+        console.log('work?', userId);
+
         const newRoute = {
             selectedVehicle,
             markedSeats,
