@@ -37,22 +37,18 @@ export const RouteProvider = ({ children }) => {
         setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
     };
 
-    const filterAndDeleteExpiredRoutes = async () => {
+    const filterAndDeleteExpiredRoutes = () => {
         const currentDate = new Date();
+        console.log('current date', currentDate);
 
-        for (const route of routes) {
+        const filteredRoutes = routes.filter((route) => {
             const routeDate = new Date(route.selectedDateTime);
+            console.log('sdsd', routeDate);
+            return routeDate >= currentDate;
+        });
 
-            if (routeDate <= currentDate) {
-                await axios.delete(`${API_BASE_URL}/users/${route.id}`);
-                deleteRoute(route.id);
-            }
-        }
-
-        // Fetch routes again after deletions
-        fetchAllRoutes();
+        setRoutes(filteredRoutes);
     };
-
 
 
     useEffect(() => {
