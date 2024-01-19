@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from '../Authentication/AuthContext';
 
 const API_BASE_URL = 'http://10.0.2.2:3000';
 
@@ -9,6 +10,8 @@ const RouteContext = createContext();
 
 export const RouteProvider = ({ children }) => {
     const [routes, setRoutes] = useState([]);
+    const { user } = useAuth();
+    const userRoutes = user?.user?.routes;
 
     useEffect(() => {
         fetchAllRoutes();
@@ -38,10 +41,11 @@ export const RouteProvider = ({ children }) => {
     };
 
     const filterAndDeleteExpiredRoutes = () => {
+
         const currentDate = new Date();
         console.log('current date', currentDate);
 
-        const filteredRoutes = routes.filter((route) => {
+        const filteredRoutes = userRoutes.filter((route) => {
             const routeDate = new Date(route.selectedDateTime);
             console.log('sdsd', routeDate);
             return routeDate >= currentDate;
@@ -52,10 +56,10 @@ export const RouteProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const intervalId = setInterval(filterAndDeleteExpiredRoutes, 20000); // 1 minute interval
+        const intervalId = setInterval(filterAndDeleteExpiredRoutes, 100000); // 1 minute interval
 
         return () => clearInterval(intervalId); // Cleanup the interval when unmounted
-    }, [routes]);
+    }, [userRoutes]);
 
     return (
         <RouteContext.Provider value={{ routes, addRoute, deleteRoute }}>
