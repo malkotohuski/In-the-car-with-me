@@ -8,7 +8,8 @@ import { useAuth } from '../Authentication/AuthContext';
 function Confirm() {
     const { t } = useTranslation();
     const navigation = useNavigation();
-    const { addRoute } = useRouteContext();
+    const routeContext = useRouteContext();
+    const { userRoutes, addRoute } = routeContext;
     const { user } = useAuth();
 
     const route = useRoute();
@@ -33,9 +34,6 @@ function Confirm() {
     };
 
     const handleConfirm = async () => {
-        const userId = user?.user?.id;
-        console.log('work?', userId);
-
         const newRoute = {
             selectedVehicle,
             markedSeats,
@@ -48,6 +46,9 @@ function Confirm() {
             arrivalStreet,
             arrivalNumber,
         };
+
+        console.log('User:', user);
+
         try {
             // Make a POST request to the server to create a new route
             const response = await fetch('http://10.0.2.2:3000/create-route', {
@@ -56,7 +57,6 @@ function Confirm() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    userId,
                     route: newRoute,
                 }),
             });
@@ -64,6 +64,7 @@ function Confirm() {
             if (response.ok) {
                 // Route created successfully
                 console.log('Route created successfully');
+                addRoute(newRoute); // Save the route using the context
                 navigation.navigate('View routes'); // Navigate to ViewRoutes
             } else {
                 // Handle error response
@@ -72,11 +73,7 @@ function Confirm() {
             }
         } catch (error) {
             console.error('Error creating route:', error);
-        }
-
-        addRoute(newRoute); // Save the route using the context
-
-        navigation.navigate('View routes'); // Navigate to ViewRoutes
+        };
     };
 
 

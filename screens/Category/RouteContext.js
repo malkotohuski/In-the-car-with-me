@@ -1,5 +1,3 @@
-
-
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../Authentication/AuthContext';
@@ -11,15 +9,22 @@ const RouteContext = createContext();
 export const RouteProvider = ({ children }) => {
     const [routes, setRoutes] = useState([]);
     const { user } = useAuth();
-    const userRoutes = user?.user?.routes;
 
     useEffect(() => {
         fetchAllRoutes();
     }, []);
 
+    const addRoute = (newRoute) => {
+        setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
+    };
+
+    const deleteRoute = (routeId) => {
+        setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
+    };
+
     const fetchAllRoutes = async () => {
         try {
-            const response = await axios.get(`${API_BASE_URL}/users`);
+            const response = await axios.get(`${API_BASE_URL}/routes`);
 
             if (response.status === 200) {
                 setRoutes(response.data);
@@ -32,34 +37,19 @@ export const RouteProvider = ({ children }) => {
         }
     }
 
-    const addRoute = (newRoute) => {
-        setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
-    };
-
-    const deleteRoute = (routeId) => {
-        setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
-    };
-
     const filterAndDeleteExpiredRoutes = () => {
-
         const currentDate = new Date();
-        console.log('current date', currentDate);
-
-        const filteredRoutes = userRoutes.filter((route) => {
+        const filteredRoutes = routes.filter((route) => {
             const routeDate = new Date(route.selectedDateTime);
-            console.log('sdsd', routeDate);
             return routeDate >= currentDate;
         });
-
         setRoutes(filteredRoutes);
     };
 
-
     useEffect(() => {
         const intervalId = setInterval(filterAndDeleteExpiredRoutes, 100000); // 1 minute interval
-
         return () => clearInterval(intervalId); // Cleanup the interval when unmounted
-    }, [userRoutes]);
+    }, [routes]);
 
     return (
         <RouteContext.Provider value={{ routes, addRoute, deleteRoute }}>
