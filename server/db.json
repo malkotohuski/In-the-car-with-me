@@ -652,6 +652,156 @@
           "arrivalStreet": "1",
           "arrivalNumber": "1",
           "id": 1705650500561
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            4
+          ],
+          "registrationNumber": "А2121АС",
+          "selectedDateTime": "2024-01-25T13:24:00.000Z",
+          "departureCity": "Plovdiv",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Sofia",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706102785911
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            3
+          ],
+          "registrationNumber": "С2121АС",
+          "selectedDateTime": "2024-01-24T13:39:00.000Z",
+          "departureCity": "Sofia",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Plovdiv",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706103390543
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            3
+          ],
+          "registrationNumber": "С2121АС",
+          "selectedDateTime": "2024-01-24T13:39:00.000Z",
+          "departureCity": "Sofia",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Burgas",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706103409053
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            3
+          ],
+          "registrationNumber": "С2121АС",
+          "selectedDateTime": "2024-01-24T13:46:00.000Z",
+          "departureCity": "Sofia",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Burgas",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706103424924
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            3
+          ],
+          "registrationNumber": "А2121АЯ",
+          "selectedDateTime": "2024-01-24T13:38:51.646Z",
+          "departureCity": "Plovdiv",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Sofia",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706103567759
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            3
+          ],
+          "registrationNumber": "А2121АЯ",
+          "selectedDateTime": "2024-01-24T14:38:00.000Z",
+          "departureCity": "Plovdiv",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Sofia",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706103586074
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            3
+          ],
+          "registrationNumber": "А2121АС",
+          "selectedDateTime": "2024-01-24T14:44:00.000Z",
+          "departureCity": "Plovdiv",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Plovdiv",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706103874392
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            3
+          ],
+          "registrationNumber": "С1231АС",
+          "selectedDateTime": "2024-01-24T13:57:00.000Z",
+          "departureCity": "Plovdiv",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Sofia",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706104350468
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            2
+          ],
+          "registrationNumber": "С2111АА",
+          "selectedDateTime": "2024-01-25T11:42:00.000Z",
+          "departureCity": "Sofia",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Gabrovo",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706179342920
+        },
+        {
+          "selectedVehicle": "Car",
+          "markedSeats": [
+            2
+          ],
+          "registrationNumber": "С2211АА",
+          "selectedDateTime": "2024-01-25T14:10:00.000Z",
+          "departureCity": "Plovdiv",
+          "departureStreet": "1",
+          "departureNumber": "1",
+          "arrivalCity": "Sofia",
+          "arrivalStreet": "1",
+          "arrivalNumber": "1",
+          "id": 1706181031457
         }
       ]
     },
@@ -956,6 +1106,83 @@
           "id": 1705568617050
         }
       ]
+    }
+  ],
+  "routes": [
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С2211АА",
+      "selectedDateTime": "2024-01-25T14:20:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Sofia",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "id": 1706185239367
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С2211АА",
+      "selectedDateTime": "2024-01-25T12:26:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Varna",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "id": 1706185285588
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С2211АА",
+      "selectedDateTime": "2024-01-25T12:23:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Varna",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "id": 1706185357486
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С2121АА",
+      "selectedDateTime": "2024-01-25T12:32:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Plovdiv",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "id": 1706185635888
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С2121АА",
+      "selectedDateTime": "2024-01-25T12:30:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Plovdiv",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "id": 1706185797146
     }
   ]
 }

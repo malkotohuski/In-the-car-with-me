@@ -1,13 +1,22 @@
-import React, { createContext, useReducer, useContext, useState } from 'react';
+import React, { createContext, useReducer, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
+const API_BASE_URL = 'http://10.0.2.2:3000';
 // Action types
 const LOGIN = 'LOGIN';
 const LOGOUT = 'LOGOUT';
+const UPDATE_USER = "UPDATE_USER"
 
 // Reducer function
 const authReducer = (state, action) => {
     switch (action.type) {
         case LOGIN:
+            return {
+                ...state,
+                isAuthenticated: true,
+                user: action.payload,
+            };
+        case UPDATE_USER:
             return {
                 ...state,
                 isAuthenticated: true,
@@ -51,8 +60,19 @@ const AuthProvider = ({ children }) => {
         dispatch({ type: LOGOUT });
     };
 
+    const addRoute = (newRoute) => {
+        setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
+    };
+
+    const deleteRoute = (routeId) => {
+        setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
+    };
+
+
+
+
     return (
-        <AuthContext.Provider value={{ state, user, loading, login, logout }}>
+        <AuthContext.Provider value={{ state, user, loading, login, logout, addRoute, deleteRoute }}>
             {children}
         </AuthContext.Provider>
     );
