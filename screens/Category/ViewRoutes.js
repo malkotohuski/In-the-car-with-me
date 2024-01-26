@@ -101,6 +101,12 @@ function ViewRoutes({ navigation }) {
                                     arrivalCity: route.arrivalCity,
                                     arrivalStreet: route.arrivalStreet,
                                     arrivalNumber: route.arrivalNumber,
+                                    userId: route.userId,
+                                    username: route.username,
+                                    userFname: route.userFname,
+                                    userLname: route.userLname,
+                                    userEmail: route.userEmail,
+                                    route: route,
                                 })
                             }
                         >

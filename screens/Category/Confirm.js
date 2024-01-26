@@ -11,7 +11,7 @@ function Confirm() {
     const routeContext = useRouteContext();
     const { userRoutes, addRoute } = routeContext;
     const { user } = useAuth();
-
+    // Routes data :
     const route = useRoute();
     const selectedVehicle = route.params.selectedVehicle;
     const markedSeats = route.params.markedSeats;
@@ -23,7 +23,13 @@ function Confirm() {
     const arrivalCity = route.params.arrivalCity;
     const arrivalStreet = route.params.arrivalStreet;
     const arrivalNumber = route.params.arrivalNumber;
-
+    // User data :
+    const userId = route.params.userId;
+    const username = route.params.username;
+    const userFname = route.params.userFname;
+    const userLname = route.params.userLname;
+    const userEmail = route.params.userEmail;
+    // Buttons logic :
     const showConfirmButton = route.params.showConfirmButton !== undefined ? route.params.showConfirmButton : true;
     const showChangesButton = route.params.showChangesButton !== undefined ? route.params.showChangesButton : true;
     const showBackButton = route.params.showBackButton !== undefined ? route.params.showBackButton : false;
@@ -45,9 +51,12 @@ function Confirm() {
             arrivalCity,
             arrivalStreet,
             arrivalNumber,
+            userId,
+            username,
+            userFname,
+            userLname,
+            userEmail,
         };
-
-        console.log('User:', user);
 
         try {
             // Make a POST request to the server to create a new route
@@ -98,9 +107,9 @@ function Confirm() {
                 }}
             />
             <Text style={styles.headerText}>{t('Review')}:</Text>
-            <Text style={styles.text}>{t('Vehicle')}: {selectedVehicle}</Text>
-            <Text style={styles.text}>{t('Free seats')}: {markedSeats.length}</Text>
-            <Text style={styles.text}>{t('Registration Number')}: {registrationNumber}</Text>
+            <Text style={styles.text}>{t('Username')}:{username}</Text>
+            <Text style={styles.text}>{t('Names')}: {userFname} {userLname}</Text>
+            <Text style={styles.text}>{registrationNumber} - {t('Free seats')}:{markedSeats.length}</Text>
             <Text style={styles.text}>{t('Time and date of departure')}: {selectedDateTime.toLocaleString()}</Text>
 
             {/* Departure Section */}

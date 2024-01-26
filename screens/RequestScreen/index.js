@@ -3,13 +3,18 @@ import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-na
 import { useTranslation } from 'react-i18next';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useAuth } from '../Authentication/AuthContext';
+import { useRouteContext } from '../Category/RouteContext';
 import axios from 'axios';
 
 function RouteRequestApprovalScreen({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const { user } = useAuth();
-    const { requestingUser } = route.params; // Passed user details from the previous screen
+    // Passed user details from the previous screen
+    const { routes } = useRouteContext();
+    const { requestingUser } = route.params;
+    console.log('USER ROUTES :', requestingUser);
+
 
     const handleApproveRequest = () => {
         // Implement the logic to approve the route request
@@ -30,8 +35,8 @@ function RouteRequestApprovalScreen({ route }) {
             {/* Display user details who wants to use the route */}
             <Text style={styles.headerText}>{t('Route Request Details')}:</Text>
             <Text style={styles.text}>{t('Nick name')}: {requestingUser.username}</Text>
-            <Text style={styles.text}>{t('Names')}: {requestingUser.fName} {requestingUser.lName}</Text>
-            <Text style={styles.text}>{t('Email')}: {requestingUser.email}</Text>
+            <Text style={styles.text}>{t('Names')}: {requestingUser.userFname} {requestingUser.userLname}</Text>
+            <Text style={styles.text}>{t('Email')}: {requestingUser.userEmail}</Text>
 
             {/* Add buttons to approve or reject the route request */}
             <TouchableOpacity style={styles.buttonConfirm} onPress={handleApproveRequest}>
@@ -51,20 +56,19 @@ const api = axios.create({
 });
 
 
-function RouteDetails() {
+function RouteDetails({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
-    const route = useRoute();
     const { user } = useAuth();
-    console.log('dfsdf', user);
-
+    const { routes } = useRouteContext();
+    const { requestingUser } = route.params;
+    console.log('USER ROUTES :', requestingUser);
 
     const handlerTripRequest = async () => {
         try {
             // Ensure that you have the correct user data
-            const routeCreatorEmail = user?.user?.email; // Replace with the actual email of the route creator
 
-            console.log('Sending trip request to:', routeCreatorEmail);
+            console.log('Sending trip request to:', route);
 
             Alert.alert(
                 'Confirm',
@@ -117,9 +121,9 @@ function RouteDetails() {
             />
 
             <Text style={styles.headerText}>{t('Route Details')}:</Text>
-            <Text style={styles.text}> {t('Nick name')} : {user?.user?.username}</Text>
-            <Text style={styles.text}> {t('Names')} :  {user?.user?.fName} {user?.user?.lName}</Text>
-            <Text style={styles.text}> {t('Names')} :  {user?.user?.email} </Text>
+            <Text style={styles.text}> {t('Nick name')} : {routes.username}</Text>
+            <Text style={styles.text}> {t('Names')} :  {routes.userFname} {routes.userLname}</Text>
+            <Text style={styles.text}> {t('Names')} :  {routes.userEmail} </Text>
 
 
             {/* Display other route details here based on your requirements */}
