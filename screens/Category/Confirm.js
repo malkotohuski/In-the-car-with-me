@@ -24,11 +24,11 @@ function Confirm() {
     const arrivalStreet = route.params.arrivalStreet;
     const arrivalNumber = route.params.arrivalNumber;
     // User data :
-    const userId = route.params.userId;
-    const username = route.params.username;
-    const userFname = route.params.userFname;
-    const userLname = route.params.userLname;
-    const userEmail = route.params.userEmail;
+    const userId = user?.user?.id;
+    const username = user?.user?.username;
+    const userFname = user?.user?.fName;
+    const userLname = user?.user?.lName;
+    const userEmail = user?.user?.email;
     // Buttons logic :
     const showConfirmButton = route.params.showConfirmButton !== undefined ? route.params.showConfirmButton : true;
     const showChangesButton = route.params.showChangesButton !== undefined ? route.params.showChangesButton : true;

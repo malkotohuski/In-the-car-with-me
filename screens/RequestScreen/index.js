@@ -62,7 +62,7 @@ function RouteDetails({ route }) {
     const { user } = useAuth();
     const { routes } = useRouteContext();
     const { requestingUser } = route.params;
-    console.log('USER ROUTES :', requestingUser);
+    console.log('USER ROUTES :', routes);
 
     const handlerTripRequest = async () => {
         try {
@@ -107,6 +107,8 @@ function RouteDetails({ route }) {
         navigation.navigate('View routes')
     }
 
+
+
     return (
         <View style={styles.container}>
             <Image
@@ -121,9 +123,9 @@ function RouteDetails({ route }) {
             />
 
             <Text style={styles.headerText}>{t('Route Details')}:</Text>
-            <Text style={styles.text}> {t('Nick name')} : {routes.username}</Text>
-            <Text style={styles.text}> {t('Names')} :  {routes.userFname} {routes.userLname}</Text>
-            <Text style={styles.text}> {t('Names')} :  {routes.userEmail} </Text>
+            <Text style={styles.text}> {t('Nick name')} : {route.username}</Text>
+            <Text style={styles.text}> {t('Names')} :  {route.userFname} {route.userLname}</Text>
+            <Text style={styles.text}> {t('Names')} :  {route.userEmail} </Text>
 
 
             {/* Display other route details here based on your requirements */}
