@@ -10,11 +10,8 @@ function RouteRequestApprovalScreen({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const { user } = useAuth();
-    // Passed user details from the previous screen
     const { routes } = useRouteContext();
     const { requestingUser } = route.params;
-    console.log('USER ROUTES :', requestingUser);
-
 
     const handleApproveRequest = () => {
         // Implement the logic to approve the route request
@@ -56,13 +53,13 @@ const api = axios.create({
 });
 
 
-function RouteDetails({ route }) {
+function RouteDetails() {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const { user } = useAuth();
-    const { routes } = useRouteContext();
-    const { requestingUser } = route.params;
-    console.log('USER ROUTES :', routes);
+    const route = useRoute();
+    const { username, userFname, userLname, userEmail } = route.params;
+    console.log('USER ROUTES :', username);
 
     const handlerTripRequest = async () => {
         try {
@@ -82,7 +79,7 @@ function RouteDetails({ route }) {
                         text: 'OK',
                         onPress: async () => {
                             const emailResponse = await api.post('/send-request-to-email', {
-                                email: routeCreatorEmail,
+                                email: userEmail,
                                 text: t('You have a new request for your route.'), // Replace with the actual text you want to send
                             });
 
@@ -94,7 +91,12 @@ function RouteDetails({ route }) {
                 ],
                 { cancelable: false }
             );
-            navigation.navigate('RouteRequestApprovalScreen', { requestingUser: user?.user });
+            navigation.navigate('RouteDetails', {
+                username: username,
+                userFname: userFname,
+                userLname: userLname,
+                userEmail: userEmail,
+            });
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
             console.error('Email Server Error:', emailError);
@@ -123,9 +125,9 @@ function RouteDetails({ route }) {
             />
 
             <Text style={styles.headerText}>{t('Route Details')}:</Text>
-            <Text style={styles.text}> {t('Nick name')} : {route.username}</Text>
-            <Text style={styles.text}> {t('Names')} :  {route.userFname} {route.userLname}</Text>
-            <Text style={styles.text}> {t('Names')} :  {route.userEmail} </Text>
+            <Text style={styles.text}> {t('Nick name')} : {username}</Text>
+            <Text style={styles.text}> {t('Names')} :  {userFname} {userLname}</Text>
+            <Text style={styles.text}> {t('Names')} :  {userEmail} </Text>
 
 
             {/* Display other route details here based on your requirements */}
