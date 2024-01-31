@@ -13,6 +13,7 @@ function RouteRequestApprovalScreen({ route }) {
     const { routes } = useRouteContext();
     const { requestingUser } = route.params;
 
+
     const handleApproveRequest = () => {
         // Implement the logic to approve the route request
         // You may want to send a notification or update the database accordingly
@@ -58,8 +59,12 @@ function RouteDetails() {
     const navigation = useNavigation();
     const { user } = useAuth();
     const route = useRoute();
-    const { username, userFname, userLname, userEmail } = route.params;
-    console.log('USER ROUTES :', username);
+    const { username, userFname, userLname, userEmail, departureCity, arrivalCity } = route.params;
+    // request user data :
+    const requesterUsername = user?.user?.username;
+    const requestUserFirstName = user?.user?.fName;
+    const requestUserLastName = user?.user?.lName;
+    console.log('???', route);
 
     const handlerTripRequest = async () => {
         try {
@@ -80,7 +85,7 @@ function RouteDetails() {
                         onPress: async () => {
                             const emailResponse = await api.post('/send-request-to-email', {
                                 email: userEmail,
-                                text: t('You have a new request for your route.'), // Replace with the actual text you want to send
+                                text: t(`You have a new request for your route.From : ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}.About the route : ${route.departureCity - route.arrivalCity}`),
                             });
 
                             // Handle the response from the Email server if needed
@@ -96,6 +101,8 @@ function RouteDetails() {
                 userFname: userFname,
                 userLname: userLname,
                 userEmail: userEmail,
+                departureCity: departureCity,
+                arrivalCity: arrivalCity,
             });
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
