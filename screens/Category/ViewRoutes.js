@@ -19,7 +19,7 @@ function ViewRoutes({ navigation }) {
     const { routes, deleteRoute } = useRouteContext(); // Assuming you have a routes array in your context
 
     const handlerSeeView = (routeParams) => {
-        navigation.navigate('Confirm', {
+        navigation.navigate('RouteDetails', {
             ...routeParams,
             showConfirmButton: false,
             showChangesButton: false,
