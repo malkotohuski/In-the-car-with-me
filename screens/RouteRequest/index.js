@@ -12,9 +12,10 @@ function RouteRequestScreen({ navigation }) {
 
     useEffect(() => {
         // Заменете 'routeId' с уникален идентификатор на маршрута, за който искате да получите заявките
-        const requestsForRoute = getRequestsForRoute('id');
+        const routeId = routes && routes.length > 0 ? routes[0].id : null; // Пример за извличане на идентификатора на първия маршрут
+        const requestsForRoute = routeId ? getRequestsForRoute(routeId) : [];
         setRouteRequests(requestsForRoute);
-    }, []);
+    }, [routes]); // Променете този ред, ако зависимостите се променят
 
     const getRequestsForRoute = (routeId) => {
         // Предполагаме, че имате функция в контекста, която връща заявките за даден маршрут

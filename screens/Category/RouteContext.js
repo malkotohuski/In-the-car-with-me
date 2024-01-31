@@ -19,8 +19,24 @@ export const RouteProvider = ({ children }) => {
         setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
     };
 
-    const getRequestsForRoute = (routeId) => {
+    const addRequest = (newRequest) => {
+        setRequests((prevRequests) => [...prevRequests, newRequest]);
+    };
+
+    const getRequestsForRouteById = (routeId) => {
         return requests.filter(request => request.routeId === routeId);
+    };
+
+    const getRequestsForRoute = (routeId) => {
+        // Предполагаме, че имате функция в контекста, която връща заявките за даден маршрут
+        // Променете този код според структурата на вашите данни
+        const route = routes.find(route => route.id === routeId);
+
+        if (route && route.requests) {
+            return route.requests.map(request => ({ id: request.id, requestingUser: request.requestingUser }));
+        } else {
+            return [];
+        }
     };
 
     const deleteRoute = (routeId) => {
@@ -57,7 +73,15 @@ export const RouteProvider = ({ children }) => {
     }, [routes]);
 
     return (
-        <RouteContext.Provider value={{ routes, requests, addRoute, deleteRoute, getRequestsForRoute }}>
+        <RouteContext.Provider value={{
+            routes,
+            requests,
+            addRoute,
+            deleteRoute,
+            addRequest,
+            getRequestsForRoute,
+            getRequestsForRouteById
+        }}>
             {children}
         </RouteContext.Provider>
     );
