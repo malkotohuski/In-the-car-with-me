@@ -14,6 +14,7 @@ function RouteRequestScreen({ navigation }) {
         // Заменете 'routeId' с уникален идентификатор на маршрута, за който искате да получите заявките
         const routeId = routes && routes.length > 0 ? routes[0].id : null; // Пример за извличане на идентификатора на първия маршрут
         const requestsForRoute = routeId ? getRequestsForRoute(routeId) : [];
+        console.log('???', routeId);
         setRouteRequests(requestsForRoute);
     }, [routes]); // Променете този ред, ако зависимостите се променят
 
