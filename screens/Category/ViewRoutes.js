@@ -42,6 +42,7 @@ function ViewRoutes({ navigation }) {
         });
     };
 
+
     useEffect(() => {
         const intervalId = setInterval(filterAndDeleteExpiredRoutes, 60000); // 1 minute interval
 
@@ -60,7 +61,6 @@ function ViewRoutes({ navigation }) {
             const routeDate = new Date(route.selectedDateTime);
             return routeDate >= new Date();
         });
-    console.log('Routes is :', filteredRoutes);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -114,9 +114,6 @@ function ViewRoutes({ navigation }) {
                             </Text>
                             <Text style={styles.routeText}>
                                 {route.departureCity}-{route.arrivalCity}
-                            </Text>
-                            <Text style={styles.routeText}>
-                                {route.userFname}-{route.userLname}-{route.userEmail}
                             </Text>
                         </TouchableOpacity>
                     ))}
