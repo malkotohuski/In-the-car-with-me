@@ -60,11 +60,13 @@ function RouteDetails() {
     const { user } = useAuth();
     const route = useRoute();
     const { username, userFname, userLname, userEmail, departureCity, arrivalCity } = route.params;
+
     // request user data :
     const requesterUsername = user?.user?.username;
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
-    console.log('???', route);
+    const departureCityEmail = route.params.departureCity;
+    const arrivalCityEmail = route.params.arrivalCity;
 
     const handlerTripRequest = async () => {
         try {
@@ -85,7 +87,7 @@ function RouteDetails() {
                         onPress: async () => {
                             const emailResponse = await api.post('/send-request-to-email', {
                                 email: userEmail,
-                                text: t(`You have a new request for your route.From : ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}.About the route : ${route.departureCity - route.arrivalCity}`),
+                                text: t(`You have a new request for your route.From : ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}.About the route : ${departureCityEmail}-${arrivalCityEmail}`),
                             });
 
                             // Handle the response from the Email server if needed
