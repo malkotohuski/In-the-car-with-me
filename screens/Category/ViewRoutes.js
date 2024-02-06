@@ -105,7 +105,7 @@ function ViewRoutes({ navigation }) {
                                     userFname: route.userFname,
                                     userLname: route.userLname,
                                     userEmail: route.userEmail,
-                                    route: route,
+                                    routeId: route.id
                                 })
                             }
                         >

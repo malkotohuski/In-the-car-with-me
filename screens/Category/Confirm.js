@@ -23,6 +23,8 @@ function Confirm() {
     const arrivalCity = route.params.arrivalCity;
     const arrivalStreet = route.params.arrivalStreet;
     const arrivalNumber = route.params.arrivalNumber;
+    const routeId = route.params.id
+    console.log('ID', routeId);
     // User data :
     const userId = user?.user?.id;
     const username = user?.user?.username;
@@ -56,6 +58,7 @@ function Confirm() {
             userFname,
             userLname,
             userEmail,
+            routeId,
         };
 
         try {

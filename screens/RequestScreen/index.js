@@ -59,7 +59,8 @@ function RouteDetails() {
     const navigation = useNavigation();
     const { user } = useAuth();
     const route = useRoute();
-    const { username, userFname, userLname, userEmail, departureCity, arrivalCity } = route.params;
+    console.log("???", route);
+    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, id } = route.params;
 
     // request user data :
     const requesterUsername = user?.user?.username;
@@ -105,6 +106,7 @@ function RouteDetails() {
                 userEmail: userEmail,
                 departureCity: departureCity,
                 arrivalCity: arrivalCity,
+                id: id,
             });
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
@@ -136,7 +138,7 @@ function RouteDetails() {
             <Text style={styles.headerText}>{t('Route Details')}:</Text>
             <Text style={styles.text}> {t('Nick name')} : {username}</Text>
             <Text style={styles.text}> {t('Names')} :  {userFname} {userLname}</Text>
-            <Text style={styles.text}> {t('Names')} :  {userEmail} </Text>
+            <Text style={styles.text}> {t('Route')} :  {departureCity}-{arrivalCity} {id} </Text>
 
 
             {/* Display other route details here based on your requirements */}
