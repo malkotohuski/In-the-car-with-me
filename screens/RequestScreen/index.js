@@ -12,7 +12,7 @@ function RouteRequestApprovalScreen({ route }) {
     const { user } = useAuth();
     const { routes } = useRouteContext();
     const { requestingUser } = route.params;
-
+    console.log('???', routes);
 
     const handleApproveRequest = () => {
         // Implement the logic to approve the route request
@@ -59,15 +59,16 @@ function RouteDetails() {
     const navigation = useNavigation();
     const { user } = useAuth();
     const route = useRoute();
-    console.log("???", route);
-    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, id } = route.params;
-
+    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, routeId } = route.params;
+    const { routes } = useRouteContext();
+    console.log('???', routes);
     // request user data :
     const requesterUsername = user?.user?.username;
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
+    const user_id = route.params.routeId;
 
     const handlerTripRequest = async () => {
         try {
@@ -106,7 +107,7 @@ function RouteDetails() {
                 userEmail: userEmail,
                 departureCity: departureCity,
                 arrivalCity: arrivalCity,
-                id: id,
+                id: routeId,
             });
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
@@ -138,7 +139,8 @@ function RouteDetails() {
             <Text style={styles.headerText}>{t('Route Details')}:</Text>
             <Text style={styles.text}> {t('Nick name')} : {username}</Text>
             <Text style={styles.text}> {t('Names')} :  {userFname} {userLname}</Text>
-            <Text style={styles.text}> {t('Route')} :  {departureCity}-{arrivalCity} {id} </Text>
+            <Text style={styles.text}> {t('Route')} :  {departureCity}-{arrivalCity} </Text>
+            <Text style={styles.text}> {t('User ID')} : {routeId} </Text>
 
 
             {/* Display other route details here based on your requirements */}

@@ -76,6 +76,8 @@ function Confirm() {
             if (response.ok) {
                 // Route created successfully
                 console.log('Route created successfully');
+                const responseData = await response.json();
+                const newRoute = responseData.route;
                 addRoute(newRoute); // Save the route using the context
                 navigation.navigate('View routes'); // Navigate to ViewRoutes
             } else {
