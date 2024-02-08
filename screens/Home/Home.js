@@ -11,8 +11,8 @@ function HomePage({ navigation }) {
     const { t } = useTranslation();
     const [isBulgaria, setisBulgaria] = useState(false);
 
-    const changeLanguage = (lng) => {
-        i18next.changeLanguage(lng);
+    const changeLanguage = async (lng) => {
+        await i18next.changeLanguage(lng);
         setisBulgaria(lng === 'bg');
     };
 
