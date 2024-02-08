@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRoute, useNavigation } from '@react-navigation/native';
@@ -14,11 +14,22 @@ function RouteRequestApprovalScreen({ route }) {
     const { requestingUser } = route.params;
     console.log('???', routes);
 
-    const handleApproveRequest = () => {
-        // Implement the logic to approve the route request
-        // You may want to send a notification or update the database accordingly
-        // After handling the request, you can navigate back to the previous screen
-        navigation.navigate('RouteDetails');
+    const handleApproveRequest = async () => {
+        try {
+            // Implement the logic to approve the route request
+            // You may want to send a notification or update the database accordingly
+            // After handling the request, you can navigate back to the previous screen
+            navigation.navigate('RouteDetails');
+
+            // Save requestingUser data to AsyncStorage
+            const storedRequests = await AsyncStorage.getItem('routeRequests');
+            const parsedRequests = storedRequests ? JSON.parse(storedRequests) : [];
+            const updatedRequests = [...parsedRequests, requestingUser];
+            AsyncStorage.setItem('routeRequests', JSON.stringify(updatedRequests));
+        } catch (error) {
+            // Handle any errors
+            console.error('Error handling route request:', error);
+        }
     };
 
     const handleRejectRequest = () => {
@@ -59,16 +70,14 @@ function RouteDetails() {
     const navigation = useNavigation();
     const { user } = useAuth();
     const route = useRoute();
-    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, routeId } = route.params;
+    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, routeId, user_id } = route.params;
     const { routes } = useRouteContext();
-    console.log('???', routes);
     // request user data :
     const requesterUsername = user?.user?.username;
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
-    const user_id = route.params.routeId;
 
     const handlerTripRequest = async () => {
         try {
@@ -100,15 +109,16 @@ function RouteDetails() {
                 ],
                 { cancelable: false }
             );
-            navigation.navigate('RouteDetails', {
-                username: username,
-                userFname: userFname,
-                userLname: userLname,
-                userEmail: userEmail,
-                departureCity: departureCity,
-                arrivalCity: arrivalCity,
-                id: routeId,
+            navigation.navigate('Route request', {
+                requestingUser: {
+                    username: requesterUsername,
+                    userFname: requestUserFirstName,
+                    userLname: requestUserLastName,
+                    departureCity: departureCityEmail,
+                    arrivalCity: arrivalCityEmail,
+                }
             });
+
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
             console.error('Email Server Error:', emailError);
@@ -140,8 +150,8 @@ function RouteDetails() {
             <Text style={styles.text}> {t('Nick name')} : {username}</Text>
             <Text style={styles.text}> {t('Names')} :  {userFname} {userLname}</Text>
             <Text style={styles.text}> {t('Route')} :  {departureCity}-{arrivalCity} </Text>
-            <Text style={styles.text}> {t('User ID')} : {routeId} </Text>
-
+            <Text style={styles.text}> {t('Route ID')} : {routeId} </Text>
+            <Text style={styles.text}> {t('User ID')} : {user_id} </Text>
 
             {/* Display other route details here based on your requirements */}
 
