@@ -11,12 +11,22 @@ import {
 } from 'react-native';
 import { useRouteContext } from './RouteContext';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../Authentication/AuthContext';
 
 function ViewRoutes({ navigation }) {
     const { t } = useTranslation();
     const [enteredDepartureCity, setEnteredDepartureCity] = useState('');
     const [enteredArrivalCity, setEnteredArrivalCity] = useState('');
     const { routes, deleteRoute } = useRouteContext(); // Assuming you have a routes array in your context
+    const { user } = useAuth();
+    const [loggingUser, setLoggingUser] = useState([])
+
+    const usernameRequest = user?.user?.username;
+    const userFnameRequest = user?.user?.fName;
+    const userLnameRequest = user?.user?.lName;
+    const fullUserInfo = { usernameRequest, userFnameRequest, userLnameRequest }
+    console.log('dfsdf', fullUserInfo);
+
 
     const handlerSeeView = (routeParams) => {
         navigation.navigate('RouteDetails', {
@@ -25,6 +35,7 @@ function ViewRoutes({ navigation }) {
             showChangesButton: false,
             showBackButton: true,
             routeRequestButton: true,
+            loggedInUser: fullUserInfo,
         });
         console.log('Route view clicked !');
     };
