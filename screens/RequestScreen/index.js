@@ -118,6 +118,7 @@ function RouteDetails({ route }) {
                     userLname: requestUserLastName,
                     departureCity: departureCityEmail,
                     arrivalCity: arrivalCityEmail,
+                    userRequestInfo: loggedInUser,
                 }
             });
 
