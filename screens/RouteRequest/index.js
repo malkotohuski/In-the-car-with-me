@@ -10,6 +10,7 @@ function RouteRequestScreen({ route, navigation }) {
     const { user } = useAuth();
     const { routes } = useRouteContext();
     const [routeRequests, setRouteRequests] = useState([]);
+    console.log('???', routes);
 
     const readRouteRequestsFromStorage = async () => {
         try {
@@ -24,21 +25,18 @@ function RouteRequestScreen({ route, navigation }) {
 
     useEffect(() => {
         readRouteRequestsFromStorage();
-
-        const routeId = routes && routes.length > 0 ? routes[0].id : null;
-        const requestsForRoute = routeId ? getRequestsForRoute(routeId) : [];
-        setRouteRequests(requestsForRoute);
-    }, [routes]);
-
-    useEffect(() => {
-        // Read from AsyncStorage every time the component re-renders
-        readRouteRequestsFromStorage();
     }, []);
 
-
-    const getRequestsForRoute = (routeId) => {
-        return routes.filter(route => route.id === routeId && route.requests);
+    const getRequestsForCurrentUser = () => {
+        return routes.filter(route => route.userId === user?.user?.id && route.requests);
     };
+
+    useEffect(() => {
+        const requestsForCurrentUser = getRequestsForCurrentUser();
+        setRouteRequests(requestsForCurrentUser);
+    }, [routes]);
+
+
 
     const renderItem = ({ item }) => {
         const isRouteCreator = user.user.id === item.user_id;
