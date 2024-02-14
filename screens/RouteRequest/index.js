@@ -33,10 +33,13 @@ function RouteRequestScreen({ route, navigation }) {
                             key={route.id}
                             style={styles.requestContainer}
                             onPress={() => {
-                                Alert.alert(t(`Selected route: ${route.departureCity} to ${route.arrivalCity}`));
+                                Alert.alert(
+                                    t('Selected route'),
+                                    ` ${route.departureCity}-${route.arrivalCity}`
+                                );
                             }}
                         >
-                            <Text style={styles.text}>{t(`Direction: ${route.departureCity}-${route.arrivalCity}`)}</Text>
+                            <Text style={styles.text}>{t('Direction')}: {t(`${route.departureCity}-${route.arrivalCity}`)}</Text>
                         </TouchableOpacity>
                     );
                 } else {
