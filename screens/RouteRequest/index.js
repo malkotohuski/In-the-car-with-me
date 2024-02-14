@@ -10,7 +10,6 @@ function RouteRequestScreen({ route, navigation }) {
     const { routes } = useRouteContext();
     const [routeRequests, setRouteRequests] = useState([]);
     console.log('ROUTES', routes);
-    console.log('USER', user);
 
     const getRequestsForCurrentUser = () => {
         return routes.filter(route => route.userId === user?.user?.id && route.markedSeats && route.markedSeats.length > 0);
@@ -25,23 +24,31 @@ function RouteRequestScreen({ route, navigation }) {
         const renderedRoutes = [];
 
         routes.forEach((route) => {
+            // Проверка дали маршрутът принадлежи на текущия потребител
             if (user?.user?.id === route.userId) {
-                renderedRoutes.push(
-                    <TouchableOpacity
-                        key={route.id}
-                        style={styles.requestContainer}
-                        onPress={() => {
-                            Alert.alert(`Избран маршрут: ${route.departureCity} to ${route.arrivalCity}`);
-                        }}
-                    >
-                        <Text style={styles.text}>{`Direction: ${route.departureCity}-${route.arrivalCity}`}</Text>
-                    </TouchableOpacity>
-                );
+                // Проверка дали selectedDateTime е по-малко или равно на текущата дата и час
+                if (new Date(route.selectedDateTime) > new Date()) {
+                    renderedRoutes.push(
+                        <TouchableOpacity
+                            key={route.id}
+                            style={styles.requestContainer}
+                            onPress={() => {
+                                Alert.alert(t(`Selected route: ${route.departureCity} to ${route.arrivalCity}`));
+                            }}
+                        >
+                            <Text style={styles.text}>{t(`Direction: ${route.departureCity}-${route.arrivalCity}`)}</Text>
+                        </TouchableOpacity>
+                    );
+                } else {
+                    // Маршрутът е стар и можеш да го изтриеш
+                    deleteRoute(route.id);
+                }
             }
         });
 
-        return renderedRoutes.length > 0 ? renderedRoutes : <Text>No new requests.</Text>;
+        return renderedRoutes.length > 0 ? renderedRoutes : <Text>{t('No new requests.')}</Text>;
     };
+
     return (
         <SafeAreaView style={styles.mainContainer}>
             <Image
@@ -55,7 +62,7 @@ function RouteRequestScreen({ route, navigation }) {
                         {renderRoutes()}
                     </View>
                 ) : (
-                    <Text>{t('Няма заявки за този маршрут.')}</Text>
+                    <Text>{t('There are no requests for this route.')}</Text>
                 )}
             </View>
         </SafeAreaView>
