@@ -418,6 +418,10 @@ i18next.use(initReactI18next).init({
                 'Trip request': 'Trip request',
                 'You have a new request for your route.': 'You have a new request for your route.',
                 'Requests': 'Requests',
+                'There are no requests for this route.': 'There are no requests for this route.',
+                'Route Requests': 'Route Requests',
+                'Direction:': 'Direction:',
+                'No new requests.': 'No new requests.',
             }
         },
         bg: {
@@ -831,6 +835,11 @@ i18next.use(initReactI18next).init({
                 'Trip request': 'Заявка за пътуване',
                 'You have a new request for your route.': 'Имате нова заявка за ваш маршрут .',
                 'Requests': 'Заявки',
+                'There are no requests for this route.': 'Няма заявки за този маршрут.',
+                'Route Requests': 'Заявки за маршрути',
+                'Direction:': 'Посока:',
+                'Selected route:': 'Избран маршрут:',
+                'No new requests.': 'Няма нови заявки.'
             }
         },
     }
