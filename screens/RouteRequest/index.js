@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Alert } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Alert, Image } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from '../Category/RouteContext';
@@ -10,25 +9,11 @@ function RouteRequestScreen({ route, navigation }) {
     const { user } = useAuth();
     const { routes } = useRouteContext();
     const [routeRequests, setRouteRequests] = useState([]);
-    console.log('???', routes);
-
-    const readRouteRequestsFromStorage = async () => {
-        try {
-            const storedRequests = await AsyncStorage.getItem('routeRequests');
-            if (storedRequests) {
-                setRouteRequests(JSON.parse(storedRequests));
-            }
-        } catch (error) {
-            console.error('Error reading data from AsyncStorage:', error);
-        }
-    };
-
-    useEffect(() => {
-        readRouteRequestsFromStorage();
-    }, []);
+    console.log('ROUTES', routes);
+    console.log('USER', user);
 
     const getRequestsForCurrentUser = () => {
-        return routes.filter(route => route.userId === user?.user?.id && route.requests);
+        return routes.filter(route => route.userId === user?.user?.id && route.markedSeats && route.markedSeats.length > 0);
     };
 
     useEffect(() => {
@@ -36,56 +21,54 @@ function RouteRequestScreen({ route, navigation }) {
         setRouteRequests(requestsForCurrentUser);
     }, [routes]);
 
+    const renderRoutes = () => {
+        const renderedRoutes = [];
 
+        routes.forEach((route) => {
+            if (user?.user?.id === route.userId) {
+                renderedRoutes.push(
+                    <TouchableOpacity
+                        key={route.id}
+                        style={styles.requestContainer}
+                        onPress={() => {
+                            Alert.alert(`Избран маршрут: ${route.departureCity} to ${route.arrivalCity}`);
+                        }}
+                    >
+                        <Text style={styles.text}>{`Direction: ${route.departureCity}-${route.arrivalCity}`}</Text>
+                    </TouchableOpacity>
+                );
+            }
+        });
 
-    const renderItem = ({ item }) => {
-        const isRouteCreator = user.user.id === item.user_id;
-
-        return (
-            <TouchableOpacity
-                style={styles.requestContainer}
-                onPress={() => navigation.navigate('RouteRequestDetails', { requestingUser: item.requestingUser })}
-            >
-                <Text>{item.requestingUser.username}</Text>
-                {isRouteCreator && (
-                    <View>
-                        <Text style={styles.text}>{t('Nick name')}: {item.requestingUser.username}</Text>
-                        <Text style={styles.text}>{t('Names')}: {item.requestingUser.userFname}</Text>
-                    </View>
-                )}
-                <Text>{item.requestingUser.userEmail}</Text>
-            </TouchableOpacity>
-        );
+        return renderedRoutes.length > 0 ? renderedRoutes : <Text>No new requests.</Text>;
     };
-
     return (
-        <View style={styles.container}>
-            <Text style={styles.headerText}>{t('Route Requests')}:</Text>
-            {route.params && route.params.requestingUser ? (
-                <View>
-                    <Text>{t('Nick name')}: {route.params.requestingUser.username}</Text>
-                    <Text>{t('Names')}: {route.params.requestingUser.userFname}</Text>
-                </View>
-            ) : null}
-            {routeRequests.length > 0 ? (
-                <FlatList
-                    data={routeRequests}
-                    renderItem={renderItem}
-                    keyExtractor={item => item.id.toString()}
-                />
-            ) : (
-                <Text>{t('No requests for this route.')}</Text>
-            )}
-        </View>
+        <SafeAreaView style={styles.mainContainer}>
+            <Image
+                source={require('../../images/routes2-background.jpg')}
+                style={styles.backgroundImage}
+            />
+            <View style={styles.container}>
+                <Text style={styles.headerText}>{t('Route Requests')}:</Text>
+                {routeRequests.length > 0 ? (
+                    <View>
+                        {renderRoutes()}
+                    </View>
+                ) : (
+                    <Text>{t('Няма заявки за този маршрут.')}</Text>
+                )}
+            </View>
+        </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+    },
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
+        alignItems: 'flex-start',
     },
     headerText: {
         fontWeight: 'bold',
@@ -99,13 +82,19 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         elevation: 3,
     },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
+    },
     text: {
         fontWeight: 'bold',
         fontSize: 18,
         paddingBottom: 10,
         color: '#1b1c1e',
-        borderBottomWidth: 1,
-        borderBottomColor: '#1b1c1e',
+        alignSelf: 'center'
     },
 });
 

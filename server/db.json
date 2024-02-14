@@ -2331,6 +2331,27 @@
       "userLname": "sdaa",
       "userEmail": "shushkata7@gmail.com",
       "id": 1707749496132
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        2,
+        4
+      ],
+      "registrationNumber": "С2564АЗ",
+      "selectedDateTime": "2024-02-17T11:20:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Plovdiv",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1705505759437,
+      "username": "sdsd",
+      "userFname": "sdsd",
+      "userLname": "sdaa",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1707909669737
     }
   ]
 }
