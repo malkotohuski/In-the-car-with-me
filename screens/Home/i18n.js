@@ -420,8 +420,9 @@ i18next.use(initReactI18next).init({
                 'Requests': 'Requests',
                 'There are no requests for this route.': 'There are no requests for this route.',
                 'Route Requests': 'Route Requests',
-                'Direction:': 'Direction:',
+                'Direction': 'Direction',
                 'No new requests.': 'No new requests.',
+                'Selected route': 'Selected route',
             }
         },
         bg: {
@@ -837,8 +838,8 @@ i18next.use(initReactI18next).init({
                 'Requests': 'Заявки',
                 'There are no requests for this route.': 'Няма заявки за този маршрут.',
                 'Route Requests': 'Заявки за маршрути',
-                'Direction:': 'Посока:',
-                'Selected route:': 'Избран маршрут:',
+                'Direction': 'Посока',
+                'Selected route': 'Избран маршрут',
                 'No new requests.': 'Няма нови заявки.'
             }
         },
