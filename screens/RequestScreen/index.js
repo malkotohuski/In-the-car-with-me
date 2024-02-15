@@ -12,6 +12,7 @@ function RouteRequestApprovalScreen({ route }) {
     const { user } = useAuth();
     const { routes } = useRouteContext();
     const { requestingUser } = route.params;
+
     console.log('???', routes);
 
     const handleApproveRequest = async () => {
