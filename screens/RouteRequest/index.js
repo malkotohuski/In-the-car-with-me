@@ -28,10 +28,15 @@ function RouteRequestScreen({ route, navigation }) {
             if (user?.user?.id === route.userId) {
                 // Проверка дали selectedDateTime е по-малко или равно на текущата дата и час
                 if (new Date(route.selectedDateTime) > new Date()) {
+                    const hasRequest = route.markedSeats && route.markedSeats.length > 0;
+
                     renderedRoutes.push(
                         <TouchableOpacity
                             key={route.id}
-                            style={styles.requestContainer}
+                            style={[
+                                styles.requestContainer,
+                                hasRequest ? styles.greenBorder : null
+                            ]}
                             onPress={() => {
                                 Alert.alert(
                                     t('Selected route'),
@@ -105,6 +110,17 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         color: '#1b1c1e',
         alignSelf: 'center'
+    },
+    requestContainer: {
+        margin: 10,
+        padding: 15,
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        borderRadius: 15,
+        elevation: 3,
+    },
+    greenBorder: {
+        borderColor: 'green',
+        borderWidth: 2,
     },
 });
 

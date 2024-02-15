@@ -2352,6 +2352,46 @@
       "userLname": "sdaa",
       "userEmail": "shushkata7@gmail.com",
       "id": 1707909669737
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "А1123СА",
+      "selectedDateTime": "2024-02-18T13:18:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Lom",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1705505759437,
+      "username": "sdsd",
+      "userFname": "sdsd",
+      "userLname": "sdaa",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1708003164376
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "А1123СА",
+      "selectedDateTime": "2024-02-18T13:18:00.000Z",
+      "departureCity": "Varna",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Sofia",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1705505759437,
+      "username": "sdsd",
+      "userFname": "sdsd",
+      "userLname": "sdaa",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1708004131840
     }
   ]
 }
