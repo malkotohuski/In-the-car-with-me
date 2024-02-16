@@ -2392,6 +2392,26 @@
       "userLname": "sdaa",
       "userEmail": "shushkata7@gmail.com",
       "id": 1708004131840
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "А2111АА",
+      "selectedDateTime": "2024-02-18T12:23:00.000Z",
+      "departureCity": "Бургас",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "София",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1705505759437,
+      "username": "sdsd",
+      "userFname": "sdsd",
+      "userLname": "sdaa",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1708086266240
     }
   ]
 }

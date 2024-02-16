@@ -21,38 +21,25 @@ function RouteRequestScreen({ route, navigation }) {
     }, [routes]);
 
     const renderRoutes = () => {
-        const renderedRoutes = [];
+        const requestsForCurrentUser = getRequestsForCurrentUser();
 
-        routes.forEach((route) => {
-            // Проверка дали маршрутът принадлежи на текущия потребител
-            if (user?.user?.id === route.userId) {
-                // Проверка дали selectedDateTime е по-малко или равно на текущата дата и час
-                if (new Date(route.selectedDateTime) > new Date()) {
-                    const hasRequest = route.markedSeats && route.markedSeats.length > 0;
-
-                    renderedRoutes.push(
-                        <TouchableOpacity
-                            key={route.id}
-                            style={[
-                                styles.requestContainer,
-                                hasRequest ? styles.greenBorder : null
-                            ]}
-                            onPress={() => {
-                                Alert.alert(
-                                    t('Selected route'),
-                                    ` ${route.departureCity}-${route.arrivalCity}`
-                                );
-                            }}
-                        >
-                            <Text style={styles.text}>{t('Direction')}: {t(`${route.departureCity}-${route.arrivalCity}`)}</Text>
-                        </TouchableOpacity>
+        const renderedRoutes = requestsForCurrentUser.map((route) => (
+            <TouchableOpacity
+                key={route.id}
+                style={[
+                    styles.requestContainer,
+                    route.markedSeats && route.markedSeats.length > 0 ? styles.greenBorder : null
+                ]}
+                onPress={() => {
+                    Alert.alert(
+                        t('Selected route'),
+                        ` ${route.departureCity}-${route.arrivalCity}`
                     );
-                } else {
-                    // Маршрутът е стар и можеш да го изтриеш
-                    deleteRoute(route.id);
-                }
-            }
-        });
+                }}
+            >
+                <Text style={styles.text}>{t('Direction')}: {t(`${route.departureCity}-${route.arrivalCity}`)}</Text>
+            </TouchableOpacity>
+        ));
 
         return renderedRoutes.length > 0 ? renderedRoutes : <Text>{t('No new requests.')}</Text>;
     };
