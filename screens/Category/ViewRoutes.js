@@ -8,6 +8,8 @@ import {
     ScrollView,
     SafeAreaView,
     TextInput,
+    Modal,
+    Pressable,
 } from 'react-native';
 import { useRouteContext } from './RouteContext';
 import { useTranslation } from 'react-i18next';
@@ -17,15 +19,50 @@ function ViewRoutes({ navigation }) {
     const { t } = useTranslation();
     const [enteredDepartureCity, setEnteredDepartureCity] = useState('');
     const [enteredArrivalCity, setEnteredArrivalCity] = useState('');
-    const { routes, deleteRoute } = useRouteContext(); // Assuming you have a routes array in your context
+    const { routes, deleteRoute } = useRouteContext();
     const { user } = useAuth();
-    const [loggingUser, setLoggingUser] = useState([])
+    const [loggingUser, setLoggingUser] = useState([]);
+    const [showFilterModal, setShowFilterModal] = useState(false);
+    const [sortByDate, setSortByDate] = useState(false);
+    const [filteredRoutes, setFilteredRoutes] = useState([]);
 
     const usernameRequest = user?.user?.username;
     const userFnameRequest = user?.user?.fName;
     const userLnameRequest = user?.user?.lName;
     const fullUserInfo = { usernameRequest, userFnameRequest, userLnameRequest }
-    console.log('dfsdf', fullUserInfo);
+
+    const toggleFilterModal = () => {
+        setShowFilterModal(!showFilterModal);
+    };
+
+    const clearFilters = () => {
+        setEnteredDepartureCity('');
+        setEnteredArrivalCity('');
+        toggleFilterModal();
+    };
+
+    const applyFilters = () => {
+        toggleFilterModal();
+
+        // Създай нов списък с филтрирани маршрути без сортиране
+        const filteredRoutesWithoutSort = routes.filter((route) =>
+            route.departureCity.toLowerCase().includes(enteredDepartureCity.toLowerCase()) &&
+            route.arrivalCity.toLowerCase().includes(enteredArrivalCity.toLowerCase())
+        );
+
+        // Създай нов списък със сортирани маршрути
+        const sortedRoutes = filteredRoutesWithoutSort.slice().sort((a, b) => {
+            const dateA = new Date(a.selectedDateTime);
+            const dateB = new Date(b.selectedDateTime);
+
+            // Зависи от това дали трябва да сортираш във възходящ или низходящ ред
+            return sortByDate ? dateA - dateB : dateB - dateA;
+        });
+
+        // Замени текущия филтриран списък със сортирания
+        setFilteredRoutes(sortedRoutes);
+    };
+
 
 
     const handlerSeeView = (routeParams) => {
@@ -60,7 +97,7 @@ function ViewRoutes({ navigation }) {
         return () => clearInterval(intervalId); // Cleanup the interval when unmounted
     });
 
-    const filteredRoutes = routes
+    const filteredRoutesState = routes
         .filter(
             (route) =>
                 route.departureCity &&
@@ -79,7 +116,7 @@ function ViewRoutes({ navigation }) {
                 source={require('../../images/view-routes-backgroud.jpg')}
                 style={styles.backgroundImage}
             />
-            <View style={styles.searchContainer}>
+            {/*  <View style={styles.searchContainer}>
                 <TextInput
                     style={styles.input}
                     placeholder={t("Enter Departure City")}
@@ -92,10 +129,64 @@ function ViewRoutes({ navigation }) {
                     value={enteredArrivalCity}
                     onChangeText={(text) => setEnteredArrivalCity(text)}
                 />
-            </View>
+            </View> */}
+            <TouchableOpacity style={styles.filterButton} onPress={toggleFilterModal}>
+                <Text style={styles.filterButtonText}>{t('Filter')}</Text>
+            </TouchableOpacity>
+
+            {/* Filter Modal */}
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={showFilterModal}
+                onRequestClose={toggleFilterModal}
+            >
+                <View style={styles.modalContainer}>
+                    <View style={styles.modalContent}>
+                        <Text style={styles.modalHeader}>{t('Filter Options')}</Text>
+
+                        {/* Search Inputs */}
+                        <View style={styles.searchContainer}>
+                            <TextInput
+                                style={styles.input}
+                                placeholder={t('Enter Departure City')}
+                                value={enteredDepartureCity}
+                                onChangeText={(text) => setEnteredDepartureCity(text)}
+                            />
+                            <TextInput
+                                style={styles.input}
+                                placeholder={t('Enter Arrival City')}
+                                value={enteredArrivalCity}
+                                onChangeText={(text) => setEnteredArrivalCity(text)}
+                            />
+                        </View>
+
+                        {/* Add additional filter options here */}
+
+                        {/* Buttons */}
+                        <Pressable style={styles.applyFiltersButton} onPress={applyFilters}>
+                            <Text style={styles.applyFiltersButtonText}>{t('Apply Filters')}</Text>
+                        </Pressable>
+                        <Pressable
+                            style={styles.sortByDateButton}
+                            onPress={() => setSortByDate(!sortByDate)}
+                        >
+                            <Text style={styles.sortByDateButtonText}>
+                                {sortByDate ? t('Sort by Oldest') : t('Sort by Newest')}
+                            </Text>
+                        </Pressable>
+                        <Pressable style={styles.clearFiltersButton} onPress={clearFilters}>
+                            <Text style={styles.clearFiltersButtonText}>{t('Clear Filters')}</Text>
+                        </Pressable>
+                        <Pressable style={styles.closeModalButton} onPress={toggleFilterModal}>
+                            <Text style={styles.closeModalButtonText}>{t('Close')}</Text>
+                        </Pressable>
+                    </View>
+                </View>
+            </Modal>
             <ScrollView style={styles.scrollView}>
                 <View style={styles.container}>
-                    {filteredRoutes.map((route, index) => (
+                    {filteredRoutesState.map((route, index) => (
                         <TouchableOpacity
                             key={index}
                             style={styles.routeContainer}
@@ -196,6 +287,68 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#1b1c1e',
     },
+    filterButton: {
+        backgroundColor: '#3498db',
+        padding: 10,
+        borderRadius: 10,
+        margin: 10,
+        alignSelf: 'center',
+        width: '75%'
+    },
+    filterButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 17,
+        alignSelf: 'center',
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'flex-start', // Align to the top
+        marginTop: 60, // Adjust based on your navigation bar height
+    },
+    modalContent: {
+        backgroundColor: '#fff',
+        padding: 20,
+        borderRadius: 10,
+        elevation: 5,
+        width: '100%', // Adjust the width as needed
+        alignSelf: 'center', // Center the modal horizontally
+    },
+    modalHeader: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+    clearFiltersButton: {
+        backgroundColor: '#e74c3c',
+        padding: 10,
+        borderRadius: 5,
+        marginVertical: 5,
+    },
+    clearFiltersButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    closeModalButton: {
+        backgroundColor: '#3498db',
+        padding: 10,
+        borderRadius: 5,
+        marginVertical: 5,
+    },
+    closeModalButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    },
+    sortByDateButton: {
+        backgroundColor: '#2ecc71',
+        padding: 10,
+        borderRadius: 5,
+        marginVertical: 5,
+    },
+    sortByDateButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+    }
 });
 
 export default ViewRoutes;
