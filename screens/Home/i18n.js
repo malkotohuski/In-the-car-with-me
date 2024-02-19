@@ -422,6 +422,13 @@ i18next.use(initReactI18next).init({
                 'Direction': 'Direction',
                 'No new requests.': 'No new requests.',
                 'Selected route': 'Selected route',
+                'Filter': 'Filter',
+                'Filter Options': 'Filter Options',
+                'Apply Filters': 'Apply Filters',
+                'Sort by Oldest': 'Sort by Oldest',
+                'Sort by Newest': 'Sort by Newest',
+                'Clear Filters': 'Clear Filters',
+                'Close': 'Close',
             }
         },
         bg: {
@@ -839,7 +846,14 @@ i18next.use(initReactI18next).init({
                 'Route Requests': 'Заявки за маршрути',
                 'Direction': 'Посока',
                 'Selected route': 'Избран маршрут',
-                'No new requests.': 'Няма нови заявки.'
+                'No new requests.': 'Няма нови заявки.',
+                'Filter': 'Филтер',
+                'Filter Options': 'Опции за филтриране',
+                'Apply Filters': 'Прилагане на филтри',
+                'Sort by Oldest': 'Сортиране по Най-стари',
+                'Sort by Newest': 'Сортиране по Най-нови',
+                'Clear Filters': 'Изчистване на филтри',
+                'Close': 'Затвори'
             }
         },
     }
