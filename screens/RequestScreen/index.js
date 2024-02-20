@@ -6,6 +6,11 @@ import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from '../Category/RouteContext';
 import axios from 'axios';
 
+const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
+const api = axios.create({
+    baseURL: API_BASE_URL,
+});
+
 function RouteRequestApprovalScreen({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
@@ -13,22 +18,27 @@ function RouteRequestApprovalScreen({ route }) {
     const { routes } = useRouteContext();
     const { requestingUser } = route.params;
 
+
+
     console.log('???', routes);
 
     const handleApproveRequest = async () => {
         try {
-            // Implement the logic to approve the route request
-            // You may want to send a notification or update the database accordingly
-            // After handling the request, you can navigate back to the previous screen
-            navigation.navigate('RouteDetails');
+            const response = await api.post('/send-request-to-user', {
+                requestingUser: {
+                    username: user?.user?.username,
+                    userFname: user?.user?.fName,
+                    userLname: user?.user?.lName,
+                    departureCity: route.params.departureCity,
+                    arrivalCity: route.params.arrivalCity,
+                    routeId: route.params.routeId,
+                },
+            });
 
-            // Save requestingUser data to AsyncStorage
-            const storedRequests = await AsyncStorage.getItem('routeRequests');
-            const parsedRequests = storedRequests ? JSON.parse(storedRequests) : [];
-            const updatedRequests = [...parsedRequests, requestingUser];
-            AsyncStorage.setItem('routeRequests', JSON.stringify(updatedRequests));
+            console.log('Route Approval Response:', response);
+
+            navigation.navigate('Home');
         } catch (error) {
-            // Handle any errors
             console.error('Error handling route request:', error);
         }
     };
@@ -60,12 +70,6 @@ function RouteRequestApprovalScreen({ route }) {
     );
 }
 
-const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
-const api = axios.create({
-    baseURL: API_BASE_URL,
-});
-
-
 function RouteDetails({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
@@ -80,11 +84,13 @@ function RouteDetails({ route }) {
     const requestUserLastName = user?.user?.lName;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
+    const userID = user?.user?.id
+
+    console.log("?>?", userID);
 
     const handlerTripRequest = async () => {
         try {
             // Ensure that you have the correct user data
-
             console.log('Sending trip request to:', route);
 
             Alert.alert(
@@ -100,12 +106,31 @@ function RouteDetails({ route }) {
                         onPress: async () => {
                             const emailResponse = await api.post('/send-request-to-email', {
                                 email: userEmail,
-                                text: t(`You have a new request for your route.From : ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}.About the route : ${departureCityEmail}-${arrivalCityEmail}`),
+                                text: t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`),
                             });
 
                             // Handle the response from the Email server if needed
                             console.log('Email Response:', emailResponse);
                             Alert.alert('Success', 'Trip request sent successfully.');
+
+                            const response = await api.post('/send-request-to-user', {
+                                requestingUser: {
+                                    username: user?.user?.username,
+                                    userFname: user?.user?.fName,
+                                    userLname: user?.user?.lName,
+                                    userEmail: user?.user?.email,
+                                    departureCity: route.params.departureCity,
+                                    arrivalCity: route.params.arrivalCity,
+                                    routeId: route.params.routeId,
+                                },
+                            });
+                            ;
+
+                            // Handle the response from the server if needed
+                            console.log('Route Approval Response:', response);
+
+                            // After handling the request, you can navigate back to the previous screen
+                            navigation.navigate('Home');
                         },
                     },
                 ],

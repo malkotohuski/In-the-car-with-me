@@ -166,6 +166,32 @@ server.post('/send-request-to-email', async (req, res) => {
     }
 });
 
+// New endpoint to handle route approval
+// Updated endpoint to handle route request approval or rejection
+server.post('/send-request-to-user', (req, res) => {
+    const { requestingUser } = req.body;
+
+    // Check if the route exists
+    const route = router.db.get('routes').find({ id: requestingUser.routeId }).value();
+
+    if (!route) {
+        console.error('Route not found');
+        return res.status(404).json({ error: 'Route not found.' });
+    }
+
+    // Add the request to the "requests" array
+    const newRequest = {
+        id: Date.now(),
+        requestingUser,
+    };
+
+    router.db.get('requests').push(newRequest).write();
+
+    return res.status(200).json({ message: 'Route request processed successfully.' });
+});
+
+
+
 
 // Handle user login
 server.post('/login', (req, res) => {
