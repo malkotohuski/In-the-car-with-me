@@ -2559,5 +2559,31 @@
       "userEmail": "shushkata7@gmail.com",
       "id": 1708329509844
     }
+  ],
+  "requests": [
+    {
+      "id": 1708437501849,
+      "requestingUser": {
+        "username": "sdsd",
+        "userFname": "sdsd",
+        "userLname": "sdaa",
+        "userEmail": "shushkata7@gmail.com",
+        "departureCity": "Plovdiv",
+        "arrivalCity": "Sofia",
+        "routeId": 1708329306446
+      }
+    },
+    {
+      "id": 1708437655404,
+      "requestingUser": {
+        "username": "sdsd",
+        "userFname": "sdsd",
+        "userLname": "sdaa",
+        "userEmail": "shushkata7@gmail.com",
+        "departureCity": "Plovdiv",
+        "arrivalCity": "Sofia",
+        "routeId": 1708329306446
+      }
+    }
   ]
 }
