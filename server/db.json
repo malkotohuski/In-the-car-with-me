@@ -2572,6 +2572,18 @@
         "arrivalCity": "Sofia",
         "routeId": 1708329306446
       }
+    },
+    {
+      "id": 1708437655404,
+      "requestingUser": {
+        "username": "sdsd",
+        "userFname": "sdsd",
+        "userLname": "sdaa",
+        "userEmail": "shushkata7@gmail.com",
+        "departureCity": "Plovdiv",
+        "arrivalCity": "Sofia",
+        "routeId": 1708329306446
+      }
     }
   ]
 }
