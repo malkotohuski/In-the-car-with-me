@@ -185,13 +185,18 @@ server.post('/send-request-to-user', (req, res) => {
         requestingUser,
     };
 
+    // Push the new request to the "requests" array
     router.db.get('requests').push(newRequest).write();
 
     return res.status(200).json({ message: 'Route request processed successfully.' });
 });
 
+// New endpoint to get all requests
+server.get('/get-requests', (req, res) => {
+    const requests = router.db.get('requests').value();
 
-
+    return res.status(200).json(requests);
+});
 
 // Handle user login
 server.post('/login', (req, res) => {
