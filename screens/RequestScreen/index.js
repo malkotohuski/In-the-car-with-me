@@ -83,9 +83,11 @@ function RouteDetails({ route }) {
     const requestUserLastName = user?.user?.lName;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
+    const userRouteId = route.params.userId
     const userID = user?.user?.id
 
     console.log("?>?", userID);
+    console.log("?>?", userRouteId);
 
     const handlerTripRequest = async () => {
         try {
@@ -118,7 +120,8 @@ function RouteDetails({ route }) {
                                     userFname: user?.user?.fName,
                                     userLname: user?.user?.lName,
                                     userEmail: user?.user?.email,
-                                    userId: user?.user?.id,
+                                    userID: user?.user?.id,
+                                    userRouteId: route.params.userId,
                                     departureCity: route.params.departureCity,
                                     arrivalCity: route.params.arrivalCity,
                                     routeId: route.params.routeId,

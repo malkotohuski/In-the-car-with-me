@@ -12,7 +12,7 @@ function RouteRequestScreen({ route, navigation }) {
     console.log("reqest", requests);
 
     const getRequestsForCurrentUser = () => {
-        return requests.filter(request => request.requestingUser?.userId === user?.user?.id);
+        return requests.filter(request => request.requestingUser?.userRouteId === user?.user?.id);
     };
 
 
