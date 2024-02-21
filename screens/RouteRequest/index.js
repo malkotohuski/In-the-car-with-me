@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Alert, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Alert, Image, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from '../Category/RouteContext';
@@ -7,37 +7,39 @@ import { useRouteContext } from '../Category/RouteContext';
 function RouteRequestScreen({ route, navigation }) {
     const { t } = useTranslation();
     const { user } = useAuth();
-    const { routes } = useRouteContext();
+    const { routes, requests } = useRouteContext();
     const [routeRequests, setRouteRequests] = useState([]);
-    console.log('ROUTES', routes);
+    console.log("reqest", requests);
 
     const getRequestsForCurrentUser = () => {
-        return routes.filter(route => route.userId === user?.user?.id && route.markedSeats && route.markedSeats.length > 0);
+        return requests.filter(request => request.requestingUser?.userId === user?.user?.id);
     };
+
 
     useEffect(() => {
         const requestsForCurrentUser = getRequestsForCurrentUser();
         setRouteRequests(requestsForCurrentUser);
-    }, [routes]);
+    }, [requests]);
+
 
     const renderRoutes = () => {
         const requestsForCurrentUser = getRequestsForCurrentUser();
 
-        const renderedRoutes = requestsForCurrentUser.map((route) => (
+        const renderedRoutes = requestsForCurrentUser.map((request) => (
             <TouchableOpacity
-                key={route.id}
+                key={request.id}
                 style={[
                     styles.requestContainer,
-                    route.markedSeats && route.markedSeats.length > 0 ? styles.greenBorder : null
+                    request.requestingUser ? styles.greenBorder : null
                 ]}
                 onPress={() => {
                     Alert.alert(
                         t('Selected route'),
-                        ` ${route.departureCity}-${route.arrivalCity}`
+                        ` ${request.requestingUser.departureCity}-${request.requestingUser.arrivalCity}`
                     );
                 }}
             >
-                <Text style={styles.text}>{t('Direction')}: {t(`${route.departureCity}-${route.arrivalCity}`)}</Text>
+                <Text style={styles.text}>{t('Direction')}: {t(`${request.requestingUser.departureCity}-${request.requestingUser.arrivalCity}`)}</Text>
             </TouchableOpacity>
         ));
 
@@ -46,20 +48,22 @@ function RouteRequestScreen({ route, navigation }) {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <Image
-                source={require('../../images/routes2-background.jpg')}
-                style={styles.backgroundImage}
-            />
-            <View style={styles.container}>
-                <Text style={styles.headerText}>{t('Route Requests')}:</Text>
-                {routeRequests.length > 0 ? (
-                    <View>
-                        {renderRoutes()}
-                    </View>
-                ) : (
-                    <Text>{t('There are no requests for this route.')}</Text>
-                )}
-            </View>
+            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+                <Image
+                    source={require('../../images/routes2-background.jpg')}
+                    style={styles.backgroundImage}
+                />
+                <View style={styles.container}>
+                    <Text style={styles.headerText}>{t('Route Requests')}:</Text>
+                    {routeRequests.length > 0 ? (
+                        <View>
+                            {renderRoutes()}
+                        </View>
+                    ) : (
+                        <Text>{t('There are no requests for this route.')}</Text>
+                    )}
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };
@@ -68,9 +72,13 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
     },
+    scrollViewContainer: {
+        flexGrow: 1,
+    },
     container: {
         flex: 1,
         alignItems: 'flex-start',
+        position: 'relative',
     },
     headerText: {
         fontWeight: 'bold',
@@ -90,6 +98,7 @@ const styles = StyleSheet.create({
         height: '100%',
         resizeMode: 'cover',
         position: 'absolute',
+        zIndex: -1,
     },
     text: {
         fontWeight: 'bold',
@@ -97,13 +106,6 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         color: '#1b1c1e',
         alignSelf: 'center'
-    },
-    requestContainer: {
-        margin: 10,
-        padding: 15,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        borderRadius: 15,
-        elevation: 3,
     },
     greenBorder: {
         borderColor: 'green',

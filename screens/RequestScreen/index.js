@@ -77,7 +77,6 @@ function RouteDetails({ route }) {
     const routeInfo = useRoute();
     const loggedInUser = route.params.loggedInUser;
     const { username, userFname, userLname, userEmail, departureCity, arrivalCity, routeId, user_id } = route.params;
-    const { routes } = useRouteContext();
     // request user data :
     const requesterUsername = user?.user?.username;
     const requestUserFirstName = user?.user?.fName;
@@ -119,6 +118,7 @@ function RouteDetails({ route }) {
                                     userFname: user?.user?.fName,
                                     userLname: user?.user?.lName,
                                     userEmail: user?.user?.email,
+                                    userId: user?.user?.id,
                                     departureCity: route.params.departureCity,
                                     arrivalCity: route.params.arrivalCity,
                                     routeId: route.params.routeId,

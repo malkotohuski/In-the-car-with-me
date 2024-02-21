@@ -13,6 +13,7 @@ export const RouteProvider = ({ children }) => {
 
     useEffect(() => {
         fetchAllRoutes();
+        fetchAllRequests(); // Добавяме тази заявка за да заредим всички заявки при стартиране на приложението
     }, []);
 
     const addRoute = (newRoute) => {
@@ -55,6 +56,21 @@ export const RouteProvider = ({ children }) => {
         } catch (error) {
             console.error('Login Error:', error);
             alert(t('Login failed.Invalid email or password.'));
+        }
+    }
+
+    const fetchAllRequests = async () => {
+        try {
+            const response = await axios.get(`${API_BASE_URL}/requests`);
+
+            if (response.status === 200) {
+                setRequests(response.data);
+            } else {
+                // Обработка на грешката, ако е необходимо
+            }
+        } catch (error) {
+            console.error('Error fetching requests:', error);
+            // Обработка на грешката, ако е необходимо
         }
     }
 
