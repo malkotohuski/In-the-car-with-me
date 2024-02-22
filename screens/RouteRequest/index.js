@@ -15,12 +15,35 @@ function RouteRequestScreen({ route, navigation }) {
         return requests.filter(request => request.requestingUser?.userRouteId === user?.user?.id);
     };
 
-
     useEffect(() => {
         const requestsForCurrentUser = getRequestsForCurrentUser();
         setRouteRequests(requestsForCurrentUser);
     }, [requests]);
 
+    const [isMigrating, setIsMigrating] = useState(false);
+
+    useEffect(() => {
+        let interval;
+
+        if (isMigrating) {
+            interval = setInterval(() => {
+                setIsMigrating((prev) => !prev);
+            }, 500); // Промяна на стиловете на всеки 500 милисекунди
+        }
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [isMigrating]);
+
+    const handlePress = (request) => {
+        setIsMigrating(true);
+        Alert.alert(
+            t('There is a request for from:'),
+            `${request.requestingUser.userFname} ${request.requestingUser.userLname}`,
+            [{ text: 'OK', onPress: () => setIsMigrating(false) }]
+        );
+    };
 
     const renderRoutes = () => {
         const requestsForCurrentUser = getRequestsForCurrentUser();
@@ -30,14 +53,9 @@ function RouteRequestScreen({ route, navigation }) {
                 key={request.id}
                 style={[
                     styles.requestContainer,
-                    request.requestingUser ? styles.greenBorder : null
+                    request.requestingUser ? (isMigrating ? styles.migratingGreenBorder : styles.greenBorder) : null
                 ]}
-                onPress={() => {
-                    Alert.alert(
-                        t('Selected route'),
-                        ` ${request.requestingUser.departureCity}-${request.requestingUser.arrivalCity}`
-                    );
-                }}
+                onPress={() => handlePress(request)}
             >
                 <Text style={styles.text}>{t('Direction')}: {t(`${request.requestingUser.departureCity}-${request.requestingUser.arrivalCity}`)}</Text>
             </TouchableOpacity>
@@ -91,6 +109,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         borderRadius: 15,
         elevation: 3,
+    },
+    migratingGreenBorder: {
+        borderColor: 'red',
+        borderWidth: 2,
     },
     backgroundImage: {
         flex: 1,
