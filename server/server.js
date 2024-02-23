@@ -171,6 +171,18 @@ server.post('/send-request-to-email', async (req, res) => {
 server.post('/send-request-to-user', (req, res) => {
     const { requestingUser } = req.body;
 
+    // Check if requestingUser is defined
+    if (!requestingUser) {
+        console.error('Requesting user is undefined');
+        return res.status(400).json({ error: 'Invalid request. Requesting user is undefined.' });
+    }
+
+    // Check if the routeId is defined in requestingUser
+    if (!requestingUser.routeId) {
+        console.error('Route ID is undefined in requestingUser');
+        return res.status(400).json({ error: 'Invalid request. Route ID is undefined in requestingUser.' });
+    }
+
     // Check if the route exists
     const route = router.db.get('routes').find({ id: requestingUser.routeId }).value();
 
@@ -220,4 +232,9 @@ server.use(router);
 const port = 3000;
 server.listen(port, () => {
     console.log(`JSON Server is running on http://localhost:${port}`);
+});
+
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).send('Something went wrong!');
 });

@@ -430,6 +430,8 @@ i18next.use(initReactI18next).init({
                 'Sort by Newest': 'Sort by Newest',
                 'Clear Filters': 'Clear Filters',
                 'Close': 'Close',
+                'Would you like to submit a request for this route?': 'Would you like to submit a request for this route?',
+                'Cancel': 'Cancel',
             }
         },
         bg: {
@@ -854,7 +856,9 @@ i18next.use(initReactI18next).init({
                 'Sort by Oldest': 'Сортиране по Най-стари',
                 'Sort by Newest': 'Сортиране по Най-нови',
                 'Clear Filters': 'Изчистване на филтри',
-                'Close': 'Затвори'
+                'Close': 'Затвори',
+                'Would you like to submit a request for this route?': 'Искате ли да пуснете заявка за този маршрут ?',
+                'Cancel': 'Отказ',
             }
         },
     }
