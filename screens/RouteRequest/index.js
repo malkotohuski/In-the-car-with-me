@@ -45,7 +45,7 @@ function RouteRequestScreen({ route, navigation }) {
         };
     }, [isMigrating]);
 
-    const handlePress = (request) => {
+    const handlePress = async (request) => {
         setIsMigrating(true);
         Alert.alert(
             `${t('There is a request for from:')} ${request.requestingUser.userFname} ${request.requestingUser.userLname}`,
@@ -53,21 +53,28 @@ function RouteRequestScreen({ route, navigation }) {
             [
                 {
                     text: t('Yes'), onPress: async () => {
-                        const emailResponse = await api.post('/send-request-to-email', {
-                            email: request.requestingUser.userEmail,
-                            text: t(`Your request has been approved by: ${requestUserFirstName} ${requestUserLastName}.`),
-                        });
-                        console.log('Email Response:', emailResponse);
-                        Alert.alert('Success', 'Trip request sent successfully.');
+                        try {
+                            const emailResponse = await api.post('/send-request-to-email', {
+                                email: request.requestingUser.userEmail,
+                                text: t(`Your request has been approved by: ${requestUserFirstName} ${requestUserLastName}.`),
+                            });
+                            console.log('Email Response:', emailResponse);
+                            Alert.alert('Success', 'Trip request sent successfully.');
 
-                        const response = await api.post('/send-request-to-user', {
-                            // Тук можеш да използваш request.requestingUser.userEmail за да направиш заявката
-                        });
-                        // Handle the response from the server if needed
-                        console.log('Route Approval Response:', response);
+                            /* const response = await api.post('/send-request-to-user', {
+                                // Тук можеш да използваш request.requestingUser.userEmail за да направиш заявката
+                            });
+                            // Handle the response from the server if needed
+                            console.log('Route Approval Response:', response); */
 
-                        // After handling the request, you can navigate back to the previous screen
-                        navigation.navigate('Home');
+                            // After handling the request, you can navigate back to the previous screen
+                            navigation.navigate('Home');
+                        } catch (error) {
+                            console.error('Error while handling request:', error);
+                            Alert.alert('Error', 'An error occurred while handling the request.');
+                        } finally {
+                            setIsMigrating(false);
+                        }
                     },
                 },
                 { text: t('No'), onPress: () => setIsMigrating(false), style: 'cancel' }
@@ -75,6 +82,7 @@ function RouteRequestScreen({ route, navigation }) {
             { cancelable: false }
         );
     };
+
 
 
     const handleApproval = (request) => {

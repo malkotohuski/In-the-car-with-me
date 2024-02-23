@@ -192,23 +192,24 @@ server.post('/send-request-to-user', (req, res) => {
     }
 
     // Add the request to the "requests" array
-    const newRequest = {
-        id: Date.now(),
-        requestingUser,
-    };
+    const newRequest = { ...requestingUser, id: Date.now(), };
 
     // Push the new request to the "requests" array
     router.db.get('requests').push(newRequest).write();
 
+    console.log('Before sending response');
     return res.status(200).json({ message: 'Route request processed successfully.' });
 });
 
 // New endpoint to get all requests
 server.get('/get-requests', (req, res) => {
-    const requests = router.db.get('requests').value();
+    const { request } = req.body;
+    const requestingUser = { ...request, id: Date.now() };
+    router.db.get('requests').push(requestingUser).write();
 
-    return res.status(200).json(requests);
+    return res.status(201).json({ message: 'Route created successfully.', request: requestingUser });
 });
+
 
 // Handle user login
 server.post('/login', (req, res) => {
