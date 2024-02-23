@@ -17,6 +17,8 @@ function RouteRequestScreen({ route, navigation }) {
     const [routeRequests, setRouteRequests] = useState([]);
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
+    const requestUserEmail = user?.user?.email;
+    console.log("user", requests);
 
     const getRequestsForCurrentUser = () => {
         return requests.filter(request => request.requestingUser?.userRouteId === user?.user?.id);
