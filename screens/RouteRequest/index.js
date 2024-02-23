@@ -3,13 +3,20 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Alert, Image, S
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from '../Category/RouteContext';
+import axios from 'axios';
+
+const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
+const api = axios.create({
+    baseURL: API_BASE_URL,
+});
 
 function RouteRequestScreen({ route, navigation }) {
     const { t } = useTranslation();
     const { user } = useAuth();
     const { routes, requests } = useRouteContext();
     const [routeRequests, setRouteRequests] = useState([]);
-    console.log("reqest", requests);
+    const requestUserFirstName = user?.user?.fName;
+    const requestUserLastName = user?.user?.lName;
 
     const getRequestsForCurrentUser = () => {
         return requests.filter(request => request.requestingUser?.userRouteId === user?.user?.id);
@@ -39,10 +46,39 @@ function RouteRequestScreen({ route, navigation }) {
     const handlePress = (request) => {
         setIsMigrating(true);
         Alert.alert(
-            t('There is a request for from:'),
-            `${request.requestingUser.userFname} ${request.requestingUser.userLname}`,
-            [{ text: 'OK', onPress: () => setIsMigrating(false) }]
+            `${t('There is a request for from:')} ${request.requestingUser.userFname} ${request.requestingUser.userLname}`,
+            t('Do you want to approve the request?'),
+            [
+                {
+                    text: t('Yes'), onPress: async () => {
+                        const emailResponse = await api.post('/send-request-to-email', {
+                            email: request.requestingUser.userEmail,
+                            text: t(`Your request has been approved by: ${requestUserFirstName} ${requestUserLastName}.`),
+                        });
+                        console.log('Email Response:', emailResponse);
+                        Alert.alert('Success', 'Trip request sent successfully.');
+
+                        const response = await api.post('/send-request-to-user', {
+                            // Тук можеш да използваш request.requestingUser.userEmail за да направиш заявката
+                        });
+                        // Handle the response from the server if needed
+                        console.log('Route Approval Response:', response);
+
+                        // After handling the request, you can navigate back to the previous screen
+                        navigation.navigate('Home');
+                    },
+                },
+                { text: t('No'), onPress: () => setIsMigrating(false), style: 'cancel' }
+            ],
+            { cancelable: false }
         );
+    };
+
+
+    const handleApproval = (request) => {
+        // Тук добави логиката, която ще се изпълни при одобрение на заявката
+        // Например, извикай функция или изпрати заявка към сървъра
+        setIsMigrating(false); // Използвай този ред, ако искаш да спреш анимацията след одобрение
     };
 
     const renderRoutes = () => {

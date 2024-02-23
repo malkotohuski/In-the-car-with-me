@@ -83,11 +83,8 @@ function RouteDetails({ route }) {
     const requestUserLastName = user?.user?.lName;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
-    const userRouteId = route.params.userId
-    const userID = user?.user?.id
 
-    console.log("?>?", userID);
-    console.log("?>?", userRouteId);
+    console.log("?>?", userEmail);
 
     const handlerTripRequest = async () => {
         try {
@@ -95,11 +92,11 @@ function RouteDetails({ route }) {
             console.log('Sending trip request to:', route);
 
             Alert.alert(
-                'Confirm',
-                'Do you want to approve requests for your route?',
+                t('Confirm'),
+                t('Would you like to submit a request for this route?'),
                 [
                     {
-                        text: 'Cancel',
+                        text: t('Cancel'),
                         style: 'cancel',
                     },
                     {
@@ -119,7 +116,7 @@ function RouteDetails({ route }) {
                                     username: user?.user?.username,
                                     userFname: user?.user?.fName,
                                     userLname: user?.user?.lName,
-                                    userEmail: user?.user?.email,
+                                    userEmail: route.params.userEmail,
                                     userID: user?.user?.id,
                                     userRouteId: route.params.userId,
                                     departureCity: route.params.departureCity,
@@ -144,6 +141,7 @@ function RouteDetails({ route }) {
                     username: requesterUsername,
                     userFname: requestUserFirstName,
                     userLname: requestUserLastName,
+                    userEmail: requestUserEmail,
                     departureCity: departureCityEmail,
                     arrivalCity: arrivalCityEmail,
                     userRequestInfo: loggedInUser,
@@ -181,8 +179,6 @@ function RouteDetails({ route }) {
             <Text style={styles.text}> {t('Nick name')} : {username}</Text>
             <Text style={styles.text}> {t('Names')} :  {userFname} {userLname}</Text>
             <Text style={styles.text}> {t('Route')} :  {departureCity}-{arrivalCity} </Text>
-            <Text style={styles.text}> {t('Route ID')} : {routeId} </Text>
-            <Text style={styles.text}> {t('User ID')} : {user_id} </Text>
 
             {/* Display other route details here based on your requirements */}
 
