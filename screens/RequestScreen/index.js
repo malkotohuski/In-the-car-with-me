@@ -29,6 +29,7 @@ function RouteRequestApprovalScreen({ route }) {
                     username: user?.user?.username,
                     userFname: user?.user?.fName,
                     userLname: user?.user?.lName,
+                    userEmail: user?.user?.email,
                     departureCity: route.params.departureCity,
                     arrivalCity: route.params.arrivalCity,
                     routeId: route.params.routeId,
@@ -76,15 +77,16 @@ function RouteDetails({ route }) {
     const { user } = useAuth();
     const routeInfo = useRoute();
     const loggedInUser = route.params.loggedInUser;
-    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, routeId, user_id } = route.params;
+    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, } = route.params;
     // request user data :
     const requesterUsername = user?.user?.username;
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
+    const requestUserEmail = user?.user?.email;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
 
-    console.log("?>?", userEmail);
+    console.log("?>?", requestUserEmail);
 
     const handlerTripRequest = async () => {
         try {
@@ -116,7 +118,7 @@ function RouteDetails({ route }) {
                                     username: user?.user?.username,
                                     userFname: user?.user?.fName,
                                     userLname: user?.user?.lName,
-                                    userEmail: route.params.userEmail,
+                                    userEmail: requestUserEmail,
                                     userID: user?.user?.id,
                                     userRouteId: route.params.userId,
                                     departureCity: route.params.departureCity,
