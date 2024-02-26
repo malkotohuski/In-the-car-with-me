@@ -1436,10 +1436,12 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@react-navigation/bottom-tabs@^6.5.11":
-  version "6.5.11"
+"@react-navigation/bottom-tabs@^6.5.14":
+  version "6.5.14"
+  resolved "https://registry.npmjs.org/@react-navigation/bottom-tabs/-/bottom-tabs-6.5.14.tgz"
+  integrity sha512-3gDVwuaPQIxkJm3PI5vATDr9Un3Z0tplfkzM/TWL2igE0Kd/hymWz0jZppBJbuKi+Q25i/74b+3VOVKuiE43AQ==
   dependencies:
-    "@react-navigation/elements" "^1.3.21"
+    "@react-navigation/elements" "^1.3.24"
     color "^4.2.3"
     warn-once "^0.1.0"
 
@@ -1460,8 +1462,10 @@
     color "^4.2.3"
     warn-once "^0.1.0"
 
-"@react-navigation/elements@^1.3.21":
-  version "1.3.21"
+"@react-navigation/elements@^1.3.21", "@react-navigation/elements@^1.3.24":
+  version "1.3.24"
+  resolved "https://registry.npmjs.org/@react-navigation/elements/-/elements-1.3.24.tgz"
+  integrity sha512-zgZV50qjlv3/N+MzNV0DIRmtg30IZcR0+LaTQRP/OxLtveQkgUG6wIEKl6SXO2ykC9yF9V82msdCzKl9uPSQCA==
 
 "@react-navigation/material-bottom-tabs@^6.2.19":
   version "6.2.19"
