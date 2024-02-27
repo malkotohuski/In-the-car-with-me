@@ -183,6 +183,9 @@ export default StyleSheet.create({
         width: 250,
     },
 
+
+
+
     profileInfoContainer: {
         flexDirection: 'row', // Arrange profile picture and user info side by side
         alignItems: 'center',
@@ -306,7 +309,7 @@ export default StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: '#1c1c1c', // Цветът на иконките, промени го според нуждите си
+        backgroundColor: '#f1f1f1', // Цветът на иконките, промени го според нуждите си
         justifyContent: 'center',
     },
 });
