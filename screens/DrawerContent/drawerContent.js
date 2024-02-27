@@ -21,6 +21,7 @@ import WelcomeScreen from '../Account/Welcome';
 import LogoutScreen from '../Logout';
 import SettingsScreen from '../Settings/SettingsScreen';
 import { RouteRequestApprovalScreen, RouteDetails } from '../RequestScreen/index'
+import ChatScreen from '../Home/ChatScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -147,6 +148,16 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Mark Seats'),
                     ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="Chat"
+                component={ChatScreen}
+                options={{
+                    title: t('Chat'),
+                    ...screenStyles,
+                    headerShown: false,
                     drawerItemStyle: { display: 'none' }
                 }}
             />

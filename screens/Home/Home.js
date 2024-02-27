@@ -36,6 +36,11 @@ function HomePage({ navigation }) {
         console.log('Reporting clicked !!!');
     }
 
+    const handlerChatScreen = () => {
+        navigation.navigate('Chat');
+        console.log('Chats screen clicked !!!');
+    }
+
     return (
         <View style={styles.homepage}>
             <Image
@@ -128,7 +133,7 @@ function HomePage({ navigation }) {
                     <TouchableOpacity style={styles.footerIcon}>
                         <Icons name="routes" size={24} color="white" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.footerIcon}>
+                    <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
                         <Icons name="chat" size={24} color="white" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.footerIcon}>
