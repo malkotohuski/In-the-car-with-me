@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
-
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function HomePage({ navigation }) {
     const { t } = useTranslation();
@@ -124,7 +124,17 @@ function HomePage({ navigation }) {
                         <Text style={styles.searchButtonText}>{t('Search')}</Text>
                     </TouchableOpacity>
                 </View>
-
+                <View style={styles.footer}>
+                    <TouchableOpacity style={styles.footerIcon}>
+                        <Icons name="routes" size={24} color="white" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.footerIcon}>
+                        <Icons name="chat" size={24} color="white" />
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.footerIcon}>
+                        <Icons name="bell" size={24} color="white" />
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     );
