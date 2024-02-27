@@ -60,6 +60,8 @@
     "react-native-webview": "^13.6.2",
     "react-navigation": "^5.0.0",
     "uuid": "^9.0.1"
+    "react-redux": "^9.0.4",
+    "redux": "^5.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
