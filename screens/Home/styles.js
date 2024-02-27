@@ -73,8 +73,10 @@ export default StyleSheet.create({
     },
     searchButton: {
         height: 60,
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         borderRadius: 3,
+        borderWidth: 2,
+        borderColor: '#F1F1F1',
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
@@ -255,7 +257,7 @@ export default StyleSheet.create({
     },
     userVehicle: {
         alignItems: 'center',
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         padding: 10,
         marginTop: 10,
         fontSize: 16,
@@ -265,7 +267,7 @@ export default StyleSheet.create({
     },
     usernameChangeButton: {
         alignItems: 'center',
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         padding: 10,
         marginBottom: 10,
         fontSize: 16,
@@ -296,7 +298,7 @@ export default StyleSheet.create({
         justifyContent: 'space-around',
         alignItems: 'flex-end',
         padding: 10,
-        backgroundColor: 'coral', // Цветът на футера, промени го според нуждите си
+        backgroundColor: '#f4511e', // Цветът на футера, промени го според нуждите си
         marginTop: 'auto',
     },
     footerIcon: {
