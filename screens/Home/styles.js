@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     homepage: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
         height: '100%',
-        backgroundColor: 'grey'
+        backgroundColor: 'grey',
     },
     container: {
         flex: 1,
@@ -155,6 +155,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         padding: 10,
+        marginTop: 20,
     },
     languageButton: {
         alignItems: 'center',
@@ -291,5 +292,21 @@ export default StyleSheet.create({
         fontSize: 23,
         fontWeight: 'bold',
         color: 'white'
-    }
+    },
+    footer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'flex-end',
+        padding: 10,
+        backgroundColor: 'coral', // Цветът на футера, промени го според нуждите си
+        marginTop: 'auto',
+    },
+    footerIcon: {
+        alignItems: 'center',
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: '#1c1c1c', // Цветът на иконките, промени го според нуждите си
+        justifyContent: 'center',
+    },
 });
