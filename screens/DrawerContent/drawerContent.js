@@ -22,6 +22,7 @@ import LogoutScreen from '../Logout';
 import SettingsScreen from '../Settings/SettingsScreen';
 import { RouteRequestApprovalScreen, RouteDetails } from '../RequestScreen/index'
 import ChatScreen from '../Home/ChatScreen';
+import Messages from '../Chats/Messages';
 
 const Drawer = createDrawerNavigator();
 
@@ -103,6 +104,16 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={Register}
                 options={{
                     title: t('Register'),
+                    ...screenStyles,
+                    headerShown: false,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="Messages"
+                component={Messages}
+                options={{
+                    title: t('Messages'),
                     ...screenStyles,
                     headerShown: false,
                     drawerItemStyle: { display: 'none' }

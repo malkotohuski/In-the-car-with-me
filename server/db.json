@@ -1106,6 +1106,17 @@
           "id": 1705568617050
         }
       ]
+    },
+    {
+      "id": 1709136065698,
+      "username": "Shushy",
+      "email": "malkotohuski@gmail.com",
+      "password": "123",
+      "fName": "Daniel",
+      "lName": "Dimitrov",
+      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/e2ced631-e558-4583-97a1-2a72bd6cbfbe.jpg",
+      "confirmationCode": null,
+      "routes": []
     }
   ],
   "routes": [
@@ -1229,22 +1240,6 @@
       "arrivalStreet": "1",
       "arrivalNumber": "1",
       "id": 1706266399766
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "С1221АА",
-      "selectedDateTime": "2024-01-26T11:54:00.000Z",
-      "departureCity": "Plovdiv",
-      "departureStreet": "11",
-      "departureNumber": "1",
-      "arrivalCity": "Targovishte",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": "dani ",
-      "id": 1706266471905
     },
     {
       "selectedVehicle": "Car",
@@ -3191,5 +3186,6 @@
         "routeId": 1708689206370
       }
     }
-  ]
+  ],
+  "messages": []
 }
