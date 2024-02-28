@@ -1,13 +1,20 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, TextInput } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useAuth } from '../Authentication/AuthContext';
 
 const ChatScreen = ({ navigation }) => {
+    const { user } = useAuth();
+    const username = user?.user?.username;
+    const userAllName = `${user?.user?.fName} ${user?.user?.lName}`;
+    const [searchTerm, setSearchTerm] = useState('');
+    console.log('USER', userAllName);
+
     return (
         <SafeAreaView style={styles.mainContainer}>
             <Image
-                source={require('../../images/earth_message.jpg')}
+                source={require('../../images/messa.jpg')}
                 style={styles.backgroundImage}
             />
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
@@ -39,6 +46,16 @@ const ChatScreen = ({ navigation }) => {
                         <Icons name="keyboard-backspace" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
+                <View style={styles.searchContainer}>
+                    <Icon name='person-search' size={24} color={"white"} style={styles.searchIcon} />
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Търсене..."
+                        placeholderTextColor="white"
+                        value={searchTerm}
+                        onChangeText={(text) => setSearchTerm(text)}
+                    />
+                </View>
             </View>
         </SafeAreaView >
     );
@@ -62,7 +79,26 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 16,
         backgroundColor: '#f4511e',
-    }
+    },
+    searchContainer: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    searchIcon: {
+        marginTop: 43,
+        marginRight: 350
+    },
+    searchInput: {
+        flex: 1,
+        position: 'absolute',
+        marginTop: 30,
+        width: '100%',
+        borderColor: '#010101',
+        borderWidth: 1,
+        borderRadius: 5,
+        color: '#f1f1f1',
+        paddingLeft: 50,  // Отстъп за иконата отдясно
+    },
 })
 
 export default ChatScreen;
