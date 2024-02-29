@@ -50,7 +50,8 @@ server.post('/register', (req, res) => {
         lName,
         userImage,
         confirmationCode,
-        routes: []
+        routes: [],
+        freinds: []
     };
 
     router.db.get('users').push(user).write();
@@ -92,7 +93,25 @@ server.post('/create-route', (req, res) => {
     return res.status(201).json({ message: 'Route created successfully.', route: newRoute });
 });
 
+server.post('/approve-friend-request', (req, res) => {
+    const { userId, friendId } = req.body;
 
+    // Намери потребителя и приятеля в базата данни
+    const user = router.db.get('users').find({ id: userId }).value();
+    const friend = router.db.get('users').find({ id: friendId }).value();
+
+    if (!user || !friend) {
+        return res.status(404).json({ error: 'User or friend not found.' });
+    }
+
+    // Добави приятеля в масива friends на потребителя
+    router.db.get('users').find({ id: userId }).assign({ friends: [...user.friends, friend] }).write();
+
+    // Изтрий заявката от масива requests
+    router.db.get('requests').remove({ userId, friendId }).write();
+
+    return res.status(200).json({ message: 'Friend request approved successfully.' });
+});
 
 // Verification endpoint
 server.post('/verify-confirmation-code', (req, res) => {

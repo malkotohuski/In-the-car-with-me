@@ -41,6 +41,11 @@ function HomePage({ navigation }) {
         console.log('Chats screen clicked !!!');
     }
 
+    const handlerNotificationScreen = () => {
+        navigation.navigate('Chat');
+        console.log('Chats screen clicked !!!');
+    }
+
     return (
         <View style={styles.homepage}>
             <Image
@@ -136,7 +141,7 @@ function HomePage({ navigation }) {
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
                         <Icons name="chat" size={34} color="#010101" />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.footerIcon}>
+                    <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
                         <Icons name="bell" size={34} color="#010101" />
                     </TouchableOpacity>
                 </View>

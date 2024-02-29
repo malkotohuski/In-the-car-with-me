@@ -1,15 +1,35 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, TextInput, FlatList } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAuth } from '../Authentication/AuthContext';
+import { useRouteContext } from '../Category/RouteContext';
 
 const ChatScreen = ({ navigation }) => {
     const { user } = useAuth();
     const username = user?.user?.username;
     const userAllName = `${user?.user?.fName} ${user?.user?.lName}`;
     const [searchTerm, setSearchTerm] = useState('');
-    console.log('USER', userAllName);
+    const { routes, requests } = useRouteContext();
+    const [recentChats, setRecentChats] = useState([/* Запълни с последните чатове */]);
+    console.log('USER', requests);
+
+    const handleApproveFriendRequest = (friend) => {
+        const userId = user.id;
+        const friendId = friend.id;
+
+        // Изпрати заявка за одобрение на сървъра
+        axios.post('http://localhost:3000/approve-friend-request', { userId, friendId })
+            .then((response) => {
+                // Обработи успешния отговор
+                console.log(response.data.message);
+            })
+            .catch((error) => {
+                // Обработи грешката
+                console.error('Error approving friend request:', error);
+            });
+    };
+
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -57,6 +77,21 @@ const ChatScreen = ({ navigation }) => {
                     />
                 </View>
             </View>
+            <FlatList
+                data={recentChats}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({ item }) => (
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                        <View style={styles.chatItem}>
+                            <Text style={styles.chatItemText}>{item.title}</Text>
+                            <TouchableOpacity onPress={() => handleApproveFriendRequest(item)}>
+                                <Text style={styles.approveButton}>Approve</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </TouchableOpacity>
+                )}
+            />
+
         </SafeAreaView >
     );
 };
@@ -98,6 +133,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         color: '#f1f1f1',
         paddingLeft: 50,  // Отстъп за иконата отдясно
+    },
+    chatItem: {
+        padding: 10,
+        borderBottomWidth: 1,
+        borderBottomColor: '#ccc',
+    },
+    chatItemText: {
+        color: 'white',
+        fontSize: 16,
     },
 })
 
