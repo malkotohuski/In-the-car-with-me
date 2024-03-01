@@ -207,6 +207,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 options={{
                     title: t('Reporting'),
                     ...screenStyles,
+                    headerShown: false,
                     drawerIcon: ({ color, size }) => (
                         <Icon name="report" size={size} color={color} />
                     ),
