@@ -14,17 +14,8 @@ import { useAuth } from '../Authentication/AuthContext';
 
 const AccountSettings = ({ navigation }) => {
     const { user } = useAuth();
-    console.log('dfsdf', user);
-
     const [profilePicture, setProfilePicture] = useState('');
-
-    // User information states
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
-
     const { t } = useTranslation();
-
 
     const handleImagePicker = async () => {
         try {
@@ -46,10 +37,6 @@ const AccountSettings = ({ navigation }) => {
         }
     };
 
-
-
-
-
     const handleSaveChanges = () => {
         if (firstName.length < 1 && lastName.length < 1) {
             Alert.alert(t('Please fill in the fields with *'));
@@ -62,8 +49,12 @@ const AccountSettings = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <Image
+                source={require('../../images/Passport-photo-5-1024x683.jpg')}
+                style={styles.backgroundImage}
+            />
             <Text style={[styles.userTextContainer, styles.topLeft]}>
-                {user?.user?.username}
+                {t('Username')} : {user?.user?.username}
             </Text>
             <Text>
                 {user?.user?.fName} {user?.user?.lName}
@@ -87,35 +78,6 @@ const AccountSettings = ({ navigation }) => {
                     </Text>
                 )}
             </TouchableOpacity>
-            <View style={styles.profileInfoContainer}>
-                {/* User information */}
-                <View style={styles.userInfoContainer}>
-                    <Text style={styles.label}>{t('First Name')}</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('Enter first name *')}
-                        onChangeText={(text) => setFirstName(text)}
-                        value={firstName}
-                    />
-                    <Text style={styles.label}>{t('Last Name')}</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('Enter last name *')}
-                        onChangeText={(text) => setLastName(text)}
-                        value={lastName}
-                    />
-                    <Text style={styles.label}>{t('Phone Number')}</Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t('Enter phone number')}
-                        onChangeText={(text) => setPhoneNumber(text)}
-                        keyboardType="number-pad"
-                        value={phoneNumber}
-                    />
-                    {/*   <Text style={styles.label}>{t('Yours vehicles')}</Text> */}
-
-                </View>
-            </View>
             <TouchableOpacity
                 style={styles.usernameChangeButton}
                 onPress={handleSaveChanges}
@@ -131,8 +93,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 16,
-        backgroundColor: 'grey'
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
     },
     profileInfoContainer: {
         flexDirection: 'row', // Arrange profile picture and user info side by side
@@ -231,7 +198,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: 'black',
+        margin: 16
     },
     usernameText: {
         color: 'black',
