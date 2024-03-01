@@ -1,9 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
-import { View, TextInput, Button, Image, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Button, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const ReportingScreen = () => {
+const ReportingScreen = ({ navigation }) => {
     const [problemDescription, setProblemDescription] = useState('');
     const [vehicleNumber, setVehicleNumber] = useState('');
     const [attachment, setAttachment] = useState(null);
@@ -69,9 +70,9 @@ const ReportingScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.mainContainer}>
             <Image
-                source={require('../../images/report-background.jpg')}
+                source={require('../../images/road-wallpapers-reporting.jpg')}
                 style={{
                     flex: 1,
                     width: '100%',
@@ -80,45 +81,67 @@ const ReportingScreen = () => {
                     position: 'absolute',
                 }}
             />
-            <TextInput
-                style={styles.input}
-                placeholder={t("Describe the problem")}
-                placeholderTextColor={'#F1F1F1'}
-                multiline
-                value={problemDescription}
-                onChangeText={(text) => setProblemDescription(text)}
-            />
-            <TextInput
-                style={[styles.inputVehicle, !isValidVehicleNumber && styles.invalidInput]}
-                placeholder={t("Enter the vehicle number")}
-                placeholderTextColor={'#F1F1F1'}
-                value={vehicleNumber}
-                onChangeText={validateVehicleNumber}
-            />
-            <TouchableOpacity onPress={chooseImage} style={styles.imagePicker}>
-                <Text
-                    style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
-                >{t('Choose Photo or Video')}</Text>
-            </TouchableOpacity>
-            {attachment && <Image source={{ uri: attachment.uri }} style={styles.attachmentPreview} />}
-            <TouchableOpacity
-                onPress={sendReport}
-                style={styles.imagePicker}
-            >
-                <Text
-                    style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
-                >
-                    {t("Send the Signal")}
-                </Text>
-            </TouchableOpacity>
-        </View>
+            <View style={{ flex: 1, justifyContent: 'flex-start', }}>
+                <View style={styles.header}  >
+                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
+                        Reporting
+                    </Text>
+                    <View style={{ width: 60 }} />
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                        {/* Кастомизирайте бутона за връщане според вашите изисквания */}
+                        <Icons name="keyboard-backspace" size={24} color="white" />
+                    </TouchableOpacity>
+                </View>
+                <View>
+                    <TextInput
+                        style={styles.input}
+                        placeholder={t("Describe the problem")}
+                        placeholderTextColor={'#F1F1F1'}
+                        multiline
+                        value={problemDescription}
+                        onChangeText={(text) => setProblemDescription(text)}
+                    />
+                    <TextInput
+                        style={[styles.inputVehicle, !isValidVehicleNumber && styles.invalidInput]}
+                        placeholder={t("Enter the vehicle number")}
+                        placeholderTextColor={'#F1F1F1'}
+                        value={vehicleNumber}
+                        onChangeText={validateVehicleNumber}
+                    />
+                    <TouchableOpacity onPress={chooseImage} style={styles.imagePicker}>
+                        <Text
+                            style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
+                        >{t('Choose Photo or Video')}</Text>
+                    </TouchableOpacity>
+                    {attachment && <Image source={{ uri: attachment.uri }} style={styles.attachmentPreview} />}
+                    <TouchableOpacity
+                        onPress={sendReport}
+                        style={styles.imagePicker}
+                    >
+                        <Text
+                            style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
+                        >
+                            {t("Send the Signal")}
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+        </SafeAreaView >
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
+    mainContainer: {
         flex: 1,
-        backgroundColor: 'grey',
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        width: '100%',
+        padding: 16,
+        backgroundColor: '#f4511e',
     },
     input: {
         height: 120,
@@ -141,11 +164,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     imagePicker: {
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         padding: 15,
         borderRadius: 5,
         marginBottom: 56,
         alignItems: 'center',
+        borderColor: '#f1f1f1',
+        borderWidth: 2,
     },
     attachmentPreview: {
         width: 200,

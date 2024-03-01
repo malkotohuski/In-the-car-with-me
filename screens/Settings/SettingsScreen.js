@@ -180,7 +180,7 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#f4f4f4',
         padding: 15,
     },
     sectionHeader: {
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     },
     listItemContainer: {
         borderBottomWidth: 1,
-        borderColor: '#ddd',
+        borderColor: '#f6f5f2',
     },
 });
 
