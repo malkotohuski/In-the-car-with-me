@@ -260,7 +260,9 @@ const CitySelector = () => {
         { "label": t('Izvorsko'), "value": t('Izvorsko') },
         { "label": t('Dobroslavtsi'), "value": t('Dobroslavtsi') },
         //new
-        { "label": t('Ablanica'), "value": t('Ablanica') },
+        { "label": t('Ablanitsa oblast Pazardzhik'), "value": t('Ablanitsa oblast Pazardzhik') },
+        { "label": t('Ablanitsa (oblast Lovech)'), "value": t('Ablanitsa (oblast Lovech)') },
+        { "label": t('Ablanitsa (oblast Blagoevgrad)'), "value": t('Ablanitsa (oblast Blagoevgrad)') },
         { "label": t('Abrit'), "value": t('Abrit') },
         { "label": t('Avramovo'), "value": t('Avramovo') },
         { "label": t('Avren'), "value": t('Avren') },
