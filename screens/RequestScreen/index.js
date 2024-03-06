@@ -85,8 +85,8 @@ function RouteDetails({ route }) {
     const requestUserEmail = user?.user?.email;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
-
-    console.log("?>?", requestUserEmail);
+    const dataTime = route.params.selectedDateTime
+    console.log("?>?", dataTime);
 
     const handlerTripRequest = async () => {
         try {
@@ -124,6 +124,7 @@ function RouteDetails({ route }) {
                                     departureCity: route.params.departureCity,
                                     arrivalCity: route.params.arrivalCity,
                                     routeId: route.params.routeId,
+                                    dataTime: route.params.selectedDateTime
                                 },
                             });
                             ;

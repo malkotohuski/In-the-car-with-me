@@ -52,24 +52,26 @@ const Vehicle = () => {
                 source={require('../../images/car-background.jpg')}
                 style={styles.backgroundImage}
             />
-            <RNPickerSelect
-                items={vehicleTypes}
-                placeholder={{ label: t('Select vehicle'), value: null }}
-                placeholderTextColor="white"
-                onValueChange={(value) => handleVehicleSelect(value)}
-                value={selectedVehicle}
-                style={{
-                    inputIOS: {
-                        color: 'white', // Text color for selected item
-                        fontSize: 20,   // Font size for selected item
-                    },
-                    inputAndroid: {
-                        color: 'white', // Text color for selected item
-                        fontSize: 20,   // Font size for selected item
-                    },
-                }}
-                textInputProps={{ underlineColorAndroid: 'transparent' }}
-            />
+            <View style={styles.container}>
+                <RNPickerSelect
+                    items={vehicleTypes}
+                    placeholder={{ label: t('Select vehicle'), value: null }}
+                    placeholderTextColor="white"
+                    onValueChange={(value) => handleVehicleSelect(value)}
+                    value={selectedVehicle}
+                    style={{
+                        inputIOS: {
+                            color: 'white', // Text color for selected item
+                            fontSize: 20,   // Font size for selected item
+                        },
+                        inputAndroid: {
+                            color: 'white', // Text color for selected item
+                            fontSize: 20,   // Font size for selected item
+                        },
+                    }}
+                    textInputProps={{ underlineColorAndroid: 'transparent' }}
+                />
+            </View>
             <View
                 style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}
             >
@@ -106,14 +108,19 @@ const styles = StyleSheet.create({
     typeVehicle: {
         color: '#F1F1F1',
     },
+    container: {
+
+    },
     buttons: {
         height: 60,
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         borderRadius: 3,
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
         width: 200,
+        borderWidth: 2,
+        borderColor: '#f1f1f1'
     },
     betweenButtons: {
         padding: 10

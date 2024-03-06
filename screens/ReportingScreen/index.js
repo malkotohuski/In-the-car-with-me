@@ -84,7 +84,7 @@ const ReportingScreen = ({ navigation }) => {
             <View style={{ flex: 1, justifyContent: 'flex-start', }}>
                 <View style={styles.header}  >
                     <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
-                        Reporting
+                        {t('Reporting')}
                     </Text>
                     <View style={{ width: 60 }} />
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
