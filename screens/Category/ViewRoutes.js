@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     routeContainer: {
         margin: 10,
         padding: 10,
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         borderRadius: 10,
     },
     searchContainer: {

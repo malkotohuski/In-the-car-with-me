@@ -256,21 +256,23 @@ function MarkSeatsScreen() {
                 onPress={handleContinue}
                 style={{
                     marginTop: 0,
-                    backgroundColor: isValidRegistrationNumber() ? 'coral' : 'black', // Change color based on registrationNumber validity
+                    backgroundColor: isValidRegistrationNumber() ? '#f4511e' : 'black', // Change color based on registrationNumber validity
                     height: 60,
-                    backgroundColor: 'coral',
+                    backgroundColor: '#f4511e',
                     borderRadius: 3,
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 10,
                     width: 200,
+                    borderWidth: 2,
+                    borderColor: '#f1f1f1'
                 }}
 
             >
                 <Text
                     style={{
                         color: 'white',
-                        backgroundColor: 'coral',
+                        backgroundColor: '#f4511e',
                         fontSize: 20,
                         fontWeight: 'bold',
                     }}>
@@ -286,18 +288,20 @@ function MarkSeatsScreen() {
                 onPress={handlerBackToVehicle}
                 style={{
                     height: 80,
-                    backgroundColor: 'coral',
+                    backgroundColor: '#f4511e',
                     borderRadius: 3,
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 10,
                     width: 280,
+                    borderWidth: 2,
+                    borderColor: '#f1f1f1'
                 }}
             >
                 <Text
                     style={{
                         color: 'white',
-                        backgroundColor: 'coral',
+                        backgroundColor: '#f4511e',
                         fontSize: 20,
                         fontWeight: 'bold',
                     }}>

@@ -33,6 +33,21 @@ function SelectRouteScreen({ route, navigation }) {
     const [isFocus, setIsFocus] = useState(false);
     const [isFocuses, setIsFocuses] = useState(false);
 
+    const continueButtonStyle = {
+        marginTop: 20,
+        padding: 10,
+        backgroundColor: '#f4511e',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        width: 150, // Adjust the width as needed
+        height: 60,
+        borderWidth: 2,
+        borderColor: '#f1f1f1',
+        borderRadius: 3,
+    };
+
     const renderLabel = () => {
         if (value || isFocus) {
             return (
@@ -275,8 +290,8 @@ function SelectRouteScreen({ route, navigation }) {
             {/* Centered Date and Continue Button */}
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Button
-                    style={styles.button}
-                    title={t("Date and time of departure")}
+                    style={[styles.button, { marginTop: 10 }]}
+                    title={t("Select date and time of departure")}
                     onPress={() => setOpen(true)}
                     color="#f4511e"
                     titleStyle={{ marginHorizontal: 20, color: 'black' }}
@@ -304,16 +319,7 @@ function SelectRouteScreen({ route, navigation }) {
                 )}
                 <TouchableOpacity
                     onPress={handleContinue}
-                    style={{
-                        marginTop: 20,
-                        padding: 10,
-                        backgroundColor: '#f4511e',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: 20,
-                        fontWeight: 'bold',
-                        width: '90%', // Adjust the width as needed
-                    }}
+                    style={continueButtonStyle} // Използвай новата променлива за стиловете
                 >
                     <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{t('Continue')}</Text>
                 </TouchableOpacity>
@@ -377,6 +383,8 @@ const styles = StyleSheet.create({
         elevation: 3,
         backgroundColor: 'black',
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        borderWidth: 2,
+        borderColor: '#f1f1f1'
     }
 });

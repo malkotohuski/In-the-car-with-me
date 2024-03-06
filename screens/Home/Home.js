@@ -2,7 +2,7 @@ import i18n from './i18n';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -42,8 +42,20 @@ function HomePage({ navigation }) {
     }
 
     const handlerNotificationScreen = () => {
-        navigation.navigate('Chat');
-        console.log('Chats screen clicked !!!');
+        // Показване на алерта
+        Alert.alert(
+            t('In process of development!'),
+            '', // Празен текст, тъй като вече имаме заглавие
+            [
+                {
+                    text: 'OK', // Бутон за потвърждение
+                    onPress: () => {
+                        console.log('Notification screen clicked !!!');
+                    },
+                },
+            ],
+            { cancelable: false }
+        );
     }
 
     return (
@@ -136,13 +148,13 @@ function HomePage({ navigation }) {
                 </View>
                 <View style={styles.footer}>
                     <TouchableOpacity style={styles.footerIcon}>
-                        <Icons name="routes" size={34} color="#010101" />
+                        <Icons name="routes" size={34} color="#362619" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
-                        <Icons name="chat" size={34} color="#010101" />
+                        <Icons name="chat" size={34} color="#422F2F" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                        <Icons name="bell" size={34} color="#010101" />
+                        <Icons name="bell" size={34} color="#163E94" />
                     </TouchableOpacity>
                 </View>
             </View>

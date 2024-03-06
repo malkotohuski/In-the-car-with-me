@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     },
     userVehicle: {
         alignItems: 'center',
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         padding: 10,
         marginTop: 10,
         fontSize: 16,
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     },
     usernameChangeButton: {
         alignItems: 'center',
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         padding: 10,
         marginBottom: 10,
         fontSize: 16,

@@ -170,7 +170,7 @@ export default StyleSheet.create({
     },
     loginButtons: {
         alignItems: 'center',
-        backgroundColor: 'coral',
+        backgroundColor: '#f4511e',
         padding: 10,
         marginBottom: 1,
         fontSize: 16,

@@ -20,8 +20,15 @@ function RouteRequestScreen({ route, navigation }) {
     const requestUserEmail = user?.user?.email;
     console.log("user", requests);
 
+    const testId = requests?.requests?.userRouteId;
+    console.log("test", testId);
+
+    const user_Id = user?.user?.id;
+    console.log('user_Id', user_Id);
+
+
     const getRequestsForCurrentUser = () => {
-        return requests.filter(request => request.requestingUser?.userRouteId === user?.user?.id);
+        return requests.filter(request => request.userRouteId === user?.user?.id);
     };
 
     useEffect(() => {
@@ -103,7 +110,9 @@ function RouteRequestScreen({ route, navigation }) {
                 ]}
                 onPress={() => handlePress(request)}
             >
-                <Text style={styles.text}>{t('Direction')}: {t(`${request.requestingUser.departureCity}-${request.requestingUser.arrivalCity}`)}</Text>
+                <Text style={styles.text}>
+                    {t('Direction')}: {t(`${request.departureCity}-${request.arrivalCity}`)}
+                </Text>
             </TouchableOpacity>
         ));
 
