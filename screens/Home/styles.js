@@ -175,8 +175,9 @@ export default StyleSheet.create({
         marginBottom: 1,
         fontSize: 16,
         fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: 'black'
+        borderWidth: 2,
+        borderColor: '#f1f1f1',
+        borderRadius: 3,
     },
     buttonsContent: {
         margin: 50,
