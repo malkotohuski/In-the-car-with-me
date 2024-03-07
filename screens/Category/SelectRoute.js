@@ -206,13 +206,13 @@ function SelectRouteScreen({ route, navigation }) {
                     }}
                 />
             </View>
-            <Icons
+            {/*  <Icons
                 style={styles.icon}
                 color="black"
                 name="routes-clock" // "route" icon from MaterialIcons
                 size={100}
-            />
-
+            /> */}
+            <View style={{ padding: 20 }}></View>
             {/* Arrival Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
                 {t('Arrival:')}

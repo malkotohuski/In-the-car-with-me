@@ -4779,11 +4779,6 @@ const CitySelector = () => {
         { "label": t('Yastrebovo_Ruse'), "value": t('Yastrebovo_Ruse') },
         { "label": t('Yahinovo'), "value": t('Yahinovo') },
 
-
-
-
-
-
     ];
 
     return cities;
