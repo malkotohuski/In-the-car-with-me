@@ -55,14 +55,14 @@ function RouteRequestScreen({ route, navigation }) {
     const handlePress = async (request) => {
         setIsMigrating(true);
         Alert.alert(
-            `${t('There is a request for from:')} ${request.requestingUser.userFname} ${request.requestingUser.userLname}`,
+            `${t('There is a request for from:')} ${request.userFname} ${request.userLname}`,
             t('Do you want to approve the request?'),
             [
                 {
                     text: t('Yes'), onPress: async () => {
                         try {
                             const emailResponse = await api.post('/send-request-to-email', {
-                                email: request.requestingUser.userEmail,
+                                email: request.userEmail,
                                 text: t(`Your request has been approved by: ${requestUserFirstName} ${requestUserLastName}.`),
                             });
                             console.log('Email Response:', emailResponse);
