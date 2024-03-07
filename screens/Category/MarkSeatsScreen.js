@@ -287,13 +287,15 @@ function MarkSeatsScreen() {
             <TouchableOpacity
                 onPress={handlerBackToVehicle}
                 style={{
-                    height: 80,
+                    marginTop: 0,
+                    backgroundColor: isValidRegistrationNumber() ? '#f4511e' : 'black', // Change color based on registrationNumber validity
+                    height: 60,
                     backgroundColor: '#f4511e',
                     borderRadius: 3,
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 10,
-                    width: 280,
+                    width: 200,
                     borderWidth: 2,
                     borderColor: '#f1f1f1'
                 }}
