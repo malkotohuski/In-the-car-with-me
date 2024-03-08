@@ -116,7 +116,7 @@ function Confirm() {
             <Text style={styles.text}>{t('Username')}:{username}</Text>
             <Text style={styles.text}>{t('Names')}: {userFname} {userLname}</Text>
             <Text style={styles.text}>{registrationNumber} - {t('Free seats')}:{markedSeats.length}</Text>
-            <Text style={styles.text}>{t('Time and date of departure')}: {selectedDateTime.toLocaleString()}</Text>
+            <Text style={styles.text}>{t('Time and date of departure')}: {String(selectedDateTime.toLocaleString())}</Text>
 
             {/* Departure Section */}
             <View style={styles.sectionContainer}>
