@@ -51,7 +51,7 @@ function SelectRouteScreen({ route, navigation }) {
         height: 60,
         borderWidth: 2,
         borderColor: '#f1f1f1',
-        borderRadius: 3,
+        borderRadius: 8,
     };
 
     const handleContinue = () => {
@@ -121,7 +121,7 @@ function SelectRouteScreen({ route, navigation }) {
             <TouchableOpacity
                 style={styles.cityItem}
                 onPress={() => {
-                    setdepartureCity(item);
+                    setdepartureCity(item.label);
                     setModalVisible(false);
                     setSearchText('');
                 }}
@@ -131,12 +131,13 @@ function SelectRouteScreen({ route, navigation }) {
         )
     );
 
+
     const renderArrivalCityItem = ({ item, setModalVisible: setModalVisibleArrival }) => (
         item && (
             <TouchableOpacity
                 style={styles.cityItem}
                 onPress={() => {
-                    setarrivalCity(item);
+                    setarrivalCity(item.label);
                     setModalVisibleArrival(false);
                     setSearchText('');
                 }}
@@ -145,6 +146,7 @@ function SelectRouteScreen({ route, navigation }) {
             </TouchableOpacity>
         )
     );
+
 
     const filterCities = (text) => {
         // Филтриране на градовете спрямо въведения текст
@@ -170,13 +172,12 @@ function SelectRouteScreen({ route, navigation }) {
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25, }}>
                 <View style={{ flex: 1, marginRight: 10, color: 'black' }}>
                     <TouchableOpacity
+                        style={styles.citySelectButton}
                         onPress={() => setModalVisibleDeparture(true)}
-                        style={[styles.citySelectButton, isFocuses && { borderColor: 'red' }]}
                     >
                         <Text style={styles.citySelectButtonText}>
-                            {departureCity?.label || t('Select City')}
+                            {departureCity ? departureCity : t('Select City')}
                         </Text>
-
                     </TouchableOpacity>
                     <Modal
                         animationType="slide"
@@ -271,11 +272,11 @@ function SelectRouteScreen({ route, navigation }) {
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
                 <View style={{ flex: 1, marginRight: 10 }}>
                     <TouchableOpacity
+                        style={styles.citySelectButton}
                         onPress={() => setModalVisibleArrival(true)}
-                        style={[styles.citySelectButton, isFocuses && { borderColor: 'red' }]}
                     >
                         <Text style={styles.citySelectButtonText}>
-                            {arrivalCity?.label || t('Select City')}
+                            {arrivalCity ? arrivalCity : t('Select City')}
                         </Text>
                     </TouchableOpacity>
                     <Modal
@@ -452,7 +453,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 12,
         paddingHorizontal: 32,
-        borderRadius: 4,
+        borderRadius: 8,
         elevation: 3,
         backgroundColor: 'black',
         fontSize: 16,
