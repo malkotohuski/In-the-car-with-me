@@ -259,7 +259,7 @@ function MarkSeatsScreen() {
                     backgroundColor: isValidRegistrationNumber() ? '#f4511e' : 'black', // Change color based on registrationNumber validity
                     height: 60,
                     backgroundColor: '#f4511e',
-                    borderRadius: 3,
+                    borderRadius: 8,
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 10,
@@ -291,7 +291,7 @@ function MarkSeatsScreen() {
                     backgroundColor: isValidRegistrationNumber() ? '#f4511e' : 'black', // Change color based on registrationNumber validity
                     height: 60,
                     backgroundColor: '#f4511e',
-                    borderRadius: 3,
+                    borderRadius: 8,
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 10,

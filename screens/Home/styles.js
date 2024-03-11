@@ -74,7 +74,7 @@ export default StyleSheet.create({
     searchButton: {
         height: 60,
         backgroundColor: '#f4511e',
-        borderRadius: 3,
+        borderRadius: 8,
         borderWidth: 2,
         borderColor: '#F1F1F1',
         alignItems: 'center',
@@ -177,7 +177,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         borderWidth: 2,
         borderColor: '#f1f1f1',
-        borderRadius: 3,
+        borderRadius: 8,
     },
     buttonsContent: {
         margin: 50,
