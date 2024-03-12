@@ -16,6 +16,7 @@ function SelectRouteScreen({ route, navigation }) {
     } = route.params;
 
     const cities = CitySelector();
+    const [filteredCities, setFilteredCities] = useState(cities);
 
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
@@ -37,7 +38,6 @@ function SelectRouteScreen({ route, navigation }) {
     const [modalVisibleArrival, setModalVisibleArrival] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [showAllCities, setShowAllCities] = useState(false);
-    const [filteredCities, setFilteredCities] = useState(cities.slice(0, 7));
 
     const continueButtonStyle = {
         marginTop: 20,

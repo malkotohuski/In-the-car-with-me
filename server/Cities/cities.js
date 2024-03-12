@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 
-const CitySelector = () => {
+const CitySelector = (limit = null) => {
     const { t } = useTranslation();
 
     const cities = [
@@ -4767,8 +4767,12 @@ const CitySelector = () => {
         { "label": t('Yastrebovo_Stara_Zagora'), "value": t('Yastrebovo_Stara_Zagora') },
         { "label": t('Yastrebovo_Ruse'), "value": t('Yastrebovo_Ruse') },
         { "label": t('Yahinovo'), "value": t('Yahinovo') },
-
     ];
+
+
+    if (limit) {
+        return cities.slice(0, limit);
+    }
 
     return cities;
 };
