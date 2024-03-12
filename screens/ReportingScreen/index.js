@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Button, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useAuth } from '../Authentication/AuthContext';
 
 const ReportingScreen = ({ navigation }) => {
     const [problemDescription, setProblemDescription] = useState('');
@@ -10,6 +11,9 @@ const ReportingScreen = ({ navigation }) => {
     const [attachment, setAttachment] = useState(null);
     const [isValidVehicleNumber, setValidVehicleNumber] = useState(true);
     const { t } = useTranslation();
+    const { user } = useAuth();
+    const userEmail = user?.user?.email;
+
     const validateVehicleNumber = (text) => {
         const regex = /^([A-ZА-Я]{1,2})([0-9]{4})([A-ZА-Я]{2})$/;
         const isValid = regex.test(text);
@@ -32,41 +36,62 @@ const ReportingScreen = ({ navigation }) => {
         }
     };
 
-    const sendReport = () => {
-        if (!attachment) {
-            // Handle the case where no attachment is selected
-            console.warn(t('Please choose a photo or video.'));
-            return;
-        }
-        const serverEndpoint = 'https://your-backend-server.com/report';
-        const reportData = {
-            problemDescription,
-            vehicleNumber,
-            attachment: {
-                uri: attachment.uri,
-                type: attachment.type,
-                name: attachment.fileName,
-            },
-        };
+    const sendReport = async () => {
+        try {
+            const serverEndpoint = 'http://10.0.2.2:3000/send-request-to-email';  // Променете този адрес според вашите нужди
+            const reportData = {
+                problemDescription,
+                vehicleNumber,
+                attachment: {
+                    uri: attachment?.uri,
+                    type: attachment?.type,
+                    name: attachment?.fileName,
+                },
+            };
 
-        // Make a POST request to the server
-        fetch(serverEndpoint, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(reportData),
-        })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response from the server
-                console.log(t('Report sent successfully:'), data);
-                // You can perform any additional actions here, such as showing a confirmation message
+            const emailBody = `
+                ${t('Problem Description')}: ${reportData.problemDescription}
+                ${t('Vehicle Number')}: ${reportData.vehicleNumber}
+                ${t('User Email')}: ${userEmail || 'N/A'}
+                ${attachment ? '' : t('Please choose a photo or video')}
+            `;
+
+            const options = {
+                subject: t('Reporting Issue'),
+                body: emailBody,
+                recipients: ['malkotohuski@gmail.com'],
+                attachment: attachment
+                    ? {
+                        path: reportData.attachment.uri,
+                        type: reportData.attachment.type,
+                        name: reportData.attachment.name,
+                    }
+                    : null,
+            };
+
+            // Използвайте fetch за изпращане на заявка към сървъра
+            const response = await fetch(serverEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: 'malkotohuski@gmail.com',
+                    text: emailBody, // Променено тук, за да се изпраща целият текст
+                }),
             })
-            .catch(error => {
-                console.error('Error sending report:', error);
-                // Handle errors, e.g., show an error message to the user
-            });
+                .then(response => response.json())
+                .catch(error => {
+                    console.error('Error:', error);
+                    throw error; // Препращане на грешката след catch
+                });
+
+            console.log(t('Report sent successfully:'), response);
+            // Допълнителни действия при успешно изпращане
+        } catch (error) {
+            console.error('Error sending report:', error);
+            // Обработка на грешката
+        }
     };
 
     return (
