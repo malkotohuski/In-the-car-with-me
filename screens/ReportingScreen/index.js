@@ -9,6 +9,7 @@ const ReportingScreen = ({ navigation }) => {
     const [problemDescription, setProblemDescription] = useState('');
     const [vehicleNumber, setVehicleNumber] = useState('');
     const [attachment, setAttachment] = useState(null);
+    const [profilePicture, setProfilePicture] = useState('');
     const [isValidVehicleNumber, setValidVehicleNumber] = useState(true);
     const { t } = useTranslation();
     const { user } = useAuth();
@@ -23,22 +24,25 @@ const ReportingScreen = ({ navigation }) => {
 
     const chooseImage = async () => {
         try {
-            const response = await ImagePicker.openPicker({
-                multiple: false,
+            const image = await ImagePicker.openPicker({
                 cropping: true,
-                cropperCircleOverlay: true,
-                mediaType: 'photo',
             });
-
-            setAttachment(response);
+            if (image.path) {
+                // Local image
+                setProfilePicture(image.path);
+            } else if (image.uri) {
+                // Remote image
+                setProfilePicture(image.uri);
+            }
         } catch (error) {
             console.warn('Image picker error:', error);
         }
     };
 
+
     const sendReport = async () => {
         try {
-            const serverEndpoint = 'http://10.0.2.2:3000/send-request-to-email';  // Променете този адрес според вашите нужди
+            const serverEndpoint = 'http://10.0.2.2:3000/send-request-to-email';
             const reportData = {
                 problemDescription,
                 vehicleNumber,
@@ -69,7 +73,7 @@ const ReportingScreen = ({ navigation }) => {
                     : null,
             };
 
-            // Използвайте fetch за изпращане на заявка към сървъра
+            // fetch за изпращане на заявка към сървъра
             const response = await fetch(serverEndpoint, {
                 method: 'POST',
                 headers: {
@@ -77,20 +81,18 @@ const ReportingScreen = ({ navigation }) => {
                 },
                 body: JSON.stringify({
                     email: 'malkotohuski@gmail.com',
-                    text: emailBody, // Променено тук, за да се изпраща целият текст
+                    text: emailBody, //  изпраща целият текст
                 }),
             })
                 .then(response => response.json())
                 .catch(error => {
                     console.error('Error:', error);
-                    throw error; // Препращане на грешката след catch
+                    throw error;
                 });
 
             console.log(t('Report sent successfully:'), response);
-            // Допълнителни действия при успешно изпращане
         } catch (error) {
             console.error('Error sending report:', error);
-            // Обработка на грешката
         }
     };
 
@@ -113,7 +115,6 @@ const ReportingScreen = ({ navigation }) => {
                     </Text>
                     <View style={{ width: 60 }} />
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        {/* Кастомизирайте бутона за връщане според вашите изисквания */}
                         <Icons name="keyboard-backspace" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
@@ -134,14 +135,21 @@ const ReportingScreen = ({ navigation }) => {
                         onChangeText={validateVehicleNumber}
                     />
                     <TouchableOpacity onPress={chooseImage} style={styles.imagePicker}>
-                        <Text
-                            style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
-                        >{t('Choose Photo or Video')}</Text>
+                        <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
+                            {t('Choose Photo or Video')}
+                        </Text>
                     </TouchableOpacity>
-                    {attachment && <Image source={{ uri: attachment.uri }} style={styles.attachmentPreview} />}
+                    {profilePicture &&
+                        <View style={styles.show_image}>
+                            <Image source={{ uri: profilePicture }} style={styles.attachmentPreview} />
+                        </View>
+                    }
+                </View>
+
+                <View style={styles.footer_container}>
                     <TouchableOpacity
                         onPress={sendReport}
-                        style={styles.imagePicker}
+                        style={styles.send_button}
                     >
                         <Text
                             style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
@@ -192,22 +200,39 @@ const styles = StyleSheet.create({
         backgroundColor: '#f4511e',
         padding: 15,
         borderRadius: 5,
-        marginBottom: 56,
+        marginTop: 56,
         alignItems: 'center',
         borderColor: '#f1f1f1',
         borderWidth: 2,
     },
     attachmentPreview: {
-        width: 200,
-        height: 200,
-        resizeMode: 'contain',
-        marginBottom: 16,
-        borderRadius: 5,
-        padding: 10
+        width: '100%',
+        height: 300,
+        borderRadius: 2,
+        borderColor: '#f1f1f1',
+        borderWidth: 2,
+    },
+    show_image: {
+
     },
     invalidInput: {
         borderColor: 'red', // Customize the style for invalid input
     },
+    send_button: {
+        backgroundColor: '#f4511e',
+        padding: 15,
+        borderRadius: 5,
+        alignItems: 'center',
+        borderColor: '#f1f1f1',
+        borderWidth: 2,
+    },
+    footer_container: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'flex-end',
+        padding: 10,
+        marginTop: 'auto',
+    }
 });
 
 export default ReportingScreen;
