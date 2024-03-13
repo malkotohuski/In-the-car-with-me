@@ -12,8 +12,12 @@ const ReportingScreen = ({ navigation }) => {
     const [profilePicture, setProfilePicture] = useState('');
     const [isValidVehicleNumber, setValidVehicleNumber] = useState(true);
     const { t } = useTranslation();
+
     const { user } = useAuth();
     const userEmail = user?.user?.email;
+    const userName = user?.user?.username;
+    const userId = user?.user?.id;
+
 
     const validateVehicleNumber = (text) => {
         const regex = /^([A-ZА-Я]{1,2})([0-9]{4})([A-ZА-Я]{2})$/;
@@ -46,18 +50,14 @@ const ReportingScreen = ({ navigation }) => {
             const reportData = {
                 problemDescription,
                 vehicleNumber,
-                attachment: {
-                    uri: attachment?.uri,
-                    type: attachment?.type,
-                    name: attachment?.fileName,
-                },
+                profilePicture,
             };
 
             const emailBody = `
                 ${t('Problem Description')}: ${reportData.problemDescription}
                 ${t('Vehicle Number')}: ${reportData.vehicleNumber}
-                ${t('User Email')}: ${userEmail || 'N/A'}
-                ${attachment ? '' : t('Please choose a photo or video')}
+                ${t('User email:')}: ${userEmail || 'N/A'} ${t('Username:')}: ${userName} with ID : ${userId}
+                ${profilePicture ? '' : t('Please choose a photo or video')}
             `;
 
             const options = {
