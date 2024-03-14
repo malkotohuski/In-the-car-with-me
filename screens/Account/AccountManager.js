@@ -45,6 +45,10 @@ const AccountManager = ({ navigation }) => {
             <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
                 {t('Еmail')} : {user?.user?.email}
             </Text>
+            <Image
+                source={{ uri: '' }}
+                style={styles.profilePicture}
+            />
             <TouchableOpacity
                 style={styles.usernameChangeButton}
                 onPress={handlerChangeAcountSettings}

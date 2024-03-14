@@ -9,12 +9,19 @@ import {
     Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuth } from '../Authentication/AuthContext';
 
+const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
+const api = axios.create({
+    baseURL: API_BASE_URL,
+});
+
 const AccountSettings = ({ navigation }) => {
     const { user } = useAuth();
-    const [profilePicture, setProfilePicture] = useState('');
+    console.log('user', user);
+    const [profilePicture, setProfilePicture] = useState(null);
     const { t } = useTranslation();
 
     const handleImagePicker = async () => {
@@ -37,14 +44,22 @@ const AccountSettings = ({ navigation }) => {
         }
     };
 
-    const handleSaveChanges = () => {
-        if (firstName.length < 1 && lastName.length < 1) {
-            Alert.alert(t('Please fill in the fields with *'));
-        } else {
-            navigation.navigate('AccountManager', {
+    const handleSaveChanges = async () => {
+        try {
+            const response = await api.post('/user-changes', {
+                userId: user.user.id,
+                userImage: profilePicture,
             });
-            console.log('Changes saved');
-        };
+            console.log('User Changes Response:', response);
+            navigation.navigate('AccountManager', {
+                profilePicture: profilePicture,
+            });
+            console.log('Profile picture changed successfully');
+        } catch (error) {
+            // Обработете всякакви грешки, които възникнат по време на изпълнението на заявката
+            console.error('User Changes Error:', error);
+            Alert.alert(t('Profile picture change error'), t('There was an error while changing the profile picture'));
+        }
     }
 
     return (
@@ -67,9 +82,9 @@ const AccountSettings = ({ navigation }) => {
                 onPress={handleImagePicker}
                 style={[styles.profilePictureContainer, styles.topRight]}
             >
-                {profilePicture ? (
+                {profilePicture && profilePicture !== '' ? (
                     <Image
-                        source={{ uri: user?.user?.userImage }}
+                        source={{ uri: profilePicture }}
                         style={styles.profilePicture}
                     />
                 ) : (
@@ -78,6 +93,7 @@ const AccountSettings = ({ navigation }) => {
                     </Text>
                 )}
             </TouchableOpacity>
+
             <TouchableOpacity
                 style={styles.usernameChangeButton}
                 onPress={handleSaveChanges}

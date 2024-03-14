@@ -83,6 +83,32 @@ server.post('/register', (req, res) => {
     });
 });
 
+server.post('/user-changes', (req, res) => {
+    const { userId, userImage } = req.body; // Приемаме userId и новата профилна снимка от заявката
+
+    console.log('User Changes Request:', { userId, userImage });
+
+    // Тук може да добавите валидация на userId и userImage, ако е необходимо
+
+    // Намерете потребителя по userId в базата данни
+    // Например:
+    // const user = намери потребителя от базата данни;
+    // user.userImage = userImage;
+    // Запишете промените в базата данни;
+
+    // Върнете успех
+    const userChange = {
+        id: Date.now(),
+        userImage,
+    };
+
+    router.db.get('userChanges').push(userChange).write();
+
+    return res.status(200).json({ message: 'User profile picture updated successfully.' });
+});
+
+
+
 server.post('/create-route', (req, res) => {
     const { route } = req.body;
 
