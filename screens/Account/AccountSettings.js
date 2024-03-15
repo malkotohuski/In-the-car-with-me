@@ -20,7 +20,7 @@ const api = axios.create({
 
 const AccountSettings = ({ navigation }) => {
     const { user } = useAuth();
-    console.log('user', user);
+    console.log('user', user?.user?.userImage);
     const [profilePicture, setProfilePicture] = useState(null);
     const { t } = useTranslation();
 
@@ -46,7 +46,7 @@ const AccountSettings = ({ navigation }) => {
 
     const handleSaveChanges = async () => {
         try {
-            const response = await api.post('/user-changes', {
+            const response = await api.patch('/user-changes', {
                 userId: user.user.id,
                 userImage: profilePicture,
             });
@@ -56,7 +56,6 @@ const AccountSettings = ({ navigation }) => {
             });
             console.log('Profile picture changed successfully');
         } catch (error) {
-            // Обработете всякакви грешки, които възникнат по време на изпълнението на заявката
             console.error('User Changes Error:', error);
             Alert.alert(t('Profile picture change error'), t('There was an error while changing the profile picture'));
         }

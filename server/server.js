@@ -83,26 +83,27 @@ server.post('/register', (req, res) => {
     });
 });
 
-server.post('/user-changes', (req, res) => {
-    const { userId, userImage } = req.body; // Приемаме userId и новата профилна снимка от заявката
+server.patch('/user-changes', (req, res) => {
+    const { userId, userImage } = req.body;
 
     console.log('User Changes Request:', { userId, userImage });
 
-    // Тук може да добавите валидация на userId и userImage, ако е необходимо
+    // Валидация на userId
+    if (!userId) {
+        console.error('Invalid userId:', userId);
+        return res.status(400).json({ error: 'Invalid userId.' });
+    }
 
-    // Намерете потребителя по userId в базата данни
-    // Например:
-    // const user = намери потребителя от базата данни;
-    // user.userImage = userImage;
-    // Запишете промените в базата данни;
+    // Намери потребителя по userId в базата данни
+    const user = router.db.get('users').find({ id: userId }).value();
 
-    // Върнете успех
-    const userChange = {
-        id: Date.now(),
-        userImage,
-    };
+    if (!user) {
+        console.error('User not found with userId:', userId);
+        return res.status(404).json({ error: 'User not found.' });
+    }
 
-    router.db.get('userChanges').push(userChange).write();
+    // Актуализирай профилната снимка на потребителя
+    router.db.get('users').find({ id: userId }).assign({ userImage }).write();
 
     return res.status(200).json({ message: 'User profile picture updated successfully.' });
 });
