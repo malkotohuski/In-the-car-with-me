@@ -37,7 +37,7 @@ const AccountManager = ({ navigation }) => {
             </View>
             {/*User info */}
             <Text style={[styles.userInfoContainer, styles.topLeftUserNames]}>
-                {t('Nick name')} : {user?.user?.username}
+                {t('Username')} : {user?.user?.username}
             </Text>
             <Text style={[styles.userInfoContainer, styles.topLeftNames]}>
                 {t('Names')} :  {user?.user?.fName} {user?.user?.lName}
@@ -45,10 +45,6 @@ const AccountManager = ({ navigation }) => {
             <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
                 {t('Еmail')} : {user?.user?.email}
             </Text>
-            <Image
-                source={{ uri: '' }}
-                style={styles.profilePicture}
-            />
             <TouchableOpacity
                 style={styles.usernameChangeButton}
                 onPress={handlerChangeAcountSettings}
