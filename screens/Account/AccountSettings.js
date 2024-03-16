@@ -20,7 +20,6 @@ const api = axios.create({
 
 const AccountSettings = ({ navigation }) => {
     const { user } = useAuth();
-    console.log('user', user?.user?.userImage);
     const [profilePicture, setProfilePicture] = useState(null);
     const { t } = useTranslation();
 
@@ -67,13 +66,13 @@ const AccountSettings = ({ navigation }) => {
                 source={require('../../images/Passport-photo-5-1024x683.jpg')}
                 style={styles.backgroundImage}
             />
-            <Text style={[styles.userTextContainer, styles.topLeft]}>
+            <Text style={[styles.userTextContainer, styles.topLeftUsername]}>
                 {t('Username')} : {user?.user?.username}
             </Text>
-            <Text>
-                {user?.user?.fName} {user?.user?.lName}
+            <Text style={[styles.userTextContainer, styles.topLeftFullName]}>
+                {t('Full Name')} : {user?.user?.fName} {user?.user?.lName}
             </Text>
-            <Text style={styles.emailContainer}>
+            <Text style={[styles.userTextContainer, styles.topLeftEmail]}>
                 {user?.user?.email}
             </Text>
             {/* Profile picture */}
@@ -88,7 +87,7 @@ const AccountSettings = ({ navigation }) => {
                     />
                 ) : (
                     <Text style={styles.addPhotoText}>
-                        {t('Add Profile Picture')}
+                        {t('Change photo')}
                     </Text>
                 )}
             </TouchableOpacity>
@@ -131,9 +130,29 @@ const styles = StyleSheet.create({
         marginBottom: 8,
         fontWeight: 'bold'
     },
-    topLeft: {
+    topLeftUsername: {
         position: 'absolute',
         top: 15,
+        left: 0,
+        marginBottom: 15, // Adjust this value as needed for spacing
+        marginLeft: 20, // Adjust this value as needed for spacing
+        zIndex: 1, // To ensure it appears on top of other elements
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    topLeftFullName: {
+        position: 'absolute',
+        top: 45,
+        left: 0,
+        marginBottom: 15, // Adjust this value as needed for spacing
+        marginLeft: 20, // Adjust this value as needed for spacing
+        zIndex: 1, // To ensure it appears on top of other elements
+        fontSize: 16,
+        fontWeight: 'bold'
+    },
+    topLeftEmail: {
+        position: 'absolute',
+        top: 75,
         left: 0,
         marginBottom: 15, // Adjust this value as needed for spacing
         marginLeft: 20, // Adjust this value as needed for spacing
@@ -163,6 +182,7 @@ const styles = StyleSheet.create({
     userTextContainer: {
         fontSize: 20,
         fontWeight: 'bold',
+        color: '#010101',
     },
     emailContainer: {
         fontSize: 16,
