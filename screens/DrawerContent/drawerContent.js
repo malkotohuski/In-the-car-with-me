@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import Register from '../Register';
 import Login from '../Login';
 import { createDrawerNavigator } from '@react-navigation/drawer';
@@ -33,10 +33,20 @@ const screenStyles = {
     headerTintColor: '#F1F1F1',
 };
 
-
+const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        resizeMode: 'cover',
+        justifyContent: 'center',
+        opacity: 0.8, // Настройка на прозрачността на картината
+    },
+});
 
 export const Navigator = ({ isLoggedIn }) => {
     const { t } = useTranslation();
+
+    const backgroundImage = require('../../images/drawer.jpg');
+
     const dynamicScreens = [
         // ... other screens
         <Drawer.Screen
@@ -88,7 +98,12 @@ export const Navigator = ({ isLoggedIn }) => {
 
 
     return (
-        <Drawer.Navigator>
+        <Drawer.Navigator
+            drawerContentOptions={{
+                activeTintColor: '#e91e63',
+                itemStyle: { marginVertical: 5 },
+            }}
+        >
             <Drawer.Screen
                 name="Login"
                 component={Login}
