@@ -23,6 +23,7 @@ import SettingsScreen from '../Settings/SettingsScreen';
 import { RouteRequestApprovalScreen, RouteDetails } from '../RequestScreen/index'
 import ChatScreen from '../Home/ChatScreen';
 import Messages from '../Chats/Messages';
+import CustomerDrawer from './customDrawer';
 
 const Drawer = createDrawerNavigator();
 
@@ -99,10 +100,7 @@ export const Navigator = ({ isLoggedIn }) => {
 
     return (
         <Drawer.Navigator
-            drawerContentOptions={{
-                activeTintColor: '#e91e63',
-                itemStyle: { marginVertical: 5 },
-            }}
+            drawerContent={CustomerDrawer}
         >
             <Drawer.Screen
                 name="Login"
