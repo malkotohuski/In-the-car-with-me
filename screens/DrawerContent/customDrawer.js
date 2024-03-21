@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 function CustomerDrawer({ navigation }) {
     const { t } = useTranslation();
@@ -21,35 +22,74 @@ function CustomerDrawer({ navigation }) {
         console.log('Reporting clicked !!!');
     }
 
+    const handlerRequest = () => {
+        navigation.navigate('Route request')
+        console.log('Route request clicked !!!');
+    }
+
+    const handlerSettings = () => {
+        navigation.navigate('Settings')
+        console.log('Settings clicked !!!');
+    }
+
+    const handlerLogout = () => {
+        navigation.navigate('Logout')
+        console.log('Logout clicked !!!');
+    }
+
     return (
         <View style={styles.mainContainer}>
             <Image
-                source={require('../../images/drawer3.jpg')}
+                source={require('../../images/drawer9.jpg')}
                 style={styles.backgroundImage}
             />
             <View style={styles.drawerContainer}>
-                <View>
+                <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
-                        <Icon name="home" />
+                        <Icon name="home" size={30} color="#010101" />
                         <Text
                             style={styles.textButtons}
                         >{t('Home')}</Text>
                     </TouchableOpacity>
-                </View>
-                <View>
+                </View >
+                <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerRouteViewer} >
-                        <Icon name="streetview" />
+                        <Icon name="streetview" size={30} color="#010101" />
                         <Text
                             style={styles.textButtons}
                         >{t('View routes')}</Text>
                     </TouchableOpacity>
                 </View>
-                <View>
+                <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerReporting} >
-                        <Icon name="report" />
+                        <Icon name="report" size={30} color="#010101" />
                         <Text
                             style={styles.textButtons}
                         >{t('Reporting')}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.topLeft}>
+                    <TouchableOpacity style={styles.drawerScreen} onPress={handlerRequest} >
+                        <Icons name="routes" size={30} color="#010101" />
+                        <Text
+                            style={styles.textButtons}
+                        >{t('Route request')}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.topLeft}>
+                    <TouchableOpacity style={styles.drawerScreen} onPress={handlerSettings} >
+                        <Icon name="settings" size={30} color="#010101" />
+                        <Text
+                            style={styles.textButtons}
+                        >{t('Settings')}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.topLeft}>
+                    <TouchableOpacity style={styles.drawerScreen} onPress={handlerLogout} >
+                        <Icons name="logout" size={30} color="#010101" />
+                        <Text
+                            style={styles.textButtons}
+                        >{t('Logout')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -72,12 +112,24 @@ const styles = StyleSheet.create({
     },
     drawerContainer: {
         flex: 1,
-        justifyContent: 'center'
+        justifyContent: 'flex-start',
+        position: 'absolute',
+        left: 15,
+        top: 0,
+        alignItems: 'flex-start',
+        marginTop: 15, // adjust as needed
     },
-    color: '#010101',
-    fontSize: 20,
-    fontWeight: 'bold',
+    topLeft: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 30, // adjust as needed
+    },
+    textButtons: {
+        marginLeft: 10, // adjust as needed
+        color: '#010101', // text color
+        fontSize: 20, // text size
+        fontWeight: 'bold', // text weight
+    },
 })
-
 
 export default CustomerDrawer;
