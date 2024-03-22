@@ -40,7 +40,7 @@ function CustomerDrawer({ navigation }) {
     return (
         <View style={styles.mainContainer}>
             <Image
-                source={require('../../images/drawer9.jpg')}
+                source={require('../../images/drawer10.jpg')}
                 style={styles.backgroundImage}
             />
             <View style={styles.drawerContainer}>
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'flex-start',
         position: 'absolute',
-        left: 15,
+        right: 15,
         top: 0,
         alignItems: 'flex-start',
         marginTop: 15, // adjust as needed
