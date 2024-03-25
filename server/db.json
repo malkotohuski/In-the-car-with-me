@@ -7,7 +7,6 @@
       "password": "123",
       "fName": "sdsd",
       "lName": "sdaa",
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/f5d9ee13-7d2c-4caf-ad54-b9e264c18e9e.jpg",
       "confirmationCode": null,
       "routes": [
         {
@@ -803,7 +802,8 @@
           "arrivalNumber": "1",
           "id": 1706181031457
         }
-      ]
+      ],
+      "userImage": null
     },
     {
       "id": 1705513295033,
@@ -1114,7 +1114,7 @@
       "password": "123",
       "fName": "Daniel",
       "lName": "Dimitrov",
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/e2ced631-e558-4583-97a1-2a72bd6cbfbe.jpg",
+      "userImage": "",
       "confirmationCode": null,
       "routes": []
     }
@@ -3133,54 +3133,5 @@
       "id": 1709725116130
     }
   ],
-  "userChanges": [
-    {
-      "userImage": ""
-    },
-    {
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/b1abf7d6-269a-4e4e-a6c0-a743b54c9348.jpg"
-    },
-    {
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/b5f9a811-d6b7-4b38-b36a-c76fddbe9c75.jpg"
-    },
-    {
-      "id": 1710424792077,
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/423c293a-ab4b-4183-9ff8-b53d5860a32e.jpg"
-    },
-    {
-      "id": 1710498297418,
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/b577d0ff-f1aa-4f66-922e-2880c4b44926.jpg"
-    },
-    {
-      "id": 1710499918265,
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/a9682253-95b6-41cd-8c08-8151a4867d38.jpg"
-    },
-    {
-      "id": 1710500233829,
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/a3b83d34-c60b-4774-8062-0b9d6caca3b9.jpg"
-    },
-    {
-      "id": 1710508078276,
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/6dca2623-5dde-43ad-ba68-3873be6c1541.jpg"
-    },
-    {
-      "id": 1710508154740,
-      "userId": 1705505759437,
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/ce1eedfc-52fd-4bda-aea3-3f3ac63e0891.jpg"
-    },
-    {
-      "id": 1710509566075
-    },
-    {
-      "id": 1710510082512
-    },
-    {
-      "id": 1710510235406
-    },
-    {
-      "id": 1710512019228,
-      "userId": 1705505759437,
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/6f1f0af1-156f-4ad4-916a-b2b95a70102f.jpg"
-    }
-  ]
+  "userChanges": []
 }
