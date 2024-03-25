@@ -10,7 +10,8 @@ const WelcomeScreen = ({ navigation }) => {
     const route = useRoute(); // Define route here
     const captionAnim = useRef(new Animated.Value(-width)).current;
     const { user } = useAuth();
-    const userNickName = route.params?.name
+    const userNickName = user?.user?.username
+    console.log('user', user)
 
     const animateCaption = () => {
         Animated.timing(captionAnim, {

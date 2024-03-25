@@ -31,12 +31,9 @@ const AccountSettings = ({ navigation }) => {
                 cropping: true,
             });
 
-            if (image.path) {
-                // Local image
-                setProfilePicture(image.path);
-            } else if (image.uri) {
-                // Remote image
-                setProfilePicture(image.uri);
+            if (image?.path || image?.uri) { // Променено условие за проверка
+                // Локално или отдалечено изображение
+                setProfilePicture(image.path || image.uri);
             }
         } catch (error) {
             console.log('ImagePicker Error: ', error);

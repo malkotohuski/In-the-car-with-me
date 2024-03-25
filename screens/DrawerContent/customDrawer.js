@@ -33,7 +33,7 @@ function CustomerDrawer({ navigation }) {
     }
 
     const handlerLogout = () => {
-        navigation.navigate('Logout')
+        navigation.navigate('LogoutScreen')
         console.log('Logout clicked !!!');
     }
 
