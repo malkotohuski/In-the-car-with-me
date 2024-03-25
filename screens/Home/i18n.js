@@ -2024,7 +2024,6 @@ i18next.use(initReactI18next).init({
                 'Panagyurishte': 'Панагюрище',
                 'Botevgrad': 'Ботевград',
                 'Peshtera': 'Пещера',
-
                 'Veliki Preslav': 'Велики Преслав',
                 'Pomorie': 'Поморие',
                 'Lyaskovets': 'Лясковец',
@@ -2100,7 +2099,6 @@ i18next.use(initReactI18next).init({
                 'Nikolovo': 'Николово',
                 'Ravda': 'Равда',
                 'Glozhene': 'Гложене',
-
                 'Kurtovo Konare': 'Куртово Конаре',
                 'Ablanitsa': 'Абланица',
                 'Skutare': 'Скутаре',
@@ -2115,7 +2113,6 @@ i18next.use(initReactI18next).init({
                 'Glavinitsa': 'Главиница',
                 'Bregovo': 'Брегово',
                 'Svetovrachane': 'Световрачане',
-
                 'Krushare': 'Крушаре',
                 'Startsevo': 'Старцево',
                 'Gradina': 'Градина',
@@ -2140,7 +2137,6 @@ i18next.use(initReactI18next).init({
                 'Graf Ignatievo': 'Граф Игнатиево',
                 'Seliminovo': 'Селиминово',
                 'Uzundzhovo': 'Узунджово',
-
                 'Polikrayshte': 'Поликрайще',
                 'Lesnovo': 'Лесново',
                 'Merichleri': 'Меричлери',
@@ -2198,7 +2194,6 @@ i18next.use(initReactI18next).init({
                 'Vaglen': 'Въглен',
                 'Vardun': 'Върдун',
                 'Marchaevo': 'Марчаево',
-
                 'Gorni Bogrov': 'Горни Богров',
                 'Semerdzhievo': 'Семерджиево',
                 'Zaychar': 'Зайчар',

@@ -4896,8 +4896,10 @@ react-native-gesture-handler@^2.13.4, "react-native-gesture-handler@>= 1.0.0":
     lodash "^4.17.21"
     prop-types "^15.7.2"
 
-react-native-image-crop-picker@^0.40.2:
-  version "0.40.2"
+react-native-image-crop-picker@^0.40.3:
+  version "0.40.3"
+  resolved "https://registry.npmjs.org/react-native-image-crop-picker/-/react-native-image-crop-picker-0.40.3.tgz"
+  integrity sha512-45PKcTnsnLS+E36YwoXutllQdRSOuOsMN0IRcAcwsFXOuAQIOtugXlAuGGL28JHKb/ATaSSPvqCSrdG65Jv3GA==
 
 react-native-image-picker@^7.1.0:
   version "7.1.0"
@@ -4921,6 +4923,11 @@ react-native-paper@^5.11.1, "react-native-paper@>= 3.0.0":
     "@callstack/react-theme-provider" "^3.0.9"
     color "^3.1.2"
     use-latest-callback "^0.1.5"
+
+react-native-permissions@^4.1.5:
+  version "4.1.5"
+  resolved "https://registry.npmjs.org/react-native-permissions/-/react-native-permissions-4.1.5.tgz"
+  integrity sha512-r6VMRacASmtRHS+GZ+5HQCp9p9kiE+UU9magHOZCXZLTJitdTuVHWZRrb4v4oqZGU+zAp3mZhTQftuMMv+WLUg==
 
 react-native-picker-select@^9.0.1:
   version "9.0.1"
@@ -5004,12 +5011,16 @@ react-native-webview@^13.6.2:
     invariant "2.2.4"
 
 
+react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@^0.72.6, react-native@^0.x, "react-native@>= 0.64.3", react-native@>=0.33, react-native@>=0.40.0, react-native@>=0.57, react-native@>=0.58.4, react-native@>=0.70.0:
+
+
 react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@^0.72.6, react-native@^0.x, "react-native@>= 0.64.3", react-native@>=0.33, react-native@>=0.40.0, react-native@>=0.57, react-native@>=0.58.4:
 
 
 
 
 react-native@*, "react-native@^0.0.0-0 || >=0.60 <1.0", react-native@^0.72.6, "react-native@>= 0.64.3", react-native@>=0.40.0, react-native@>=0.57, react-native@>=0.69:
+
 
   version "0.72.6"
   dependencies:
@@ -5078,7 +5089,11 @@ react-test-renderer@18.2.0:
     scheduler "^0.23.0"
 
 
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, "react@>= 16.8.0", "react@>= 17.0.1", react@>=16, react@>=16.0.0, react@>=16.3.0, react@>=16.6.3, react@>=16.8, react@>=16.9.0, react@>=17.0.0, react@>=18.1.0, react@18.2.0:
+
+
 react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, "react@>= 16.8.0", "react@>= 17.0.1", react@>=16, react@>=16.0.0, react@>=16.3.0, react@>=16.6.3, react@>=16.8, react@>=16.9.0, react@>=17.0.0, react@18.2.0:
+
 
   version "18.2.0"
   dependencies:

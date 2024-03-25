@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -11,3 +13,4 @@
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" android:exported="false" />
     </application>
 </manifest>
+

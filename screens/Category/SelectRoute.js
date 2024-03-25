@@ -17,6 +17,9 @@ function SelectRouteScreen({ route, navigation }) {
 
     const cities = CitySelector();
     const [filteredCities, setFilteredCities] = useState(cities);
+    const [arrivalFilteredCities, setArrivalFilteredCities] = useState(cities);
+    const [departureSearchText, setDepartureSearchText] = useState('');
+    const [arrivalSearchText, setArrivalSearchText] = useState('');
 
     const [date, setDate] = useState(new Date());
     const [open, setOpen] = useState(false);
@@ -36,6 +39,8 @@ function SelectRouteScreen({ route, navigation }) {
 
     const [modalVisibleDeparture, setModalVisibleDeparture] = useState(false);
     const [modalVisibleArrival, setModalVisibleArrival] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
     const [searchText, setSearchText] = useState('');
     const [showAllCities, setShowAllCities] = useState(false);
 
@@ -116,6 +121,14 @@ function SelectRouteScreen({ route, navigation }) {
         });
     };
 
+    const openModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const closeModal = () => {
+        setIsModalVisible(false);
+    };
+
     const renderCityItem = ({ item, setModalVisible }) => (
         item && (
             <TouchableOpacity
@@ -147,11 +160,28 @@ function SelectRouteScreen({ route, navigation }) {
         )
     );
 
+    // Функция за филтриране на градовете спрямо текста на търсенето за отпътуване
+    const filterDepartureCities = (text) => {
+        if (text === '') {
+            // Показване на първите седем града, ако текстът е празен
+            setFilteredCities(cities.slice(0, 7));
+        } else {
+            // Филтриране на градовете спрямо въведения текст
+            const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
+            setFilteredCities(filteredCities);
+        }
+    };
 
-    const filterCities = (text) => {
-        // Филтриране на градовете спрямо въведения текст
-        const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
-        setFilteredCities(filteredCities.slice(0, 7)); // Ограничаваме резултатите до първите 7 града
+    // Функция за филтриране на градовете спрямо текста на търсенето за пристигане
+    const filterArrivalCities = (text) => {
+        if (text === '') {
+            // Показване на първите седем града, ако текстът е празен
+            setArrivalFilteredCities(cities.slice(0, 7));
+        } else {
+            // Филтриране на градовете спрямо въведения текст
+            const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
+            setArrivalFilteredCities(arrivalFilteredCities);
+        }
     };
 
     return (
@@ -191,10 +221,10 @@ function SelectRouteScreen({ route, navigation }) {
                             <TextInput
                                 placeholder="Search City"
                                 placeholderTextColor={'#010101'}
-                                value={searchText}
+                                value={departureSearchText}
                                 onChangeText={(text) => {
-                                    setSearchText(text);
-                                    filterCities(text);
+                                    setDepartureSearchText(text);
+                                    filterDepartureCities(text);
                                 }}
                                 style={{
                                     height: 40,
@@ -208,6 +238,7 @@ function SelectRouteScreen({ route, navigation }) {
                                 }}
                             />
                             <FlatList
+                                style={{ zIndex: 1, position: 'relative' }}
                                 data={filteredCities}
                                 renderItem={({ item }) => renderCityItem({ item, setModalVisible: setModalVisibleDeparture })}
                                 keyExtractor={(item) => item.value}
@@ -291,10 +322,10 @@ function SelectRouteScreen({ route, navigation }) {
                             <TextInput
                                 placeholder="Search City"
                                 placeholderTextColor={'#010101'}
-                                value={searchText}
+                                value={arrivalSearchText}
                                 onChangeText={(text) => {
-                                    setSearchText(text);
-                                    filterCities(text);
+                                    setArrivalSearchText(text);
+                                    filterArrivalCities(text);
                                 }}
                                 style={{
                                     height: 40,
@@ -308,7 +339,8 @@ function SelectRouteScreen({ route, navigation }) {
                                 }}
                             />
                             <FlatList
-                                data={filteredCities}
+                                style={{ zIndex: 1, position: 'relative' }}
+                                data={arrivalFilteredCities}
                                 renderItem={({ item }) => renderArrivalCityItem({ item, setModalVisible: setModalVisibleArrival })}
                                 keyExtractor={(item) => item.value}
                             />
