@@ -405,6 +405,8 @@ function SelectRouteScreen({ route, navigation }) {
                     modal
                     open={open}
                     date={date}
+                    theme="dark"
+                    mode="datetime"
                     onConfirm={(selectedDate) => {
                         setOpen(false);
                         setDate(selectedDate);
