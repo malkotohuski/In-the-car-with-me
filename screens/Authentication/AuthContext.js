@@ -45,8 +45,13 @@ const AuthContext = createContext();
 // AuthProvider component
 const AuthProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
+    const [profilePicture, setProfilePicture] = useState(null);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const updateProfilePicture = (newPicture) => {
+        setProfilePicture(newPicture);
+    };
 
     const login = (user) => {
         console.log('Logging in:', user);
@@ -72,7 +77,7 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ state, user, loading, login, logout, addRoute, deleteRoute }}>
+        <AuthContext.Provider value={{ state, user, loading, login, logout, addRoute, deleteRoute, profilePicture, updateProfilePicture }}>
             {children}
         </AuthContext.Provider>
     );

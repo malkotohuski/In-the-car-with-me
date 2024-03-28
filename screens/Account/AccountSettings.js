@@ -20,6 +20,7 @@ const api = axios.create({
 
 const AccountSettings = ({ navigation }) => {
     const { user } = useAuth();
+    const { updateProfilePicture } = useAuth();
     const [profilePicture, setProfilePicture] = useState(null);
     const { t } = useTranslation();
 
@@ -41,6 +42,7 @@ const AccountSettings = ({ navigation }) => {
     };
 
     const handleSaveChanges = async () => {
+        updateProfilePicture(profilePicture);
         try {
             const response = await api.patch('/user-changes', {
                 userId: user.user.id,
