@@ -24,6 +24,7 @@ import { RouteRequestApprovalScreen, RouteDetails } from '../RequestScreen/index
 import ChatScreen from '../Home/ChatScreen';
 import Messages from '../Chats/Messages';
 import CustomerDrawer from './customDrawer';
+import RouteHistory from '../Category/RouteHistory';
 
 const Drawer = createDrawerNavigator();
 
@@ -299,6 +300,15 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={RouteRequestApprovalScreen}
                 options={{
                     title: t('RouteRequestApprovalScreen'),
+                    ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="RoutesHistory"
+                component={RouteHistory}
+                options={{
+                    title: t('Routes History'),
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}

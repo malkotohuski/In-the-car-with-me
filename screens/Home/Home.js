@@ -27,8 +27,8 @@ function HomePage({ navigation }) {
     }
 
     const handlerRouteViewer = () => {
-        navigation.navigate('RouteViewer')
-        console.log('RouteViewer !!!');
+        navigation.navigate('RoutesHistory')
+        console.log('Routes history !!!');
     }
 
     const handlerReporting = () => {
@@ -111,7 +111,7 @@ function HomePage({ navigation }) {
                         <TouchableOpacity style={styles.routeViewerButton} onPress={handlerRouteViewer} >
                             <Text
                                 style={styles.textButtons}
-                            >{t('Requests')}</Text>
+                            >{t('Routes history')}</Text>
                         </TouchableOpacity>
                     </View>
                     <View>
