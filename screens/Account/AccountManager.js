@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     View,
     Text,
@@ -9,11 +9,13 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
 
-const AccountManager = ({ navigation }) => {
+const AccountManager = ({ navigation, route }) => {
     const { user } = useAuth();
+    const { profilePicture } = useAuth();
+    const defaultProfilePicture = user?.user?.userImage; // Поставете URL на стандартна снимка
     console.log('dfsdf', user);
-
     const { t } = useTranslation();
+
 
     const handlerChangeAcountSettings = () => {
         navigation.navigate('AccountSettings', {
@@ -33,7 +35,10 @@ const AccountManager = ({ navigation }) => {
             />
             {/* Profile picture */}
             <View style={[styles.profilePictureContainer, styles.topRight]}>
-                <Image source={{ uri: user?.user?.userImage }} style={styles.profilePicture} />
+                <Image
+                    source={{ uri: profilePicture || defaultProfilePicture }}
+                    style={styles.profilePicture}
+                />
             </View>
             {/*User info */}
             <Text style={[styles.userInfoContainer, styles.topLeftUserNames]}>

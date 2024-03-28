@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image, FlatList, Modal } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image, FlatList, Modal, ScrollView } from 'react-native';
+import { useAuth } from '../Authentication/AuthContext';
+import { useRoute } from '@react-navigation/native';
+import { useRouteContext } from './RouteContext';
 
 const RouteHistory = () => {
+    const { user } = useAuth();
+    const { routes } = useRouteContext();
+    const { t } = useTranslation();
     const [modalVisible, setModalVisible] = useState(false);
+
     const [data, setData] = useState([
         { id: '1', route: 'Route 1' },
         { id: '2', route: 'Route 2' },
@@ -17,9 +25,11 @@ const RouteHistory = () => {
         </View>
     );
 
+    const filteredRoutesState = routes.filter(route => route.userId === user?.user?.id);
+
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Route History</Text>
+            <Text style={styles.title}>{t('Routes History')}</Text>
             <FlatList
                 data={data}
                 renderItem={renderItem}
@@ -46,6 +56,23 @@ const RouteHistory = () => {
                     </View>
                 </View>
             </Modal>
+            <ScrollView style={styles.scrollView}>
+                <View style={styles.container}>
+                    {filteredRoutesState.map((route, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            style={styles.routeContainer}
+                        >
+                            <Text style={styles.routeText}>
+                                {new Date(route.selectedDateTime).toLocaleString()} {/* Displaying date without time */}
+                            </Text>
+                            <Text style={styles.routeText}>
+                                {route.departureCity}-{route.arrivalCity}
+                            </Text>
+                        </TouchableOpacity>
+                    ))}
+                </View>
+            </ScrollView>
         </View>
     );
 };
@@ -91,6 +118,16 @@ const styles = StyleSheet.create({
         padding: 10,
         marginVertical: 10,
         width: '80%',
+    },
+    routeContainer: {
+        margin: 10,
+        padding: 10,
+        backgroundColor: '#f4511e',
+        borderRadius: 10,
+    },
+    routeText: {
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 });
 
