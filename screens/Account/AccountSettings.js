@@ -62,7 +62,7 @@ const AccountSettings = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Image
-                source={require('../../images/Passport-photo-5-1024x683.jpg')}
+                source={require('../../images/acountSettings.png')}
                 style={styles.backgroundImage}
             />
             <Text style={[styles.userTextContainer, styles.topLeftUsername]}>
