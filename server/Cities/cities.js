@@ -822,7 +822,6 @@ const CitySelector = (limit = null) => {
         { "label": t('Vinitza'), "value": t('Vinitza') },
         { "label": t('Vinishte'), "value": t('Vinishte') },
         { "label": t('Vinograd'), "value": t('Vinograd') },
-        { "label": t('Vinogradets'), "value": t('Vinogradets') },
         { "label": t('Vinogradi'), "value": t('Vinogradi') },
         { "label": t('Virove'), "value": t('Virove') },
         { "label": t('Virovsko'), "value": t('Virovsko') },

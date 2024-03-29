@@ -166,7 +166,7 @@ function SelectRouteScreen({ route, navigation }) {
             // Показване на първите седем града, ако текстът е празен
             setFilteredCities(cities.slice(0, 7));
         } else {
-            // Филтриране на градовете спрямо въведения текст
+            // Филтриране на градовете според въведения текст
             const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
             setFilteredCities(filteredCities);
         }
@@ -178,9 +178,9 @@ function SelectRouteScreen({ route, navigation }) {
             // Показване на първите седем града, ако текстът е празен
             setArrivalFilteredCities(cities.slice(0, 7));
         } else {
-            // Филтриране на градовете спрямо въведения текст
+            // Филтриране на градовете според въведения текст
             const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
-            setArrivalFilteredCities(arrivalFilteredCities);
+            setArrivalFilteredCities(filteredCities);
         }
     };
 
@@ -224,7 +224,7 @@ function SelectRouteScreen({ route, navigation }) {
                                 value={departureSearchText}
                                 onChangeText={(text) => {
                                     setDepartureSearchText(text);
-                                    filterDepartureCities(text);
+                                    filterDepartureCities(text); // Извикване на функцията за филтриране при промяна на текста
                                 }}
                                 style={{
                                     height: 40,
@@ -325,7 +325,7 @@ function SelectRouteScreen({ route, navigation }) {
                                 value={arrivalSearchText}
                                 onChangeText={(text) => {
                                     setArrivalSearchText(text);
-                                    filterArrivalCities(text);
+                                    filterArrivalCities(text); // Извикване на функцията за филтриране при промяна на текста
                                 }}
                                 style={{
                                     height: 40,
