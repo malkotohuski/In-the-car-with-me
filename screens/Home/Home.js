@@ -147,7 +147,7 @@ function HomePage({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.footer}>
-                    <TouchableOpacity style={styles.footerIcon}>
+                    <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
                         <Icons name="routes" size={34} color="#362619" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
