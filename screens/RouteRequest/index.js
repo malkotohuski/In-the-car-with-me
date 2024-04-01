@@ -17,15 +17,7 @@ function RouteRequestScreen({ route, navigation }) {
     const [routeRequests, setRouteRequests] = useState([]);
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
-    const requestUserEmail = user?.user?.email;
     console.log("user", requests);
-
-    const testId = requests?.requests?.userRouteId;
-    console.log("test", testId);
-
-    const user_Id = user?.user?.id;
-    console.log('user_Id', user_Id);
-
 
     const getRequestsForCurrentUser = () => {
         return requests.filter(request => request.userRouteId === user?.user?.id);
@@ -88,14 +80,6 @@ function RouteRequestScreen({ route, navigation }) {
             ],
             { cancelable: false }
         );
-    };
-
-
-
-    const handleApproval = (request) => {
-        // Тук добави логиката, която ще се изпълни при одобрение на заявката
-        // Например, извикай функция или изпрати заявка към сървъра
-        setIsMigrating(false); // Използвай този ред, ако искаш да спреш анимацията след одобрение
     };
 
     const renderRoutes = () => {
