@@ -83,8 +83,6 @@ function RouteDetails({ route }) {
     const requestUserEmail = user?.user?.email;
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
-    const dataTime = route.params.selectedDateTime
-    console.log("?>?", dataTime);
 
     const handlerTripRequest = async () => {
         try {
@@ -137,17 +135,17 @@ function RouteDetails({ route }) {
                 ],
                 { cancelable: false }
             );
-            navigation.navigate('Route request', {
-                requestingUser: {
-                    username: requesterUsername,
-                    userFname: requestUserFirstName,
-                    userLname: requestUserLastName,
-                    userEmail: requestUserEmail,
-                    departureCity: departureCityEmail,
-                    arrivalCity: arrivalCityEmail,
-                    userRequestInfo: loggedInUser,
-                }
-            });
+            /*   navigation.navigate('Route request', {
+                  requestingUser: {
+                      username: requesterUsername,
+                      userFname: requestUserFirstName,
+                      userLname: requestUserLastName,
+                      userEmail: requestUserEmail,
+                      departureCity: departureCityEmail,
+                      arrivalCity: arrivalCityEmail,
+                      userRequestInfo: loggedInUser,
+                  }
+              }); */
 
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
