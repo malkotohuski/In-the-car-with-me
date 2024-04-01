@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image, FlatList, Modal, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRoute } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
@@ -9,53 +9,16 @@ const RouteHistory = () => {
     const { user } = useAuth();
     const { routes } = useRouteContext();
     const { t } = useTranslation();
-    const [modalVisible, setModalVisible] = useState(false);
-
-    const [data, setData] = useState([
-        { id: '1', route: 'Route 1' },
-        { id: '2', route: 'Route 2' },
-        { id: '3', route: 'Route 3' },
-        { id: '4', route: 'Route 4' },
-        { id: '5', route: 'Route 5' },
-    ]);
-
-    const renderItem = ({ item }) => (
-        <View style={styles.item}>
-            <Text>{item.route}</Text>
-        </View>
-    );
 
     const filteredRoutesState = routes.filter(route => route.userId === user?.user?.id);
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{t('Routes History')}</Text>
-            <FlatList
-                data={data}
-                renderItem={renderItem}
-                keyExtractor={item => item.id}
+            <Image
+                source={require('../../images/roadHistory2.png')}
+                style={styles.backgroundImage}
             />
-            <TouchableOpacity onPress={() => setModalVisible(true)}>
-                <Text style={styles.link}>Add Route</Text>
-            </TouchableOpacity>
-
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                    Alert.alert("Modal has been closed.");
-                    setModalVisible(!modalVisible);
-                }}
-            >
-                <View style={styles.modalContainer}>
-                    <View style={styles.modalContent}>
-                        <Text>Add New Route</Text>
-                        <TextInput style={styles.input} placeholder="Enter route" />
-                        <Button title="Save" onPress={() => setModalVisible(!modalVisible)} />
-                    </View>
-                </View>
-            </Modal>
+            <Text style={styles.title}>{t('Routes History')}</Text>
             <ScrollView style={styles.scrollView}>
                 <View style={styles.container}>
                     {filteredRoutesState.map((route, index) => (
@@ -80,9 +43,17 @@ const RouteHistory = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: 20,
+        height: '100%',
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
     },
     title: {
         fontSize: 24,

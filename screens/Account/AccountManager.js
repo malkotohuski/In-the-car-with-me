@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const AccountManager = ({ navigation, route }) => {
     const { user } = useAuth();
@@ -53,9 +54,12 @@ const AccountManager = ({ navigation, route }) => {
             <Text style={[styles.userInfoContainer, styles.center]}>
                 {t('Your rating')}
             </Text>
-            {/*   <View style={styles.ratingStars}>
-                
-            </View> */}
+            <View style={styles.ratingStars}>
+                <Icons name="star" size={54} color="gold" />
+                <Icons name="star" size={54} color="gold" />
+                <Icons name="star" size={54} color="gold" />
+                <Icons name="star-half" size={54} color="gold" />
+            </View>
             <TouchableOpacity
                 style={styles.usernameChangeButton}
                 onPress={handlerChangeAcountSettings}
@@ -129,8 +133,9 @@ const styles = StyleSheet.create({
     },
     center: {
         position: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
         top: 135,
-        left: 120,
         marginBottom: 15, // Adjust this value as needed for spacing
         marginLeft: 20, // Adjust this value as needed for spacing
         zIndex: 1, // To ensure it appears on top of other elements
@@ -176,7 +181,7 @@ const styles = StyleSheet.create({
     input: {
         height: 40,
         width: '100%',
-        borderColor: 'black',
+        borderColor: '#010101',
         borderWidth: 2,
         padding: 8,
         fontSize: 16,
@@ -190,7 +195,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: '#010101'
     },
     usernameChangeButton: {
         alignItems: 'center',
@@ -200,10 +205,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         borderWidth: 1,
-        borderColor: 'black'
+        borderColor: '#010101'
     },
     usernameText: {
-        color: 'black',
+        color: '#010101',
         fontSize: 16,
         fontWeight: 'bold',
     },
@@ -215,7 +220,11 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     ratingStars: {
-        marginBottom: 120
+        position: 'absolute',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+        top: 220,
     },
 });
 
