@@ -50,6 +50,12 @@ const AccountManager = ({ navigation, route }) => {
             <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
                 {t('Еmail')} : {user?.user?.email}
             </Text>
+            <Text style={[styles.userInfoContainer, styles.center]}>
+                {t('Your rating')}
+            </Text>
+            {/*   <View style={styles.ratingStars}>
+                
+            </View> */}
             <TouchableOpacity
                 style={styles.usernameChangeButton}
                 onPress={handlerChangeAcountSettings}
@@ -96,7 +102,8 @@ const styles = StyleSheet.create({
         marginLeft: 20, // Adjust this value as needed for spacing
         zIndex: 1, // To ensure it appears on top of other elements
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#010101'
     },
     topLeftNames: {
         position: 'absolute',
@@ -106,7 +113,8 @@ const styles = StyleSheet.create({
         marginLeft: 20, // Adjust this value as needed for spacing
         zIndex: 1, // To ensure it appears on top of other elements
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#010101'
     },
     topLeftEmail: {
         position: 'absolute',
@@ -116,7 +124,19 @@ const styles = StyleSheet.create({
         marginLeft: 20, // Adjust this value as needed for spacing
         zIndex: 1, // To ensure it appears on top of other elements
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        color: '#010101'
+    },
+    center: {
+        position: 'absolute',
+        top: 135,
+        left: 120,
+        marginBottom: 15, // Adjust this value as needed for spacing
+        marginLeft: 20, // Adjust this value as needed for spacing
+        zIndex: 1, // To ensure it appears on top of other elements
+        fontSize: 26,
+        fontWeight: 'bold',
+        color: '#010101'
     },
     topRight: {
         position: 'absolute',
@@ -193,6 +213,9 @@ const styles = StyleSheet.create({
         height: '100%',
         resizeMode: 'cover',
         position: 'absolute',
+    },
+    ratingStars: {
+        marginBottom: 120
     },
 });
 
