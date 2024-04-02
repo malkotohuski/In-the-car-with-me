@@ -20,7 +20,7 @@ import AccountSettings from '../Account/AccountSettings';
 import WelcomeScreen from '../Account/Welcome';
 import LogoutScreen from '../Logout';
 import SettingsScreen from '../Settings/SettingsScreen';
-import { RouteRequestApprovalScreen, RouteDetails } from '../RequestScreen/index'
+import { RouteDetails } from '../RequestScreen/index'
 import ChatScreen from '../Home/ChatScreen';
 import Messages from '../Chats/Messages';
 import CustomerDrawer from './customDrawer';
@@ -295,7 +295,7 @@ export const Navigator = ({ isLoggedIn }) => {
                     drawerItemStyle: { display: 'none' }
                 }}
             />
-            <Drawer.Screen
+            {/*   <Drawer.Screen
                 name="RouteRequestApprovalScreen"
                 component={RouteRequestApprovalScreen}
                 options={{
@@ -303,7 +303,7 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}
-            />
+            /> */}
             <Drawer.Screen
                 name="RoutesHistory"
                 component={RouteHistory}

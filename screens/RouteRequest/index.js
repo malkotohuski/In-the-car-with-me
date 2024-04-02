@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Alert, Image, ScrollView } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from '../Category/RouteContext';
@@ -13,20 +14,24 @@ const api = axios.create({
 function RouteRequestScreen({ route, navigation }) {
     const { t } = useTranslation();
     const { user } = useAuth();
-    const { routes, requests } = useRouteContext();
+    const { requests, refreshUserData } = useRouteContext();
     const [routeRequests, setRouteRequests] = useState([]);
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
-    console.log("user", requests);
+    console.log("IA", requests);
 
     const getRequestsForCurrentUser = () => {
         return requests.filter(request => request.userRouteId === user?.user?.id);
     };
 
-    useEffect(() => {
-        const requestsForCurrentUser = getRequestsForCurrentUser();
-        setRouteRequests(requestsForCurrentUser);
-    }, [requests]);
+    useFocusEffect(
+        useCallback(() => {
+            const requestsForCurrentUser = getRequestsForCurrentUser();
+            setRouteRequests(requestsForCurrentUser);
+            refreshUserData();
+        }, []),
+    );
+
 
     const [isMigrating, setIsMigrating] = useState(false);
 

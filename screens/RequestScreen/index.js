@@ -11,64 +11,6 @@ const api = axios.create({
     baseURL: API_BASE_URL,
 });
 
-function RouteRequestApprovalScreen({ route }) {
-    const { t } = useTranslation();
-    const navigation = useNavigation();
-    const { user } = useAuth();
-    const { routes } = useRouteContext();
-    const { requestingUser } = route.params;
-
-    console.log('???', routes);
-
-    const handleApproveRequest = async () => {
-        try {
-            const response = await api.post('/send-request-to-user', {
-                requestingUser: {
-                    username: user?.user?.username,
-                    userFname: user?.user?.fName,
-                    userLname: user?.user?.lName,
-                    userEmail: user?.user?.email,
-                    departureCity: route.params.departureCity,
-                    arrivalCity: route.params.arrivalCity,
-                    routeId: route.params.routeId,
-                },
-            });
-
-            console.log('Route Approval Response:', response);
-
-            navigation.navigate('Home');
-        } catch (error) {
-            console.error('Error handling route request:', error);
-        }
-    };
-
-    const handleRejectRequest = () => {
-        // Implement the logic to reject the route request
-        // You may want to send a notification or update the database accordingly
-        // After handling the request, you can navigate back to the previous screen
-        navigation.navigate('RouteDetails');
-    };
-
-    return (
-        <View style={styles.container}>
-            {/* Display user details who wants to use the route */}
-            <Text style={styles.headerText}>{t('Route Request Details')}:</Text>
-            <Text style={styles.text}>{t('Nick name')}: {requestingUser.username}</Text>
-            <Text style={styles.text}>{t('Names')}: {requestingUser.userFname} {requestingUser.userLname}</Text>
-            <Text style={styles.text}>{t('Email')}: {requestingUser.userEmail}</Text>
-
-            {/* Add buttons to approve or reject the route request */}
-            <TouchableOpacity style={styles.buttonConfirm} onPress={handleApproveRequest}>
-                <Text style={styles.buttonText}>{t('Approve Request')}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.buttonConfirm} onPress={handleRejectRequest}>
-                <Text style={styles.buttonText}>{t('Reject Request')}</Text>
-            </TouchableOpacity>
-        </View>
-    );
-}
-
 function RouteDetails({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
@@ -135,17 +77,6 @@ function RouteDetails({ route }) {
                 ],
                 { cancelable: false }
             );
-            /*   navigation.navigate('Route request', {
-                  requestingUser: {
-                      username: requesterUsername,
-                      userFname: requestUserFirstName,
-                      userLname: requestUserLastName,
-                      userEmail: requestUserEmail,
-                      departureCity: departureCityEmail,
-                      arrivalCity: arrivalCityEmail,
-                      userRequestInfo: loggedInUser,
-                  }
-              }); */
 
         } catch (emailError) {
             // Handle any error that occurred during the Email server request
@@ -158,8 +89,6 @@ function RouteDetails({ route }) {
     const handlerBackToViewRoute = () => {
         navigation.navigate('View routes')
     }
-
-
 
     return (
         <View style={styles.container}>
@@ -233,4 +162,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export { RouteDetails, RouteRequestApprovalScreen };
+export { RouteDetails };
