@@ -66,6 +66,7 @@ i18next.use(initReactI18next).init({
                 'Confirm': 'Confirm',
                 'Selected Date and Time:': 'Selected Date and Time:',
                 'Selected Date and Time': 'Selected Date and Time',
+                'Enter your travel request comment here :': 'Enter your travel request comment here :',
                 'Type': 'Type',
                 'Routes history': 'Routes history',
                 'Reporting': 'Reporting',
@@ -135,7 +136,6 @@ i18next.use(initReactI18next).init({
                 'Panagyurishte': 'Panagyurishte',
                 'Botevgrad': 'Botevgrad',
                 'Peshtera': 'Peshtera',
-
                 'Veleki Preslav': 'Veleki Preslav',
                 'Pomorie': 'Pomorie',
                 'Lyaskovets': 'Lyaskovets',
@@ -164,7 +164,6 @@ i18next.use(initReactI18next).init({
                 'Lozen': 'Lozen',
                 'Varshets': 'Varshets',
                 'Saedinenie': 'Saedinenie',
-
                 'Bozhurishte': 'Bozhurishte',
                 'Suvorovo': 'Suvorovo',
                 'Perushtitsa': 'Perushtitsa',
@@ -180,7 +179,6 @@ i18next.use(initReactI18next).init({
                 'Sveti Vlas': 'Sveti Vlas',
                 'Sapareva Banya': 'Sapareva Banya',
                 'Malo Konare': 'Malo Konare',
-
                 'Marten': 'Marten',
                 'Debelets': 'Debelets',
                 'Parvenets': 'Parvenets',
@@ -3355,6 +3353,7 @@ i18next.use(initReactI18next).init({
                 'Enter Registration Number': 'Въведете регистрационен номер',
                 'Invalid Registration Number': 'Невалиден регистрационен номер',
                 'Please enter a valid registration number.': 'Моля, въведете валиден регистрационен номер.',
+                'Enter your travel request comment here :': 'Въведете вашият коментар на заявка за пътуване тук : ',
                 'Home': 'Дом',
                 'Login': 'Влизане',
                 'In process of development!': 'В процес на разработка!',
