@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useAuth } from '../Authentication/AuthContext';
@@ -26,6 +26,8 @@ function RouteDetails({ route }) {
     const departureCityEmail = route.params.departureCity;
     const arrivalCityEmail = route.params.arrivalCity;
 
+    const [tripRequestText, setTripRequestText] = useState('');
+
     const handlerTripRequest = async () => {
         try {
             // Ensure that you have the correct user data
@@ -42,9 +44,10 @@ function RouteDetails({ route }) {
                     {
                         text: 'OK',
                         onPress: async () => {
+                            const message = tripRequestText ? `${tripRequestText}\n\n${t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`)}` : t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`);
                             const emailResponse = await api.post('/send-request-to-email', {
                                 email: userEmail,
-                                text: t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`),
+                                text: message,
                             });
 
                             // Handle the response from the Email server if needed
@@ -64,6 +67,7 @@ function RouteDetails({ route }) {
                                     routeId: route.params.routeId,
                                     dataTime: route.params.selectedDateTime
                                 },
+                                message: message,
                             });
                             ;
 
@@ -109,6 +113,15 @@ function RouteDetails({ route }) {
             <Text style={styles.text}> {t('Route')} :  {departureCity}-{arrivalCity} </Text>
 
             {/* Display other route details here based on your requirements */}
+            {/* Add a TextInput for entering trip request */}
+            <TextInput
+                style={styles.input}
+                onChangeText={text => setTripRequestText(text)}
+                value={tripRequestText}
+                placeholder={t('Enter your travel request comment here :')}
+                multiline={true}
+                numberOfLines={4}
+            />
 
             {/* Add a button to navigate back to the Confirm screen */}
             <TouchableOpacity style={styles.buttonConfirm} onPress={handlerTripRequest}>
@@ -159,6 +172,14 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#F1F1F1',
         fontSize: 16,
+    },
+    input: {
+        marginTop: 10,
+        padding: 10,
+        width: '90%',
+        borderColor: '#ccc',
+        borderWidth: 1,
+        borderRadius: 5,
     },
 });
 
