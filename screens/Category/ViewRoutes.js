@@ -29,6 +29,7 @@ function ViewRoutes({ navigation }) {
     const usernameRequest = user?.user?.username;
     const userFnameRequest = user?.user?.fName;
     const userLnameRequest = user?.user?.lName;
+
     const fullUserInfo = { usernameRequest, userFnameRequest, userLnameRequest }
 
     const toggleFilterModal = () => {

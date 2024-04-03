@@ -1,16 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert } from 'react-native';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRoute } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
 
 const RouteHistory = () => {
     const { user } = useAuth();
-    const { routes } = useRouteContext();
+    const { routes, removeRoute, markRouteAsCompleted } = useRouteContext(); // Добавен removeRoute и markRouteAsCompleted
     const { t } = useTranslation();
 
-    const filteredRoutesState = routes.filter(route => route.userId === user?.user?.id);
+    const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
+
+    const handleDeleteRoute = (routeId) => {
+        Alert.alert(
+            t('Delete Route'),
+            t('Are you sure you want to delete this route?'),
+            [
+                {
+                    text: t('Cancel'),
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                {
+                    text: t('Delete'), onPress: () => {
+                        setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
+                    }
+                },
+            ],
+            { cancelable: false }
+        );
+    };
+
+
+    const handleMarkAsCompleted = (routeId) => {
+        Alert.alert(
+            t('Mark as Completed'),
+            t('Are you sure you want to mark this route as completed?'),
+            [
+                {
+                    text: t('Cancel'),
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                },
+                { text: t('Mark as Completed'), onPress: () => markRouteAsCompleted(routeId) },
+            ],
+            { cancelable: false }
+        );
+    };
 
     return (
         <View style={styles.container}>
@@ -32,6 +69,18 @@ const RouteHistory = () => {
                             <Text style={styles.routeText}>
                                 {route.departureCity}-{route.arrivalCity}
                             </Text>
+                            <View style={styles.buttonContainer}>
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => handleDeleteRoute(route.id)}>
+                                    <Text style={styles.buttonText}>{t('Delete Route')}</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity
+                                    style={styles.button}
+                                    onPress={() => handleMarkAsCompleted(route.id)}>
+                                    <Text style={styles.buttonText}>{t('Mark as Completed')}</Text>
+                                </TouchableOpacity>
+                            </View>
                         </TouchableOpacity>
                     ))}
                 </View>
@@ -98,6 +147,22 @@ const styles = StyleSheet.create({
     },
     routeText: {
         fontSize: 20,
+        fontWeight: 'bold',
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        marginTop: 10,
+    },
+    button: {
+        backgroundColor: '#FFFFFF',
+        padding: 10,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#000000',
+    },
+    buttonText: {
+        fontSize: 16,
         fontWeight: 'bold',
     },
 });

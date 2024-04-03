@@ -67,7 +67,6 @@ function RouteDetails({ route }) {
                                     routeId: route.params.routeId,
                                     dataTime: route.params.selectedDateTime
                                 },
-                                message: message,
                             });
                             ;
 
