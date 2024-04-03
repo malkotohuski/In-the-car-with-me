@@ -248,7 +248,7 @@ server.post('/send-request-to-user', (req, res) => {
 });
 
 // New endpoint to get all requests
-server.get('/requests', (req, res) => {
+server.get('/get-requests', (req, res) => {
     const { request } = req.body;
     const requestingUser = { ...request, id: Date.now() };
     router.db.get('requests').push(requestingUser).write();
