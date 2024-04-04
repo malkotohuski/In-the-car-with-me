@@ -111,26 +111,13 @@ function ViewRoutes({ navigation }) {
             return routeDate >= new Date();
         });
 
+
     return (
         <SafeAreaView style={styles.mainContainer}>
             <Image
                 source={require('../../images/view-routes-backgroud.jpg')}
                 style={styles.backgroundImage}
             />
-            {/*  <View style={styles.searchContainer}>
-                <TextInput
-                    style={styles.input}
-                    placeholder={t("Enter Departure City")}
-                    value={enteredDepartureCity}
-                    onChangeText={(text) => setEnteredDepartureCity(text)}
-                />
-                <TextInput
-                    style={styles.input}
-                    placeholder={t("Enter Arrival City")}
-                    value={enteredArrivalCity}
-                    onChangeText={(text) => setEnteredArrivalCity(text)}
-                />
-            </View> */}
             <TouchableOpacity style={styles.filterButton} onPress={toggleFilterModal}>
                 <Text style={styles.filterButtonText}>{t('Filter')}</Text>
             </TouchableOpacity>
@@ -187,46 +174,48 @@ function ViewRoutes({ navigation }) {
             </Modal>
             <ScrollView style={styles.scrollView}>
                 <View style={styles.container}>
-                    {filteredRoutesState.map((route, index) => (
-                        <TouchableOpacity
-                            key={index}
-                            style={styles.routeContainer}
-                            onPress={() =>
-                                handlerSeeView({
-                                    selectedVehicle: route.selectedVehicle,
-                                    markedSeats: route.markedSeats,
-                                    registrationNumber: route.registrationNumber,
-                                    selectedDateTime: route.selectedDateTime,
-                                    departureCity: route.departureCity,
-                                    departureStreet: route.departureStreet,
-                                    departureNumber: route.departureNumber,
-                                    arrivalCity: route.arrivalCity,
-                                    arrivalStreet: route.arrivalStreet,
-                                    arrivalNumber: route.arrivalNumber,
-                                    userId: route.userId,
-                                    username: route.username,
-                                    userFname: route.userFname,
-                                    userLname: route.userLname,
-                                    userEmail: route.userEmail,
-                                    routeId: route.id,
-                                    user_id: route.userId,
-                                })
-                            }
-                        >
-                            <Text style={styles.routeText}>
-                                {new Date(route.selectedDateTime).toLocaleString()} {/* Displaying date without time */}
-                            </Text>
-                            <Text style={styles.routeText}>
-                                {route.departureCity}-{route.arrivalCity}
-                            </Text>
-                        </TouchableOpacity>
-                    ))}
+                    {filteredRoutesState
+                        .filter(route => route.userRouteId !== "deleted") // Проверка за userRouteId
+                        .map((route, index) => (
+                            <TouchableOpacity
+                                key={index}
+                                style={styles.routeContainer}
+                                onPress={() =>
+                                    handlerSeeView({
+                                        selectedVehicle: route.selectedVehicle,
+                                        markedSeats: route.markedSeats,
+                                        registrationNumber: route.registrationNumber,
+                                        selectedDateTime: route.selectedDateTime,
+                                        departureCity: route.departureCity,
+                                        departureStreet: route.departureStreet,
+                                        departureNumber: route.departureNumber,
+                                        arrivalCity: route.arrivalCity,
+                                        arrivalStreet: route.arrivalStreet,
+                                        arrivalNumber: route.arrivalNumber,
+                                        userId: route.userId,
+                                        username: route.username,
+                                        userFname: route.userFname,
+                                        userLname: route.userLname,
+                                        userEmail: route.userEmail,
+                                        routeId: route.id,
+                                        user_id: route.userId,
+                                    })
+                                }
+                            >
+                                <Text style={styles.routeText}>
+                                    {new Date(route.selectedDateTime).toLocaleString()} {/* Displaying date without time */}
+                                </Text>
+                                <Text style={styles.routeText}>
+                                    {route.departureCity}-{route.arrivalCity}
+                                </Text>
+                            </TouchableOpacity>
+                        ))
+                    }
                 </View>
             </ScrollView>
         </SafeAreaView>
     );
 }
-
 
 const styles = StyleSheet.create({
     mainContainer: {

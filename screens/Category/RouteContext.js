@@ -28,6 +28,10 @@ export const RouteProvider = ({ children }) => {
         setRequests((prevRequests) => [...prevRequests, newRequest]);
     };
 
+    const deleteRoute = (routeId) => {
+        setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
+    };
+
     const getRequestsForRouteById = (routeId) => {
         return requests.filter(request => request.routeId === routeId);
     };
@@ -46,6 +50,15 @@ export const RouteProvider = ({ children }) => {
         try {
             await axios.delete(`${API_BASE_URL}/routes/${routeId}`);
             setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
+        } catch (error) {
+            console.error('Error deleting route:', error);
+        }
+    };
+
+    const deletedRoute = async (userRouteId) => {
+        try {
+            await axios.patch(`${API_BASE_URL}/routes/${userRouteId}`);
+            setRoutes((prevRoutes) => prevRoutes.filter(route => route.userID !== userRouteId));
         } catch (error) {
             console.error('Error deleting route:', error);
         }
@@ -110,6 +123,8 @@ export const RouteProvider = ({ children }) => {
             requests,
             addRoute,
             removeRoute,
+            deleteRoute,
+            deletedRoute,
             addRequest,
             getRequestsForRoute,
             getRequestsForRouteById,
