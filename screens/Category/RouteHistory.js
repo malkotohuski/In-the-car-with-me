@@ -12,6 +12,12 @@ const RouteHistory = () => {
 
     const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
 
+    useEffect(() => {
+        // Филтриране на маршрутите спрямо текущия потребител
+        const filteredRoutes = routes.filter(route => route.userId === user?.user?.id);
+        setFilteredRoutesState(filteredRoutes);
+    }, [routes, user]);
+
     const handleDeleteRoute = (routeId) => {
         Alert.alert(
             t('Delete Route'),
@@ -35,7 +41,7 @@ const RouteHistory = () => {
 
     const handleMarkAsCompleted = (routeId) => {
         Alert.alert(
-            t('Mark as Completed'),
+            t('Complete the route'),
             t('Are you sure you want to mark this route as completed?'),
             [
                 {
@@ -108,6 +114,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
+        color: '#010101'
     },
     item: {
         backgroundColor: '#f9c2ff',
@@ -140,14 +147,16 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     routeContainer: {
+        width: '100%',
         margin: 10,
         padding: 10,
         backgroundColor: '#f4511e',
         borderRadius: 10,
     },
     routeText: {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: 'bold',
+        color: '#010101'
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -160,10 +169,12 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#000000',
+        width: '40%',
     },
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
+        color: '#010101'
     },
 });
 
