@@ -7,16 +7,20 @@ import { useRouteContext } from './RouteContext';
 
 const RouteHistory = () => {
     const { user } = useAuth();
-    const { routes, removeRoute, markRouteAsCompleted } = useRouteContext(); // Добавен removeRoute и markRouteAsCompleted
+    const { routes, removeRoute, deletedRoute, markRouteAsCompleted } = useRouteContext();
     const { t } = useTranslation();
 
     const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
 
     useEffect(() => {
-        // Филтриране на маршрутите спрямо текущия потребител
-        const filteredRoutes = routes.filter(route => route.userId === user?.user?.id);
+        const filteredRoutes = routes.filter(route => {
+            return route.userId === user?.user?.id &&
+                !route.isDeleted &&
+                route.userRouteId !== "deleted";
+        });
         setFilteredRoutesState(filteredRoutes);
     }, [routes, user]);
+
 
     const handleDeleteRoute = (routeId) => {
         Alert.alert(
@@ -30,7 +34,21 @@ const RouteHistory = () => {
                 },
                 {
                     text: t('Delete'), onPress: () => {
-                        setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
+                        fetch(`http://10.0.2.2:3000/routes/${routeId}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ userRouteId: 'deleted' }),
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
+                                } else {
+                                    throw new Error('Failed to delete route');
+                                }
+                            })
+                            .catch(error => console.error('Error deleting route:', error));
                     }
                 },
             ],
@@ -147,14 +165,15 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     routeContainer: {
-        width: '100%',
+        width: 380,
+        height: 180,
         margin: 10,
         padding: 10,
         backgroundColor: '#f4511e',
         borderRadius: 10,
     },
     routeText: {
-        fontSize: 22,
+        fontSize: 20,
         fontWeight: 'bold',
         color: '#010101'
     },

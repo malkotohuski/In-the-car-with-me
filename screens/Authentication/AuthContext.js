@@ -69,15 +69,8 @@ const AuthProvider = ({ children }) => {
         setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
     };
 
-    const deleteRoute = (routeId) => {
-        setRoutes((prevRoutes) => prevRoutes.filter(route => route.id !== routeId));
-    };
-
-
-
-
     return (
-        <AuthContext.Provider value={{ state, user, loading, login, logout, addRoute, deleteRoute, profilePicture, updateProfilePicture }}>
+        <AuthContext.Provider value={{ state, user, loading, login, logout, addRoute, profilePicture, updateProfilePicture }}>
             {children}
         </AuthContext.Provider>
     );
