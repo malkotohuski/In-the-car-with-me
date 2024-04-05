@@ -4,22 +4,39 @@ import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert } fr
 import { useAuth } from '../Authentication/AuthContext';
 import { useRoute } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
+import axios from 'axios';
+
+const API_BASE_URL = 'http://10.0.2.2:3000';
 
 const RouteHistory = () => {
     const { user } = useAuth();
     const { routes, removeRoute, deletedRoute, markRouteAsCompleted } = useRouteContext();
     const { t } = useTranslation();
-
     const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
 
+
+
     useEffect(() => {
-        const filteredRoutes = routes.filter(route => {
-            return route.userId === user?.user?.id &&
-                !route.isDeleted &&
-                route.userRouteId !== "deleted";
-        });
-        setFilteredRoutesState(filteredRoutes);
-    }, [routes, user]);
+        const fetchRoutes = async () => {
+            try {
+                const response = await axios.get(`${API_BASE_URL}/routes`);
+                if (response.status === 200) {
+                    const filteredRoutes = response.data.filter(route => {
+                        return route.userId === user?.user?.id &&
+                            !route.isDeleted &&
+                            route.userRouteId !== "deleted";
+                    });
+                    setFilteredRoutesState(filteredRoutes);
+                } else {
+                    throw new Error('Failed to fetch routes');
+                }
+            } catch (error) {
+                console.error('Error fetching routes:', error);
+            }
+        };
+
+        fetchRoutes();
+    }, [user, routes]);
 
 
     const handleDeleteRoute = (routeId) => {
