@@ -79,7 +79,9 @@ export const RouteProvider = ({ children }) => {
             const response = await axios.get(`${API_BASE_URL}/routes`);
 
             if (response.status === 200) {
-                setRoutes(response.data);
+                // Филтрираме маршрутите, които имат userRouteId, различен от "deleted"
+                const filteredRoutes = response.data.filter(route => route.userRouteId !== "deleted");
+                setRoutes(filteredRoutes);
             } else {
                 alert(t('Login faile. Pleass check your credentials.'));
             }
@@ -88,6 +90,7 @@ export const RouteProvider = ({ children }) => {
             alert(t('Login failed.Invlid email  password.'));
         }
     }
+
 
     const fetchAllRequests = async () => {
         try {
