@@ -14,8 +14,6 @@ const RouteHistory = () => {
     const { t } = useTranslation();
     const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
 
-
-
     useEffect(() => {
         const fetchRoutes = async () => {
             try {
@@ -37,7 +35,6 @@ const RouteHistory = () => {
 
         fetchRoutes();
     }, [user, routes]);
-
 
     const handleDeleteRoute = (routeId) => {
         Alert.alert(
