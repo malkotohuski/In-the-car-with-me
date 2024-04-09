@@ -81,7 +81,25 @@ const RouteHistory = () => {
                     onPress: () => console.log('Cancel Pressed'),
                     style: 'cancel',
                 },
-                { text: t('Mark as Completed'), onPress: () => markRouteAsCompleted(routeId) },
+                {
+                    text: t('Mark as Completed'), onPress: () => {
+                        fetch(`http://10.0.2.2:3000/routes/${routeId}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ userRouteId: 'completed' }),
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
+                                } else {
+                                    throw new Error('Failed to delete route');
+                                }
+                            })
+                            .catch(error => console.error('Error deleting route:', error));
+                    }
+                },
             ],
             { cancelable: false }
         );

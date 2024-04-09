@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     View,
     Text,
@@ -14,23 +14,26 @@ import {
 import { useRouteContext } from './RouteContext';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
+import axios from 'axios';
+
+const API_BASE_URL = 'http://10.0.2.2:3000';
 
 function ViewRoutes({ navigation }) {
     const { t } = useTranslation();
     const [enteredDepartureCity, setEnteredDepartureCity] = useState('');
     const [enteredArrivalCity, setEnteredArrivalCity] = useState('');
-    const { routes, deleteRoute } = useRouteContext();
+    const { routes, deleteRoute, refreshRoutesData } = useRouteContext();
     const { user } = useAuth();
     const [loggingUser, setLoggingUser] = useState([]);
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [sortByDate, setSortByDate] = useState(false);
     const [filteredRoutes, setFilteredRoutes] = useState([]);
+    const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userRouteId !== "deleted"));
 
     const usernameRequest = user?.user?.username;
     const userFnameRequest = user?.user?.fName;
     const userLnameRequest = user?.user?.lName;
-
-    const fullUserInfo = { usernameRequest, userFnameRequest, userLnameRequest }
+    const fullUserInfo = { usernameRequest, userFnameRequest, userLnameRequest };
 
     const toggleFilterModal = () => {
         setShowFilterModal(!showFilterModal);
@@ -64,8 +67,6 @@ function ViewRoutes({ navigation }) {
         setFilteredRoutes(sortedRoutes);
     };
 
-
-
     const handlerSeeView = (routeParams) => {
         navigation.navigate('RouteDetails', {
             ...routeParams,
@@ -81,7 +82,7 @@ function ViewRoutes({ navigation }) {
     const filterAndDeleteExpiredRoutes = () => {
         const currentDate = new Date();
 
-        routes.forEach((route) => {
+        filteredRoutesState.forEach((route) => {
             const routeDate = new Date(route.selectedDateTime);
             if (routeDate <= currentDate) {
                 // Assuming each route has a unique identifier (like an 'id' field)
@@ -91,6 +92,30 @@ function ViewRoutes({ navigation }) {
         });
     };
 
+    useEffect(() => {
+        const fetchRoutes = async () => {
+            try {
+                const response = await axios.get(`${API_BASE_URL}/routes`);
+                if (response.status === 200) {
+                    const currentDate = new Date();
+                    const filteredRoutes = response.data.filter(route => {
+                        const routeDate = new Date(route.selectedDateTime);
+                        return route.userId === user?.user?.id &&
+                            !route.isDeleted &&
+                            route.userRouteId !== "deleted" &&
+                            routeDate >= currentDate; // Филтриране на маршрутите по дата
+                    });
+                    setFilteredRoutesState(filteredRoutes);
+                } else {
+                    throw new Error('Failed to fetch routes');
+                }
+            } catch (error) {
+                console.error('Error fetching routes:', error);
+            }
+        };
+
+        fetchRoutes();
+    }, [routes]);
 
     useEffect(() => {
         const intervalId = setInterval(filterAndDeleteExpiredRoutes, 60000); // 1 minute interval
@@ -98,19 +123,23 @@ function ViewRoutes({ navigation }) {
         return () => clearInterval(intervalId); // Cleanup the interval when unmounted
     });
 
-    const filteredRoutesState = routes
-        .filter(
-            (route) =>
-                route.departureCity &&
-                route.arrivalCity &&
-                route.departureCity.toLowerCase().includes(enteredDepartureCity.toLowerCase()) &&
-                route.arrivalCity.toLowerCase().includes(enteredArrivalCity.toLowerCase())
-        )
-        .filter((route) => {
-            const routeDate = new Date(route.selectedDateTime);
-            return routeDate >= new Date();
-        });
+    useEffect(() => {
+        const filteredRoutesWithoutDeleted = routes.filter(route => route.userRouteId !== "deleted");
+        const filteredRoutes = filteredRoutesWithoutDeleted
+            .filter(
+                (route) =>
+                    route.departureCity &&
+                    route.arrivalCity &&
+                    route.departureCity.toLowerCase().includes(enteredDepartureCity.toLowerCase()) &&
+                    route.arrivalCity.toLowerCase().includes(enteredArrivalCity.toLowerCase())
+            )
+            .filter((route) => {
+                const routeDate = new Date(route.selectedDateTime);
+                return routeDate >= new Date();
+            });
 
+        setFilteredRoutesState(filteredRoutes);
+    }, [routes, enteredDepartureCity, enteredArrivalCity]);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -175,7 +204,6 @@ function ViewRoutes({ navigation }) {
             <ScrollView style={styles.scrollView}>
                 <View style={styles.container}>
                     {filteredRoutesState
-                        .filter(route => route.userRouteId !== "deleted") // Проверка за userRouteId
                         .map((route, index) => (
                             <TouchableOpacity
                                 key={index}

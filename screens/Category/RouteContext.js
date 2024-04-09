@@ -20,6 +20,10 @@ export const RouteProvider = ({ children }) => {
         fetchAllRequests();
     };
 
+    const refreshRoutesData = async () => {
+        fetchAllRoutes();
+    }
+
     const addRoute = (newRoute) => {
         setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
     };
@@ -132,6 +136,7 @@ export const RouteProvider = ({ children }) => {
             getRequestsForRoute,
             getRequestsForRouteById,
             refreshUserData,
+            refreshRoutesData,
             markRouteAsCompleted
         }}>
             {children}
