@@ -103,6 +103,7 @@ function ViewRoutes({ navigation }) {
                         return route.userId === user?.user?.id &&
                             !route.isDeleted &&
                             route.userRouteId !== "deleted" &&
+                            route.userRouteId !== "completed" &&
                             routeDate >= currentDate; // Филтриране на маршрутите по дата
                     });
                     setFilteredRoutesState(filteredRoutes);
