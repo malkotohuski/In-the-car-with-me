@@ -22,7 +22,8 @@ const RouteHistory = () => {
                     const filteredRoutes = response.data.filter(route => {
                         return route.userId === user?.user?.id &&
                             !route.isDeleted &&
-                            route.userRouteId !== "deleted";
+                            route.userRouteId !== "deleted" &&
+                            route.userRouteId !== "completed";
                     });
                     setFilteredRoutesState(filteredRoutes);
                 } else {
