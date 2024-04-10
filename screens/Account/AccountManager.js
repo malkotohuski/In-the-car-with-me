@@ -17,7 +17,6 @@ const AccountManager = ({ navigation, route }) => {
     console.log('dfsdf', user);
     const { t } = useTranslation();
 
-
     const handlerChangeAcountSettings = () => {
         navigation.navigate('AccountSettings', {
         });
