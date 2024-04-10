@@ -21,7 +21,7 @@ function UsersScreen({ navigation }) {
             />
             <View style={styles.header}  >
                 <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
-                    {t('User info')}
+                    {t('User info')}:
                 </Text>
                 <View style={{ width: 60 }} />
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
