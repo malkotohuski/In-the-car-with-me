@@ -17,6 +17,11 @@ function CustomerDrawer({ navigation }) {
         console.log('Route viewer clicked !!!');
     }
 
+    const handlerUsersScreen = () => {
+        navigation.navigate('UsersScreen')
+        console.log('Users Screen clicked !!!');
+    }
+
     const handlerReporting = () => {
         navigation.navigate('Reporting')
         console.log('Reporting clicked !!!');
@@ -58,6 +63,14 @@ function CustomerDrawer({ navigation }) {
                         <Text
                             style={styles.textButtons}
                         >{t('View routes')}</Text>
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.topLeft}>
+                    <TouchableOpacity style={styles.drawerScreen} onPress={handlerUsersScreen} >
+                        <Icon name="streetview" size={30} color="#010101" />
+                        <Text
+                            style={styles.textButtons}
+                        >{t('Users')}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.topLeft}>

@@ -25,6 +25,7 @@ import ChatScreen from '../Home/ChatScreen';
 import Messages from '../Chats/Messages';
 import CustomerDrawer from './customDrawer';
 import RouteHistory from '../Category/RouteHistory';
+import UsersScreen from '../Users/UsersScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -220,6 +221,18 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={ReportingScreen}
                 options={{
                     title: t('Reporting'),
+                    ...screenStyles,
+                    headerShown: false,
+                    drawerIcon: ({ color, size }) => (
+                        <Icon name="report" size={size} color={color} />
+                    ),
+                }}
+            />
+            <Drawer.Screen
+                name="UsersScreen"
+                component={UsersScreen}
+                options={{
+                    title: t('UsersScreen'),
                     ...screenStyles,
                     headerShown: false,
                     drawerIcon: ({ color, size }) => (
