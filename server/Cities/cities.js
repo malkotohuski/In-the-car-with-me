@@ -3763,7 +3763,6 @@ const CitySelector = (limit = null) => {
         { "label": t('Samuilovo (Blagoevgrad)'), "value": t('Samuilovo (Blagoevgrad)') },
         { "label": t('San Stefano'), "value": t('San Stefano') },
         { "label": t('Sanadinovo'), "value": t('Sanadinovo') },
-        { "label": t('Sandrovo'), "value": t('Sandrovo') },
         { "label": t('Saparevo'), "value": t('Saparevo') },
         { "label": t('Saraevo'), "value": t('Saraevo') },
         { "label": t('Saransko'), "value": t('Saransko') },

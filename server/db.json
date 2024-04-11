@@ -1563,6 +1563,26 @@
       "userEmail": "shushkata7@gmail.com",
       "id": 1712665278157,
       "userRouteId": "deleted"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A1111AA",
+      "selectedDateTime": "2024-04-12T08:03:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Aleksandrovo",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1705513295033,
+      "username": "dani ",
+      "userFname": "vili",
+      "userLname": "aria",
+      "userEmail": "devmasterstech@gmail.com",
+      "id": 1712822668970
     }
   ],
   "requests": [
@@ -1643,6 +1663,19 @@
       "routeId": 1712242301693,
       "dataTime": "2024-04-07T14:51:00.000Z",
       "id": 1712243612668
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1705513295033,
+      "departureCity": "Sofia",
+      "arrivalCity": "Aleksandrovo",
+      "routeId": 1712822668970,
+      "dataTime": "2024-04-12T08:03:00.000Z",
+      "id": 1712822720909
     }
   ],
   "userChanges": []
