@@ -118,11 +118,11 @@ function ViewRoutes({ navigation }) {
         fetchRoutes();
     }, [routes]);
 
-    useEffect(() => {
-        const intervalId = setInterval(filterAndDeleteExpiredRoutes, 60000); // 1 minute interval
-
-        return () => clearInterval(intervalId); // Cleanup the interval when unmounted
-    });
+    /*     useEffect(() => {
+            const intervalId = setInterval(filterAndDeleteExpiredRoutes, 60000); // 1 minute interval
+    
+            return () => clearInterval(intervalId); // Cleanup the interval when unmounted
+        }); */
 
     useEffect(() => {
         const filteredRoutesWithoutDeleted = routes.filter(route => route.userRouteId !== "deleted");
