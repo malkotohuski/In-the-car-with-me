@@ -10,9 +10,11 @@ const API_BASE_URL = 'http://10.0.2.2:3000';
 
 const RouteHistory = () => {
     const { user } = useAuth();
-    const { routes, removeRoute, deletedRoute, markRouteAsCompleted } = useRouteContext();
+    const { routes, removeRoute, deletedRoute, markRouteAsCompleted, requests } = useRouteContext();
     const { t } = useTranslation();
     const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
+
+    console.log('ggg', requests);
 
     useEffect(() => {
         const fetchRoutes = async () => {
@@ -73,38 +75,44 @@ const RouteHistory = () => {
 
 
     const handleMarkAsCompleted = (routeId) => {
-        Alert.alert(
-            t('Complete the route'),
-            t('Are you sure you want to mark this route as completed?'),
-            [
-                {
-                    text: t('Cancel'),
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                },
-                {
-                    text: t('Mark as Completed'), onPress: () => {
-                        fetch(`http://10.0.2.2:3000/routes/${routeId}`, {
-                            method: 'PATCH',
-                            headers: {
-                                'Content-Type': 'application/json',
-                            },
-                            body: JSON.stringify({ userRouteId: 'completed' }),
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
-                                } else {
-                                    throw new Error('Failed to delete route');
-                                }
+        const matchingRequest = requests.find(request => request.routeId === routeId);
+        if (matchingRequest) {
+            Alert.alert(
+                t('Complete the route'),
+                `${t('Are you sure you want to mark this route as completed?')} ${t('Users')}: ${matchingRequest.username}`,
+                [
+                    {
+                        text: t('Cancel'),
+                        onPress: () => console.log('Cancel Pressed'),
+                        style: 'cancel',
+                    },
+                    {
+                        text: t('Mark as Completed'), onPress: () => {
+                            fetch(`http://10.0.2.2:3000/routes/${routeId}`, {
+                                method: 'PATCH',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ userRouteId: 'completed' }),
                             })
-                            .catch(error => console.error('Error deleting route:', error));
-                    }
-                },
-            ],
-            { cancelable: false }
-        );
+                                .then(response => {
+                                    if (response.ok) {
+                                        setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
+                                    } else {
+                                        throw new Error('Failed to delete route');
+                                    }
+                                })
+                                .catch(error => console.error('Error deleting route:', error));
+                        }
+                    },
+                ],
+                { cancelable: false }
+            );
+        } else {
+            // Handle case when no matching request is found
+        }
     };
+
 
     return (
         <View style={styles.container}>
