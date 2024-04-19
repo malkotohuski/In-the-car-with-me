@@ -12,7 +12,7 @@ const ChatScreen = ({ navigation }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const { routes, requests } = useRouteContext();
     const [recentChats, setRecentChats] = useState([/* Запълни с последните чатове */]);
-    console.log('USER', requests);
+    const [friends, setFriends] = useState([/* Запълни с приятелите на потребителя */]);
 
     const handleApproveFriendRequest = (friend) => {
         const userId = user.id;
@@ -30,6 +30,9 @@ const ChatScreen = ({ navigation }) => {
             });
     };
 
+    const startChatWithFriend = (friend) => {
+        // Тук трябва да добавите логика за започване на чат с приятел
+    };
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -76,22 +79,20 @@ const ChatScreen = ({ navigation }) => {
                         onChangeText={(text) => setSearchTerm(text)}
                     />
                 </View>
+                <FlatList
+                    data={friends}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity onPress={() => startChatWithFriend(item)}>
+                            <View style={styles.friendItem}>
+                                <Text style={styles.friendName}>{item.name}</Text>
+                                {/* Тук може да добавите иконка за статус на приятеля */}
+                            </View>
+                        </TouchableOpacity>
+                    )}
+                />
             </View>
-            <FlatList
-                data={recentChats}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        <View style={styles.chatItem}>
-                            <Text style={styles.chatItemText}>{item.title}</Text>
-                            <TouchableOpacity onPress={() => handleApproveFriendRequest(item)}>
-                                <Text style={styles.approveButton}>Approve</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </TouchableOpacity>
-                )}
-            />
-
+            {/* Списък с последни чатове */}
         </SafeAreaView >
     );
 };
@@ -116,7 +117,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#f4511e',
     },
     searchContainer: {
-        flex: 1,
         alignItems: 'center',
     },
     searchIcon: {
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
         marginRight: 350
     },
     searchInput: {
-        flex: 1,
         position: 'absolute',
         marginTop: 30,
         width: '100%',
@@ -134,12 +133,12 @@ const styles = StyleSheet.create({
         color: '#f1f1f1',
         paddingLeft: 50,  // Отстъп за иконата отдясно
     },
-    chatItem: {
+    friendItem: {
         padding: 10,
         borderBottomWidth: 1,
         borderBottomColor: '#ccc',
     },
-    chatItemText: {
+    friendName: {
         color: 'white',
         fontSize: 16,
     },

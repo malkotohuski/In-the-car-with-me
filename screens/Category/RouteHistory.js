@@ -79,7 +79,7 @@ const RouteHistory = () => {
         if (matchingRequest) {
             Alert.alert(
                 t('Complete the route'),
-                `${t('Are you sure you want to mark this route as completed?')} ${t('Users')}: ${matchingRequest.username}`,
+                `${t('Are you sure you want to mark this route as completed?')} ${t('Users')}: ${matchingRequest.username}${matchingRequest.userEmail}`,
                 [
                     {
                         text: t('Cancel'),

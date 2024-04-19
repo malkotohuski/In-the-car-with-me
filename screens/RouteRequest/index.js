@@ -52,7 +52,7 @@ function RouteRequestScreen({ route, navigation }) {
     const handlePress = async (request) => {
         setIsMigrating(true);
         Alert.alert(
-            `${t('There is a request for from:')} ${request.userFname} ${request.userLname}`,
+            `${t('There is a request from:')} ${request.userFname} ${request.userLname}`,
             t('Do you want to approve the request?'),
             [
                 {
@@ -99,6 +99,10 @@ function RouteRequestScreen({ route, navigation }) {
                 ]}
                 onPress={() => handlePress(request)}
             >
+                <View style={styles.userContainer}>
+                    <Image source={{ uri: user?.user?.userImage }} style={styles.userImage} />
+                    <Text style={styles.userName}>{request.username}</Text>
+                </View>
                 <Text style={styles.text}>
                     {t('Direction')}: {t(`${request.departureCity}-${request.arrivalCity}`)}
                 </Text>
@@ -176,6 +180,20 @@ const styles = StyleSheet.create({
     greenBorder: {
         borderColor: 'green',
         borderWidth: 2,
+    },
+    userContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    userImage: {
+        width: 30,
+        height: 30,
+        borderRadius: 15,
+        marginRight: 10,
+    },
+    userName: {
+        fontWeight: 'bold',
     },
 });
 
