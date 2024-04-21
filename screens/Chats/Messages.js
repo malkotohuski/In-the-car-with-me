@@ -69,6 +69,7 @@ export default Messages;
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
+        backgroundColor: 'grey'
     },
     header: {
         flexDirection: 'row',
@@ -92,9 +93,9 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     userImage: {
-        width: 30,
-        height: 30,
-        borderRadius: 15,
+        width: 75,
+        height: 75,
+        borderRadius: 50,
     },
     userName: {
         fontWeight: 'bold',
