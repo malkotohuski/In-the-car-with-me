@@ -14,8 +14,6 @@ const RouteHistory = () => {
     const { t } = useTranslation();
     const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
 
-    console.log('ggg', requests);
-
     useEffect(() => {
         const fetchRoutes = async () => {
             try {
@@ -76,6 +74,7 @@ const RouteHistory = () => {
 
     const handleMarkAsCompleted = (routeId) => {
         const matchingRequest = requests.find(request => request.routeId === routeId);
+        console.log('match', matchingRequest);
         if (matchingRequest) {
             Alert.alert(
                 t('Complete the route'),
