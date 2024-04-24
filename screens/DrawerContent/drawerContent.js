@@ -308,21 +308,13 @@ export const Navigator = ({ isLoggedIn }) => {
                     drawerItemStyle: { display: 'none' }
                 }}
             />
-            {/*   <Drawer.Screen
-                name="RouteRequestApprovalScreen"
-                component={RouteRequestApprovalScreen}
-                options={{
-                    title: t('RouteRequestApprovalScreen'),
-                    ...screenStyles,
-                    drawerItemStyle: { display: 'none' }
-                }}
-            /> */}
             <Drawer.Screen
                 name="RoutesHistory"
                 component={RouteHistory}
                 options={{
                     title: t('Routes History'),
                     ...screenStyles,
+                    headerShown: false,
                     drawerItemStyle: { display: 'none' }
                 }}
             />

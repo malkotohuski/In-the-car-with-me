@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert, SafeAreaView } from 'react-native';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRoute } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
@@ -8,7 +9,7 @@ import axios from 'axios';
 
 const API_BASE_URL = 'http://10.0.2.2:3000';
 
-const RouteHistory = () => {
+const RouteHistory = ({ navigation }) => {
     const { user } = useAuth();
     const { routes, removeRoute, deletedRoute, markRouteAsCompleted, requests } = useRouteContext();
     const { t } = useTranslation();
@@ -114,52 +115,75 @@ const RouteHistory = () => {
 
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.mainContainer}>
             <Image
                 source={require('../../images/roadHistory2.png')}
                 style={styles.backgroundImage}
             />
-            <Text style={styles.title}>{t('Routes History')}</Text>
-            <ScrollView style={styles.scrollView}>
-                <View style={styles.container}>
-                    {filteredRoutesState.map((route, index) => (
-                        <TouchableOpacity
-                            key={index}
-                            style={styles.routeContainer}
-                        >
-                            <Text style={styles.routeText}>
-                                {new Date(route.selectedDateTime).toLocaleString()} {/* Displaying date without time */}
-                            </Text>
-                            <Text style={styles.routeText}>
-                                {route.departureCity}-{route.arrivalCity}
-                            </Text>
-                            <View style={styles.buttonContainer}>
-                                <TouchableOpacity
-                                    style={styles.button}
-                                    onPress={() => handleDeleteRoute(route.id)}>
-                                    <Text style={styles.buttonText}>{t('Delete Route')}</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity
-                                    style={styles.button}
-                                    onPress={() => handleMarkAsCompleted(route.id)}>
-                                    <Text style={styles.buttonText}>{t('Mark as Completed')}</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </TouchableOpacity>
-                    ))}
+            <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+                <View style={styles.header}  >
+                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
+                        {t('Routes History')}
+                    </Text>
+                    <View style={{ width: 60 }} />
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                        {/* Кастомизирайте бутона за връщане според вашите изисквания */}
+                        <Icons name="keyboard-backspace" size={24} color="white" />
+                    </TouchableOpacity>
                 </View>
-            </ScrollView>
-        </View>
+                <ScrollView style={styles.scrollView}>
+                    <View style={styles.container}>
+                        {filteredRoutesState.map((route, index) => (
+                            <TouchableOpacity
+                                key={index}
+                                style={styles.routeContainer}
+                            >
+                                <Text style={styles.routeText}>
+                                    {new Date(route.selectedDateTime).toLocaleString()} {/* Displaying date without time */}
+                                </Text>
+                                <Text style={styles.routeText}>
+                                    {route.departureCity}-{route.arrivalCity}
+                                </Text>
+                                <View style={styles.buttonContainer}>
+                                    <TouchableOpacity
+                                        style={styles.button}
+                                        onPress={() => handleDeleteRoute(route.id)}>
+                                        <Text style={styles.buttonText}>{t('Delete Route')}</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity
+                                        style={styles.button}
+                                        onPress={() => handleMarkAsCompleted(route.id)}>
+                                        <Text style={styles.buttonText}>{t('Mark as Completed')}</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                </ScrollView>
+
+            </View>
+        </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+    },
     container: {
         flex: 1,
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
         height: '100%',
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        width: '100%',
+        padding: 16,
+        backgroundColor: '#f4511e',
     },
     backgroundImage: {
         flex: 1,
