@@ -13,7 +13,7 @@ const Messages = ({ navigation }) => {
             const currentTime = new Date().toLocaleTimeString();
             const newMessage = {
                 text: message,
-                sender: 'me', // Предполагаме, че вие сте изпращачът
+                sender: 'me',
                 time: currentTime,
             };
             setMessages([...messages, newMessage]);
