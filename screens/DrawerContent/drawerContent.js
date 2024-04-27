@@ -26,6 +26,7 @@ import Messages from '../Chats/Messages';
 import CustomerDrawer from './customDrawer';
 import RouteHistory from '../Category/RouteHistory';
 import UsersScreen from '../Users/UsersScreen';
+import Notifications from '../Home/Notifications';
 
 const Drawer = createDrawerNavigator();
 
@@ -313,6 +314,16 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={RouteHistory}
                 options={{
                     title: t('Routes History'),
+                    ...screenStyles,
+                    headerShown: false,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="Notifications"
+                component={Notifications}
+                options={{
+                    title: t('Notifications'),
                     ...screenStyles,
                     headerShown: false,
                     drawerItemStyle: { display: 'none' }

@@ -14,6 +14,8 @@ const RouteHistory = ({ navigation }) => {
     const { routes, removeRoute, deletedRoute, markRouteAsCompleted, requests } = useRouteContext();
     const { t } = useTranslation();
     const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
+    const [completedRoutes, setCompletedRoutes] = useState([]);
+
 
     useEffect(() => {
         const fetchRoutes = async () => {
@@ -72,9 +74,10 @@ const RouteHistory = ({ navigation }) => {
         );
     };
 
-
     const handleMarkAsCompleted = (routeId) => {
         const matchingRequest = requests.find(request => request.routeId === routeId);
+        const completedRoute = filteredRoutesState.find(route => route.id === routeId);
+        setCompletedRoutes(prevRoutes => [...prevRoutes, completedRoute]);
         console.log('match', matchingRequest);
         if (matchingRequest) {
             Alert.alert(
@@ -98,6 +101,8 @@ const RouteHistory = ({ navigation }) => {
                                 .then(response => {
                                     if (response.ok) {
                                         setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
+                                        // Предаване на данните на екрана "Notifications"
+                                        navigation.navigate('Notifications', { matchingRequest });
                                     } else {
                                         throw new Error('Failed to delete route');
                                     }
@@ -110,6 +115,7 @@ const RouteHistory = ({ navigation }) => {
             );
         } else {
             // Handle case when no matching request is found
+            console.log("No matching request found. Cannot mark as completed.");
         }
     };
 

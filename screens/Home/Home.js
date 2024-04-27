@@ -42,20 +42,8 @@ function HomePage({ navigation }) {
     }
 
     const handlerNotificationScreen = () => {
-        // Показване на алерта
-        Alert.alert(
-            t('In process of development!'),
-            '', // Празен текст, тъй като вече имаме заглавие
-            [
-                {
-                    text: 'OK', // Бутон за потвърждение
-                    onPress: () => {
-                        console.log('Notification screen clicked !!!');
-                    },
-                },
-            ],
-            { cancelable: false }
-        );
+        navigation.navigate('Notifications');
+        console.log('Notifications clicked !!!');
     }
 
     return (
