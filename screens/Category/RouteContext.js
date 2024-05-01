@@ -9,6 +9,7 @@ const RouteContext = createContext();
 export const RouteProvider = ({ children }) => {
     const [routes, setRoutes] = useState([]);
     const [requests, setRequests] = useState([]);
+    const [matchingRequest, setMatchingRequest] = useState(null);
     const { user } = useAuth();
 
     useEffect(() => {
@@ -128,6 +129,7 @@ export const RouteProvider = ({ children }) => {
         <RouteContext.Provider value={{
             routes,
             requests,
+            matchingRequest,
             addRoute,
             removeRoute,
             deleteRoute,
