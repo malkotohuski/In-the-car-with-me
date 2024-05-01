@@ -1270,7 +1270,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1712312970203
+      "id": 1712312970203,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1290,7 +1291,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1712313574726
+      "id": 1712313574726,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1624,7 +1626,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1713197070980
+      "id": 1713197070980,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1644,7 +1647,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1713197108431
+      "id": 1713197108431,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1664,7 +1668,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1713197138350
+      "id": 1713197138350,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1684,7 +1689,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1713197168201
+      "id": 1713197168201,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1725,7 +1731,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1713805608313
+      "id": 1713805608313,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1745,7 +1752,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1713805710368
+      "id": 1713805710368,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1765,7 +1773,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1714067084406
+      "id": 1714067084406,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -1849,6 +1858,501 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1714147950566,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С1221АА",
+      "selectedDateTime": "2024-04-27T18:25:50.366Z",
+      "departureCity": "Sofia",
+      "departureStreet": "str. belimel",
+      "departureNumber": "11",
+      "arrivalCity": "Pernik",
+      "arrivalStreet": "str.Krakra",
+      "arrivalNumber": "12",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714242437282,
+      "userRouteId": "deleted"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С1245АА",
+      "selectedDateTime": "2024-05-10T09:22:00.000Z",
+      "departureCity": "Pleven",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Peshtera",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714555371631,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С1245АА",
+      "selectedDateTime": "2024-05-10T09:22:00.000Z",
+      "departureCity": "Pleven",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Peshtera",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714557749886,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С1245АА",
+      "selectedDateTime": "2024-05-10T09:22:00.000Z",
+      "departureCity": "Pleven",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Peshtera",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714557907622,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С1245АА",
+      "selectedDateTime": "2024-05-10T09:22:00.000Z",
+      "departureCity": "Pleven",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Peshtera",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714558046204,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-06T10:37:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Pazardzhik",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714559861135,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-06T10:37:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Pazardzhik",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714560075181,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-06T10:37:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Pazardzhik",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714560162002,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T11:41:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Burgas",
+      "arrivalStreet": "11",
+      "arrivalNumber": "11",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714563734500,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T11:41:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Burgas",
+      "arrivalStreet": "11",
+      "arrivalNumber": "11",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714570092447,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T13:32:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Stara Zagora",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11111",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714570369220,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T13:32:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Stara Zagora",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11111",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714570725910,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T13:32:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Stara Zagora",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11111",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714571221427,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T13:32:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Stara Zagora",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11111",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714571402854,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T13:32:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Stara Zagora",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11111",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714571471804,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T13:32:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Stara Zagora",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11111",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714571951035,
+      "userRouteId": "completed"
+    },
+    {
+      "route": {
+        "username": "Shushkata7@gmail.com",
+        "userFname": "Velichka",
+        "userLname": "Spasova",
+        "userEmail": "shushkata7@gmail.com",
+        "userID": 1711358014466,
+        "userRouteId": 1711358014466,
+        "departureCity": "Plovdiv",
+        "arrivalCity": "Stara Zagora",
+        "routeId": 1714571951035,
+        "dataTime": "2024-05-04T13:32:00.000Z",
+        "id": 1714571958418
+      },
+      "userId": "{userId}",
+      "id": 1714571951036
+    },
+    {
+      "selectedVehicle": "Motorcycle",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T13:32:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "11",
+      "departureNumber": "11",
+      "arrivalCity": "Stara Zagora",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11111",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714572182064,
+      "userRouteId": "completed"
+    },
+    {
+      "route": {
+        "username": "Shushkata7@gmail.com",
+        "userFname": "Velichka",
+        "userLname": "Spasova",
+        "userEmail": "shushkata7@gmail.com",
+        "userID": 1711358014466,
+        "userRouteId": 1711358014466,
+        "departureCity": "Plovdiv",
+        "arrivalCity": "Stara Zagora",
+        "routeId": 1714572182064,
+        "dataTime": "2024-05-04T13:32:00.000Z",
+        "id": 1714572187054
+      },
+      "userId": "1711358014466",
+      "id": 1714572182065
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A4655AA",
+      "selectedDateTime": "2024-05-05T14:07:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "Qff",
+      "departureNumber": "255",
+      "arrivalCity": "Pernik",
+      "arrivalStreet": "Dfg",
+      "arrivalNumber": "11",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714572505195,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-04T14:26:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "111",
+      "arrivalCity": "Sliven",
+      "arrivalStreet": "11",
+      "arrivalNumber": "11",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714573611553,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        5
+      ],
+      "registrationNumber": "A1211AA",
+      "selectedDateTime": "2024-05-05T14:33:00.000Z",
+      "departureCity": "Burgas",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Dobrich",
+      "arrivalStreet": "1",
+      "arrivalNumber": "11",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714574040327,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-01T14:40:58.114Z",
+      "departureCity": "Burgas",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Razgrad",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714574489642
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-05-03T14:40:00.000Z",
+      "departureCity": "Burgas",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Razgrad",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714574509529,
       "userRouteId": "completed"
     }
   ],
@@ -2021,6 +2525,266 @@
       "routeId": 1714067100159,
       "dataTime": "2024-04-28T17:44:00.000Z",
       "id": 1714240545319
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Pleven",
+      "arrivalCity": "Peshtera",
+      "routeId": 1714555371631,
+      "dataTime": "2024-05-10T09:22:00.000Z",
+      "id": 1714556471284
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Pleven",
+      "arrivalCity": "Peshtera",
+      "routeId": 1714557749886,
+      "dataTime": "2024-05-10T09:22:00.000Z",
+      "id": 1714557755835
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Pleven",
+      "arrivalCity": "Peshtera",
+      "routeId": 1714557907622,
+      "dataTime": "2024-05-10T09:22:00.000Z",
+      "id": 1714557912246
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Pleven",
+      "arrivalCity": "Peshtera",
+      "routeId": 1714558046204,
+      "dataTime": "2024-05-10T09:22:00.000Z",
+      "id": 1714558050013
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Sofia",
+      "arrivalCity": "Pazardzhik",
+      "routeId": 1714559861135,
+      "dataTime": "2024-05-06T10:37:00.000Z",
+      "id": 1714559872985
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Sofia",
+      "arrivalCity": "Pazardzhik",
+      "routeId": 1714560075181,
+      "dataTime": "2024-05-06T10:37:00.000Z",
+      "id": 1714560083525
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Sofia",
+      "arrivalCity": "Pazardzhik",
+      "routeId": 1714560162002,
+      "dataTime": "2024-05-06T10:37:00.000Z",
+      "id": 1714560165579
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Sofia",
+      "arrivalCity": "Burgas",
+      "routeId": 1714563734500,
+      "dataTime": "2024-05-04T11:41:00.000Z",
+      "id": 1714563739383
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Sofia",
+      "arrivalCity": "Burgas",
+      "routeId": 1714570092447,
+      "dataTime": "2024-05-04T11:41:00.000Z",
+      "id": 1714570097297
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Stara Zagora",
+      "routeId": 1714570369220,
+      "dataTime": "2024-05-04T13:32:00.000Z",
+      "id": 1714570374929
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Stara Zagora",
+      "routeId": 1714570725910,
+      "dataTime": "2024-05-04T13:32:00.000Z",
+      "id": 1714570730867
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Stara Zagora",
+      "routeId": 1714571221427,
+      "dataTime": "2024-05-04T13:32:00.000Z",
+      "id": 1714571233233
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Stara Zagora",
+      "routeId": 1714571402854,
+      "dataTime": "2024-05-04T13:32:00.000Z",
+      "id": 1714571407213
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Stara Zagora",
+      "routeId": 1714571471804,
+      "dataTime": "2024-05-04T13:32:00.000Z",
+      "id": 1714571475511
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Stara Zagora",
+      "routeId": 1714571951035,
+      "dataTime": "2024-05-04T13:32:00.000Z",
+      "id": 1714571958418
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Stara Zagora",
+      "routeId": 1714572182064,
+      "dataTime": "2024-05-04T13:32:00.000Z",
+      "id": 1714572187054
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Pernik",
+      "routeId": 1714572505195,
+      "dataTime": "2024-05-05T14:07:00.000Z",
+      "id": 1714572510000
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Plovdiv",
+      "arrivalCity": "Sliven",
+      "routeId": 1714573611553,
+      "dataTime": "2024-05-04T14:26:00.000Z",
+      "id": 1714573616432
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Burgas",
+      "arrivalCity": "Dobrich",
+      "routeId": 1714574040327,
+      "dataTime": "2024-05-05T14:33:00.000Z",
+      "id": 1714574044478
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Burgas",
+      "arrivalCity": "Razgrad",
+      "routeId": 1714574509529,
+      "dataTime": "2024-05-03T14:40:00.000Z",
+      "id": 1714574513290
     }
   ],
   "userChanges": []

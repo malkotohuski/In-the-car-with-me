@@ -7,11 +7,11 @@ import { useAuth } from "../Authentication/AuthContext";
 
 const Notifications = ({ navigation }) => {
     const { user } = useAuth();
-    const route = useRoute()
-    const { matchingRequest } = route.params;
-    const userID = route?.params?.userID;
+    const routeData = useRoute();
+    const matchingRequest = routeData?.params?.matchingRequest; // Проверяваме дали routeData, params и matchingRequest са дефинирани
+    const userID = routeData?.params?.userID;
     const { t } = useTranslation();
-    console.log('wortk!!!', user);
+    console.log('wortk!!!', matchingRequest);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -26,13 +26,15 @@ const Notifications = ({ navigation }) => {
                     </Text>
                     <View style={{ width: 60 }} />
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        {/* Кастомизирайте бутона за връщане според вашите изисквания */}
                         <Icons name="keyboard-backspace" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
-                <Text>
-                    ???  {matchingRequest?.departureCity}-{matchingRequest?.arrivalCity}-{matchingRequest?.id}
-                </Text>
+                {/* Проверка дали matchingRequest е дефиниран преди да се опитаме да го използваме */}
+                {matchingRequest && (
+                    <Text>
+                        ???  {matchingRequest.departureCity}-{matchingRequest.arrivalCity}-{matchingRequest.id}
+                    </Text>
+                )}
             </View>
         </SafeAreaView>
     )
