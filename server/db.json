@@ -2354,6 +2354,26 @@
       "userEmail": "shushkata7@gmail.com",
       "id": 1714574509529,
       "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "A1211AA",
+      "selectedDateTime": "2024-05-07T15:41:00.000Z",
+      "departureCity": "Ruse",
+      "departureStreet": "1122",
+      "departureNumber": "222",
+      "arrivalCity": "Varna",
+      "arrivalStreet": "2111",
+      "arrivalNumber": "22122",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714750952217
     }
   ],
   "requests": [
@@ -2785,6 +2805,19 @@
       "routeId": 1714574509529,
       "dataTime": "2024-05-03T14:40:00.000Z",
       "id": 1714574513290
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Ruse",
+      "arrivalCity": "Varna",
+      "routeId": 1714750952217,
+      "dataTime": "2024-05-07T15:41:00.000Z",
+      "id": 1714750956661
     }
   ],
   "userChanges": []
