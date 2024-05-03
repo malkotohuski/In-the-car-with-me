@@ -21,7 +21,15 @@ function RouteRequestScreen({ route, navigation }) {
     console.log("IA", requests);
 
     const getRequestsForCurrentUser = () => {
-        return requests.filter(request => request.userRouteId === user?.user?.id);
+
+        return requests.filter(request => {
+
+            if (request.userRouteId === user?.user?.id) {
+                const currentDate = new Date();
+                return new Date(request.dataTime) >= currentDate;
+            }
+            return false;
+        });
     };
 
     useFocusEffect(
