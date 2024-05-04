@@ -32,7 +32,8 @@ const Notifications = ({ navigation }) => {
                 {/* Проверка дали matchingRequest е дефиниран преди да се опитаме да го използваме */}
                 {matchingRequest && (
                     <Text>
-                        ???  {matchingRequest.departureCity}-{matchingRequest.arrivalCity}-{matchingRequest.id}
+                        {matchingRequest.departureCity}-{matchingRequest.arrivalCity}-{matchingRequest.id}
+                        {matchingRequest.userID}-{matchingRequest.userRouteId}
                     </Text>
                 )}
             </View>
