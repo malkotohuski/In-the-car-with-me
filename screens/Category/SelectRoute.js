@@ -160,27 +160,21 @@ function SelectRouteScreen({ route, navigation }) {
         )
     );
 
-    // Функция за филтриране на градовете спрямо текста на търсенето за отпътуване
     const filterDepartureCities = (text) => {
         if (text === '') {
-            // Показване на първите седем града, ако текстът е празен
             setFilteredCities(cities.slice(0, 7));
         } else {
-            // Филтриране на градовете според въведения текст
             const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
-            setFilteredCities(filteredCities);
+            setFilteredCities(filteredCities.slice(0, 7)); // Филтрирайте и след това вземете само първите 7 града
         }
     };
 
-    // Функция за филтриране на градовете спрямо текста на търсенето за пристигане
     const filterArrivalCities = (text) => {
         if (text === '') {
-            // Показване на първите седем града, ако текстът е празен
             setArrivalFilteredCities(cities.slice(0, 7));
         } else {
-            // Филтриране на градовете според въведения текст
             const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
-            setArrivalFilteredCities(filteredCities);
+            setArrivalFilteredCities(filteredCities.slice(0, 7)); // Филтрирайте и след това вземете само първите 7 града
         }
     };
 

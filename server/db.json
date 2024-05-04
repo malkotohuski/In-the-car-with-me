@@ -2374,6 +2374,27 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1714750952217
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A1211AA",
+      "selectedDateTime": "2024-05-09T12:04:00.000Z",
+      "departureCity": "Dobrich",
+      "departureStreet": "12",
+      "departureNumber": "1",
+      "arrivalCity": "Ruse",
+      "arrivalStreet": "11",
+      "arrivalNumber": "11",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1714824756571,
+      "userRouteId": "completed"
     }
   ],
   "requests": [
@@ -2818,6 +2839,32 @@
       "routeId": 1714750952217,
       "dataTime": "2024-05-07T15:41:00.000Z",
       "id": 1714750956661
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Dobrich",
+      "arrivalCity": "Ruse",
+      "routeId": 1714824756571,
+      "dataTime": "2024-05-09T12:04:00.000Z",
+      "id": 1714824771203
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Dobrich",
+      "arrivalCity": "Ruse",
+      "routeId": 1714824756571,
+      "dataTime": "2024-05-09T12:04:00.000Z",
+      "id": 1714824774647
     }
   ],
   "userChanges": []
