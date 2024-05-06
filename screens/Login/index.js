@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
@@ -14,6 +14,7 @@ export default function Login({ navigation, route }) {
     const [password, setPassword] = useState('');
     const { t } = useTranslation();
     const { login } = useAuth();
+    const [isLoading, setIsLoading] = useState(true); // Започваме с isLoading=true, за да покажем изображението за 3 секунди
 
     const [isBulgaria, setisBulgaria] = useState(false);
 
@@ -22,8 +23,19 @@ export default function Login({ navigation, route }) {
         setisBulgaria(lng === 'bg');
     };
 
+    useEffect(() => {
+        // Изчакайте 3 секунди преди да смените isLoading на false
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 3000);
+
+        // Очистете таймера, за да избегнете изтичане на памет
+        return () => clearTimeout(timer);
+    }, []); // Празен масив означава, че този useEffect ще се изпълни само веднъж, след като компонентът се монтира
+
     const handleLogin = async () => {
         try {
+            setIsLoading(true); // Започваме зареждането
             const response = await axios.post(`${API_BASE_URL}/login`, {
                 useremail: email,
                 userpassword: password,
@@ -42,81 +54,93 @@ export default function Login({ navigation, route }) {
             // Handle any error that occurred during the API call
             console.error('Login Error:', error);
             alert(t('Login failed.Invalid email or password.'));
+        } finally {
+            setIsLoading(false); // Приключваме зареждането
         }
     };
 
     return (
         <View style={styles.container}>
-            <Image
-                source={require('../../images/login-background.jpg')}
-                style={styles.backgroundImage}
-            />
-            <View >
-                <View style={styles.languageSwitchContainer}>
-                    <TouchableOpacity
-                        style={styles.languageButton}
-                        onPress={() => changeLanguage('en')}
-                    >
-                        <Image
-                            source={require('../../images/engl-flag.png')} // Replace with the path to your English flag image
-                            style={styles.flagImage}
-                        />
-                        <Text
-                            style={styles.languageText}
-                        >{t('English')}</Text>
-                    </TouchableOpacity>
-                    <View style={{ margin: 60 }}>
+            {isLoading ? (
+                // Покажете изображението за 3 секунди
+                <Image
+                    source={require('../../images/loading_image.png')}
+                    style={styles.backgroundImage}
+                />
+            ) : (
+                <>
+                    <Image
+                        source={require('../../images/login-background.jpg')}
+                        style={styles.backgroundImage}
+                    />
+                    <View >
+                        <View style={styles.languageSwitchContainer}>
+                            <TouchableOpacity
+                                style={styles.languageButton}
+                                onPress={() => changeLanguage('en')}
+                            >
+                                <Image
+                                    source={require('../../images/engl-flag.png')}
+                                    style={styles.flagImage}
+                                />
+                                <Text
+                                    style={styles.languageText}
+                                >{t('English')}</Text>
+                            </TouchableOpacity>
+                            <View style={{ margin: 60 }}>
 
+                            </View>
+                            <TouchableOpacity
+                                style={styles.languageButton}
+                                onPress={() => changeLanguage('bg')}
+                            >
+                                <Image
+                                    source={require('../../images/bulg-flag.png')}
+                                    style={styles.flagImage}
+                                />
+                                <Text
+                                    style={styles.languageText}
+                                >{t('Bulgarian')}</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <TouchableOpacity
-                        style={styles.languageButton}
-                        onPress={() => changeLanguage('bg')}
-                    >
-                        <Image
-                            source={require('../../images/bulg-flag.png')} // Replace with the path to your Italian flag image
-                            style={styles.flagImage}
-                        />
-                        <Text
-                            style={styles.languageText}
-                        >{t('Bulgarian')}</Text>
+                    <TouchableOpacity onPress={handleLogin}>
+                        <Text style={styles.title}>{t('Login')}</Text>
                     </TouchableOpacity>
-                </View>
-            </View>
-            <TouchableOpacity onPress={handleLogin}>
-                <Text style={styles.title}>{t('Login')}</Text>
-            </TouchableOpacity>
-            <TextInput
-                placeholderTextColor={'white'}
-                style={styles.input}
-                placeholder={t("Email")}
-                value={email}
-                onChangeText={(text) => setEmail(text)}
-            />
-            <TextInput
-                placeholderTextColor={'white'}
-                style={styles.input}
-                placeholder={t("Password")}
-                secureTextEntry={true}
-                value={password}
-                onChangeText={(text) => setPassword(text)}
-            />
-            <View style={styles.buttonsContent}>
-                <TouchableOpacity
-                    style={styles.loginButtons}
-                    onPress={handleLogin}>
-                    <Text style={styles.textButtons}>
-                        {t("Log in")}
-                    </Text>
-                </TouchableOpacity>
-                <View style={styles.buttonSeparator} />
-                <TouchableOpacity
-                    style={styles.loginButtons}
-                    onPress={() => navigation.navigate('Register')} >
-                    <Text style={styles.textButtons}>
-                        {t("Create your account")}
-                    </Text>
-                </TouchableOpacity>
-            </View>
+                    <TextInput
+                        placeholderTextColor={'white'}
+                        style={styles.input}
+                        placeholder={t("Email")}
+                        value={email}
+                        onChangeText={(text) => setEmail(text)}
+                    />
+                    <TextInput
+                        placeholderTextColor={'white'}
+                        style={styles.input}
+                        placeholder={t("Password")}
+                        secureTextEntry={true}
+                        value={password}
+                        onChangeText={(text) => setPassword(text)}
+                    />
+                    <View style={styles.buttonsContent}>
+                        <TouchableOpacity
+                            style={styles.loginButtons}
+                            onPress={handleLogin}>
+                            <Text style={styles.textButtons}>
+                                {t("Log in")}
+                            </Text>
+                        </TouchableOpacity>
+                        <View style={styles.buttonSeparator} />
+                        <TouchableOpacity
+                            style={styles.loginButtons}
+                            onPress={() => navigation.navigate('Register')} >
+                            <Text style={styles.textButtons}>
+                                {t("Create your account")}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </>
+            )}
         </View>
     );
 }
