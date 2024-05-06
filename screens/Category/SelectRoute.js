@@ -181,7 +181,7 @@ function SelectRouteScreen({ route, navigation }) {
     return (
         <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
             <Image
-                source={require('../../images/routes2-background.jpg')}
+                source={require('../../images/forests.jpg')}
                 style={{
                     flex: 1,
                     width: '100%',
