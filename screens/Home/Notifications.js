@@ -30,10 +30,14 @@ const Notifications = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
                 {/* Проверка дали matchingRequest е дефиниран преди да се опитаме да го използваме */}
-                {matchingRequest && (
+                {matchingRequest ? (
                     <Text>
                         {matchingRequest.departureCity}-{matchingRequest.arrivalCity}-{matchingRequest.id}
                         {matchingRequest.userID}-{matchingRequest.userRouteId}
+                    </Text>
+                ) : (
+                    <Text style={{ color: 'white', fontSize: 16, marginTop: 20 }}>
+                        {t('No new notifications')}
                     </Text>
                 )}
             </View>
