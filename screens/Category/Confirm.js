@@ -116,13 +116,13 @@ function Confirm() {
         <View style={styles.container}>
             {isLoading ? (
                 <Image
-                    source={require('../../images/loading_image.png')}
+                    source={require('../../images/loadingConfirm.png')}
                     style={styles.loadingImage}
                 />
             ) : (
                 <>
                     <Image
-                        source={require('../../images/confirm2-background.jpg')}
+                        source={require('../../images/confirmSS.jpg')}
                         style={{
                             flex: 1,
                             width: '100%',
