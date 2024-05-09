@@ -116,7 +116,7 @@ function Confirm() {
         <View style={styles.container}>
             {isLoading ? (
                 <Image
-                    source={require('../../images/loadingConfirm.png')}
+                    source={require('../../images/confirm_test.jpeg')}
                     style={styles.loadingImage}
                 />
             ) : (
