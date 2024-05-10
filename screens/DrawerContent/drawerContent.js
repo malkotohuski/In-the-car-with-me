@@ -93,10 +93,21 @@ export const Navigator = ({ isLoggedIn }) => {
         <TouchableOpacity
             style={{ marginRight: 16 }}
             onPress={() => {
-                navigation.goBack()
+                navigation.navigate('Home');
             }}
         >
-            <Icon name="manage-accounts" size={24} color="white" />
+            <Icons name="keyboard-backspace" size={24} color="white" />
+        </TouchableOpacity>
+    );
+
+    const renderBackButtonIcons = ({ navigation }) => (
+        <TouchableOpacity
+            style={{ marginRight: 16 }}
+            onPress={() => {
+                navigation.navigate('Vehicle');
+            }}
+        >
+            <Icons name="keyboard-backspace" size={24} color="white" />
         </TouchableOpacity>
     );
 
@@ -177,6 +188,13 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => renderBackButtonIcons({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
                 name="Chat"
