@@ -103,7 +103,6 @@ function Confirm() {
         };
     };
 
-
     const handlerBackRoutes = () => {
         navigation.navigate('View routes');
     }
