@@ -111,6 +111,16 @@ export const Navigator = ({ isLoggedIn }) => {
         </TouchableOpacity>
     );
 
+    const BackButtonRouteRequests = ({ navigation }) => (
+        <TouchableOpacity
+            style={{ marginRight: 16 }}
+            onPress={() => {
+                navigation.navigate('Home');
+            }}
+        >
+            <Icons name="keyboard-backspace" size={24} color="white" />
+        </TouchableOpacity>
+    );
 
     return (
         <Drawer.Navigator
@@ -269,9 +279,16 @@ export const Navigator = ({ isLoggedIn }) => {
                         <Icons name="routes" size={size} color={color} />
                     ),
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => BackButtonRouteRequests({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
-                name="SettingsScreen"
+                name="Settings"
                 component={SettingsScreen}
                 options={{
                     title: t('Settings'),
@@ -280,6 +297,13 @@ export const Navigator = ({ isLoggedIn }) => {
                         <Icon name="settings" size={size} color={color} />
                     ),
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => BackButtonRouteRequests({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
                 name="AccountManager"
