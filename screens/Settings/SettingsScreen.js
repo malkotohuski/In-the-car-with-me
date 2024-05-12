@@ -4,9 +4,6 @@ import { ListItem, Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import { t } from 'i18next';
 
-
-
-
 const SettingsScreen = () => {
     const [toggleValues, setToggleValues] = useState({});
     const [darkMode, setDarkMode] = useState(false);
