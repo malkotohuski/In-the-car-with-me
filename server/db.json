@@ -2332,7 +2332,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1714574489642
+      "id": 1714574489642,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2373,7 +2374,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1714750952217
+      "id": 1714750952217,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2414,7 +2416,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1714998593036
+      "id": 1714998593036,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2434,7 +2437,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715100878357
+      "id": 1715100878357,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2454,7 +2458,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715101182007
+      "id": 1715101182007,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2474,7 +2479,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715101605366
+      "id": 1715101605366,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2494,7 +2500,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715177062106
+      "id": 1715177062106,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2514,7 +2521,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715177697287
+      "id": 1715177697287,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2534,7 +2542,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715277225999
+      "id": 1715277225999,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Car",
@@ -2554,7 +2563,49 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715277721602
+      "id": 1715277721602,
+      "userRouteId": "deleted"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С5526АА",
+      "selectedDateTime": "2024-05-19T14:22:00.000Z",
+      "departureCity": "Burgas",
+      "departureStreet": "5",
+      "departureNumber": "1",
+      "arrivalCity": "Ruse",
+      "arrivalStreet": "6",
+      "arrivalNumber": "3",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1715610196208,
+      "userRouteId": "deleted"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С5526АА",
+      "selectedDateTime": "2024-05-19T14:22:00.000Z",
+      "departureCity": "Burgas",
+      "departureStreet": "5",
+      "departureNumber": "1",
+      "arrivalCity": "Ruse",
+      "arrivalStreet": "6",
+      "arrivalNumber": "3",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1715610198937
     }
   ],
   "requests": [
