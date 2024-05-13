@@ -117,7 +117,7 @@ function HomePage({ navigation }) {
                     <Text style={styles.moto}>{t('We travel freely')}</Text>
                 </View>
 
-                <View style={styles.searchBox}>
+                {/*  <View style={styles.searchBox}>
                     <View style={styles.searchContainer}>
                         <TextInput
                             style={styles.searchField}
@@ -133,7 +133,7 @@ function HomePage({ navigation }) {
                     >
                         <Text style={styles.searchButtonText}>{t('Search')}</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 <View style={styles.footer}>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
                         <Icons name="routes" size={34} color="#362619" />
