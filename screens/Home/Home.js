@@ -136,13 +136,13 @@ function HomePage({ navigation }) {
                 </View> */}
                 <View style={styles.footer}>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                        <Icons name="routes" size={34} color="#362619" />
+                        <Icons name="routes" size={34} color="#000000" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
-                        <Icons name="chat" size={34} color="#422F2F" />
+                        <Icons name="chat" size={34} color="#080808" />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                        <Icons name="bell" size={34} color="#163E94" />
+                        <Icons name="bell" size={34} color="#000000" />
                     </TouchableOpacity>
                 </View>
             </View>
