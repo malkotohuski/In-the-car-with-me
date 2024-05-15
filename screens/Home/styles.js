@@ -35,10 +35,11 @@ export default StyleSheet.create({
          padding: 10,
      }, */
     heading: {
-        fontSize: 24,
+        fontSize: 34,
+        padding: 10,
         fontWeight: 'bold',
         marginBottom: 20,
-        color: '#F1F1F1'
+        color: '#000000'
     },
     searchBox: {
         flexDirection: 'column',
@@ -56,11 +57,11 @@ export default StyleSheet.create({
         justifyContent: 'center',
     },
     moto: {
-        fontSize: 20,
+        fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 20,
         alignItems: 'center',
-        color: '#F1F1F1'
+        color: '#000000'
     },
     searchField: {
         height: 40,
@@ -95,7 +96,7 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2,
-        borderColor: 'white',
+        borderColor: '#000000',
         width: 420
     },
     vehicleButton: {
@@ -105,7 +106,7 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2,
-        borderColor: 'white'
+        borderColor: '#000000'
     },
     routeViewerButton: {
         alignItems: 'center',
@@ -114,7 +115,7 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2,
-        borderColor: 'white'
+        borderColor: '#000000'
     },
     reportingButton: {
         alignItems: 'center',
@@ -123,10 +124,10 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2,
-        borderColor: 'white',
+        borderColor: '#000000',
     },
     textButtons: {
-        color: 'white',
+        color: '#000000',
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -291,7 +292,7 @@ export default StyleSheet.create({
     languageText: {
         fontSize: 23,
         fontWeight: 'bold',
-        color: 'white'
+        color: '#000000'
     },
     footer: {
         flexDirection: 'row',
