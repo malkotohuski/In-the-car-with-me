@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, Switch, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
-import { t } from 'i18next';
 
 const SettingsScreen = () => {
     const [toggleValues, setToggleValues] = useState({});
@@ -93,26 +92,29 @@ const SettingsScreen = () => {
 
     const getContainerStyle = () => {
         return {
-            flex: 1,
-            backgroundColor: darkMode ? '#101010' : '#fff', // Adjust background color for dark mode
-            padding: 15,
+            ...styles.container,
+            backgroundColor: darkMode ? '#5A5656' : '#fff',
         };
     };
 
     const getSectionHeaderStyle = () => {
         return {
-            fontSize: 18,
-            fontWeight: 'bold',
-            marginTop: 15,
-            marginBottom: 10,
-            color: darkMode ? '#fff' : '#000', // Adjust text color for dark mode
+            ...styles.sectionHeader,
+            color: darkMode ? '#fff' : '#000',
         };
     };
 
     const getListItemContainerStyle = () => {
         return {
-            borderBottomWidth: 1,
-            borderColor: darkMode ? '#101010' : '#ddd', // Adjust border color for dark mode
+            ...styles.listItemContainer,
+            backgroundColor: darkMode ? '#303030' : '#fff',  // Adjust background color for dark mode
+            borderColor: darkMode ? '#404040' : '#ddd',
+        };
+    };
+
+    const getTextStyle = () => {
+        return {
+            color: darkMode ? '#fff' : '#000',
         };
     };
 
@@ -127,8 +129,8 @@ const SettingsScreen = () => {
                         onPress={() => console.log(`Pressed ${item.label}`)}
                     >
                         <Icon name={item.icon} color={item.color} />
-                        <ListItem.Content >
-                            <ListItem.Title style={{ color: darkMode ? '#000' : '#000' }}>
+                        <ListItem.Content>
+                            <ListItem.Title style={getTextStyle()}>
                                 {item.label}
                             </ListItem.Title>
                         </ListItem.Content>
@@ -144,7 +146,7 @@ const SettingsScreen = () => {
                     >
                         <Icon name={item.icon} color={item.color} />
                         <ListItem.Content>
-                            <ListItem.Title style={{ color: darkMode ? '#000' : '#000' }}>
+                            <ListItem.Title style={getTextStyle()}>
                                 {item.label}
                             </ListItem.Title>
                         </ListItem.Content>
