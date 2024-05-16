@@ -39,7 +39,7 @@ export default StyleSheet.create({
         padding: 10,
         fontWeight: 'bold',
         marginBottom: 20,
-        color: '#000000'
+        color: '#FAF9F9'
     },
     searchBox: {
         flexDirection: 'column',
@@ -61,7 +61,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 20,
         alignItems: 'center',
-        color: '#000000'
+        color: '#E9E9E9'
     },
     searchField: {
         height: 40,
@@ -127,7 +127,7 @@ export default StyleSheet.create({
         borderColor: '#000000',
     },
     textButtons: {
-        color: '#000000',
+        color: '#313030',
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -296,7 +296,7 @@ export default StyleSheet.create({
     languageText: {
         fontSize: 23,
         fontWeight: 'bold',
-        color: '#000000'
+        color: '#414141'
     },
     footer: {
         flexDirection: 'row',
