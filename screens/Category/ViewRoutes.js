@@ -145,7 +145,7 @@ function ViewRoutes({ navigation }) {
     return (
         <SafeAreaView style={styles.mainContainer}>
             <Image
-                source={require('../../images/viewRoutes.png')}
+                source={require('../../images/d7.png')}
                 style={styles.backgroundImage}
             />
             <TouchableOpacity style={styles.filterButton} onPress={toggleFilterModal}>
