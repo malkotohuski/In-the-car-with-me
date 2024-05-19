@@ -1,19 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image, FlatList, Modal } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { Dropdown } from 'react-native-element-dropdown';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTranslation } from 'react-i18next';
 import CitySelector from '../../server/Cities/cities';
 
 function SelectRouteScreen({ route, navigation }) {
     const { t } = useTranslation();
-    const {
-        selectedVehicle,
-        markedSeats,
-        registrationNumber,
-    } = route.params;
+    const { selectedVehicle, markedSeats, registrationNumber } = route.params;
 
     const cities = CitySelector();
 
@@ -29,14 +22,9 @@ function SelectRouteScreen({ route, navigation }) {
     const [arrivalStreet, setArrivalStreet] = useState('');
     const [arrivalNumber, setArrivalNumber] = useState('');
 
-    const [value, setValue] = useState(null);
-    const [isFocus, setIsFocus] = useState(false);
-    const [isFocuses, setIsFocuses] = useState(false);
-
     const [modalVisibleDeparture, setModalVisibleDeparture] = useState(false);
     const [modalVisibleArrival, setModalVisibleArrival] = useState(false);
     const [searchText, setSearchText] = useState('');
-    const [showAllCities, setShowAllCities] = useState(false);
     const [filteredCities, setFilteredCities] = useState(cities.slice(0, 7));
 
     const continueButtonStyle = {
@@ -47,7 +35,7 @@ function SelectRouteScreen({ route, navigation }) {
         justifyContent: 'center',
         fontSize: 20,
         fontWeight: 'bold',
-        width: 150, // Adjust the width as needed
+        width: 150,
         height: 60,
         borderWidth: 2,
         borderColor: '#f1f1f1',
@@ -55,19 +43,16 @@ function SelectRouteScreen({ route, navigation }) {
     };
 
     const handleContinue = () => {
-        // Validate that a city is selected
         if (!departureCity) {
             Alert.alert(t('Error'), t('Please select a city!'));
-            return
+            return;
         }
 
-        // Validate that departure street is entered
         if (!departureStreet.trim()) {
             Alert.alert(t('Error'), t('Please select a street!'));
             return;
         }
 
-        // Validate that departure number is entered
         if (!departureNumber.trim()) {
             Alert.alert(t('Error'), t('Please enter a number!'));
             return;
@@ -78,30 +63,21 @@ function SelectRouteScreen({ route, navigation }) {
             return;
         }
 
-        // Validate that arrival street is entered
         if (!arrivalStreet.trim()) {
             Alert.alert(t('Error'), t('Please select a street!'));
             return;
         }
 
-        // Validate that arrival number is entered
         if (!arrivalNumber.trim()) {
             Alert.alert(t('Error'), t('Please enter a number!'));
             return;
         }
 
-        // Validate that a valid date and time are selected
         if (!selectedDateTime || isNaN(selectedDateTime.getTime())) {
             Alert.alert(t('Error'), t('Please select a date and time!'));
             return;
         }
 
-        // If all validations pass, proceed to the next screen
-        console.log(
-            // ... (previous log code)
-        );
-
-        // Navigate to the "Confirm" screen and pass the necessary parameters
         navigation.navigate('Confirm', {
             selectedVehicle,
             markedSeats,
@@ -147,9 +123,8 @@ function SelectRouteScreen({ route, navigation }) {
     );
 
     const filterCities = (text) => {
-        // Филтриране на градовете спрямо въведения текст
         const filteredCities = cities.filter(city => city.label.toLowerCase().includes(text.toLowerCase()));
-        setFilteredCities(filteredCities.slice(0, 7)); // Ограничаваме резултатите до първите 7 града
+        setFilteredCities(filteredCities.slice(0, 7));
     };
 
     return (
@@ -167,16 +142,15 @@ function SelectRouteScreen({ route, navigation }) {
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
                 {t('Departure:', {})}
             </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25, }}>
-                <View style={{ flex: 1, marginRight: 10, color: 'black' }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25 }}>
+                <View style={{ flex: 1, marginRight: 10 }}>
                     <TouchableOpacity
                         onPress={() => setModalVisibleDeparture(true)}
-                        style={[styles.citySelectButton, isFocuses && { borderColor: 'red' }]}
+                        style={[styles.citySelectButton, { borderColor: 'black' }]}
                     >
                         <Text style={styles.citySelectButtonText}>
                             {departureCity?.label || t('Select City')}
                         </Text>
-
                     </TouchableOpacity>
                     <Modal
                         animationType="slide"
@@ -211,13 +185,6 @@ function SelectRouteScreen({ route, navigation }) {
                                 renderItem={({ item }) => renderCityItem({ item, setModalVisible: setModalVisibleDeparture })}
                                 keyExtractor={(item) => item.value}
                             />
-                            {/*  {searchText.length >= 2 && (
-                                <Button
-                                    title={showAllCities ? 'Show Top 7' : 'Show All Cities'}
-                                    onPress={() => setShowAllCities(!showAllCities)}
-                                    color="#f4511e"
-                                />
-                            )} */}
                         </View>
                     </Modal>
                 </View>
@@ -244,7 +211,6 @@ function SelectRouteScreen({ route, navigation }) {
                     placeholderTextColor={'#010101'}
                     value={departureNumber}
                     onChangeText={(text) => setDepartureNumber(text)}
-                    keyboardType="numeric" // Restrict to numeric input
                     style={{
                         height: 70,
                         width: 50,
@@ -257,14 +223,7 @@ function SelectRouteScreen({ route, navigation }) {
                     }}
                 />
             </View>
-            {/*  <Icons
-                style={styles.icon}
-                color="black"
-                name="routes-clock" // "route" icon from MaterialIcons
-                size={100}
-            /> */}
             <View style={{ padding: 20 }}></View>
-            {/* Arrival Information */}
             <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
                 {t('Arrival:')}
             </Text>
@@ -272,7 +231,7 @@ function SelectRouteScreen({ route, navigation }) {
                 <View style={{ flex: 1, marginRight: 10 }}>
                     <TouchableOpacity
                         onPress={() => setModalVisibleArrival(true)}
-                        style={[styles.citySelectButton, isFocuses && { borderColor: 'red' }]}
+                        style={[styles.citySelectButton, { borderColor: 'black' }]}
                     >
                         <Text style={styles.citySelectButtonText}>
                             {arrivalCity?.label || t('Select City')}
@@ -311,13 +270,6 @@ function SelectRouteScreen({ route, navigation }) {
                                 renderItem={({ item }) => renderArrivalCityItem({ item, setModalVisible: setModalVisibleArrival })}
                                 keyExtractor={(item) => item.value}
                             />
-                            {/*  {searchText.length >= 2 && (
-                                <Button
-                                    title={showAllCities ? 'Show Top 7' : 'Show All Cities'}
-                                    onPress={() => setShowAllCities(!showAllCities)}
-                                    color="#f4511e"
-                                />
-                            )} */}
                         </View>
                     </Modal>
                 </View>
@@ -345,7 +297,6 @@ function SelectRouteScreen({ route, navigation }) {
                     placeholderTextColor={'#010101'}
                     value={arrivalNumber}
                     onChangeText={(text) => setArrivalNumber(text)}
-                    keyboardType="numeric" // Restrict to numeric input
                     style={{
                         height: 70,
                         width: 50,
@@ -359,7 +310,6 @@ function SelectRouteScreen({ route, navigation }) {
                 />
             </View>
 
-            {/* Centered Date and Continue Button */}
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Button
                     style={[styles.button, { marginTop: 10 }]}
@@ -375,7 +325,6 @@ function SelectRouteScreen({ route, navigation }) {
                     onConfirm={(selectedDate) => {
                         setOpen(false);
                         setDate(selectedDate);
-                        // Update the selectedDateTime state
                         setSelectedDateTime(selectedDate);
                     }}
                     onCancel={() => {
@@ -383,7 +332,7 @@ function SelectRouteScreen({ route, navigation }) {
                     }}
                 />
                 {selectedDateTime && (
-                    <View style={{ marginTop: 10, }}>
+                    <View style={{ marginTop: 10 }}>
                         <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}>
                             {t('Selected Date and Time:')} {selectedDateTime.toString()}
                         </Text>
@@ -392,7 +341,7 @@ function SelectRouteScreen({ route, navigation }) {
 
                 <TouchableOpacity
                     onPress={handleContinue}
-                    style={continueButtonStyle} // Използвай новата променлива за стиловете
+                    style={continueButtonStyle}
                 >
                     <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{t('Continue')}</Text>
                 </TouchableOpacity>
@@ -400,7 +349,6 @@ function SelectRouteScreen({ route, navigation }) {
         </View>
     );
 }
-
 
 export default SelectRouteScreen;
 
