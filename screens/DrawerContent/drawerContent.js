@@ -224,6 +224,13 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => renderBackButtonIcons({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
                 name="Confirm"
