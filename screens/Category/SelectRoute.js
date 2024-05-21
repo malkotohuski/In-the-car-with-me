@@ -266,7 +266,7 @@ function SelectRouteScreen({ route, navigation }) {
                     placeholderTextColor={'#010101'}
                     value={departureNumber}
                     onChangeText={(text) => setDepartureNumber(text)}
-                    keyboardType="numeric"
+                    keyboardType="default"
                     style={{
                         height: 70,
                         width: 50,
@@ -352,7 +352,7 @@ function SelectRouteScreen({ route, navigation }) {
                     placeholderTextColor={'#010101'}
                     value={arrivalNumber}
                     onChangeText={(text) => setArrivalNumber(text)}
-                    keyboardType="numeric"
+                    keyboardType="default"
                     style={{
                         height: 70,
                         width: 50,
