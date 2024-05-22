@@ -127,7 +127,7 @@ export default StyleSheet.create({
         borderColor: '#000000',
     },
     textButtons: {
-        color: '#313030',
+        color: '#0C0C0C',
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -292,7 +292,7 @@ export default StyleSheet.create({
     languageText: {
         fontSize: 23,
         fontWeight: 'bold',
-        color: '#414141'
+        color: '#FAFAFA'
     },
     footer: {
         flexDirection: 'row',
