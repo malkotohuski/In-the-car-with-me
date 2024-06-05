@@ -310,4 +310,16 @@ export default StyleSheet.create({
         backgroundColor: '#f1f1f1', // Цветът на иконките, промени го според нуждите си
         justifyContent: 'center',
     },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    loadingText: {
+        position: 'absolute',
+        top: '50%',
+        textAlign: 'center',
+        fontSize: 38,
+        color: '#010101',
+    },
 });
