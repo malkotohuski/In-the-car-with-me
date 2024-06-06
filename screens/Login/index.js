@@ -11,11 +11,12 @@ const API_BASE_URL = 'http://192.168.1.2:3000';
 
 const LoadingText = () => {
     const [dotCount, setDotCount] = useState(0);
+    const { t } = useTranslation();  // Add this line to use t function
 
     useEffect(() => {
         const interval = setInterval(() => {
             setDotCount((prevCount) => (prevCount + 1) % 4);
-        }, 500); // Променяме точките на всеки 500 ms
+        }, 2500); // Променяме точките на всеки 500 ms
 
         return () => clearInterval(interval);
     }, []);
@@ -23,7 +24,7 @@ const LoadingText = () => {
     const dots = '.'.repeat(dotCount);
 
     return (
-        <Text style={styles.loadingText}>loading{dots}</Text>
+        <Text style={styles.loadingText}>{t('loading')}{dots}</Text>
     );
 };
 
