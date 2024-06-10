@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Navigator } from './screens/DrawerContent/drawerContent';
 import { RouteProvider } from './screens/Category/RouteContext'
 import { AuthProvider } from './screens/Authentication/AuthContext';
-
+import { DarkModeProvider } from './screens/Authentication/DarkModeContext';
 
 const Drawer = createDrawerNavigator();
 
@@ -15,13 +15,15 @@ function App() {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <NavigationContainer>
-                < AuthProvider>
-                    <RouteProvider>
-                        <Navigator isLoggedIn={isLoggedIn} />
-                    </RouteProvider>
-                </AuthProvider>
-            </NavigationContainer>
+            <DarkModeProvider>
+                <NavigationContainer>
+                    < AuthProvider>
+                        <RouteProvider>
+                            <Navigator isLoggedIn={isLoggedIn} />
+                        </RouteProvider>
+                    </AuthProvider>
+                </NavigationContainer>
+            </DarkModeProvider>
         </SafeAreaView>
     );
 }
