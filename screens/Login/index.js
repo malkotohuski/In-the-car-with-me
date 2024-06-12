@@ -16,7 +16,7 @@ const LoadingText = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setDotCount((prevCount) => (prevCount + 1) % 4);
-        }, 2500); // Променяме точките на всеки 500 ms
+        }, 500); // Променяме точките на всеки 500 ms
 
         return () => clearInterval(interval);
     }, []);
