@@ -2947,6 +2947,27 @@
       "userEmail": "shushkata7@gmail.com",
       "id": 1717694959049,
       "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3,
+        2
+      ],
+      "registrationNumber": "СВ4473АА",
+      "selectedDateTime": "2024-06-17T15:19:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Sapareva Banya",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1718551267264
     }
   ],
   "requests": [
