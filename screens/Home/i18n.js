@@ -254,7 +254,7 @@ i18next.use(initReactI18next).init({
                 'Graf Ignatievo': 'Graf Ignatievo',
                 'Seliminovo': 'Seliminovo',
                 'Uzundzhovo': 'Uzundzhovo',
-
+                'No': 'No',
                 'Polikrayshte': 'Polikrayshte',
                 'Lesnovo': 'Lesnovo',
                 'Merichleri': 'Merichleri',
@@ -3670,6 +3670,7 @@ i18next.use(initReactI18next).init({
                 'Choose Photo or Video': 'Изберете Снимка или Видео',
                 'Submit': 'Изпращане',
                 'Log in': 'Влизам',
+                'No': 'Не',
                 'Email': 'Имейл',
                 'Password': 'Парола',
                 'Create a route': 'Създайте маршрут',
