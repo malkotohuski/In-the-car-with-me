@@ -128,7 +128,7 @@ export default StyleSheet.create({
     },
     textButtons: {
         color: '#0C0C0C',
-        fontSize: 20,
+        fontSize: 23,
         fontWeight: 'bold',
     },
 

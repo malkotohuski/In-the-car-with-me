@@ -320,7 +320,7 @@
       "password": "123",
       "fName": "Velichka",
       "lName": "Spasova",
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/c422ab25-d308-409e-8d86-8a84d7aa1dd0.jpg",
+      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/b476cd71-24cd-48d9-b66f-d9f4853837ad.jpg",
       "confirmationCode": null,
       "routes": [],
       "freinds": []
@@ -2605,7 +2605,8 @@
       "userFname": "Velichka",
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
-      "id": 1715610198937
+      "id": 1715610198937,
+      "userRouteId": "deleted"
     },
     {
       "selectedVehicle": "Motorcycle",
@@ -2924,6 +2925,150 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1716391840895
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        2,
+        3
+      ],
+      "registrationNumber": "A2111AC",
+      "selectedDateTime": "2024-06-09T17:28:00.000Z",
+      "departureCity": "Batak (Veliko Tarnovo)",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Borika (Sofia - oblast)",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1717694959049,
+      "userRouteId": "completed"
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3,
+        2
+      ],
+      "registrationNumber": "СВ4473АА",
+      "selectedDateTime": "2024-06-17T15:19:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Sapareva Banya",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1718551267264
+    },
+    {
+      "selectedVehicle": "Motorcycle",
+      "markedSeats": [
+        3,
+        2
+      ],
+      "registrationNumber": "С7666АС",
+      "selectedDateTime": "2024-06-21T18:10:00.000Z",
+      "departureCity": "Pleven",
+      "departureStreet": "Ffd",
+      "departureNumber": "1",
+      "arrivalCity": "Knyazhevo",
+      "arrivalStreet": "Ttrg",
+      "arrivalNumber": "2",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1718647918526
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С8566ДВ",
+      "selectedDateTime": "2024-06-24T17:35:00.000Z",
+      "departureCity": "София",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Бъта",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1718732171591
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "С2111АА",
+      "selectedDateTime": "2024-06-22T16:12:00.000Z",
+      "departureCity": "Баня (обл. Пазарджик)",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Бъта",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1718900083320
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "А2111АА",
+      "selectedDateTime": "2024-06-27T13:42:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Bata (Pazardzhik)",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1719150260997
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "А3332АА",
+      "selectedDateTime": "2024-07-02T13:55:00.000Z",
+      "departureCity": "Varna",
+      "departureStreet": "1",
+      "departureNumber": "1",
+      "arrivalCity": "Banya (Pazardzhik)",
+      "arrivalStreet": "1",
+      "arrivalNumber": "1",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1719151006221
     }
   ],
   "requests": [
@@ -3394,6 +3539,19 @@
       "routeId": 1714824756571,
       "dataTime": "2024-05-09T12:04:00.000Z",
       "id": 1714824774647
+    },
+    {
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "userID": 1711358014466,
+      "userRouteId": 1711358014466,
+      "departureCity": "Batak (Veliko Tarnovo)",
+      "arrivalCity": "Borika (Sofia - oblast)",
+      "routeId": 1717694959049,
+      "dataTime": "2024-06-09T17:28:00.000Z",
+      "id": 1717694965496
     }
   ],
   "userChanges": []
