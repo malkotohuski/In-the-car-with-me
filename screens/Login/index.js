@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
@@ -7,7 +7,26 @@ import styles from '../Home/styles';
 import i18next from 'i18next';
 import { useAuth } from '../Authentication/AuthContext';
 
-const API_BASE_URL = 'http://10.0.2.2:3000';
+const API_BASE_URL = 'http://192.168.1.2:3000';
+
+const LoadingText = () => {
+    const [dotCount, setDotCount] = useState(0);
+    const { t } = useTranslation();  // Add this line to use t function
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setDotCount((prevCount) => (prevCount + 1) % 4);
+        }, 500); // Променяме точките на всеки 500 ms
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const dots = '.'.repeat(dotCount);
+
+    return (
+        <Text style={styles.loadingText}>{t('loading')}{dots}</Text>
+    );
+};
 
 export default function Login({ navigation, route }) {
     const [email, setEmail] = useState('');
@@ -63,10 +82,13 @@ export default function Login({ navigation, route }) {
         <View style={styles.container}>
             {isLoading ? (
                 // Покажете изображението за 3 секунди
-                <Image
-                    source={require('../../images/loading_image.png')}
-                    style={styles.backgroundImage}
-                />
+                <View style={styles.loadingContainer}>
+                    <Image
+                        source={require('../../images/loading_image.png')}
+                        style={styles.backgroundImage}
+                    />
+                    <LoadingText />
+                </View>
             ) : (
                 <>
                     <Image
