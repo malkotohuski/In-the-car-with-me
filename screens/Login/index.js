@@ -80,7 +80,7 @@ export default function Login({ navigation, route }) {
                                 onPress={() => changeLanguage('en')}
                             >
                                 <Image
-                                    source={require('../../images/engl-flag.png')}
+                                    source={require('../../images/eng1-flag.png')}
                                     style={styles.flagImage}
                                 />
                                 <Text
