@@ -15,6 +15,11 @@ const LogoutScreen = ({ navigation }) => {
         navigation.navigate('Login');
     };
 
+    const handleHome = () => {
+        logout();
+        // Optionally, navigate to the login screen or any other screen after logout
+        navigation.navigate('Home');
+    };
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -31,8 +36,16 @@ const LogoutScreen = ({ navigation }) => {
                     style={styles.submitButton}
                     onPress={handleLogout}>
                     <Text
-                        style={styles.sumbitText}
+                        style={styles.sumbitTextYes}
                     >{t('Yes')}</Text>
+                </TouchableOpacity>
+                <View style={styles.submitPadding}></View>
+                <TouchableOpacity
+                    style={styles.submitButton}
+                    onPress={handleHome}>
+                    <Text
+                        style={styles.sumbitTextYes}
+                    >{t('No')}</Text>
                 </TouchableOpacity>
             </View>
         </SafeAreaView>
@@ -70,7 +83,7 @@ const styles = StyleSheet.create({
         borderRadius: 50,
         borderWidth: 2,
     },
-    sumbitText: {
+    sumbitTextYes: {
         color: 'black',
         fontSize: 20,
         fontWeight: 'bold',

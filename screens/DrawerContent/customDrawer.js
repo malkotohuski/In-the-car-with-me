@@ -51,7 +51,7 @@ function CustomerDrawer({ navigation }) {
             <View style={styles.drawerContainer}>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
-                        <Icon name="home" size={30} color="#010101" />
+                        <Icon name="home" size={30} color="#0721B6" />
                         <Text
                             style={styles.textButtons}
                         >{t('Home')}</Text>
@@ -59,7 +59,7 @@ function CustomerDrawer({ navigation }) {
                 </View >
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerRouteViewer} >
-                        <Icon name="streetview" size={30} color="#010101" />
+                        <Icon name="streetview" size={30} color="#DBF023" />
                         <Text
                             style={styles.textButtons}
                         >{t('View routes')}</Text>
@@ -67,7 +67,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerUsersScreen} >
-                        <Icon name="streetview" size={30} color="#010101" />
+                        <Icon name="streetview" size={30} color="#14B351" />
                         <Text
                             style={styles.textButtons}
                         >{t('Users')}</Text>
@@ -75,7 +75,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerReporting} >
-                        <Icon name="report" size={30} color="#010101" />
+                        <Icon name="report" size={30} color="#960D0D" />
                         <Text
                             style={styles.textButtons}
                         >{t('Reporting')}</Text>
@@ -91,7 +91,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerSettings} >
-                        <Icon name="settings" size={30} color="#010101" />
+                        <Icon name="settings" size={30} color="#CAC8C8" />
                         <Text
                             style={styles.textButtons}
                         >{t('Settings')}</Text>
@@ -99,7 +99,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerLogout} >
-                        <Icons name="logout" size={30} color="#010101" />
+                        <Icons name="logout" size={30} color="#975618" />
                         <Text
                             style={styles.textButtons}
                         >{t('Logout')}</Text>
