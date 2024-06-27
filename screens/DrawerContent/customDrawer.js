@@ -99,7 +99,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerLogout} >
-                        <Icons name="logout" size={30} color="#975618" />
+                        <Icons name="logout" size={30} color="#E6AE7B" />
                         <Text
                             style={styles.textButtons}
                         >{t('Logout')}</Text>
