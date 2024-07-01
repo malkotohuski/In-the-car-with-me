@@ -100,6 +100,17 @@ export const Navigator = ({ isLoggedIn }) => {
         </TouchableOpacity>
     );
 
+    const renderBackButtonVehicle = ({ navigation }) => (
+        <TouchableOpacity
+            style={{ marginRight: 16 }}
+            onPress={() => {
+                navigation.navigate('Home');
+            }}
+        >
+            <Icons name="keyboard-backspace" size={24} color="white" />
+        </TouchableOpacity>
+    );
+
     const renderBackButtonIcons = ({ navigation }) => (
         <TouchableOpacity
             style={{ marginRight: 16 }}
@@ -251,6 +262,13 @@ export const Navigator = ({ isLoggedIn }) => {
                         <Icon name="streetview" size={size} color={color} />
                     ),
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => renderBackButtonVehicle({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
                 name="Reporting"
