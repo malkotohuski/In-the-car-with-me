@@ -97,7 +97,8 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         borderWidth: 2,
         borderColor: '#000000',
-        width: 420
+        width: 420,
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
     },
     vehicleButton: {
         alignItems: 'center',
@@ -106,7 +107,8 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2,
-        borderColor: '#000000'
+        borderColor: '#000000',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
     },
     routeViewerButton: {
         alignItems: 'center',
@@ -115,7 +117,8 @@ export default StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2,
-        borderColor: '#000000'
+        borderColor: '#000000',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
     },
     reportingButton: {
         alignItems: 'center',
@@ -125,6 +128,7 @@ export default StyleSheet.create({
         fontWeight: 'bold',
         borderWidth: 2,
         borderColor: '#000000',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
     },
     textButtons: {
         color: '#0C0C0C',
