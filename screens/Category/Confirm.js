@@ -11,7 +11,11 @@ function Confirm() {
     const routeContext = useRouteContext();
     const { userRoutes, addRoute } = routeContext;
     const { user } = useAuth();
-    // Routes data :
+
+    // State to manage success message
+    const [successMessage, setSuccessMessage] = useState('');
+
+    // Routes data:
     const route = useRoute();
     const selectedVehicle = route.params.selectedVehicle;
     const markedSeats = route.params.markedSeats;
@@ -23,15 +27,17 @@ function Confirm() {
     const arrivalCity = route.params.arrivalCity;
     const arrivalStreet = route.params.arrivalStreet;
     const arrivalNumber = route.params.arrivalNumber;
-    const routeId = route.params.id
+    const routeId = route.params.id;
     const user_id = route.params.userId;
-    // User data :
+
+    // User data:
     const userId = user?.user?.id;
     const username = user?.user?.username;
     const userFname = user?.user?.fName;
     const userLname = user?.user?.lName;
     const userEmail = user?.user?.email;
-    // Buttons logic :
+
+    // Buttons logic:
     const showConfirmButton = route.params.showConfirmButton !== undefined ? route.params.showConfirmButton : true;
     const showChangesButton = route.params.showChangesButton !== undefined ? route.params.showChangesButton : true;
     const showBackButton = route.params.showBackButton !== undefined ? route.params.showBackButton : false;
@@ -80,7 +86,11 @@ function Confirm() {
                 const responseData = await response.json();
                 const newRoute = responseData.route;
                 addRoute(newRoute); // Save the route using the context
-                navigation.navigate('View routes'); // Navigate to ViewRoutes after 3 seconds
+                setSuccessMessage(t('The route has been created!')); // Set success message
+                setTimeout(() => {
+                    setSuccessMessage(''); // Clear success message after navigating
+                    navigation.navigate('View routes'); // Navigate to ViewRoutes after 3 seconds
+                }, 3000);
             } else {
                 // Handle error response
                 const errorData = await response.json();
@@ -88,12 +98,12 @@ function Confirm() {
             }
         } catch (error) {
             console.error('Error creating route:', error);
-        };
+        }
     };
 
     const handlerBackRoutes = () => {
         navigation.navigate('View routes');
-    }
+    };
 
     const handlerRouteRequest = () => {
         navigation.navigate('RouteDetails', { markedSeats });
@@ -113,23 +123,23 @@ function Confirm() {
                     }}
                 />
                 <Text style={styles.headerText}>{t('Review')}:</Text>
-                <Text style={styles.text}>{t('Username')}:{username}</Text>
+                <Text style={styles.text}>{t('Username')}: {username}</Text>
                 <Text style={styles.text}>{t('Names')}: {userFname} {userLname}</Text>
-                <Text style={styles.text}>{registrationNumber} - {t('Free seats')}:{markedSeats.length}</Text>
+                <Text style={styles.text}>{registrationNumber} - {t('Free seats')}: {markedSeats.length}</Text>
                 <Text style={styles.text}>{t('Time and date of departure')}: {String(selectedDateTime.toLocaleString())}</Text>
 
                 {/* Departure Section */}
                 <View style={styles.sectionContainer}>
                     <Text style={styles.sectionHeaderText}>{t('Departure')}:</Text>
                     <Text style={styles.text}>{t('Town/Village')}: {departureCity}</Text>
-                    <Text style={styles.text}>{t('Street')}: {departureStreet}  {departureNumber}</Text>
+                    <Text style={styles.text}>{t('Street')}: {departureStreet} {departureNumber}</Text>
                 </View>
 
                 {/* Arrival Section */}
                 <View style={styles.sectionContainer}>
                     <Text style={styles.sectionHeaderText}>{t('Arrival')}:</Text>
                     <Text style={styles.text}>{t('Town/Village')}: {arrivalCity}</Text>
-                    <Text style={styles.text}>{t('Street')}: {arrivalStreet}  {arrivalNumber}</Text>
+                    <Text style={styles.text}>{t('Street')}: {arrivalStreet} {arrivalNumber}</Text>
                 </View>
 
                 {showChangesButton && (
@@ -152,6 +162,11 @@ function Confirm() {
                         <Text style={styles.buttonText}>{t('Route request')}</Text>
                     </TouchableOpacity>
                 )}
+
+                {/* Success message */}
+                {successMessage && (
+                    <Text style={styles.successMessage}>{successMessage}</Text>
+                )}
             </>
         </View>
     );
@@ -161,24 +176,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'flex-start',
-        alignItems: 'center',
+        alignItems: 'center', // Center horizontally
         backgroundColor: 'grey',
     },
     headerText: {
         fontWeight: 'bold',
         fontSize: 24,
         paddingBottom: 10,
-        color: '#1b1c1e',
+        color: '#121213',
         borderBottomWidth: 3, // Border bottom for header text
-        borderBottomColor: '#1b1c1e', // Border color
+        borderBottomColor: '#121213', // Border color
+        textAlign: 'center', // Center text
     },
     text: {
         fontWeight: 'bold',
         fontSize: 18,
         paddingBottom: 10,
-        color: '#1b1c1e',
-        borderBottomWidth: 1, // Border bottom for regular text
-        borderBottomColor: '#1b1c1e', // Border color
+        color: '#010101',
+        borderBottomWidth: 2, // Border bottom for regular text
+        borderBottomColor: '#121213', // Border color
+        textAlign: 'center', // Center text
     },
     button: {
         marginTop: 20,
@@ -205,6 +222,7 @@ const styles = StyleSheet.create({
     buttonText: {
         color: '#F1F1F1',
         fontSize: 16,
+        textAlign: 'center', // Center text
     },
     sectionContainer: {
         marginTop: 10,
@@ -213,12 +231,27 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.7)',
         borderRadius: 10,
         width: '90%',
+        alignItems: 'center', // Center section content horizontally
     },
     sectionHeaderText: {
         fontWeight: 'bold',
         fontSize: 20,
-        color: '#1b1c1e',
+        color: '#121213',
         marginBottom: 5,
+        textAlign: 'center', // Center text
+    },
+    successMessage: {
+        marginTop: 20,
+        padding: 15,
+        backgroundColor: '#27ae60',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+        width: '90%',
+        borderRadius: 10,
+        color: '#F1F1F1',
+        textAlign: 'center', // Center text
     },
 });
 
