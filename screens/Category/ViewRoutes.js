@@ -64,7 +64,7 @@ function ViewRoutes({ navigation }) {
         });
 
         // Замени текущия филтриран списък със сортирания
-        setFilteredRoutes(sortedRoutes);
+        setFilteredRoutesState(sortedRoutes);
     };
 
     const handlerSeeView = (routeParams) => {
@@ -85,8 +85,6 @@ function ViewRoutes({ navigation }) {
         filteredRoutesState.forEach((route) => {
             const routeDate = new Date(route.selectedDateTime);
             if (routeDate <= currentDate) {
-                // Assuming each route has a unique identifier (like an 'id' field)
-                // Call the deleteRoute function from your context to delete the expired route
                 deleteRoute(route.id);
             }
         });
@@ -100,11 +98,10 @@ function ViewRoutes({ navigation }) {
                     const currentDate = new Date();
                     const filteredRoutes = response.data.filter(route => {
                         const routeDate = new Date(route.selectedDateTime);
-                        return route.userId === user?.user?.id &&
-                            !route.isDeleted &&
+                        return !route.isDeleted &&
                             route.userRouteId !== "deleted" &&
                             route.userRouteId !== "completed" &&
-                            routeDate >= currentDate; // Филтриране на маршрутите по дата
+                            routeDate >= currentDate;
                     });
                     setFilteredRoutesState(filteredRoutes);
                 } else {
@@ -117,12 +114,6 @@ function ViewRoutes({ navigation }) {
 
         fetchRoutes();
     }, [routes]);
-
-    /*     useEffect(() => {
-            const intervalId = setInterval(filterAndDeleteExpiredRoutes, 60000); // 1 minute interval
-    
-            return () => clearInterval(intervalId); // Cleanup the interval when unmounted
-        }); */
 
     useEffect(() => {
         const filteredRoutesWithoutDeleted = routes.filter(route => route.userRouteId !== "deleted");

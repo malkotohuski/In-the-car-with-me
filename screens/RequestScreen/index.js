@@ -30,6 +30,12 @@ function RouteDetails({ route }) {
 
     const handlerTripRequest = async () => {
         try {
+            // Check if requesterUsername is the same as the username of the requesting user
+            if (requesterUsername === username) {
+                Alert.alert('Error', 'не става');
+                return;
+            }
+
             // Ensure that you have the correct user data
             console.log('Sending trip request to:', route);
 
@@ -68,7 +74,6 @@ function RouteDetails({ route }) {
                                     dataTime: route.params.selectedDateTime
                                 },
                             });
-                            ;
 
                             // Handle the response from the server if needed
                             console.log('Route Approval Response:', response);
