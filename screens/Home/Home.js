@@ -18,32 +18,29 @@ function HomePage({ navigation }) {
 
     const handlerVehicle = () => {
         navigation.navigate('Vehicle');
-        console.log('Vehicle clicked !!!');
     }
 
     const handlerRouteRequest = () => {
-        navigation.navigate('Route request')
-        console.log('RouteRequest clicked !!!');
+        navigation.navigate('Route request');
     }
 
     const handlerRouteViewer = () => {
-        navigation.navigate('RoutesHistory')
-        console.log('Routes history !!!');
+        navigation.navigate('RoutesHistory');
     }
 
     const handlerReporting = () => {
-        navigation.navigate('Reporting')
-        console.log('Reporting clicked !!!');
+        navigation.navigate('Reporting');
     }
 
     const handlerChatScreen = () => {
         navigation.navigate('Chat');
-        console.log('Chats screen clicked !!!');
     }
 
     const handlerNotificationScreen = () => {
+
         navigation.navigate('View routes');
         console.log('View routes clicked !!!');
+
     }
 
     return (
@@ -109,31 +106,12 @@ function HomePage({ navigation }) {
                             >{t('Reporting')}</Text>
                         </TouchableOpacity>
                     </View>
-
                 </View>
                 <View style={styles.centeredTextContainer}>
                     {/* Your content goes here */}
                     <Text style={styles.heading}>{t('In the car with me')}</Text>
                     <Text style={styles.moto}>{t('We travel freely')}</Text>
                 </View>
-
-                {/*  <View style={styles.searchBox}>
-                    <View style={styles.searchContainer}>
-                        <TextInput
-                            style={styles.searchField}
-                            placeholderTextColor={'#F5FDFE'}
-                            placeholder={t('Search here')}
-                        />
-                    </View>
-                    <TouchableOpacity
-                        style={styles.searchButton}
-                        onPress={() => {
-
-                        }}
-                    >
-                        <Text style={styles.searchButtonText}>{t('Search')}</Text>
-                    </TouchableOpacity>
-                </View> */}
                 <View style={styles.footer}>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
                         <Icons name="routes" size={34} color="#000000" />
