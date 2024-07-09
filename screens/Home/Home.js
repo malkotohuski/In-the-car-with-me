@@ -42,8 +42,8 @@ function HomePage({ navigation }) {
     }
 
     const handlerNotificationScreen = () => {
-        navigation.navigate('Notifications');
-        console.log('Notifications clicked !!!');
+        navigation.navigate('View routes');
+        console.log('View routes clicked !!!');
     }
 
     return (

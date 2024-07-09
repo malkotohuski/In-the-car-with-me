@@ -4,9 +4,11 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from '../Category/RouteContext';
+import { useTranslation } from 'react-i18next';
 
 const ChatScreen = ({ navigation }) => {
     const { user } = useAuth();
+    const { t } = useTranslation();
     const username = user?.user?.username;
     const userAllName = `${user?.user?.fName} ${user?.user?.lName}`;
     const [searchTerm, setSearchTerm] = useState('');
@@ -43,7 +45,7 @@ const ChatScreen = ({ navigation }) => {
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
                 <View style={styles.header}  >
                     <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
-                        Chats
+                        {t("Chats")}
                     </Text>
                     <View style={{ width: 35 }}>
                         <TouchableOpacity onPress={() => navigation.navigate('Messages')}>
@@ -73,7 +75,7 @@ const ChatScreen = ({ navigation }) => {
                     <Icon name='person-search' size={24} color={"white"} style={styles.searchIcon} />
                     <TextInput
                         style={styles.searchInput}
-                        placeholder="Търсене..."
+                        placeholder={t("Search...")}
                         placeholderTextColor="white"
                         value={searchTerm}
                         onChangeText={(text) => setSearchTerm(text)}
