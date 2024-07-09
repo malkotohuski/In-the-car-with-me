@@ -37,7 +37,10 @@ function HomePage({ navigation }) {
     }
 
     const handlerNotificationScreen = () => {
-        navigation.navigate('Notifications');
+
+        navigation.navigate('View routes');
+        console.log('View routes clicked !!!');
+
     }
 
     return (
