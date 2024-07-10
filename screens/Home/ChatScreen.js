@@ -60,7 +60,7 @@ const ChatScreen = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                     <View style={{ width: 35 }}>
-                        <TouchableOpacity onPress={() => navigation.navigate('Requests')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('AddFriendScreen')}>
                             {/* Кастомизирайте бутона за връщане според вашите изисквания */}
                             <Icon name="person-add" size={24} color="white" />
                         </TouchableOpacity>
