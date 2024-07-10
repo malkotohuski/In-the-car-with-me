@@ -229,10 +229,10 @@ export const Navigator = ({ isLoggedIn }) => {
                 }}
             />
             <Drawer.Screen
-                name="Friends"
+                name="AddFriendScreen"
                 component={AddFriendScreen}
                 options={{
-                    title: t('Friends'),
+                    title: t('AddFriendScreen'),
                     ...screenStyles,
                     headerShown: false,
                     drawerItemStyle: { display: 'none' }
