@@ -22,6 +22,7 @@ import LogoutScreen from '../Logout';
 import SettingsScreen from '../Settings/SettingsScreen';
 import { RouteDetails } from '../RequestScreen/index'
 import ChatScreen from '../Home/ChatScreen';
+import AddFriendScreen from '../Chats/AddFriendScreen';
 import Messages from '../Chats/Messages';
 import CustomerDrawer from './customDrawer';
 import RouteHistory from '../Category/RouteHistory';
@@ -222,6 +223,16 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={ChatScreen}
                 options={{
                     title: t('Chat'),
+                    ...screenStyles,
+                    headerShown: false,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="Friends"
+                component={AddFriendScreen}
+                options={{
+                    title: t('Friends'),
                     ...screenStyles,
                     headerShown: false,
                     drawerItemStyle: { display: 'none' }
