@@ -29,7 +29,7 @@ const AddFriendScreen = ({ navigation }) => {
         <SafeAreaView style={styles.mainContainer}>
             <View style={styles.header}  >
                 <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
-                    {t("Chats")}
+                    {t("Find Friends")}
                 </Text>
                 <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     {/* Кастомизирайте бутона за връщане според вашите изисквания */}
