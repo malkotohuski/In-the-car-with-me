@@ -10,6 +10,8 @@ const API_BASE_URL = 'http://10.0.2.2:3000';
 const AddFriendScreen = ({ navigation }) => {
     const { user } = useAuth();
     const currentUserId = user?.user?.username;
+    const noImage = require('../../images/no_image.png'); // Използваме require за изображението
+
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedUser, setSelectedUser] = useState(null);
@@ -36,8 +38,18 @@ const AddFriendScreen = ({ navigation }) => {
     };
 
     const handleAddFriend = () => {
-        console.log(`Add ${selectedUser.username} as a friend`);
-        setModalVisible(false);
+        axios.post(`${API_BASE_URL}/approve-friend-request`, {
+            userId: currentUserId,
+            friendId: selectedUser.id,
+        })
+            .then(response => {
+                console.log('Friend request approved successfully:', response.data);
+                // Можете да добавите допълнителна логика за обновяване на интерфейса или друга функционалност тук
+            })
+            .catch(error => {
+                console.error('Error approving friend request:', error);
+                // Обработка на грешката при изпращане на заявката
+            });
     };
 
     const handleIgnore = () => {
@@ -89,9 +101,14 @@ const AddFriendScreen = ({ navigation }) => {
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>{t("Username")}</Text>
                         <Text style={styles.modalNameText}>{selectedUser?.username}</Text>
-                        {selectedUser?.userImage && (
+                        {selectedUser?.userImage ? (
                             <Image
                                 source={{ uri: selectedUser.userImage }}
+                                style={styles.userImage}
+                            />
+                        ) : (
+                            <Image
+                                source={noImage}
                                 style={styles.userImage}
                             />
                         )}
@@ -134,7 +151,7 @@ const styles = StyleSheet.create({
     },
     searchInput: {
         borderWidth: 1,
-        borderColor: '#ccc',
+        borderColor: '#010101',
         padding: 10,
         borderRadius: 5,
         marginBottom: 20,
@@ -194,8 +211,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold',
         fontSize: 16,
+        fontWeight: 'bold',
     },
     userImage: {
         width: 100,
@@ -211,6 +228,12 @@ const styles = StyleSheet.create({
     halfButton: {
         flex: 1,
         marginHorizontal: 5,
+    },
+    imageNotFoundText: {
+        color: 'red',
+        marginBottom: 15,
+        textAlign: 'center',
+        fontSize: 18,
     },
 });
 
