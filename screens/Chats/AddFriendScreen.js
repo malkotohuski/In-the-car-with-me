@@ -63,6 +63,10 @@ const AddFriendScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
+            <Image
+                source={require('../../images/d2.png')}
+                style={styles.backgroundImage}
+            />
             <View style={styles.header}>
                 <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
                     {t("Find Friends")}
@@ -99,8 +103,7 @@ const AddFriendScreen = ({ navigation }) => {
                 }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>{t("Username")}</Text>
-                        <Text style={styles.modalNameText}>{selectedUser?.username}</Text>
+                        <Text style={styles.modalText}>{t("Username")}: {selectedUser?.username}</Text>
                         {selectedUser?.userImage ? (
                             <Image
                                 source={{ uri: selectedUser.userImage }}
@@ -137,7 +140,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: '#fff',
         width: '100%',
         height: '100%',
     },
@@ -150,19 +152,30 @@ const styles = StyleSheet.create({
         backgroundColor: '#f4511e',
     },
     searchInput: {
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: '#010101',
         padding: 10,
         borderRadius: 5,
         marginBottom: 20,
+        color: 'black',
+        fontWeight: 'bold',
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
     },
     userItem: {
         padding: 15,
         borderBottomWidth: 1,
-        borderBottomColor: '#eee',
+        borderBottomColor: '#010101',
     },
     username: {
         fontSize: 18,
+        color: 'black',
+        fontWeight: 'bold',
     },
     centeredView: {
         flex: 1,
@@ -183,7 +196,8 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 4,
-        elevation: 5,
+        elevation: 2,
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
     },
     modalText: {
         color: '#010101',
@@ -236,5 +250,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
 });
+
 
 export default AddFriendScreen;
