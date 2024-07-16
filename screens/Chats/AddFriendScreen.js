@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: 'grey',
+        backgroundColor: 'black',
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 2,
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        backgroundColor: 'rgba(255, 255, 255, 0.1)',
     },
     modalText: {
         color: '#010101',
