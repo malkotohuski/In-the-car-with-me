@@ -50,6 +50,8 @@ const AddFriendScreen = ({ navigation }) => {
                 console.error('Error approving friend request:', error);
                 // Обработка на грешката при изпращане на заявката
             });
+        console.log(`Add Friend ${selectedUser.username}`);
+        console.log(`${currentUserId}`);
     };
 
     const handleIgnore = () => {
@@ -187,7 +189,7 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: 'black',
         borderRadius: 20,
-        padding: 35,
+        padding: 25,
         alignItems: 'center',
         shadowColor: '#000',
         shadowOffset: {
@@ -195,9 +197,9 @@ const styles = StyleSheet.create({
             height: 2,
         },
         shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 2,
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        shadowRadius: 1,
+        elevation: 3,
+        backgroundColor: 'rgba(255, 255, 255, 0.6)',
     },
     modalText: {
         color: '#010101',
