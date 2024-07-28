@@ -18,6 +18,7 @@
     "@react-native-firebase/firestore": "^20.3.0",
     "@react-native-masked-view/masked-view": "^0.3.0",
     "@react-native-picker/picker": "^2.6.1",
+    "@react-native/metro-config": "^0.72.12",
     "@react-navigation/bottom-tabs": "^6.5.14",
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/material-bottom-tabs": "^6.2.19",
@@ -66,8 +67,7 @@
     "react-native-vector-icons": "^10.0.3",
     "react-native-webview": "^13.6.2",
     "react-navigation": "^5.0.0",
-    "uuid": "^9.0.1",
-    "@react-native/metro-config": "^0.72.12"
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
