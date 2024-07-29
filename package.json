@@ -86,10 +86,10 @@
     "metro-config": "^0.80.9",
     "metro-react-native-babel-preset": "0.76.8",
     "metro-runtime": "^0.80.9",
+    "nodemon": "^3.1.4",
     "prettier": "^2.4.1",
     "react-test-renderer": "18.2.0",
     "typescript": "4.8.4"
-    
   },
   "engines": {
     "node": ">=16"
@@ -100,6 +100,3 @@
   "author": "",
   "license": "ISC"
 }
-
-
-
