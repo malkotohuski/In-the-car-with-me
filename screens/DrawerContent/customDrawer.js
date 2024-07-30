@@ -99,7 +99,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerLogout} >
-                        <Icons name="logout" size={30} color="#E6AE7B" />
+                        <Icons name="logout" size={30} color="#FF7B00" />
                         <Text
                             style={styles.textButtons}
                         >{t('Logout')}</Text>
@@ -130,18 +130,32 @@ const styles = StyleSheet.create({
         top: 0,
         alignItems: 'flex-start',
         marginTop: 15, // adjust as needed
+        width: '100%', // Ensure drawerContainer takes the full width of the screen
     },
     topLeft: {
         flexDirection: 'row',
         alignItems: 'center',
         marginBottom: 30, // adjust as needed
+        width: '100%', // Ensure topLeft takes the full width of the screen
+    },
+    drawerScreen: {
+        alignItems: 'center',
+        padding: 20, // Increased padding for larger buttons
+        marginBottom: 10, // Increased margin for spacing
+        fontSize: 24,
+        fontWeight: 'bold',
+        borderWidth: 2,
+        borderColor: '#000000',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        width: '100%', // Make button full width
+        flexDirection: 'row', // To ensure icon and text are aligned correctly
     },
     textButtons: {
-        marginLeft: 10, // adjust as needed
+        marginLeft: 20, // Increased margin for better spacing
         color: '#010101', // text color
-        fontSize: 20, // text size
+        fontSize: 24, // Increased text size
         fontWeight: 'bold', // text weight
     },
-})
+});
 
 export default CustomerDrawer;

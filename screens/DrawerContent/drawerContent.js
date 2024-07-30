@@ -103,7 +103,9 @@ export const Navigator = ({ isLoggedIn }) => {
 
     const renderBackButtonVehicle = ({ navigation }) => (
         <TouchableOpacity
-            style={{ marginRight: 16 }}
+            style={{
+                marginRight: 16
+            }}
             onPress={() => {
                 navigation.navigate('Home');
             }}
@@ -114,7 +116,9 @@ export const Navigator = ({ isLoggedIn }) => {
 
     const renderBackButtonIcons = ({ navigation }) => (
         <TouchableOpacity
-            style={{ marginRight: 16 }}
+            style={{
+                marginRight: 16
+            }}
             onPress={() => {
                 navigation.navigate('Vehicle');
             }}
