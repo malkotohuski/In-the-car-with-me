@@ -86,7 +86,7 @@ function CustomerDrawer({ navigation }) {
                         <Icons name="routes" size={30} color="#010101" />
                         <Text
                             style={styles.textButtons}
-                        >{t('Route request')}</Text>
+                        >{t('Route Request')}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.topLeft}>
