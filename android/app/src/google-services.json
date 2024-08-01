@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "1028653599121",
-    "project_id": "carwithme-50bc0",
-    "storage_bucket": "carwithme-50bc0.appspot.com"
+    "project_number": "706955918167",
+    "project_id": "car-with-me",
+    "storage_bucket": "car-with-me.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1028653599121:android:43ed0003fa7e37399cb230",
+        "mobilesdk_app_id": "1:706955918167:android:6be640366e139a9f3c5c12",
         "android_client_info": {
           "package_name": "com.awesomeproject"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCHNm46lK0MvMdkEgtE4z953MzHiTu1dlw"
+          "current_key": "AIzaSyCeQcZvUXIXOksG76CrdAi_8tKyTXpP7SA"
         }
       ],
       "services": {
