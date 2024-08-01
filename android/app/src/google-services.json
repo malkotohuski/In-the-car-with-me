@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "706955918167",
+    "project_id": "car-with-me",
+    "storage_bucket": "car-with-me.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706955918167:android:6be640366e139a9f3c5c12",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeQcZvUXIXOksG76CrdAi_8tKyTXpP7SA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
