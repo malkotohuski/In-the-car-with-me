@@ -133,7 +133,7 @@ const RouteHistory = ({ navigation }) => {
                     </Text>
                     <View style={{ width: 60 }} />
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        {/* Кастомизирайте бутона за връщане според вашите изисквания */}
+                        {/* Къстомизирайте бутона за връщане */}
                         <Icons name="keyboard-backspace" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
@@ -152,12 +152,12 @@ const RouteHistory = ({ navigation }) => {
                                 </Text>
                                 <View style={styles.buttonContainer}>
                                     <TouchableOpacity
-                                        style={styles.button}
+                                        style={styles.button_delete}
                                         onPress={() => handleDeleteRoute(route.id)}>
                                         <Text style={styles.buttonText}>{t('Delete Route')}</Text>
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        style={styles.button}
+                                        style={styles.button_completed}
                                         onPress={() => handleMarkAsCompleted(route.id)}>
                                         <Text style={styles.buttonText}>{t('Mark as Completed')}</Text>
                                     </TouchableOpacity>
@@ -238,29 +238,49 @@ const styles = StyleSheet.create({
         width: 380,
         height: 180,
         margin: 10,
-        padding: 10,
-        backgroundColor: '#f4511e',
+        borderWidth: 2,
+        borderColor: '#000000',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
         borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     routeText: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#010101'
+        color: '#010101',
+        textAlign: 'center',
+        marginBottom: 5,
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         marginTop: 10,
+        width: '100%',
+        paddingHorizontal: 20,
     },
-    button: {
-        backgroundColor: '#FFFFFF',
+    button_delete: {
+        alignItems: 'center',
         padding: 10,
+        marginHorizontal: 5,
+        backgroundColor: '#D12121',
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#000000',
-        width: '40%',
+        width: '45%',
+    },
+    button_completed: {
+        alignItems: 'center',
+        padding: 10,
+        marginHorizontal: 5,
+        backgroundColor: '#16B638',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#000000',
+        width: '45%',
     },
     buttonText: {
+        alignItems: 'center',
         fontSize: 16,
         fontWeight: 'bold',
         color: '#010101'
