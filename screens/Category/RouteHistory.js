@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert, SafeAreaView } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert, SafeAreaView, TextInput } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from '../Authentication/AuthContext';
-import { useRoute } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
 import axios from 'axios';
 
@@ -11,24 +10,27 @@ const API_BASE_URL = 'http://10.0.2.2:3000';
 
 const RouteHistory = ({ navigation }) => {
     const { user } = useAuth();
-    const { routes, removeRoute, deletedRoute, markRouteAsCompleted, requests } = useRouteContext();
+    const { requests } = useRouteContext();
     const { t } = useTranslation();
-    const [filteredRoutesState, setFilteredRoutesState] = useState(routes.filter(route => route.userId === user?.user?.id));
+    const [originalRoutesState, setOriginalRoutesState] = useState([]);
+    const [filteredRoutesState, setFilteredRoutesState] = useState([]);
     const [completedRoutes, setCompletedRoutes] = useState([]);
-
+    const [searchDepartureText, setSearchDepartureText] = useState('');
+    const [searchArrivalText, setSearchArrivalText] = useState('');
 
     useEffect(() => {
         const fetchRoutes = async () => {
             try {
                 const response = await axios.get(`${API_BASE_URL}/routes`);
                 if (response.status === 200) {
-                    const filteredRoutes = response.data.filter(route => {
+                    const routes = response.data.filter(route => {
                         return route.userId === user?.user?.id &&
                             !route.isDeleted &&
                             route.userRouteId !== "deleted" &&
                             route.userRouteId !== "completed";
                     });
-                    setFilteredRoutesState(filteredRoutes);
+                    setOriginalRoutesState(routes);
+                    setFilteredRoutesState(routes);
                 } else {
                     throw new Error('Failed to fetch routes');
                 }
@@ -38,7 +40,17 @@ const RouteHistory = ({ navigation }) => {
         };
 
         fetchRoutes();
-    }, [user, routes]);
+    }, [user]);
+
+    useEffect(() => {
+        // Филтрирай маршрути на база на текста за търсене
+        const filteredRoutes = originalRoutesState.filter(route => {
+            const matchesDeparture = route.departureCity?.toLowerCase().includes(searchDepartureText.toLowerCase());
+            const matchesArrival = route.arrivalCity?.toLowerCase().includes(searchArrivalText.toLowerCase());
+            return matchesDeparture && matchesArrival;
+        });
+        setFilteredRoutesState(filteredRoutes);
+    }, [searchDepartureText, searchArrivalText, originalRoutesState]);
 
     const handleDeleteRoute = (routeId) => {
         Alert.alert(
@@ -61,7 +73,9 @@ const RouteHistory = ({ navigation }) => {
                         })
                             .then(response => {
                                 if (response.ok) {
-                                    setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
+                                    const updatedRoutes = originalRoutesState.filter(route => route.id !== routeId);
+                                    setOriginalRoutesState(updatedRoutes);
+                                    setFilteredRoutesState(updatedRoutes);
                                 } else {
                                     throw new Error('Failed to delete route');
                                 }
@@ -76,9 +90,8 @@ const RouteHistory = ({ navigation }) => {
 
     const handleMarkAsCompleted = (routeId) => {
         const matchingRequest = requests.find(request => request.routeId === routeId);
-        const completedRoute = filteredRoutesState.find(route => route.id === routeId);
+        const completedRoute = originalRoutesState.find(route => route.id === routeId);
         setCompletedRoutes(prevRoutes => [...prevRoutes, completedRoute]);
-        console.log('match', matchingRequest);
         if (matchingRequest) {
             Alert.alert(
                 t('Complete the route'),
@@ -100,8 +113,9 @@ const RouteHistory = ({ navigation }) => {
                             })
                                 .then(response => {
                                     if (response.ok) {
-                                        setFilteredRoutesState(filteredRoutesState.filter(route => route.id !== routeId));
-                                        // Предаване на данните на екрана "Notifications"
+                                        const updatedRoutes = originalRoutesState.filter(route => route.id !== routeId);
+                                        setOriginalRoutesState(updatedRoutes);
+                                        setFilteredRoutesState(updatedRoutes);
                                         navigation.navigate('Notifications', { matchingRequest });
                                     } else {
                                         throw new Error('Failed to delete route');
@@ -119,23 +133,34 @@ const RouteHistory = ({ navigation }) => {
         }
     };
 
-
     return (
         <SafeAreaView style={styles.mainContainer}>
             <Image
                 source={require('../../images/roadHistory2.png')}
                 style={styles.backgroundImage}
             />
-            <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-                <View style={styles.header}  >
+            <View style={styles.mainContent}>
+                <View style={styles.header}>
                     <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
                         {t('Routes History')}
                     </Text>
-                    <View style={{ width: 60 }} />
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        {/* Къстомизирайте бутона за връщане */}
                         <Icons name="keyboard-backspace" size={24} color="white" />
                     </TouchableOpacity>
+                </View>
+                <View style={styles.searchContainer}>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder={t('Search by Departure City')}
+                        value={searchDepartureText}
+                        onChangeText={setSearchDepartureText}
+                    />
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder={t('Search by Arrival City')}
+                        value={searchArrivalText}
+                        onChangeText={setSearchArrivalText}
+                    />
                 </View>
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.container}>
@@ -166,7 +191,6 @@ const RouteHistory = ({ navigation }) => {
                         ))}
                     </View>
                 </ScrollView>
-
             </View>
         </SafeAreaView>
     );
@@ -176,17 +200,15 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
     },
-    container: {
+    mainContent: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
-        height: '100%',
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
+        alignItems: 'center',
         width: '100%',
         padding: 16,
         backgroundColor: '#f4511e',
@@ -198,41 +220,27 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         position: 'absolute',
     },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        color: '#010101'
-    },
-    item: {
-        backgroundColor: '#f9c2ff',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-    },
-    link: {
-        color: 'blue',
-        textDecorationLine: 'underline',
-        marginTop: 20,
-    },
-    modalContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-    modalContent: {
-        backgroundColor: 'white',
-        padding: 20,
-        borderRadius: 10,
-        alignItems: 'center',
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 10,
+    searchContainer: {
+        width: '90%',
         marginVertical: 10,
-        width: '80%',
+    },
+    searchInput: {
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        marginVertical: 5,
+        paddingHorizontal: 10,
+        borderRadius: 5,
+        backgroundColor: '#fff',
+        color: '#000',
+        fontWeight: 'bold',
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '100%',
     },
     routeContainer: {
         width: 380,
@@ -280,10 +288,9 @@ const styles = StyleSheet.create({
         width: '45%',
     },
     buttonText: {
-        alignItems: 'center',
         fontSize: 16,
         fontWeight: 'bold',
-        color: '#010101'
+        color: '#010101',
     },
 });
 
