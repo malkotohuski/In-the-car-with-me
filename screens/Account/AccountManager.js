@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
-        top: 220,
+        top: 190,
     },
 });
 
