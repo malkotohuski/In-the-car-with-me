@@ -393,6 +393,7 @@ i18next.use(initReactI18next).init({
                 'Names': 'Names',
 
                 'Еmail': 'Еmail',
+                'Comments': 'Comments',
                 'Logout': 'Logout',
                 'Are you sure you want to logout?': 'Are you sure you want to logout?',
                 'Yes': 'Yes',
@@ -4968,6 +4969,7 @@ i18next.use(initReactI18next).init({
                 'Home': 'Дом',
                 'Search...': 'Търсене...',
                 'Account': 'Акаунт',
+                'Comments': 'Коментари',
                 'Video': 'Видео',
                 'The route has been created!': 'Маршрута е създаден!',
                 'Motorcycle': 'Мотоциклет',
