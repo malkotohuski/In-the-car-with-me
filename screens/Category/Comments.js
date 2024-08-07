@@ -10,7 +10,7 @@ const Comments = ({ navigation }) => {
     return (
         <SafeAreaView style={styles.mainContainer}>
             <Image
-                source={require('../../images/user-background.jpg')}
+                source={require('../../images/register-number-background2.jpg')}
                 style={styles.backgroundImage}
             />
             <View style={styles.mainContent}>
