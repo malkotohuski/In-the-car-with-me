@@ -388,8 +388,9 @@ export const Navigator = ({ isLoggedIn }) => {
                 component={Comments}
                 key="Comments"
                 options={{
-                    title: t('Create an account'),
+                    title: t('Comments'),
                     ...screenStyles,
+                    headerShown: false,
                     drawerItemStyle: { display: 'none' }
                 }}
             />
