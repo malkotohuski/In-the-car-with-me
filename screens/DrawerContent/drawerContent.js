@@ -28,6 +28,7 @@ import CustomerDrawer from './customDrawer';
 import RouteHistory from '../Category/RouteHistory';
 import UsersScreen from '../Users/UsersScreen';
 import Notifications from '../Home/Notifications';
+import Comments from '../Category/Comments';
 
 const Drawer = createDrawerNavigator();
 
@@ -376,6 +377,16 @@ export const Navigator = ({ isLoggedIn }) => {
                 name="AccountSettings"
                 component={AccountSettings}
                 key="AccountSettings"
+                options={{
+                    title: t('Create an account'),
+                    ...screenStyles,
+                    drawerItemStyle: { display: 'none' }
+                }}
+            />
+            <Drawer.Screen
+                name="Comments"
+                component={Comments}
+                key="Comments"
                 options={{
                     title: t('Create an account'),
                     ...screenStyles,
