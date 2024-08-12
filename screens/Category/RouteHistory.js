@@ -240,6 +240,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         alignItems: 'center',
+        justifyContent: 'center',
         height: '100%',
     },
     routeContainer: {
@@ -276,6 +277,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000000',
         width: '45%',
+        justifyContent: 'center'
     },
     button_completed: {
         alignItems: 'center',
@@ -286,11 +288,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000000',
         width: '45%',
+        justifyContent: 'center'
     },
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
         color: '#010101',
+        textAlign: 'center',
     },
 });
 
