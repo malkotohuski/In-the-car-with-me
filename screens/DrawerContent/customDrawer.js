@@ -3,13 +3,16 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { useAuth } from '../Authentication/AuthContext';
 
 function CustomerDrawer({ navigation }) {
     const { t } = useTranslation();
+    const { user } = useAuth();
 
     const handlerHomeScreen = () => {
         navigation.navigate('Home');
         console.log('Home clicked !!!');
+        console.log('dfsdf', user);
     }
 
     const handlerRouteViewer = () => {
@@ -49,6 +52,9 @@ function CustomerDrawer({ navigation }) {
                 style={styles.backgroundImage}
             />
             <View style={styles.drawerContainer}>
+                <View style={styles.userInfo}>
+                    <Text>{t('Welcome')} : {user?.user?.username}</Text>
+                </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
 
@@ -56,7 +62,8 @@ function CustomerDrawer({ navigation }) {
 
                         <Text
                             style={styles.textButtons}
-                        >{t('Home')}</Text>
+                        >{t('Home')}
+                        </Text>
                     </TouchableOpacity>
                 </View >
                 <View style={styles.topLeft}>
@@ -147,6 +154,15 @@ const styles = StyleSheet.create({
         marginTop: 15, // adjust as needed
         width: '100%', // Ensure drawerContainer takes the full width of the screen
         paddingHorizontal: 20, // добавено за подравняване наляво
+    },
+    userInfo: {
+        color: '#010101',
+        fontSize: 44,
+        fontWeight: 'bold',
+        marginBottom: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'center',
     },
     topLeft: {
         flexDirection: 'row',
