@@ -52,8 +52,10 @@ function CustomerDrawer({ navigation }) {
                 style={styles.backgroundImage}
             />
             <View style={styles.drawerContainer}>
-                <View style={styles.userInfo}>
-                    <Text>{t('Welcome')} : {user?.user?.username}</Text>
+                <View>
+                    <Text
+                        style={styles.userInfo}
+                    >{t('Welcome')} : {user?.user?.username}</Text>
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
@@ -157,9 +159,9 @@ const styles = StyleSheet.create({
     },
     userInfo: {
         color: '#010101',
-        fontSize: 44,
+        fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 30,
+        marginBottom: 15,
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
