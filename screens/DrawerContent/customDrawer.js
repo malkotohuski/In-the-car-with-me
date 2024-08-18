@@ -55,7 +55,7 @@ function CustomerDrawer({ navigation }) {
                 <View>
                     <Text
                         style={styles.userInfo}
-                    >{t('Welcome')} : {user?.user?.username}</Text>
+                    >{user?.user?.username}</Text>
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
