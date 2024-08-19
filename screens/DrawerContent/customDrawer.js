@@ -52,10 +52,11 @@ function CustomerDrawer({ navigation }) {
                 style={styles.backgroundImage}
             />
             <View style={styles.drawerContainer}>
-                <View>
-                    <Text
-                        style={styles.userInfo}
-                    >{user?.user?.username}</Text>
+                <View style={styles.userInfoContainer}>
+                    <Icons name="account-circle" size={30} color="#fff" style={styles.userIcon} />
+                    <Text style={styles.userInfo}>
+                        {user?.user?.username}
+                    </Text>
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
@@ -157,20 +158,35 @@ const styles = StyleSheet.create({
         width: '100%', // Ensure drawerContainer takes the full width of the screen
         paddingHorizontal: 20, // добавено за подравняване наляво
     },
-    userInfo: {
-        color: '#010101',
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 15,
-        justifyContent: 'center',
+    userInfoContainer: {
+        flexDirection: 'row',
         alignItems: 'center',
-        alignSelf: 'center',
+        backgroundColor: '#0721B6', // Фон за по-индивидуално излъчване
+        padding: 15,
+        borderRadius: 10,
+        marginBottom: 30,
+        width: '100%',
+        alignSelf: 'center', // Центриране
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 5,
+    },
+    userIcon: {
+        marginRight: 10, // Разстояние между иконата и текста
+    },
+    userInfo: {
+        color: '#fff', // Бял цвят за текста
+        fontSize: 18, // По-голям шрифт
+        fontWeight: 'bold',
     },
     topLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 30, // adjust as needed
+        marginBottom: 20, // adjust as needed
         width: '100%', // Ensure topLeft takes the full width of the screen
+        borderRadius: 10,
     },
     drawerScreen: {
         alignItems: 'center',
