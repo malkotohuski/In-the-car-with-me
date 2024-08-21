@@ -23,7 +23,7 @@ export const RouteProvider = ({ children }) => {
 
     const refreshRoutesData = async () => {
         fetchAllRoutes();
-    }
+    };
 
     const addRoute = (newRoute) => {
         setRoutes((prevRoutes) => [...prevRoutes, newRoute]);
