@@ -154,19 +154,23 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         alignItems: 'flex-start',
+
+        marginTop: 15,
+        width: '100%',
         marginTop: 15, // adjust as needed
         width: '100%', // Ensure drawerContainer takes the full width of the screen
         paddingHorizontal: 20, // добавено за подравняване наляво
+
     },
     userInfoContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#0721B6', // Фон за по-индивидуално излъчване
+        backgroundColor: '#0721B6',
         padding: 15,
         borderRadius: 10,
         marginBottom: 30,
         width: '100%',
-        alignSelf: 'center', // Центриране
+        alignSelf: 'center',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.8,
@@ -174,37 +178,37 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     userIcon: {
-        marginRight: 10, // Разстояние между иконата и текста
+        marginRight: 10,
     },
     userInfo: {
-        color: '#fff', // Бял цвят за текста
-        fontSize: 18, // По-голям шрифт
+        color: '#fff',
+        fontSize: 18,
         fontWeight: 'bold',
     },
     topLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 20, // adjust as needed
-        width: '100%', // Ensure topLeft takes the full width of the screen
+        marginBottom: 20,
+        width: '100%',
         borderRadius: 10,
     },
     drawerScreen: {
         alignItems: 'center',
-        padding: 20, // Increased padding for larger buttons
-        marginBottom: 10, // Increased margin for spacing
+        padding: 20,
+        marginBottom: 10,
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2,
         borderColor: '#000000',
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
-        width: '100%', // Make button full width
-        flexDirection: 'row', // To ensure icon and text are aligned correctly
+        width: '100%',
+        flexDirection: 'row',
     },
     textButtons: {
-        marginLeft: 20, // Increased margin for better spacing
-        color: '#010101', // text color
-        fontSize: 24, // Increased text size
-        marginBottom: 20, // adjust as needed
+        marginLeft: 20,
+        color: '#010101',
+        fontSize: 24,
+        fontWeight: 'bold',
     },
     textButtons: {
         marginLeft: 10, // adjust as needed

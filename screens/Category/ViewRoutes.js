@@ -288,9 +288,9 @@ const styles = StyleSheet.create({
     routeContainer: {
         margin: 10,
         padding: 15,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)', // Use a semi-transparent background
+        backgroundColor: 'rgba(255, 255, 255, 0.8)',
         borderRadius: 15,
-        elevation: 3, // Add elevation for a subtle shadow effect on Android
+        elevation: 3,
     },
     routeText: {
         fontSize: 20,
@@ -313,16 +313,16 @@ const styles = StyleSheet.create({
     },
     modalContainer: {
         flex: 1,
-        justifyContent: 'flex-start', // Align to the top
-        marginTop: 60, // Adjust based on your navigation bar height
+        justifyContent: 'flex-start',
+        marginTop: 60,
     },
     modalContent: {
         backgroundColor: '#fff',
         padding: 20,
         borderRadius: 10,
         elevation: 5,
-        width: '100%', // Adjust the width as needed
-        alignSelf: 'center', // Center the modal horizontally
+        width: '100%',
+        alignSelf: 'center',
     },
     modalHeader: {
         fontSize: 18,
