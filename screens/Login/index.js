@@ -14,7 +14,7 @@ export default function Login({ navigation, route }) {
     const [password, setPassword] = useState('');
     const { t } = useTranslation();
     const { login } = useAuth();
-    const [isLoading, setIsLoading] = useState(true); // Започваме с isLoading=true, за да покажем изображението за 3 секунди
+    const [isLoading, setIsLoading] = useState(true);
 
     const [isBulgaria, setisBulgaria] = useState(false);
 

@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
     },
     profileInfoContainer: {
-        flexDirection: 'row', // Arrange profile picture and user info side by side
+        flexDirection: 'row',
         alignItems: 'center',
     },
     userInfoContainer: {
@@ -113,9 +113,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 15,
         left: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginLeft: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
+        marginBottom: 15,
+        marginLeft: 20,
+        zIndex: 1,
         fontSize: 16,
         fontWeight: 'bold',
         color: '#010101'
@@ -124,9 +124,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 55,
         left: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginLeft: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
+        marginBottom: 15,
+        marginLeft: 20,
+        zIndex: 1,
         fontSize: 16,
         fontWeight: 'bold',
         color: '#010101'
@@ -135,9 +135,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 95,
         left: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginLeft: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
+        marginBottom: 15,
+        marginLeft: 20,
+        zIndex: 1,
         fontSize: 16,
         fontWeight: 'bold',
         color: '#010101'
@@ -147,9 +147,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         top: 135,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginLeft: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
+        marginBottom: 15,
+        marginLeft: 20,
+        zIndex: 1,
         fontSize: 26,
         fontWeight: 'bold',
         color: '#010101'
@@ -158,9 +158,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 3,
         right: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginRight: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
+        marginBottom: 15,
+        marginRight: 20,
+        zIndex: 1,
     },
     title: {
         fontSize: 30,
