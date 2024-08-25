@@ -164,7 +164,6 @@ const CitySelector = (limit = null) => {
         { "label": t('Graf Ignatievo'), "value": t('Graf Ignatievo') },
         { "label": t('Seliminovo'), "value": t('Seliminovo') },
         { "label": t('Uzundzhovo'), "value": t('Uzundzhovo') },
-
         { "label": t('Polikrayshte'), "value": t('Polikrayshte') },
         { "label": t('Lesnovo'), "value": t('Lesnovo') },
         { "label": t('Merichleri'), "value": t('Merichleri') },
@@ -894,7 +893,6 @@ const CitySelector = (limit = null) => {
         { "label": t('Volovarovo'), "value": t('Volovarovo') },
         { "label": t('Volovartsi'), "value": t('Volovartsi') },
         { "label": t('Volovo'), "value": t('Volovo') },
-        { "label": t('Voluyak'), "value": t('Voluyak') },
         { "label": t('Voneshta Voda'), "value": t('Voneshta Voda') },
         { "label": t('Vrabeevo'), "value": t('Vrabeevo') },
         { "label": t('Vrabtsite'), "value": t('Vrabtsite') },
