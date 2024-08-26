@@ -111,63 +111,55 @@ function Confirm() {
 
     return (
         <View style={styles.container}>
-            <>
-                <Image
-                    source={require('../../images/confirmSS.jpg')}
-                    style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'cover',
-                        position: 'absolute',
-                    }}
-                />
-                <Text style={styles.headerText}>{t('Review')}:</Text>
-                <Text style={styles.text}>{t('Username')}: {username}</Text>
-                <Text style={styles.text}>{t('Names')}: {userFname} {userLname}</Text>
-                <Text style={styles.text}>{registrationNumber} - {t('Free seats')}: {markedSeats.length}</Text>
-                <Text style={styles.text}>{t('Time and date of departure')}: {String(selectedDateTime.toLocaleString())}</Text>
+            <Image
+                source={require('../../images/d8.png')}
+                style={styles.backgroundImage}
+            />
+            <Text style={styles.headerText}>{t('Review')}:</Text>
+            <Text style={styles.text}>{t('Username')}: {username}</Text>
+            <Text style={styles.text}>{t('Names')}: {userFname} {userLname}</Text>
+            <Text style={styles.text}>{registrationNumber} - {t('Free seats')}: {markedSeats.length}</Text>
+            <Text style={styles.text}>{t('Time and date of departure')}: {String(selectedDateTime.toLocaleString())}</Text>
 
-                {/* Departure Section */}
-                <View style={styles.sectionContainer}>
-                    <Text style={styles.sectionHeaderText}>{t('Departure')}:</Text>
-                    <Text style={styles.text}>{t('Town/Village')}: {departureCity}</Text>
-                    <Text style={styles.text}>{t('Street')}: {departureStreet} {departureNumber}</Text>
-                </View>
+            {/* Departure Section */}
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionHeaderText}>{t('Departure')}:</Text>
+                <Text style={styles.text}>{t('Town/Village')}: {departureCity}</Text>
+                <Text style={styles.text}>{t('Street')}: {departureStreet} {departureNumber}</Text>
+            </View>
 
-                {/* Arrival Section */}
-                <View style={styles.sectionContainer}>
-                    <Text style={styles.sectionHeaderText}>{t('Arrival')}:</Text>
-                    <Text style={styles.text}>{t('Town/Village')}: {arrivalCity}</Text>
-                    <Text style={styles.text}>{t('Street')}: {arrivalStreet} {arrivalNumber}</Text>
-                </View>
+            {/* Arrival Section */}
+            <View style={styles.sectionContainer}>
+                <Text style={styles.sectionHeaderText}>{t('Arrival')}:</Text>
+                <Text style={styles.text}>{t('Town/Village')}: {arrivalCity}</Text>
+                <Text style={styles.text}>{t('Street')}: {arrivalStreet} {arrivalNumber}</Text>
+            </View>
 
-                {showChangesButton && (
-                    <TouchableOpacity style={styles.button} onPress={handleGoBack}>
-                        <Text style={styles.buttonText}>{t('Make changes')}</Text>
-                    </TouchableOpacity>
-                )}
-                {showConfirmButton && (
-                    <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
-                        <Text style={styles.buttonText}>{t('Confirm')}</Text>
-                    </TouchableOpacity>
-                )}
-                {showBackButton && (
-                    <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackRoutes}>
-                        <Text style={styles.buttonText}>{t('Back')}</Text>
-                    </TouchableOpacity>
-                )}
-                {routeRequestButton && (
-                    <TouchableOpacity style={styles.buttonConfirm} onPress={handlerRouteRequest}>
-                        <Text style={styles.buttonText}>{t('Route request')}</Text>
-                    </TouchableOpacity>
-                )}
+            {showChangesButton && (
+                <TouchableOpacity style={styles.button} onPress={handleGoBack}>
+                    <Text style={styles.buttonText}>{t('Make changes')}</Text>
+                </TouchableOpacity>
+            )}
+            {showConfirmButton && (
+                <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
+                    <Text style={styles.buttonText}>{t('Confirm')}</Text>
+                </TouchableOpacity>
+            )}
+            {showBackButton && (
+                <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackRoutes}>
+                    <Text style={styles.buttonText}>{t('Back')}</Text>
+                </TouchableOpacity>
+            )}
+            {routeRequestButton && (
+                <TouchableOpacity style={styles.buttonConfirm} onPress={handlerRouteRequest}>
+                    <Text style={styles.buttonText}>{t('Route request')}</Text>
+                </TouchableOpacity>
+            )}
 
-                {/* Success message */}
-                {successMessage && (
-                    <Text style={styles.successMessage}>{successMessage}</Text>
-                )}
-            </>
+            {/* Success message */}
+            {successMessage && (
+                <Text style={styles.successMessage}>{successMessage}</Text>
+            )}
         </View>
     );
 }
@@ -178,6 +170,17 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-start',
         alignItems: 'center', // Center horizontally
         backgroundColor: 'grey',
+        padding: 0, // Ensure no padding
+        margin: 0, // Ensure no margin
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
+        top: 0, // Align image to the top
+        left: 0, // Align image to the left
     },
     headerText: {
         fontWeight: 'bold',
