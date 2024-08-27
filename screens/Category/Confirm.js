@@ -17,10 +17,15 @@ function Confirm() {
 
     // Routes data:
     const route = useRoute();
+    const selectedDateTime = route.params.selectedDateTime ? new Date(route.params.selectedDateTime) : null; // Конвертиране обратно в Date
+
+    if (!selectedDateTime) {
+        console.error('selectedDateTime is null or undefined in Confirm screen');
+    }
+
     const selectedVehicle = route.params.selectedVehicle;
     const markedSeats = route.params.markedSeats;
     const registrationNumber = route.params.registrationNumber;
-    const { selectedDateTime } = route.params;
     const departureCity = route.params.departureCity;
     const departureStreet = route.params.departureStreet;
     const departureNumber = route.params.departureNumber;
