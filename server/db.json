@@ -3309,6 +3309,46 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1724687238357
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-08-29T16:39:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1232",
+      "departureNumber": "1122",
+      "arrivalCity": "Ruse",
+      "arrivalStreet": "211",
+      "arrivalNumber": "112",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1724776841683
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "A2111AA",
+      "selectedDateTime": "2024-08-29T16:39:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "1232",
+      "departureNumber": "1122",
+      "arrivalCity": "Ruse",
+      "arrivalStreet": "211",
+      "arrivalNumber": "112",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1724777088427
     }
   ],
   "requests": [

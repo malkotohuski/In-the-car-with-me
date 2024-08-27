@@ -112,19 +112,25 @@ function SelectRouteScreen({ route, navigation }) {
         );
 
         // Navigate to the "Confirm" screen and pass the necessary parameters
-        navigation.navigate('Confirm', {
-            selectedVehicle,
-            markedSeats,
-            registrationNumber,
-            selectedDateTime,
-            departureCity,
-            departureStreet,
-            departureNumber,
-            arrivalCity,
-            arrivalStreet,
-            arrivalNumber,
-        });
-    };
+        if (selectedDateTime) {
+            const formattedDateTime = selectedDateTime.toISOString();
+            navigation.navigate('Confirm', {
+                selectedVehicle,
+                markedSeats,
+                registrationNumber,
+                selectedDateTime: formattedDateTime,
+                departureCity,
+                departureStreet,
+                departureNumber,
+                arrivalCity,
+                arrivalStreet,
+                arrivalNumber,
+            });
+        } else {
+            // Може да решите какво да правите в този случай, например:
+            console.error('selectedDateTime is null or undefined');
+        };
+    }
 
     const openModal = () => {
         setIsModalVisible(true);
@@ -365,14 +371,13 @@ function SelectRouteScreen({ route, navigation }) {
                     }}
                 />
             </View>
-
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 130, paddingBottom: 1 }}>
                 <Button
                     style={[styles.button, { marginTop: 10 }]}
                     title={t("Select date and time of departure")}
                     onPress={() => setOpen(true)}
                     color="#f4511e"
-                    titleStyle={{ marginHorizontal: 20, color: 'black' }}
+                    titleStyle={{ marginHorizontal: 30, color: 'black' }}
                 />
                 <DatePicker
                     modal
@@ -398,7 +403,7 @@ function SelectRouteScreen({ route, navigation }) {
                 )}
                 <TouchableOpacity
                     onPress={handleContinue}
-                    style={continueButtonStyle}
+                    style={[continueButtonStyle, { marginTop: 50 }]} // Move the button further down
                 >
                     <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{t('Continue')}</Text>
                 </TouchableOpacity>

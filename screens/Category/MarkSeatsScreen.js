@@ -289,7 +289,7 @@ function MarkSeatsScreen() {
                 style={{
                     marginTop: 0,
                     backgroundColor: isValidRegistrationNumber() ? '#f4511e' : 'black', // Change color based on registrationNumber validity
-                    height: 80,
+                    height: 60,
                     backgroundColor: '#f4511e',
                     borderRadius: 8,
                     alignItems: 'center',

@@ -316,7 +316,7 @@ function SelectRouteScreen({ route, navigation }) {
                     title={t("Select date and time of departure")}
                     onPress={() => setOpen(true)}
                     color="#f4511e"
-                    titleStyle={{ marginHorizontal: 20, color: 'black' }}
+                    titleStyle={{ marginHorizontal: 30, color: 'black' }}
                 />
                 <DatePicker
                     modal
@@ -332,7 +332,7 @@ function SelectRouteScreen({ route, navigation }) {
                     }}
                 />
                 {selectedDateTime && (
-                    <View style={{ marginTop: 10 }}>
+                    <View style={{ marginTop: 30 }}>
                         <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}>
                             {t('Selected Date and Time:')} {selectedDateTime.toString()}
                         </Text>
