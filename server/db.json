@@ -3349,6 +3349,26 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1724777088427
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "CA2677AB",
+      "selectedDateTime": "2024-09-03T15:43:00.000Z",
+      "departureCity": "София",
+      "departureStreet": "11",
+      "departureNumber": "111",
+      "arrivalCity": "Banya (Burgas)",
+      "arrivalStreet": "123",
+      "arrivalNumber": "22122",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1725291831623
     }
   ],
   "requests": [
