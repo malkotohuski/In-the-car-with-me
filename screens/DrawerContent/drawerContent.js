@@ -177,7 +177,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 name='Home'
                 component={HomePage}
                 options={{
-                    title: t('Home'),
+                    title: t(''),
                     ...screenStyles,
                     drawerIcon: ({ color, size }) => (
                         <Icon name="home" size={size} color={color} />
