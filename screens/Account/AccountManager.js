@@ -204,12 +204,12 @@ const styles = StyleSheet.create({
         padding: 10,
         marginHorizontal: 5,
         backgroundColor: '#f4511e',
-        borderRadius: 5,
+        borderRadius: 14,
         borderWidth: 1,
         borderColor: '#000000',
         width: '45%',
         height: '8%',
-        marginTop: 40
+        marginTop: 60
     },
     usernameChangeButton: {
         alignItems: 'center',
@@ -217,10 +217,10 @@ const styles = StyleSheet.create({
         padding: 10,
         marginHorizontal: 5,
         backgroundColor: '#f4511e',
-        borderRadius: 5,
+        borderRadius: 14,
         borderWidth: 1,
         borderColor: '#000000',
-        width: '65%',
+        width: '45%',
         height: '8%',
         marginTop: 20
     },
