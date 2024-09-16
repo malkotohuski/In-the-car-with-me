@@ -3369,6 +3369,26 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1725291831623
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        5
+      ],
+      "registrationNumber": "A2154KA",
+      "selectedDateTime": "2024-09-18T17:29:00.000Z",
+      "departureCity": "Пловдив",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Русе",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1726507878872
     }
   ],
   "requests": [

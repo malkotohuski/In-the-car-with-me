@@ -63,16 +63,16 @@ function SelectRouteScreen({ route, navigation }) {
         }
 
         // Validate that departure street is entered
-        if (!departureStreet.trim()) {
-            Alert.alert(t('Error'), t('Please select a street!'));
-            return;
-        }
-
-        // Validate that departure number is entered
-        if (!departureNumber.trim()) {
-            Alert.alert(t('Error'), t('Please enter a number!'));
-            return;
-        }
+        /*    if (!departureStreet.trim()) {
+               Alert.alert(t('Error'), t('Please select a street!'));
+               return;
+           }
+   
+           // Validate that departure number is entered
+           if (!departureNumber.trim()) {
+               Alert.alert(t('Error'), t('Please enter a number!'));
+               return;
+           } */
 
         if (!arrivalCity) {
             Alert.alert(t('Error'), t('Please select a city!'));
@@ -80,16 +80,16 @@ function SelectRouteScreen({ route, navigation }) {
         }
 
         // Validate that arrival street is entered
-        if (!arrivalStreet.trim()) {
-            Alert.alert(t('Error'), t('Please select a street!'));
-            return;
-        }
-
-        // Validate that arrival number is entered
-        if (!arrivalNumber.trim()) {
-            Alert.alert(t('Error'), t('Please enter a number!'));
-            return;
-        }
+        /*      if (!arrivalStreet.trim()) {
+                 Alert.alert(t('Error'), t('Please select a street!'));
+                 return;
+             }
+     
+             // Validate that arrival number is entered
+             if (!arrivalNumber.trim()) {
+                 Alert.alert(t('Error'), t('Please enter a number!'));
+                 return;
+             } */
 
         // Validate that a valid date and time are selected
         if (!selectedDateTime || isNaN(selectedDateTime.getTime())) {
