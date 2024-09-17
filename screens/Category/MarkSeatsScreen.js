@@ -49,11 +49,11 @@ function MarkSeatsScreen() {
             setShowInvalidRegistrationAlert(false);
         }
 
-        if (selectedFreePlaces === 0) {
-            // Show an alert if no free places are selected
-            Alert.alert(t('No place selected!'), t('Please choose how many seats you have available!'));
-            return;
-        }
+        /*    if (selectedFreePlaces === 0) {
+               // Show an alert if no free places are selected
+               Alert.alert(t('No place selected!'), t('Please choose how many seats you have available!'));
+               return;
+           } */
 
         // Navigate to the "SelectRoute" screen and pass the necessary parameters
         navigation.navigate('SelectRoute', {

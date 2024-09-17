@@ -3390,6 +3390,67 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1726507878872
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        3
+      ],
+      "registrationNumber": "CA2111AA",
+      "selectedDateTime": "2024-09-21T16:54:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Pleven",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1726592117631
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4,
+        5,
+        2,
+        3
+      ],
+      "registrationNumber": "CA2111AA",
+      "selectedDateTime": "2024-09-21T16:54:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Pleven",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1726595089752
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [],
+      "registrationNumber": "CA2111AA",
+      "selectedDateTime": "2024-09-21T16:54:00.000Z",
+      "departureCity": "Plovdiv",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Sofia",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1726597415445
     }
   ],
   "requests": [
