@@ -16,8 +16,8 @@ function CustomerDrawer({ navigation }) {
     }
 
     const handlerRouteViewer = () => {
-        navigation.navigate('View routes')
-        console.log('Route viewer clicked !!!');
+        navigation.navigate('RoutesHistory')
+        console.log('Routes History clicked !!!');
     }
 
     const handlerUsersScreen = () => {
@@ -72,7 +72,7 @@ function CustomerDrawer({ navigation }) {
                         <Icon name="streetview" size={30} color="#DBF023" />
                         <Text
                             style={styles.textButtons}
-                        >{t('View routes')}</Text>
+                        >{t('Routes History')}</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.topLeft}>
