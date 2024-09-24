@@ -88,4 +88,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
     },
+    submitPadding: {
+        padding: 5,
+    },
+    sumbitTextNo: {
+        color: 'black',
+        fontSize: 20,
+        fontWeight: 'bold',
+    }
 }) 
