@@ -1,248 +1,152 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
     View,
     Text,
     StyleSheet,
     Image,
     TouchableOpacity,
+    SafeAreaView,
+    Dimensions,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const AccountManager = ({ navigation, route }) => {
+const { width, height } = Dimensions.get('window'); // За адаптивност на различни екрани
+
+const AccountManager = ({ navigation }) => {
     const { user } = useAuth();
     const { profilePicture } = useAuth();
-    const defaultProfilePicture = user?.user?.userImage; // Поставете URL на стандартна снимка
-    console.log('dfsdf', user);
+    const defaultProfilePicture = user?.user?.userImage;
     const { t } = useTranslation();
 
-    const handlerCommendSection = () => {
-        navigation.navigate('Comments');
-        console.log('Comments clicked !!!');
-
-    }
-
-    const handlerChangeAcountSettings = () => {
-        navigation.navigate('AccountSettings', {
-        });
-    }
-
-    const handlerHomeScreen = () => {
-        navigation.navigate('Home');
-        console.log('Home Click !!!');
-    }
+    const handlerCommendSection = () => navigation.navigate('Comments');
+    const handlerChangeAcountSettings = () => navigation.navigate('AccountSettings');
+    const handlerHomeScreen = () => navigation.navigate('Home');
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Image
                 source={require('../../images/user-background.jpg')}
                 style={styles.backgroundImage}
             />
-            {/* Profile picture */}
-            <View style={[styles.profilePictureContainer, styles.topRight]}>
+            <View style={styles.overlay} />
+
+            {/* Profile Picture Section */}
+            <View style={styles.profilePictureContainer}>
                 <Image
                     source={{ uri: profilePicture || defaultProfilePicture }}
                     style={styles.profilePicture}
                 />
             </View>
-            {/*User info */}
-            <Text style={[styles.userInfoContainer, styles.topLeftUserNames]}>
-                {t('Username')} : {user?.user?.username}
-            </Text>
-            <Text style={[styles.userInfoContainer, styles.topLeftNames]}>
-                {t('Names')} :  {user?.user?.fName} {user?.user?.lName}
-            </Text>
-            <Text style={[styles.userInfoContainer, styles.topLeftEmail]}>
-                {t('Еmail')} : {user?.user?.email}
-            </Text>
-            <Text style={[styles.userInfoContainer, styles.center]}>
-                {t('Your rating')}
-            </Text>
-            <View style={styles.ratingStars}>
-                <Icons name="star" size={54} color="gold" />
-                <Icons name="star" size={54} color="gold" />
-                <Icons name="star" size={54} color="gold" />
-                <Icons name="star-half" size={54} color="gold" />
-            </View>
-            <TouchableOpacity
-                style={styles.usernameChangeButton}
-                onPress={handlerCommendSection}
-            >
-                <Text style={styles.usernameText}>{t('Comments')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.usernameChangeButton}
-                onPress={handlerChangeAcountSettings}
-            >
-                <Text style={styles.usernameText}>{t('Change user settings')}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-                style={styles.userVehicle}
-                onPress={handlerHomeScreen}
-            >
-                <Text style={styles.usernameText}>
-                    {t('Lets travel')}
+
+            {/* User Info */}
+            <View style={styles.userInfoSection}>
+                <Text style={styles.userInfoText}>
+                    {t('Username')}: {user?.user?.username}
                 </Text>
-            </TouchableOpacity>
-        </View>
+                <Text style={styles.userInfoText}>
+                    {t('Names')}: {user?.user?.fName} {user?.user?.lName}
+                </Text>
+                <Text style={styles.userInfoText}>
+                    {t('Email')}: {user?.user?.email}
+                </Text>
+            </View>
+
+            {/* Rating Section */}
+            <View style={styles.ratingSection}>
+                <Text style={styles.ratingTitle}>{t('Your rating')}</Text>
+                <View style={styles.ratingStars}>
+                    <Icons name="star" size={54} color="gold" />
+                    <Icons name="star" size={54} color="gold" />
+                    <Icons name="star" size={54} color="gold" />
+                    <Icons name="star-half" size={54} color="gold" />
+                </View>
+            </View>
+
+            {/* Buttons Section */}
+            <View style={styles.buttonsContainer}>
+                <TouchableOpacity style={styles.button} onPress={handlerCommendSection}>
+                    <Text style={styles.buttonText}>{t('Comments')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={handlerChangeAcountSettings}>
+                    <Text style={styles.buttonText}>{t('Change user settings')}</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={handlerHomeScreen}>
+                    <Text style={styles.buttonText}>{t('Lets travel')}</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
         backgroundColor: 'grey',
-    },
-    profileInfoContainer: {
-        flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between', // Прави подравняване на секциите по вертикала
     },
-    userInfoContainer: {
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    label: {
-        fontSize: 24,
-        marginBottom: 8,
-        fontWeight: 'bold'
-    },
-    topLeftUserNames: {
+    backgroundImage: {
         position: 'absolute',
-        top: 15,
-        left: 0,
-        marginBottom: 15,
-        marginLeft: 20,
-        zIndex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#010101'
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
     },
-    topLeftNames: {
-        position: 'absolute',
-        top: 55,
-        left: 0,
-        marginBottom: 15,
-        marginLeft: 20,
-        zIndex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#010101'
-    },
-    topLeftEmail: {
-        position: 'absolute',
-        top: 95,
-        left: 0,
-        marginBottom: 15,
-        marginLeft: 20,
-        zIndex: 1,
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#010101'
-    },
-    center: {
-        position: 'absolute',
-        alignItems: 'center',
-        justifyContent: 'center',
-        top: 135,
-        marginBottom: 15,
-        marginLeft: 20,
-        zIndex: 1,
-        fontSize: 26,
-        fontWeight: 'bold',
-        color: '#010101'
-    },
-    topRight: {
-        position: 'absolute',
-        top: 3,
-        right: 0,
-        marginBottom: 15,
-        marginRight: 20,
-        zIndex: 1,
-    },
-    title: {
-        fontSize: 30,
-        marginBottom: 30,
-        fontWeight: 'bold'
+    overlay: {
+        ...StyleSheet.absoluteFillObject,
+        backgroundColor: 'rgba(0, 0, 0, 0.1)', // Добавя лек тъмен слой върху изображението
     },
     profilePictureContainer: {
+        marginTop: height * 0.05,
         alignItems: 'center',
-        marginBottom: 16,
     },
     profilePicture: {
         width: 100,
         height: 100,
         borderRadius: 50,
-    },
-    addPhotoText: {
-        fontSize: 16,
-        color: 'blue',
-        textDecorationLine: 'underline',
-    },
-    inputContainer: {
-        width: '100%',
-        marginBottom: 16,
-    },
-    label: {
-        fontSize: 16,
-        marginBottom: 8,
-    },
-    input: {
-        height: 40,
-        width: '100%',
-        borderColor: '#010101',
         borderWidth: 2,
-        padding: 8,
-        fontSize: 16,
-        fontWeight: 'bold',
+        borderColor: '#fff',
     },
-    userVehicle: {
+    userInfoSection: {
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: 10,
-        marginHorizontal: 5,
-        backgroundColor: '#f4511e',
-        borderRadius: 14,
-        borderWidth: 1,
-        borderColor: '#000000',
-        width: '45%',
-        height: '8%',
-        marginTop: 60
     },
-    usernameChangeButton: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 10,
-        marginHorizontal: 5,
-        backgroundColor: '#f4511e',
-        borderRadius: 14,
-        borderWidth: 1,
-        borderColor: '#000000',
-        width: '45%',
-        height: '8%',
-        marginTop: 20
-    },
-    usernameText: {
-        fontSize: 16,
+    userInfoText: {
+        fontSize: 18,
         fontWeight: 'bold',
-        color: '#010101',
-        textAlign: 'center',
+        color: '#fff',
+        marginVertical: 4,
     },
-    backgroundImage: {
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-        position: 'absolute',
+    ratingSection: {
+        alignItems: 'center',
+    },
+    ratingTitle: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#fff',
+        marginBottom: 10,
     },
     ratingStars: {
-        position: 'absolute',
-        alignItems: 'center',
-        justifyContent: 'center',
         flexDirection: 'row',
-        top: 190,
+    },
+    buttonsContainer: {
+        width: '100%',
+        paddingHorizontal: 20,
+        marginBottom: height * 0.05,
+    },
+    button: {
+        backgroundColor: '#f4511e',
+        borderRadius: 14,
+        paddingVertical: 15,
+        alignItems: 'center',
+        marginBottom: 20,
+        borderWidth: 1,
+        borderColor: '#000',
+    },
+    buttonText: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#fff',
     },
 });
 

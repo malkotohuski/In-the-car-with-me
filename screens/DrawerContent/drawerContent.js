@@ -115,6 +115,19 @@ export const Navigator = ({ isLoggedIn }) => {
         </TouchableOpacity>
     );
 
+    const renderBackButtonAccountInfo = ({ navigation }) => (
+        <TouchableOpacity
+            style={{
+                marginRight: 16
+            }}
+            onPress={() => {
+                navigation.navigate('AccountManager');
+            }}
+        >
+            <Icons name="keyboard-backspace" size={24} color="white" />
+        </TouchableOpacity>
+    );
+
     const renderBackButtonIcons = ({ navigation }) => (
         <TouchableOpacity
             style={{
@@ -389,6 +402,13 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => renderBackButtonAccountInfo({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
                 name="Comments"
