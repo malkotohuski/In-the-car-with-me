@@ -47,7 +47,12 @@ function HomePage({ navigation }) {
                 source={require('../../images/home2-background.jpg')}
                 style={styles.backgroundImage}
             />
-            <View style={{ flex: 1, justifyContent: 'center' }}>
+            <View style={styles.overlay} />
+            <View style={styles.centeredTextContainer}>
+                <Text style={styles.heading}>{t('In the car with me')}</Text>
+                <Text style={styles.moto}>{t('We travel freely')}</Text>
+            </View>
+            <View style={{ flex: 1, }}>
                 <View style={styles.languageSwitchContainer}>
                     <TouchableOpacity
                         style={styles.languageButton}
@@ -106,10 +111,10 @@ function HomePage({ navigation }) {
                     </View>
                 </View>
                 <View style={styles.centeredTextContainer}>
-                    {/* Your content goes here */}
                     <Text style={styles.heading}>{t('In the car with me')}</Text>
                     <Text style={styles.moto}>{t('We travel freely')}</Text>
                 </View>
+
                 <View style={styles.footer}>
                     <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
                         <Icons name="routes" size={34} color="#000000" />
