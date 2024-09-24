@@ -178,16 +178,21 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         fontSize: 24,
         fontWeight: 'bold',
-        borderWidth: 2,
-        borderColor: '#000000',
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        borderWidth: 2, // Премахване на границата
+        backgroundColor: 'rgba(255, 255, 255, 0.6)',
         width: '100%',
         flexDirection: 'row',
+        borderRadius: 15, // Закръглени ръбове
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 8, // Добавяне на сянка
     },
     textButtons: {
         marginLeft: 20,
-        color: '#010101',
-        fontSize: 24,
+        color: '#0721B6',
+        fontSize: 22, // По-малък текст за минималистичен вид
         fontWeight: 'bold',
     },
 });
