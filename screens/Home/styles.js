@@ -35,11 +35,11 @@ export default StyleSheet.create({
          padding: 10,
      }, */
     heading: {
-        fontSize: 34,
-        padding: 10,
+        fontSize: 30,
+        color: '#FFFFFF',
         fontWeight: 'bold',
-        marginBottom: 20,
-        color: '#FAF9F9'
+        textAlign: 'center',
+        marginBottom: 10,
     },
     searchBox: {
         flexDirection: 'column',
@@ -55,13 +55,14 @@ export default StyleSheet.create({
     centeredTextContainer: {
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: 30
     },
     moto: {
         fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 20,
         alignItems: 'center',
-        color: '#E9E9E9'
+        color: '#FFFFFF'
     },
     searchField: {
         height: 40,
@@ -131,11 +132,10 @@ export default StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.4)',
     },
     textButtons: {
-        color: '#0C0C0C',
-        fontSize: 23,
-        fontWeight: 'bold',
+        fontSize: 20,
+        color: '#010101',
+        fontWeight: '800',
     },
-
     loginBars: {
         flex: 1,
     },
@@ -161,8 +161,7 @@ export default StyleSheet.create({
     languageSwitchContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        padding: 10,
-        marginTop: 20,
+        padding: 10
     },
     languageButton: {
         alignItems: 'center',
@@ -301,10 +300,14 @@ export default StyleSheet.create({
     footer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
-        alignItems: 'flex-end',
-        padding: 10,
-        backgroundColor: '#f4511e', // Цветът на футера, промени го според нуждите си
-        marginTop: 'auto',
+        paddingVertical: 10,
+        backgroundColor: '#f4511e',
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+        elevation: 10,
     },
     footerIcon: {
         alignItems: 'center',
@@ -314,4 +317,12 @@ export default StyleSheet.create({
         backgroundColor: '#f1f1f1', // Цветът на иконките, промени го според нуждите си
         justifyContent: 'center',
     },
+    overlay: {
+        position: 'absolute',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.2)', // Леко затъмняване
+    }
 });
