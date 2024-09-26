@@ -249,7 +249,7 @@ function SelectRouteScreen({ route, navigation }) {
                         </View>
                     </Modal>
                 </View>
-                <View style={{ flex: 1, marginLeft: 40 }}>
+                <View style={{ flex: 1, marginLeft: 10 }}>
                     <TextInput
                         placeholder={t("Street")}
                         placeholderTextColor={'#010101'}
@@ -257,7 +257,7 @@ function SelectRouteScreen({ route, navigation }) {
                         onChangeText={(text) => setDepartureStreet(text)}
                         style={{
                             height: 70,
-                            width: 130,
+                            width: 100,
                             borderColor: 'black',
                             borderWidth: 1.5,
                             borderRadius: 8,
@@ -334,7 +334,7 @@ function SelectRouteScreen({ route, navigation }) {
                         </View>
                     </Modal>
                 </View>
-                <View style={{ flex: 1, marginLeft: 40 }}>
+                <View style={{ flex: 1, marginLeft: 10 }}>
                     <TextInput
                         placeholder={t("Street")}
                         placeholderTextColor={'#010101'}
@@ -342,7 +342,7 @@ function SelectRouteScreen({ route, navigation }) {
                         onChangeText={(text) => setArrivalStreet(text)}
                         style={{
                             height: 70,
-                            width: 130,
+                            width: 100,
                             borderColor: 'black',
                             borderWidth: 1.5,
                             borderRadius: 8,
@@ -477,7 +477,7 @@ const styles = StyleSheet.create({
     },
     citySelectButton: {
         height: 70,
-        width: 180,
+        width: 150,
         borderColor: 'black',
         borderWidth: 1.5,
         borderRadius: 8,

@@ -188,13 +188,13 @@ const styles = StyleSheet.create({
     topLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 10,
         width: '100%',
         borderRadius: 10,
     },
     drawerScreen: {
         alignItems: 'center',
-        padding: 20,
+        padding: 10,
         marginBottom: 10,
         fontSize: 24,
         fontWeight: 'bold',
