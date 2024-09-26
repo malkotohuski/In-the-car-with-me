@@ -60,7 +60,9 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
+
                         <Icon name="home" size={30} color="#0721B6" />
+
                         <Text
                             style={styles.textButtons}
                         >{t('Home')}
@@ -69,7 +71,10 @@ function CustomerDrawer({ navigation }) {
                 </View >
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerRouteViewer} >
+
                         <Icon name="streetview" size={30} color="#DBF023" />
+
+
                         <Text
                             style={styles.textButtons}
                         >{t('Routes History')}</Text>
@@ -77,7 +82,10 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerUsersScreen} >
+
                         <Icon name="streetview" size={30} color="#14B351" />
+
+
                         <Text
                             style={styles.textButtons}
                         >{t('Users')}</Text>
@@ -85,7 +93,10 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerReporting} >
-                        <Icon name="report" size={30} color="#960D0D" />
+
+                        <Icon name="report" size={30} color="#960D0D" /
+                  
+
                         <Text
                             style={styles.textButtons}
                         >{t('Reporting')}</Text>
@@ -93,7 +104,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerRequest} >
-                        <Icons name="routes" size={30} color="#010101" />
+                        <Icons name="routes" size={40} color="#010101" />
                         <Text
                             style={styles.textButtons}
                         >{t('Route request')}</Text>
@@ -101,7 +112,10 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerSettings} >
+
                         <Icon name="settings" size={30} color="#CAC8C8" />
+                  
+
                         <Text
                             style={styles.textButtons}
                         >{t('Settings')}</Text>
@@ -109,6 +123,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerLogout} >
+
                         <Icons name="logout" size={30} color="#FF7B00" />
                         <Text
                             style={styles.textButtons}
@@ -139,8 +154,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         alignItems: 'flex-start',
+
         marginTop: 15,
         width: '100%',
+        marginTop: 15, // adjust as needed
+        width: '100%', // Ensure drawerContainer takes the full width of the screen
+        paddingHorizontal: 20, // добавено за подравняване наляво
+
     },
     userInfoContainer: {
         flexDirection: 'row',
@@ -194,6 +214,12 @@ const styles = StyleSheet.create({
         color: '#0721B6',
         fontSize: 22, // По-малък текст за минималистичен вид
         fontWeight: 'bold',
+    },
+    textButtons: {
+        marginLeft: 10, // adjust as needed
+        color: '#FFFFFF', // text color
+        fontSize: 20, // text size
+        fontWeight: 'bold', // text weight
     },
 });
 
