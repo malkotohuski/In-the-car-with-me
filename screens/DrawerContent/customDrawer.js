@@ -80,7 +80,7 @@ function CustomerDrawer({ navigation }) {
                         >{t('Routes History')}</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={styles.topLeft}>
+                {/*     <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerUsersScreen} >
 
                         <Icon name="streetview" size={30} color="#14B351" />
@@ -90,7 +90,7 @@ function CustomerDrawer({ navigation }) {
                             style={styles.textButtons}
                         >{t('Users')}</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerReporting} >
 
@@ -112,10 +112,7 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerSettings} >
-
-                        <Icon name="settings" size={30} color="#CAC8C8" />
-                  
-
+                        <Icon name="settings" size={30} color="#858282FF" />
                         <Text
                             style={styles.textButtons}
                         >{t('Settings')}</Text>
@@ -194,7 +191,7 @@ const styles = StyleSheet.create({
     },
     drawerScreen: {
         alignItems: 'center',
-        padding: 10,
+        padding: 20,
         marginBottom: 10,
         fontSize: 24,
         fontWeight: 'bold',
@@ -210,9 +207,9 @@ const styles = StyleSheet.create({
         elevation: 8, // Добавяне на сянка
     },
     textButtons: {
-        marginLeft: 20,
+        marginLeft: 10,
         color: '#0721B6',
-        fontSize: 22, // По-малък текст за минималистичен вид
+        fontSize: 18, // По-малък текст за минималистичен вид
         fontWeight: 'bold',
     },
     textButtons: {
