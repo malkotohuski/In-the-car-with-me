@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator, SafeAreaView, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
@@ -62,88 +62,92 @@ export default function Login({ navigation, route }) {
     };
 
     return (
-        <View style={styles.container}>
-            {isLoading ? (
-                <Image
-                    source={require('../../images/loading_image.png')}
-                    style={styles.backgroundImage}
-                />
-            ) : (
-                <>
-                    <Image
-                        source={require('../../images/login-background.jpg')}
-                        style={styles.backgroundImage}
-                    />
-                    <View >
-                        <View style={styles.languageSwitchContainer}>
-                            <TouchableOpacity
-                                style={styles.languageButton}
-                                onPress={() => changeLanguage('en')}
-                            >
-                                <Image
-                                    source={require('../../images/eng1-flag.png')}
-                                    style={styles.flagImage}
-                                />
-                                <Text
-                                    style={styles.languageText}
-                                >{t('English')}</Text>
-                            </TouchableOpacity>
-                            <View style={{ margin: 60 }}>
+        <SafeAreaView style={{ flex: 1, }}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <View style={styles.container}>
+                    {isLoading ? (
+                        <Image
+                            source={require('../../images/loading_image.png')}
+                            style={styles.backgroundImage}
+                        />
+                    ) : (
+                        <>
+                            <Image
+                                source={require('../../images/login-background.jpg')}
+                                style={styles.backgroundImage}
+                            />
+                            <View >
+                                <View style={styles.languageSwitchContainer}>
+                                    <TouchableOpacity
+                                        style={styles.languageButton}
+                                        onPress={() => changeLanguage('en')}
+                                    >
+                                        <Image
+                                            source={require('../../images/eng1-flag.png')}
+                                            style={styles.flagImage}
+                                        />
+                                        <Text
+                                            style={styles.languageText}
+                                        >{t('English')}</Text>
+                                    </TouchableOpacity>
+                                    <View style={{ margin: 60 }}>
 
+                                    </View>
+                                    <TouchableOpacity
+                                        style={styles.languageButton}
+                                        onPress={() => changeLanguage('bg')}
+                                    >
+                                        <Image
+                                            source={require('../../images/bulg-flag.png')}
+                                            style={styles.flagImage}
+                                        />
+                                        <Text
+                                            style={styles.languageText}
+                                        >{t('Bulgarian')}</Text>
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                            <TouchableOpacity
-                                style={styles.languageButton}
-                                onPress={() => changeLanguage('bg')}
-                            >
-                                <Image
-                                    source={require('../../images/bulg-flag.png')}
-                                    style={styles.flagImage}
-                                />
-                                <Text
-                                    style={styles.languageText}
-                                >{t('Bulgarian')}</Text>
+                            {/* Променяме onPress на новата функция skipLogin */}
+                            <TouchableOpacity onPress={skipLogin}>
+                                <Text style={styles.title}>{t('Login')}</Text>
                             </TouchableOpacity>
-                        </View>
-                    </View>
-                    {/* Променяме onPress на новата функция skipLogin */}
-                    <TouchableOpacity onPress={skipLogin}>
-                        <Text style={styles.title}>{t('Login')}</Text>
-                    </TouchableOpacity>
-                    <TextInput
-                        placeholderTextColor={'white'}
-                        style={styles.input}
-                        placeholder={t("Email")}
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
-                    />
-                    <TextInput
-                        placeholderTextColor={'white'}
-                        style={styles.input}
-                        placeholder={t("Password")}
-                        secureTextEntry={true}
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
-                    />
-                    <View style={styles.buttonsContent}>
-                        <TouchableOpacity
-                            style={styles.loginButtons}
-                            onPress={skipLogin} /* Използваме skipLogin вместо handleLogin */
-                        >
-                            <Text style={styles.textButtons}>
-                                {t("Log in")}
-                            </Text>
-                        </TouchableOpacity>
-                        <View style={styles.buttonSeparator} />
-                        <TouchableOpacity
-                            style={styles.loginButtons}
-                            onPress={() => navigation.navigate('Register')} >
-                            <Text style={styles.textButtons}>
-                                {t("Create your account")}
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                </>
-            )}
-        </View>
+                            <TextInput
+                                placeholderTextColor={'white'}
+                                style={styles.input}
+                                placeholder={t("Email")}
+                                value={email}
+                                onChangeText={(text) => setEmail(text)}
+                            />
+                            <TextInput
+                                placeholderTextColor={'white'}
+                                style={styles.input}
+                                placeholder={t("Password")}
+                                secureTextEntry={true}
+                                value={password}
+                                onChangeText={(text) => setPassword(text)}
+                            />
+                            <View style={styles.buttonsContent}>
+                                <TouchableOpacity
+                                    style={styles.loginButtons}
+                                    onPress={skipLogin} /* Използваме skipLogin вместо handleLogin */
+                                >
+                                    <Text style={styles.textButtons}>
+                                        {t("Log in")}
+                                    </Text>
+                                </TouchableOpacity>
+                                <View style={styles.buttonSeparator} />
+                                <TouchableOpacity
+                                    style={styles.loginButtons}
+                                    onPress={() => navigation.navigate('Register')} >
+                                    <Text style={styles.textButtons}>
+                                        {t("Create your account")}
+                                    </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </>
+                    )}
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
