@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image, ScrollView, SafeAreaView } from 'react-native';
 import axios from 'axios';
 import styles from '../Home/styles';
 import { useTranslation } from 'react-i18next';
@@ -116,89 +116,93 @@ export default function Register({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require('../../images/login-background.jpg')}
-        style={styles.backgroundImage}
-      />
-      <TouchableOpacity
-        onPress={handleImagePicker}
-        style={[styles.profilePictureContainer, styles.topRight]}
-      >
-        {profilePicture ? (
+    <SafeAreaView style={{ flex: 1, }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={styles.container}>
           <Image
-            source={{ uri: profilePicture }}
-            style={styles.profilePicture}
+            source={require('../../images/login-background.jpg')}
+            style={styles.backgroundImage}
           />
-        ) : (
-          <Text style={styles.addPhotoText}>
-            {t('Add Profile Picture')}
-          </Text>
-        )}
-      </TouchableOpacity>
-      <Text style={styles.title}>{t('Register here')}:</Text>
-      <TextInput
-        placeholderTextColor={'#F5FDFE'}
-        style={styles.input}
-        placeholder={t('User name')}
-        value={name}
-        onChangeText={(text) => setName(text)}
-      />
-      <TextInput
-        placeholderTextColor={'#F5FDFE'}
-        style={styles.input}
-        placeholder={t('First name')}
-        value={firstName}
-        onChangeText={(text) => setFirstName(text)}
-      />
-      <TextInput
-        placeholderTextColor={'#F5FDFE'}
-        style={styles.input}
-        placeholder={t('Last name')}
-        value={lastName}
-        onChangeText={(text) => setLastName(text)}
-      />
-      <TextInput
-        placeholderTextColor={'#F5FDFE'}
-        style={styles.input}
-        placeholder={t('Email')}
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        placeholderTextColor={'#F5FDFE'}
-        style={styles.input}
-        placeholder={t('Password')}
-        secureTextEntry={true}
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-      />
-      <TextInput
-        placeholderTextColor={'#F5FDFE'}
-        style={styles.input}
-        placeholder={t('Confirm Password')}
-        secureTextEntry={true}
-        value={confirmPassword}
-        onChangeText={(text) => setConfirmPassword(text)}
-      />
-      {showConfirmationCodeInput && (
-        <TextInput
-          placeholderTextColor={'#F5FDFE'}
-          style={styles.input}
-          placeholder={t('Confirmation Code')}
-          value={confirmationCode}
-          onChangeText={(text) => setConfirmationCode(text)}
-        />
-      )}
-      <TouchableOpacity style={styles.loginButtons} onPress={handleRegister}>
-        <Text style={styles.textButtons}>
-          {!showConfirmationCodeInput ? t('Continue') : t('Verify Confirmation Code')}
-        </Text>
-      </TouchableOpacity>
-      <View style={{ padding: 10 }}></View>
-      <TouchableOpacity style={styles.loginButtons} onPress={handlerBackLogin}>
-        <Text style={styles.textButtons}>{t('I have an account')}</Text>
-      </TouchableOpacity>
-    </View>
+          <TouchableOpacity
+            onPress={handleImagePicker}
+            style={[styles.profilePictureContainer, styles.topRight]}
+          >
+            {profilePicture ? (
+              <Image
+                source={{ uri: profilePicture }}
+                style={styles.profilePicture}
+              />
+            ) : (
+              <Text style={styles.addPhotoText}>
+                {t('Add Profile Picture')}
+              </Text>
+            )}
+          </TouchableOpacity>
+          <Text style={styles.title}>{t('Register here')}:</Text>
+          <TextInput
+            placeholderTextColor={'#F5FDFE'}
+            style={styles.input}
+            placeholder={t('User name')}
+            value={name}
+            onChangeText={(text) => setName(text)}
+          />
+          <TextInput
+            placeholderTextColor={'#F5FDFE'}
+            style={styles.input}
+            placeholder={t('First name')}
+            value={firstName}
+            onChangeText={(text) => setFirstName(text)}
+          />
+          <TextInput
+            placeholderTextColor={'#F5FDFE'}
+            style={styles.input}
+            placeholder={t('Last name')}
+            value={lastName}
+            onChangeText={(text) => setLastName(text)}
+          />
+          <TextInput
+            placeholderTextColor={'#F5FDFE'}
+            style={styles.input}
+            placeholder={t('Email')}
+            value={email}
+            onChangeText={setEmail}
+          />
+          <TextInput
+            placeholderTextColor={'#F5FDFE'}
+            style={styles.input}
+            placeholder={t('Password')}
+            secureTextEntry={true}
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+          />
+          <TextInput
+            placeholderTextColor={'#F5FDFE'}
+            style={styles.input}
+            placeholder={t('Confirm Password')}
+            secureTextEntry={true}
+            value={confirmPassword}
+            onChangeText={(text) => setConfirmPassword(text)}
+          />
+          {showConfirmationCodeInput && (
+            <TextInput
+              placeholderTextColor={'#F5FDFE'}
+              style={styles.input}
+              placeholder={t('Confirmation Code')}
+              value={confirmationCode}
+              onChangeText={(text) => setConfirmationCode(text)}
+            />
+          )}
+          <TouchableOpacity style={styles.loginButtons} onPress={handleRegister}>
+            <Text style={styles.textButtons}>
+              {!showConfirmationCodeInput ? t('Continue') : t('Verify Confirmation Code')}
+            </Text>
+          </TouchableOpacity>
+          <View style={{ padding: 10 }}></View>
+          <TouchableOpacity style={styles.loginButtons} onPress={handlerBackLogin}>
+            <Text style={styles.textButtons}>{t('I have an account')}</Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
