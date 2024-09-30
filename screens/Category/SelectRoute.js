@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image, FlatList, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image, FlatList, Modal, ScrollView, SafeAreaView } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 import { Dropdown } from 'react-native-element-dropdown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -191,224 +191,228 @@ function SelectRouteScreen({ route, navigation }) {
     };
 
     return (
-        <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-            <Image
-                source={require('../../images/forests.jpg')}
-                style={{
-                    flex: 1,
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                    position: 'absolute',
-                }}
-            />
-            <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
-                {t('Departure:')}
-            </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25 }}>
-                <View style={{ flex: 1, marginRight: 10, color: 'black' }}>
-                    <TouchableOpacity
-                        style={styles.citySelectButton}
-                        onPress={() => setModalVisibleDeparture(true)}
-                    >
-                        <Text style={styles.citySelectButtonText}>
-                            {departureCity ? departureCity : t('Select City')}
-                        </Text>
-                    </TouchableOpacity>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={modalVisibleDeparture}
-                        onRequestClose={() => {
-                            setModalVisibleDeparture(false);
+        <SafeAreaView style={{ flex: 1, }}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
+                    <Image
+                        source={require('../../images/forests.jpg')}
+                        style={{
+                            flex: 1,
+                            width: '100%',
+                            height: '100%',
+                            resizeMode: 'cover',
+                            position: 'absolute',
                         }}
-                    >
-                        <View style={styles.modalContainer}>
+                    />
+                    <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
+                        {t('Departure:')}
+                    </Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 25 }}>
+                        <View style={{ flex: 1, marginRight: 10, color: 'black' }}>
+                            <TouchableOpacity
+                                style={styles.citySelectButton}
+                                onPress={() => setModalVisibleDeparture(true)}
+                            >
+                                <Text style={styles.citySelectButtonText}>
+                                    {departureCity ? departureCity : t('Select City')}
+                                </Text>
+                            </TouchableOpacity>
+                            <Modal
+                                animationType="slide"
+                                transparent={true}
+                                visible={modalVisibleDeparture}
+                                onRequestClose={() => {
+                                    setModalVisibleDeparture(false);
+                                }}
+                            >
+                                <View style={styles.modalContainer}>
+                                    <TextInput
+                                        placeholder="Search City"
+                                        placeholderTextColor={'#010101'}
+                                        value={departureSearchText}
+                                        onChangeText={(text) => filterDepartureCities(text)}
+                                        style={{
+                                            height: 40,
+                                            borderColor: 'black',
+                                            borderWidth: 1.5,
+                                            borderRadius: 8,
+                                            paddingHorizontal: 8,
+                                            fontSize: 16,
+                                            fontWeight: 'bold',
+                                            marginBottom: 10,
+                                        }}
+                                    />
+                                    <FlatList
+                                        style={{ zIndex: 1, position: 'relative' }}
+                                        data={filteredCities}
+                                        renderItem={({ item }) => renderCityItem({ item, setModalVisible: setModalVisibleDeparture })}
+                                        keyExtractor={(item) => item.value}
+                                    />
+                                </View>
+                            </Modal>
+                        </View>
+                        <View style={{ flex: 1, marginLeft: 10 }}>
                             <TextInput
-                                placeholder="Search City"
+                                placeholder={t("Street")}
                                 placeholderTextColor={'#010101'}
-                                value={departureSearchText}
-                                onChangeText={(text) => filterDepartureCities(text)}
+                                value={departureStreet}
+                                onChangeText={(text) => setDepartureStreet(text)}
                                 style={{
-                                    height: 40,
+                                    height: 70,
+                                    width: 100,
                                     borderColor: 'black',
                                     borderWidth: 1.5,
                                     borderRadius: 8,
                                     paddingHorizontal: 8,
                                     fontSize: 16,
-                                    fontWeight: 'bold',
-                                    marginBottom: 10,
+                                    fontWeight: 'bold'
                                 }}
                             />
-                            <FlatList
-                                style={{ zIndex: 1, position: 'relative' }}
-                                data={filteredCities}
-                                renderItem={({ item }) => renderCityItem({ item, setModalVisible: setModalVisibleDeparture })}
-                                keyExtractor={(item) => item.value}
-                            />
                         </View>
-                    </Modal>
-                </View>
-                <View style={{ flex: 1, marginLeft: 10 }}>
-                    <TextInput
-                        placeholder={t("Street")}
-                        placeholderTextColor={'#010101'}
-                        value={departureStreet}
-                        onChangeText={(text) => setDepartureStreet(text)}
-                        style={{
-                            height: 70,
-                            width: 100,
-                            borderColor: 'black',
-                            borderWidth: 1.5,
-                            borderRadius: 8,
-                            paddingHorizontal: 8,
-                            fontSize: 16,
-                            fontWeight: 'bold'
-                        }}
-                    />
-                </View>
-                <TextInput
-                    placeholder={t("Number")}
-                    placeholderTextColor={'#010101'}
-                    value={departureNumber}
-                    onChangeText={(text) => setDepartureNumber(text)}
-                    keyboardType="default"
-                    style={{
-                        height: 70,
-                        width: 50,
-                        borderColor: 'black',
-                        borderWidth: 1.5,
-                        borderRadius: 8,
-                        paddingHorizontal: 8,
-                        fontSize: 16,
-                        fontWeight: 'bold',
-                    }}
-                />
-            </View>
-
-            <View style={{ padding: 20 }}></View>
-            <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
-                {t('Arrival:')}
-            </Text>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-                <View style={{ flex: 1, marginRight: 10 }}>
-                    <TouchableOpacity
-                        style={styles.citySelectButton}
-                        onPress={() => setModalVisibleArrival(true)}
-                    >
-                        <Text style={styles.citySelectButtonText}>
-                            {arrivalCity ? arrivalCity : t('Select City')}
-                        </Text>
-                    </TouchableOpacity>
-                    <Modal
-                        animationType="slide"
-                        transparent={true}
-                        visible={modalVisibleArrival}
-                        onRequestClose={() => {
-                            setModalVisibleArrival(false);
-                        }}
-                    >
-                        <View style={styles.modalContainer}>
-                            <TextInput
-                                placeholder="Search City"
-                                placeholderTextColor={'#010101'}
-                                value={arrivalSearchText}
-                                onChangeText={(text) => filterArrivalCities(text)}
-                                style={{
-                                    height: 40,
-                                    borderColor: 'black',
-                                    borderWidth: 1.5,
-                                    borderRadius: 8,
-                                    paddingHorizontal: 8,
-                                    fontSize: 16,
-                                    fontWeight: 'bold',
-                                    marginBottom: 10,
-                                }}
-                            />
-                            <FlatList
-                                style={{ zIndex: 1, position: 'relative' }}
-                                data={arrivalFilteredCities}
-                                renderItem={({ item }) => renderArrivalCityItem({ item, setModalVisible: setModalVisibleArrival })}
-                                keyExtractor={(item) => item.value}
-                            />
-                        </View>
-                    </Modal>
-                </View>
-                <View style={{ flex: 1, marginLeft: 10 }}>
-                    <TextInput
-                        placeholder={t("Street")}
-                        placeholderTextColor={'#010101'}
-                        value={arrivalStreet}
-                        onChangeText={(text) => setArrivalStreet(text)}
-                        style={{
-                            height: 70,
-                            width: 100,
-                            borderColor: 'black',
-                            borderWidth: 1.5,
-                            borderRadius: 8,
-                            paddingHorizontal: 8,
-                            fontSize: 16,
-                            fontWeight: 'bold',
-                            color: 'black'
-                        }}
-                    />
-                </View>
-                <TextInput
-                    placeholder={t("Number")}
-                    placeholderTextColor={'#010101'}
-                    value={arrivalNumber}
-                    onChangeText={(text) => setArrivalNumber(text)}
-                    keyboardType="default"
-                    style={{
-                        height: 70,
-                        width: 50,
-                        borderColor: 'black',
-                        borderWidth: 1.5,
-                        borderRadius: 8,
-                        paddingHorizontal: 8,
-                        fontSize: 16,
-                        fontWeight: 'bold',
-                    }}
-                />
-            </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 130, paddingBottom: 1 }}>
-                <Button
-                    style={[styles.button, { marginTop: 10 }]}
-                    title={t("Select date and time of departure")}
-                    onPress={() => setOpen(true)}
-                    color="#f4511e"
-                    titleStyle={{ marginHorizontal: 30, color: 'black' }}
-                />
-                <DatePicker
-                    modal
-                    open={open}
-                    date={date}
-                    theme="dark"
-                    mode="datetime"
-                    onConfirm={(selectedDate) => {
-                        setOpen(false);
-                        setDate(selectedDate);
-                        setSelectedDateTime(selectedDate);
-                    }}
-                    onCancel={() => {
-                        setOpen(false);
-                    }}
-                />
-                {selectedDateTime && (
-                    <View style={{ marginTop: 10 }}>
-                        <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}>
-                            {t('Selected Date and Time:')} {selectedDateTime.toString()}
-                        </Text>
+                        <TextInput
+                            placeholder={t("Number")}
+                            placeholderTextColor={'#010101'}
+                            value={departureNumber}
+                            onChangeText={(text) => setDepartureNumber(text)}
+                            keyboardType="default"
+                            style={{
+                                height: 70,
+                                width: 50,
+                                borderColor: 'black',
+                                borderWidth: 1.5,
+                                borderRadius: 8,
+                                paddingHorizontal: 8,
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                            }}
+                        />
                     </View>
-                )}
-                <TouchableOpacity
-                    onPress={handleContinue}
-                    style={[continueButtonStyle, { marginTop: 50 }]} // Move the button further down
-                >
-                    <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{t('Continue')}</Text>
-                </TouchableOpacity>
-            </View>
-        </View>
+
+                    <View style={{ padding: 20 }}></View>
+                    <Text style={{ fontWeight: 'bold', fontSize: 20, marginTop: 20, color: 'black' }}>
+                        {t('Arrival:')}
+                    </Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
+                        <View style={{ flex: 1, marginRight: 10 }}>
+                            <TouchableOpacity
+                                style={styles.citySelectButton}
+                                onPress={() => setModalVisibleArrival(true)}
+                            >
+                                <Text style={styles.citySelectButtonText}>
+                                    {arrivalCity ? arrivalCity : t('Select City')}
+                                </Text>
+                            </TouchableOpacity>
+                            <Modal
+                                animationType="slide"
+                                transparent={true}
+                                visible={modalVisibleArrival}
+                                onRequestClose={() => {
+                                    setModalVisibleArrival(false);
+                                }}
+                            >
+                                <View style={styles.modalContainer}>
+                                    <TextInput
+                                        placeholder="Search City"
+                                        placeholderTextColor={'#010101'}
+                                        value={arrivalSearchText}
+                                        onChangeText={(text) => filterArrivalCities(text)}
+                                        style={{
+                                            height: 40,
+                                            borderColor: 'black',
+                                            borderWidth: 1.5,
+                                            borderRadius: 8,
+                                            paddingHorizontal: 8,
+                                            fontSize: 16,
+                                            fontWeight: 'bold',
+                                            marginBottom: 10,
+                                        }}
+                                    />
+                                    <FlatList
+                                        style={{ zIndex: 1, position: 'relative' }}
+                                        data={arrivalFilteredCities}
+                                        renderItem={({ item }) => renderArrivalCityItem({ item, setModalVisible: setModalVisibleArrival })}
+                                        keyExtractor={(item) => item.value}
+                                    />
+                                </View>
+                            </Modal>
+                        </View>
+                        <View style={{ flex: 1, marginLeft: 10 }}>
+                            <TextInput
+                                placeholder={t("Street")}
+                                placeholderTextColor={'#010101'}
+                                value={arrivalStreet}
+                                onChangeText={(text) => setArrivalStreet(text)}
+                                style={{
+                                    height: 70,
+                                    width: 100,
+                                    borderColor: 'black',
+                                    borderWidth: 1.5,
+                                    borderRadius: 8,
+                                    paddingHorizontal: 8,
+                                    fontSize: 16,
+                                    fontWeight: 'bold',
+                                    color: 'black'
+                                }}
+                            />
+                        </View>
+                        <TextInput
+                            placeholder={t("Number")}
+                            placeholderTextColor={'#010101'}
+                            value={arrivalNumber}
+                            onChangeText={(text) => setArrivalNumber(text)}
+                            keyboardType="default"
+                            style={{
+                                height: 70,
+                                width: 50,
+                                borderColor: 'black',
+                                borderWidth: 1.5,
+                                borderRadius: 8,
+                                paddingHorizontal: 8,
+                                fontSize: 16,
+                                fontWeight: 'bold',
+                            }}
+                        />
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', marginTop: 130, paddingBottom: 1 }}>
+                        <Button
+                            style={[styles.button, { marginTop: 10 }]}
+                            title={t("Select date and time of departure")}
+                            onPress={() => setOpen(true)}
+                            color="#f4511e"
+                            titleStyle={{ marginHorizontal: 30, color: 'black' }}
+                        />
+                        <DatePicker
+                            modal
+                            open={open}
+                            date={date}
+                            theme="dark"
+                            mode="datetime"
+                            onConfirm={(selectedDate) => {
+                                setOpen(false);
+                                setDate(selectedDate);
+                                setSelectedDateTime(selectedDate);
+                            }}
+                            onCancel={() => {
+                                setOpen(false);
+                            }}
+                        />
+                        {selectedDateTime && (
+                            <View style={{ marginTop: 10 }}>
+                                <Text style={{ fontSize: 20, color: 'white', fontWeight: 'bold' }}>
+                                    {t('Selected Date and Time:')} {selectedDateTime.toString()}
+                                </Text>
+                            </View>
+                        )}
+                        <TouchableOpacity
+                            onPress={handleContinue}
+                            style={[continueButtonStyle, { marginTop: 50 }]} // Move the button further down
+                        >
+                            <Text style={{ color: '#fff', fontSize: 16, fontWeight: 'bold' }}>{t('Continue')}</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 

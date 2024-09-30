@@ -73,6 +73,10 @@ export default StyleSheet.create({
         paddingHorizontal: 10,
         color: '#F1F1F1'
     },
+    menuImages: {
+        paddingVertical: 20,
+        paddingBottom: 20,
+    },
     searchButton: {
         height: 60,
         backgroundColor: '#f4511e',
@@ -304,6 +308,7 @@ export default StyleSheet.create({
     footer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
+        alignItems: 'center',  // Центриране на иконите вертикално
         paddingVertical: 10,
         backgroundColor: '#f4511e',
         position: 'absolute',

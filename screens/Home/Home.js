@@ -2,7 +2,7 @@ import i18n from './i18n';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import React, { useState } from 'react';
-import { View, Text, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, TextInput, TouchableOpacity, Alert, ScrollView, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -18,10 +18,12 @@ function HomePage({ navigation }) {
 
     const handlerVehicle = () => {
         navigation.navigate('Vehicle');
+        console.log('Vehicle clicked !!!');
     }
 
     const handlerRouteRequest = () => {
-        navigation.navigate('Route request');
+        navigation.navigate('Route request')
+        console.log('RouteRequest clicked !!!');
     }
 
     const handlerRouteViewer = () => {
@@ -30,104 +32,123 @@ function HomePage({ navigation }) {
     }
 
     const handlerReporting = () => {
-        navigation.navigate('Reporting');
+        navigation.navigate('Reporting')
+        console.log('Reporting clicked !!!');
     }
 
     const handlerChatScreen = () => {
         navigation.navigate('Chat');
+        console.log('Chats screen clicked !!!');
     }
 
     const handlerNotificationScreen = () => {
         navigation.navigate('Notifications');
+        console.log('View routes clicked !!!');
     }
 
     return (
-        <View style={styles.homepage}>
-            <Image
-                source={require('../../images/home2-background.jpg')}
-                style={styles.backgroundImage}
-            />
-            <View style={styles.overlay} />
-            <View style={styles.centeredTextContainer}>
-                <Text style={styles.heading}>{t('In the car with me')}</Text>
-                <Text style={styles.moto}>{t('We travel freely')}</Text>
-            </View>
-            <View style={{ flex: 1, }}>
-                <View style={styles.languageSwitchContainer}>
-                    <TouchableOpacity
-                        style={styles.languageButton}
-                        onPress={() => changeLanguage('en')}
-                    >
-                        <Image
-                            source={require('../../images/eng1-flag.png')}
-                            style={styles.flagImage}
-                        />
-                        <Text
-                            style={styles.languageText}
-                        >{t('English')}</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.languageButton}
-                        onPress={() => changeLanguage('bg')}
-                    >
-                        <Image
-                            source={require('../../images/bulg-flag.png')}
-                            style={styles.flagImage}
-                        />
-                        <Text
-                            style={styles.languageText}
-                        >{t('Bulgarian')}</Text>
-                    </TouchableOpacity>
-                </View>
+        <SafeAreaView style={{ flex: 1, }}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1, paddingBottom: 60 }}>
+                <View style={styles.homepage}>
+                    <Image
+                        source={require('../../images/home2-background.jpg')}
+                        style={styles.backgroundImage}
+                    />
+                    <View style={styles.overlay} />
+                    <View style={styles.centeredTextContainer}>
+                        <Text style={styles.heading}>{t('In the car with me')}</Text>
+                        <Text style={styles.moto}>{t('We travel freely')}</Text>
+                    </View>
+                    <View style={{ flex: 1, }}>
+                        <View style={styles.languageSwitchContainer}>
+                            <TouchableOpacity
+                                style={styles.languageButton}
+                                onPress={() => changeLanguage('en')}
+                            >
+                                <Image
+                                    source={require('../../images/eng1-flag.png')}
+                                    style={styles.flagImage}
+                                />
+                                <Text
+                                    style={styles.languageText}
+                                >{t('English')}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.languageButton}
+                                onPress={() => changeLanguage('bg')}
+                            >
+                                <Image
+                                    source={require('../../images/bulg-flag.png')}
+                                    style={styles.flagImage}
+                                />
+                                <Text
+                                    style={styles.languageText}
+                                >{t('Bulgarian')}</Text>
+                            </TouchableOpacity>
+                        </View>
 
-                <View style={styles.menuImages}>
-                    <View>
-                        <TouchableOpacity style={styles.vehicleButton} onPress={handlerVehicle} >
-                            <Text
-                                style={styles.textButtons}
-                            >{t('Create a route')}</Text>
-                        </TouchableOpacity>
+                        <View style={styles.menuImages}>
+                            <View>
+                                <TouchableOpacity style={styles.vehicleButton} onPress={handlerVehicle} >
+                                    <Text
+                                        style={styles.textButtons}
+                                    >{t('Create a route')}</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View>
+                                <TouchableOpacity style={styles.routeRequestButton} onPress={handlerRouteRequest} >
+                                    <Text
+                                        style={styles.textButtons}
+                                    >{t('Route request')}</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View>
+                                <TouchableOpacity style={styles.routeViewerButton} onPress={handlerRouteViewer} >
+                                    <Text
+                                        style={styles.textButtons}
+                                    >{t('View routes')}</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View>
+                                <TouchableOpacity style={styles.reportingButton} onPress={handlerReporting} >
+                                    <Text
+                                        style={styles.textButtons}
+                                    >{t('Reporting')}</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+                        {/*  <View style={styles.searchBox}>
+                    <View style={styles.searchContainer}>
+                        <TextInput
+                            style={styles.searchField}
+                            placeholderTextColor={'#F5FDFE'}
+                            placeholder={t('Search here')}
+                        />
                     </View>
-                    <View>
-                        <TouchableOpacity style={styles.routeRequestButton} onPress={handlerRouteRequest} >
-                            <Text
-                                style={styles.textButtons}
-                            >{t('Route request')}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-                        <TouchableOpacity style={styles.routeViewerButton} onPress={handlerRouteViewer} >
-                            <Text
-                                style={styles.textButtons}
-                            >{t('View routes')}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-                        <TouchableOpacity style={styles.reportingButton} onPress={handlerReporting} >
-                            <Text
-                                style={styles.textButtons}
-                            >{t('Reporting')}</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-                <View style={styles.centeredTextContainer}>
-                    <Text style={styles.heading}>{t('In the car with me')}</Text>
-                    <Text style={styles.moto}>{t('We travel freely')}</Text>
-                </View>
+                    <TouchableOpacity
+                        style={styles.searchButton}
+                        onPress={() => {
 
-                <View style={styles.footer}>
-                    <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                        <Icons name="routes" size={34} color="#000000" />
+                        }}
+                    >
+                        <Text style={styles.searchButtonText}>{t('Search')}</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
-                        <Icons name="chat" size={34} color="#080808" />
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                        <Icons name="bell" size={34} color="#000000" />
-                    </TouchableOpacity>
+                </View> */}
+                    </View>
                 </View>
+            </ScrollView>
+            <View style={styles.footer}>
+                <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
+                    <Icons name="routes" size={34} color="#000000" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
+                    <Icons name="chat" size={34} color="#080808" />
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
+                    <Icons name="bell" size={34} color="#000000" />
+                </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     );
 }
 
