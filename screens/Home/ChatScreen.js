@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         color: '#f1f1f1',
-        paddingLeft: 50,  // Отстъп за иконата отдясно
+        paddingLeft: 75,  // Отстъп за иконата отдясно
     },
     friendItem: {
         padding: 10,
