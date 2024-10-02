@@ -93,7 +93,7 @@ const SettingsScreen = () => {
     const getContainerStyle = () => {
         return {
             ...styles.container,
-            backgroundColor: darkMode ? '#5A5656' : '#fff',
+            backgroundColor: darkMode ? '#5A5A5AFF' : '#fff',
         };
     };
 
@@ -107,7 +107,7 @@ const SettingsScreen = () => {
     const getListItemContainerStyle = () => {
         return {
             ...styles.listItemContainer,
-            backgroundColor: darkMode ? '#303030' : '#fff',  // Adjust background color for dark mode
+            backgroundColor: darkMode ? '#1D1D1DFF' : '#fff',  // Adjust background color for dark mode
             borderColor: darkMode ? '#404040' : '#ddd',
         };
     };
