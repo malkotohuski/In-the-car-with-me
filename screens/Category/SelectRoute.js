@@ -234,6 +234,7 @@ function SelectRouteScreen({ route, navigation }) {
                                         style={{
                                             height: 40,
                                             borderColor: 'black',
+                                            backgroundColor: 'grey',
                                             borderWidth: 1.5,
                                             borderRadius: 8,
                                             paddingHorizontal: 8,
@@ -319,6 +320,7 @@ function SelectRouteScreen({ route, navigation }) {
                                         style={{
                                             height: 40,
                                             borderColor: 'black',
+                                            backgroundColor: 'grey',
                                             borderWidth: 1.5,
                                             borderRadius: 8,
                                             paddingHorizontal: 8,
