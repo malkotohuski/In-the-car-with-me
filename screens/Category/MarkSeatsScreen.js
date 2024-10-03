@@ -173,7 +173,7 @@ function MarkSeatsScreen() {
                 }}
             />
             <Text
-                style={{ fontSize: 20, fontWeight: 'bold', color: '#F1F1F1' }}
+                style={{ fontSize: 20, fontWeight: 'bold', color: '#F1F1F1', }}
             >
                 {t('Type')}: {selectedVehicle}
             </Text>
@@ -190,20 +190,24 @@ function MarkSeatsScreen() {
                 value={registrationNumber}
                 onChangeText={(text) => setRegistrationNumber(text)}
                 style={{
-                    height: 40,
+                    height: 50, // Увеличена височина за по-добра видимост
                     borderColor: '#F1F1F1',
                     borderWidth: 2,
-                    margin: 10,
+                    margin: 10, // Допълнителен марджин за повече пространство
                     textAlign: 'center',
-                    color: '#F1F1F1',
-                    fontSize: 16,
-                    fontWeight: 'bold'
+                    color: '#FFFFFFFF', // Ярък цвят за текста
+                    fontSize: 22, // По-голям шрифт
+                    fontWeight: 'bold', // По-дебел шрифт
+                    backgroundColor: '#000000', // Контрастен черен фон
+                    borderRadius: 8, // Закръглени ъгли
+                    width: '80%', // Ширината на полето за въвеждане
                 }}
+                autoFocus={true} // Автоматичен фокус при зареждане на екрана
             />
             {/* Display the registration number if available */}
             {registrationNumber &&
                 <Text
-                    style={{ color: '#F1F1F1', fontSize: 20, fontWeight: 'bold' }}
+                    style={{ color: '#F1F1F1', fontSize: 20, fontWeight: 'bold', }}
                 >{t('Registration Number:')}</Text>}
             <Text
                 style={{ color: '#F1F1F1', fontSize: 20, fontWeight: 'bold' }}
@@ -229,21 +233,22 @@ function MarkSeatsScreen() {
                     flexDirection: 'column',
                     alignItems: 'center',
                     position: 'relative',
+                    transform: [{ scale: 0.8 }],
                 }}
             >
                 <View
                     style={{
                         borderColor: 'black',
-                        borderTopWidth: 8,
-                        borderBottomWidth: 8,
-                        borderLeftWidth: 4,
-                        borderRightWidth: 4,
+                        borderTopWidth: 6, // Намалени размери на борда
+                        borderBottomWidth: 6,
+                        borderLeftWidth: 3,
+                        borderRightWidth: 3,
                         borderRadius: 10,
-                        padding: 15,
-                        marginVertical: 20,
+                        padding: 10, // Намален padding
+                        marginVertical: 5, // Намален марджин
                         flexDirection: 'column',
                         alignItems: 'center',
-                        height: 200
+                        height: 200, // Намалена височина
                     }}
                 >
                     {renderSeats()}
@@ -255,15 +260,15 @@ function MarkSeatsScreen() {
             <TouchableOpacity
                 onPress={handleContinue}
                 style={{
-                    marginTop: 0,
+                    marginTop: 10,
                     backgroundColor: isValidRegistrationNumber() ? '#f4511e' : 'black', // Change color based on registrationNumber validity
-                    height: 60,
+                    height: 50,
                     backgroundColor: '#f4511e',
                     borderRadius: 8,
                     alignItems: 'center',
                     justifyContent: 'center',
                     padding: 10,
-                    width: 200,
+                    width: 180,
                     borderWidth: 2,
                     borderColor: '#f1f1f1'
                 }}
@@ -273,14 +278,14 @@ function MarkSeatsScreen() {
                     style={{
                         color: 'white',
                         backgroundColor: '#f4511e',
-                        fontSize: 20,
+                        fontSize: 18,
                         fontWeight: 'bold',
                     }}>
                     {t('Continue')}</Text>
             </TouchableOpacity>
             <View
                 style={{
-                    padding: 10
+                    padding: 5
                 }}
             >
             </View>
