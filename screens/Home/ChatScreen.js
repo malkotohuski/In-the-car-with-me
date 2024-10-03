@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     },
     searchIcon: {
         marginTop: 43,
-        marginRight: 350
+        marginRight: 320
     },
     searchInput: {
         position: 'absolute',
