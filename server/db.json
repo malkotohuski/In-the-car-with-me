@@ -3450,6 +3450,22 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1726597415445
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "markedSeats": [
+        2,
+        4
+      ],
+      "registrationNumber": "A2122AA",
+      "selectedDateTime": "2024-10-13T17:47:00.000Z",
+      "departureCity": "Kopriva",
+      "departureStreet": "1",
+      "departureNumber": "22",
+      "arrivalCity": "Marafeltsi",
+      "arrivalStreet": "123",
+      "arrivalNumber": "1",
+      "id": 1728323402728
     }
   ],
   "requests": [

@@ -196,7 +196,7 @@ function MarkSeatsScreen() {
                     margin: 10, // Допълнителен марджин за повече пространство
                     textAlign: 'center',
                     color: '#FFFFFFFF', // Ярък цвят за текста
-                    fontSize: 22, // По-голям шрифт
+                    fontSize: 18, // По-голям шрифт
                     fontWeight: 'bold', // По-дебел шрифт
                     backgroundColor: '#000000', // Контрастен черен фон
                     borderRadius: 8, // Закръглени ъгли
