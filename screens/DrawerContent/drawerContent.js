@@ -152,6 +152,17 @@ export const Navigator = ({ isLoggedIn }) => {
         </TouchableOpacity>
     );
 
+    const BackButtonRouteViewRoutes = ({ navigation }) => (
+        <TouchableOpacity
+            style={{ marginRight: 16 }}
+            onPress={() => {
+                navigation.navigate('View routes');
+            }}
+        >
+            <Icons name="keyboard-backspace" size={24} color="white" />
+        </TouchableOpacity>
+    );
+
     return (
         <Drawer.Navigator
             drawerContent={CustomerDrawer}
@@ -429,6 +440,13 @@ export const Navigator = ({ isLoggedIn }) => {
                     ...screenStyles,
                     drawerItemStyle: { display: 'none' }
                 }}
+                listeners={({ navigation }) => ({
+                    focus: () => {
+                        navigation.setOptions({
+                            headerRight: () => BackButtonRouteViewRoutes({ navigation }),
+                        });
+                    },
+                })}
             />
             <Drawer.Screen
                 name="RoutesHistory"
