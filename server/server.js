@@ -9,7 +9,11 @@ const axios = require('axios');
 // Enable CORS, bodyParser and other middlewares
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
-server.use(cors());
+server.use(cors({
+    origin: 'http://192.168.1.13',  // IP на телефона
+    methods: ['GET', 'POST', 'PATCH', 'DELETE'],
+    credentials: true
+}));
 
 // Function to generate a random confirmation code
 function generateConfirmationCode() {

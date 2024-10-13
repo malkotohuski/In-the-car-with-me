@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import styles from '../Home/styles';
 import i18next from 'i18next';
-// import { useAuth } from '../Authentication/AuthContext'; // Коментирай това, ако не се използва
+import { useAuth } from '../Authentication/AuthContext'; // Коментирай това, ако не се използва
 
 const API_BASE_URL = 'http://192.168.1.2:3000';
 
@@ -13,7 +13,7 @@ export default function Login({ navigation, route }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { t } = useTranslation();
-    // const { login } = useAuth(); // Закоментирай, ако вече не използваш
+    const { login } = useAuth(); // Закоментирай, ако вече не използваш
     const [isLoading, setIsLoading] = useState(true);
 
     const [isBulgaria, setisBulgaria] = useState(false);
@@ -34,9 +34,9 @@ export default function Login({ navigation, route }) {
     }, []);
 
     // Закоментирай логиката за логване
-    /* const handleLogin = async () => {
+    const handleLogin = async () => {
         try {
-            setIsLoading(true); 
+            setIsLoading(true);
             const response = await axios.post(`${API_BASE_URL}/login`, {
                 useremail: email,
                 userpassword: password,
@@ -52,9 +52,9 @@ export default function Login({ navigation, route }) {
             console.error('Login Error:', error);
             alert(t('Login failed.Invalid email or password.'));
         } finally {
-            setIsLoading(false); 
+            setIsLoading(false);
         }
-    }; */
+    };
 
     // Добави нова функция, която да прескача логването
     const skipLogin = () => {
@@ -129,7 +129,7 @@ export default function Login({ navigation, route }) {
                             <View style={styles.buttonsContent}>
                                 <TouchableOpacity
                                     style={styles.loginButtons}
-                                    onPress={skipLogin} /* Използваме skipLogin вместо handleLogin */
+                                    onPress={handleLogin} /* Използваме skipLogin вместо handleLogin */
                                 >
                                     <Text style={styles.textButtons}>
                                         {t("Log in")}
