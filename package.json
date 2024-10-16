@@ -89,7 +89,8 @@
         "typescript": "4.8.4"
     },
     "engines": {
-        "node": ">=16"
+        "node": ">=16",
+          "npm": "8.x"
     },
     "description": "This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).",
     "main": "index.js",
