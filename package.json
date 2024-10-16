@@ -6,7 +6,7 @@
         "android": "react-native run-android",
         "ios": "react-native run-ios",
         "lint": "eslint .",
-        "start": "react-native start",
+        "start": "node server.js",
         "test": "jest",
         "heroku-prebuild": "npm install --legacy-peer-deps"
     },

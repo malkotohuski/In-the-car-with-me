@@ -10,7 +10,7 @@ const axios = require('axios');
 server.use(middlewares);
 server.use(jsonServer.bodyParser);
 server.use(cors({
-    origin: 'http://192.168.1.13',  // IP на телефона
+    origin: '*',  // Разреши всички източници
     methods: ['GET', 'POST', 'PATCH', 'DELETE'],
     credentials: true
 }));
@@ -253,6 +253,7 @@ server.post('/send-request-to-user', (req, res) => {
 
 // New endpoint to get all requests
 server.get('/get-requests', (req, res) => {
+    res.send('Server is up and running!');
     const { request } = req.body;
     const requestingUser = { ...request, id: Date.now() };
     router.db.get('requests').push(requestingUser).write();
