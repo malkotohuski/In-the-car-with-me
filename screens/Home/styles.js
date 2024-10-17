@@ -228,7 +228,7 @@ export default StyleSheet.create({
         fontSize: 34,
         marginBottom: 30,
         fontWeight: 'bold',
-        color: '#010101'
+        color: '#f1f1f1'
     },
     profilePictureContainer: {
         alignItems: 'center',
