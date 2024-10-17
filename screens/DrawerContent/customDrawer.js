@@ -60,7 +60,9 @@ function CustomerDrawer({ navigation }) {
                 </View>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
+
                         <Icon name="home" size={30} color="#0721B6" />
+
                         <Text
                             style={styles.textButtons}
                         >{t('Home')}
@@ -85,7 +87,7 @@ function CustomerDrawer({ navigation }) {
                 </View> */}
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerReporting} >
-                        <Icon name="report" size={30} color="#0721B6" />
+                        <Icon name="report" size={30} color="#0721B6" />   
                         <Text
                             style={styles.textButtons}
                         >{t('Reporting')}</Text>
@@ -108,7 +110,7 @@ function CustomerDrawer({ navigation }) {
                     </TouchableOpacity>
                 </View>
                 <View style={styles.topLeft}>
-                    <TouchableOpacity style={styles.drawerScreen} onPress={handlerLogout} >
+                    <TouchableOpacity style={styles.drawerScreen} onPress={handlerLogout} > 
                         <Icons name="logout" size={30} color="#0721B6" />
                         <Text
                             style={styles.textButtons}
@@ -139,8 +141,13 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 0,
         alignItems: 'flex-start',
+
         marginTop: 15,
         width: '100%',
+        marginTop: 15, // adjust as needed
+        width: '100%', // Ensure drawerContainer takes the full width of the screen
+        paddingHorizontal: 20, // добавено за подравняване наляво
+
     },
     userInfoContainer: {
         flexDirection: 'row',
@@ -194,6 +201,12 @@ const styles = StyleSheet.create({
         color: '#0721B6',
         fontSize: 18, // По-малък текст за минималистичен вид
         fontWeight: 'bold',
+    },
+    textButtons: {
+        marginLeft: 10, // adjust as needed
+        color: '#FFFFFF', // text color
+        fontSize: 20, // text size
+        fontWeight: 'bold', // text weight
     },
 });
 

@@ -191,6 +191,10 @@ export default StyleSheet.create({
         margin: 50,
         width: 250,
     },
+
+
+
+
     profileInfoContainer: {
         flexDirection: 'row', // Arrange profile picture and user info side by side
         alignItems: 'center',
@@ -328,6 +332,22 @@ export default StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.1)', // Леко затъмняване
-    }
+        backgroundColor: 'rgba(0, 0, 0, 0.2)', // Леко затъмняване
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    loadingText: {
+        position: 'absolute',
+        top: '50%',
+        textAlign: 'center',
+        fontSize: 38,
+        color: '#010101',
+    },
 });
+
+
+
+   
