@@ -232,7 +232,7 @@ export default StyleSheet.create({
         fontSize: 34,
         marginBottom: 30,
         fontWeight: 'bold',
-        color: 'white'
+        color: '#f1f1f1'
     },
     profilePictureContainer: {
         alignItems: 'center',
