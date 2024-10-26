@@ -2,25 +2,24 @@ import React, { useState } from 'react';
 import {
     View,
     Text,
-    TextInput,
     StyleSheet,
     Image,
     TouchableOpacity,
     Alert,
+    SafeAreaView
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuth } from '../Authentication/AuthContext';
 
-const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
+const API_BASE_URL = 'http://10.0.2.2:3000';
 const api = axios.create({
     baseURL: API_BASE_URL,
 });
 
 const AccountSettings = ({ navigation }) => {
-    const { user } = useAuth();
-    const { updateProfilePicture } = useAuth();
+    const { user, updateProfilePicture } = useAuth();
     const [profilePicture, setProfilePicture] = useState(null);
     const { t } = useTranslation();
 
@@ -31,9 +30,7 @@ const AccountSettings = ({ navigation }) => {
                 height: 300,
                 cropping: true,
             });
-
-            if (image?.path || image?.uri) { // Променено условие за проверка
-                // Локално или отдалечено изображение
+            if (image?.path || image?.uri) {
                 setProfilePicture(image.path || image.uri);
             }
         } catch (error) {
@@ -44,202 +41,144 @@ const AccountSettings = ({ navigation }) => {
     const handleSaveChanges = async () => {
         updateProfilePicture(profilePicture);
         try {
-            const response = await api.patch('/user-changes', {
+            await api.patch('/user-changes', {
                 userId: user.user.id,
                 userImage: profilePicture,
             });
-            console.log('User Changes Response:', response);
-            navigation.navigate('AccountManager', {
-                profilePicture: profilePicture,
-            });
-            console.log('Profile picture changed successfully');
+            navigation.navigate('AccountManager', { profilePicture });
         } catch (error) {
-            console.error('User Changes Error:', error);
             Alert.alert(t('Profile picture change error'), t('There was an error while changing the profile picture'));
         }
-    }
+    };
 
     return (
-        <View style={styles.container}>
-            <Image
-                source={require('../../images/acountSettings.png')}
-                style={styles.backgroundImage}
-            />
-            <Text style={[styles.userTextContainer, styles.topLeftUsername]}>
-                {t('Username')} : {user?.user?.username}
-            </Text>
-            <Text style={[styles.userTextContainer, styles.topLeftFullName]}>
-                {t('Full Name')} : {user?.user?.fName} {user?.user?.lName}
-            </Text>
-            <Text style={[styles.userTextContainer, styles.topLeftEmail]}>
-                {user?.user?.email}
-            </Text>
-            {/* Profile picture */}
-            <TouchableOpacity
-                onPress={handleImagePicker}
-                style={[styles.profilePictureContainer, styles.topRight]}
-            >
-                {profilePicture && profilePicture !== '' ? (
-                    <Image
-                        source={{ uri: profilePicture }}
-                        style={styles.profilePicture}
-                    />
-                ) : (
-                    <Text style={styles.addPhotoText}>
-                        {t('Change photo')}
-                    </Text>
-                )}
-            </TouchableOpacity>
-
-            <TouchableOpacity
-                style={styles.usernameChangeButton}
-                onPress={handleSaveChanges}
-            >
-                <Text style={styles.usernameText}>{t('Save changes')}</Text>
-            </TouchableOpacity>
-        </View>
-    )
-}
+        <SafeAreaView style={styles.container}>
+            <Image source={require('../../images/acountSettings.png')} style={styles.backgroundImage} />
+            <View style={styles.userInfoContainer}>
+                <View style={styles.infoRow}>
+                    <Text style={styles.label}>{t('Username')}:</Text>
+                    <Text style={styles.value}>{user?.user?.username}</Text>
+                </View>
+                <View style={styles.infoRow}>
+                    <Text style={styles.label}>{t('Full Name')}:</Text>
+                    <Text style={styles.value}>{user?.user?.fName} {user?.user?.lName}</Text>
+                </View>
+                <View style={styles.infoRow}>
+                    <Text style={styles.label}>{t('Email')}:</Text>
+                    <Text style={styles.value}>{user?.user?.email}</Text>
+                </View>
+            </View>
+            <View style={styles.userInfoContainerPhoto}>
+                <TouchableOpacity onPress={handleImagePicker} style={styles.profilePictureContainer}>
+                    {profilePicture ? (
+                        <Image source={{ uri: profilePicture }} style={styles.profilePicture} />
+                    ) : (
+                        <Text style={styles.addPhotoText}>{t('Change photo')}</Text>
+                    )}
+                </TouchableOpacity>
+            </View>
+            <View style={styles.userInfoContainerChanges}>
+                <TouchableOpacity style={styles.saveButton} onPress={handleSaveChanges}>
+                    <Text style={styles.buttonText}>{t('Save changes')}</Text>
+                </TouchableOpacity>
+            </View>
+        </SafeAreaView>
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: '#f5f5f5',
     },
     backgroundImage: {
-        flex: 1,
+        position: 'absolute',
         width: '100%',
         height: '100%',
         resizeMode: 'cover',
-        position: 'absolute',
-    },
-    profileInfoContainer: {
-        flexDirection: 'row', // Arrange profile picture and user info side by side
-        alignItems: 'center',
     },
     userInfoContainer: {
-        marginLeft: 16,
-        flex: 1,
+        width: '90%',
+        padding: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        shadowRadius: 4,
+        marginTop: 30
+    },
+    userInfoContainerPhoto: {
+        justifyContent: 'center',
         paddingBottom: 10,
-        marginTop: 10
+        marginBottom: 30
+    },
+    userInfoContainerChanges: {
+        position: 'absolute',
+        bottom: 30,
+        width: '90%',
+        alignItems: 'center',
+    },
+    infoRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginVertical: 5,
     },
     label: {
-        fontSize: 24,
-        marginBottom: 8,
-        fontWeight: 'bold'
-    },
-    topLeftUsername: {
-        position: 'absolute',
-        top: 15,
-        left: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginLeft: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
         fontSize: 16,
-        fontWeight: 'bold'
+        fontWeight: '600',
+        color: '#010101',
+        marginRight: 10,
     },
-    topLeftFullName: {
-        position: 'absolute',
-        top: 45,
-        left: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginLeft: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
+    value: {
         fontSize: 16,
-        fontWeight: 'bold'
+        color: '#010101',
+        flexShrink: 1, // За да се гарантира правилно подравняване при дълги стойности
     },
-    topLeftEmail: {
-        position: 'absolute',
-        top: 75,
-        left: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginLeft: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
+    userInfoText: {
         fontSize: 16,
-        fontWeight: 'bold'
-    },
-    topRight: {
-        position: 'absolute',
-        top: 15,
-        right: 0,
-        marginBottom: 15, // Adjust this value as needed for spacing
-        marginRight: 20, // Adjust this value as needed for spacing
-        zIndex: 1, // To ensure it appears on top of other elements
-    },
-    title: {
-        fontSize: 30,
-        marginBottom: 30,
-        fontWeight: 'bold'
+        fontWeight: '500',
+        color: '#010101',
+        marginVertical: 4,
     },
     profilePictureContainer: {
         alignItems: 'center',
-        marginBottom: 16,
-        fontSize: 20,
-        fontWeight: 'bold',
-    },
-    userTextContainer: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#010101',
-    },
-    emailContainer: {
-        fontSize: 16,
-        fontWeight: 'bold',
+        justifyContent: 'center',
+        backgroundColor: '#e0e0e0',
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        marginVertical: 20,
+        borderWidth: 2,
+        borderColor: '#fff',
     },
     profilePicture: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
+        width: '100%',
+        height: '100%',
+        borderRadius: 60,
     },
     addPhotoText: {
         fontSize: 16,
-        color: 'blue',
+        color: '#007aff',
         textDecorationLine: 'underline',
     },
-    inputContainer: {
-        width: '100%',
-        marginBottom: 16,
-    },
-    label: {
-        fontSize: 16,
-        marginBottom: 8,
-    },
-    input: {
-        height: 40,
-        width: '100%',
-        borderColor: 'black',
-        borderWidth: 2,
-        padding: 8,
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-    userVehicle: {
-        alignItems: 'center',
+    saveButton: {
         backgroundColor: '#f4511e',
-        padding: 10,
-        marginTop: 10,
+        paddingVertical: 15,
+        paddingHorizontal: 30,
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+    },
+    buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: 'black'
+        color: '#fff',
     },
-    usernameChangeButton: {
-        alignItems: 'center',
-        backgroundColor: '#f4511e',
-        padding: 10,
-        marginBottom: 10,
-        fontSize: 16,
-        fontWeight: 'bold',
-        borderWidth: 1,
-        borderColor: 'black',
-        margin: 16
-    },
-    usernameText: {
-        color: 'black',
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-})
+});
 
-export default AccountSettings
+export default AccountSettings;

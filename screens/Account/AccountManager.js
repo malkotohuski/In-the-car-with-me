@@ -31,8 +31,8 @@ const AccountManager = ({ navigation }) => {
                 style={styles.backgroundImage}
             />
             <View style={styles.overlay} />
-
             {/* Profile Picture Section */}
+
             <View style={styles.profilePictureContainer}>
                 <Image
                     source={{ uri: profilePicture || defaultProfilePicture }}
@@ -42,15 +42,18 @@ const AccountManager = ({ navigation }) => {
 
             {/* User Info */}
             <View style={styles.userInfoSection}>
-                <Text style={styles.userInfoText}>
-                    {t('Username')}: {user?.user?.username}
-                </Text>
-                <Text style={styles.userInfoText}>
-                    {t('Names')}: {user?.user?.fName} {user?.user?.lName}
-                </Text>
-                <Text style={styles.userInfoText}>
-                    {t('Email')}: {user?.user?.email}
-                </Text>
+                <View style={styles.infoRow}>
+                    <Text style={styles.infoLabel}>{t('Username')}:</Text>
+                    <Text style={styles.infoText}>{user?.user?.username}</Text>
+                </View>
+                <View style={styles.infoRow}>
+                    <Text style={styles.infoLabel}>{t('Names')}:</Text>
+                    <Text style={styles.infoText}>{user?.user?.fName} {user?.user?.lName}</Text>
+                </View>
+                <View style={styles.infoRow}>
+                    <Text style={styles.infoLabel}>{t('Email')}:</Text>
+                    <Text style={styles.infoText}>{user?.user?.email}</Text>
+                </View>
             </View>
 
             {/* Rating Section */}
@@ -109,7 +112,30 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
     },
     userInfoSection: {
-        alignItems: 'center',
+        width: '90%',
+        padding: 15,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        elevation: 5,
+        marginVertical: 10,
+    },
+    infoRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingVertical: 5,
+    },
+    infoLabel: {
+        fontSize: 16,
+        fontWeight: '600',
+        color: '#010101',
+    },
+    infoText: {
+        fontSize: 16,
+        color: '#010101',
     },
     userInfoText: {
         fontSize: 18,
