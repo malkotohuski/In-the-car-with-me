@@ -7,7 +7,7 @@ import styles from '../Home/styles';
 import i18next from 'i18next';
 import { useAuth } from '../Authentication/AuthContext'; // Коментирай това, ако не се използва
 
-const API_BASE_URL = 'http://192.168.1.2:3000';
+const API_BASE_URL = 'http://10.0.2.2:3000';
 
 export default function Login({ navigation, route }) {
     const [email, setEmail] = useState('');

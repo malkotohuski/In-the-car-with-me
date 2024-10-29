@@ -388,7 +388,7 @@ export const Navigator = ({ isLoggedIn }) => {
                 listeners={({ navigation }) => ({
                     focus: () => {
                         navigation.setOptions({
-                            headerRight: () => renderLogoutIcon({ navigation }),
+                            headerRight: () => BackButtonRouteRequests({ navigation }),
                         });
                     },
                 })}
