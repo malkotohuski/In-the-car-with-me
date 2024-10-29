@@ -9,10 +9,14 @@ function CustomerDrawer({ navigation }) {
     const { t } = useTranslation();
     const { user } = useAuth();
 
+    const handlerAccountScreen = () => {
+        navigation.navigate('AccountManager');
+        console.log('AccountManager clicked !!!');
+    }
+
     const handlerHomeScreen = () => {
         navigation.navigate('Home');
         console.log('Home clicked !!!');
-        console.log('dfsdf', user);
     }
 
     const handlerRouteViewer = () => {
@@ -52,12 +56,12 @@ function CustomerDrawer({ navigation }) {
                 style={styles.backgroundImage}
             />
             <View style={styles.drawerContainer}>
-                <View style={styles.userInfoContainer}>
+                <TouchableOpacity style={styles.userInfoContainer} onPress={handlerAccountScreen}>
                     <Icons name="account-circle" size={30} color="#fff" style={styles.userIcon} />
                     <Text style={styles.userInfo}>
                         {user?.user?.username}
                     </Text>
-                </View>
+                </TouchableOpacity>
                 <View style={styles.topLeft}>
                     <TouchableOpacity style={styles.drawerScreen} onPress={handlerHomeScreen} >
                         <Icon name="home" size={30} color="#0721B6" />
