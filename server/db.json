@@ -1,308 +1,6 @@
 {
   "users": [
     {
-      "id": 1705513295033,
-      "username": "dani ",
-      "email": "devmasterstech@gmail.com",
-      "password": "123",
-      "fName": "vili",
-      "lName": "aria",
-      "userImage": "file:///storage/emulated/0/Android/data/com.awesomeproject/files/Pictures/69bfdf01-c283-489d-b285-0316d8cf89f5.jpg",
-      "confirmationCode": null,
-      "routes": [
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2333СА",
-          "selectedDateTime": "2024-01-19T07:51:00.000Z",
-          "departureCity": "Sofia",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Plovdiv",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705564321642
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2333АВ",
-          "selectedDateTime": "2024-01-20T08:02:00.000Z",
-          "departureCity": "Sofia",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Plovdiv",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705564979146
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            3
-          ],
-          "registrationNumber": "С5566АА",
-          "selectedDateTime": "2024-01-19T08:04:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705565109806
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2333АС",
-          "selectedDateTime": "2024-01-18T08:08:00.000Z",
-          "departureCity": "Sofia",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Plovdiv",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705565267171
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "СВ2333АС",
-          "selectedDateTime": "2024-01-18T08:31:15.303Z",
-          "departureCity": "Sofia",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Plovdiv",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705566688153
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "СВ2333АС",
-          "selectedDateTime": "2024-01-20T08:31:00.000Z",
-          "departureCity": "Sofia",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Plovdiv",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705566705523
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4,
-            5
-          ],
-          "registrationNumber": "СВ2332АС",
-          "selectedDateTime": "2024-01-19T08:42:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567364635
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4,
-            5
-          ],
-          "registrationNumber": "СВ2332АС",
-          "selectedDateTime": "2024-01-18T08:43:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567380164
-        },
-        {
-          "selectedVehicle": "Motorcycle",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С5565АС",
-          "selectedDateTime": "2024-01-19T08:44:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567460454
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2222АЯ",
-          "selectedDateTime": "2024-01-18T08:45:57.906Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567572503
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2222АЯ",
-          "selectedDateTime": "2024-01-19T08:45:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567592933
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2222АЯ",
-          "selectedDateTime": "2024-01-18T08:48:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567640855
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2222АЯ",
-          "selectedDateTime": "2024-01-18T08:48:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567727838
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2222АЯ",
-          "selectedDateTime": "2024-01-20T08:48:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705567754650
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2332АА",
-          "selectedDateTime": "2024-01-19T08:53:00.000Z",
-          "departureCity": "Targovishte",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Sofia",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705568027947
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4
-          ],
-          "registrationNumber": "С2233ДС",
-          "selectedDateTime": "2024-01-19T08:54:00.000Z",
-          "departureCity": "Sofia",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Plovdiv",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705568095430
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4,
-            5
-          ],
-          "registrationNumber": "С2332ГФ",
-          "selectedDateTime": "2024-01-19T09:01:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Gabrovo",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705568511036
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4,
-            5
-          ],
-          "registrationNumber": "С2332ГФ",
-          "selectedDateTime": "2024-01-18T09:03:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Gabrovo",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705568576987
-        },
-        {
-          "selectedVehicle": "Car",
-          "markedSeats": [
-            4,
-            5
-          ],
-          "registrationNumber": "С2332ГФ",
-          "selectedDateTime": "2024-01-18T09:05:00.000Z",
-          "departureCity": "Plovdiv",
-          "departureStreet": "1",
-          "departureNumber": "1",
-          "arrivalCity": "Gabrovo",
-          "arrivalStreet": "1",
-          "arrivalNumber": "1",
-          "id": 1705568617050
-        }
-      ]
-    },
-    {
       "id": 1709136065698,
       "username": "Shushy",
       "email": "malkotohuski@gmail.com",
@@ -326,16 +24,29 @@
       "freinds": []
     },
     {
-      "id": 1730206053612,
-      "username": "Fff",
-      "email": "dasadsds@gmail.com",
+      "id": 1730388600772,
+      "username": "gasdf",
+      "email": "devmasterstech@gmail.com",
       "password": "123",
-      "fName": "Rrf",
-      "lName": "sdaasd",
+      "fName": "asdasdads",
+      "lName": "asdasdasd",
       "userImage": "",
-      "confirmationCode": 737396,
+      "confirmationCode": null,
       "routes": [],
       "freinds": []
+    },
+    {
+      "id": 1730390004025,
+      "username": "asdadsads",
+      "email": "qwerty@gmail.com",
+      "password": "123",
+      "fName": "asdasdasd",
+      "lName": "adsadsasd",
+      "userImage": "",
+      "confirmationCode": 510908,
+      "isActive": false,
+      "routes": [],
+      "friends": []
     }
   ],
   "routes": [
@@ -463,65 +174,6 @@
     {
       "selectedVehicle": "Car",
       "markedSeats": [
-        4
-      ],
-      "registrationNumber": "С1221АА",
-      "selectedDateTime": "2024-01-26T11:54:00.000Z",
-      "departureCity": "Plovdiv",
-      "departureStreet": "11",
-      "departureNumber": "1",
-      "arrivalCity": "Gabrovo",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "id": 1706266688840
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        3
-      ],
-      "registrationNumber": "А3332СА",
-      "selectedDateTime": "2024-01-27T12:13:00.000Z",
-      "departureCity": "Sofia",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Krichim",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1706271231965
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "С2156АА",
-      "selectedDateTime": "2024-01-27T13:58:00.000Z",
-      "departureCity": "Targovishte",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Gabrovo",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1706277544068
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
         3
       ],
       "registrationNumber": "С2121АА",
@@ -581,146 +233,6 @@
       "userLname": "sdaa",
       "userEmail": "shushkata7@gmail.com",
       "id": 1706536590696
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        5
-      ],
-      "registrationNumber": "А2465ДВ",
-      "selectedDateTime": "2024-01-29T16:25:00.000Z",
-      "departureCity": "Plovdiv",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Gabrovo",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1706538338002
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "А2455СА",
-      "selectedDateTime": "2024-02-21T09:55:02.504Z",
-      "departureCity": "Sofia",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Plovdiv",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1708509327539
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "А2455СА",
-      "selectedDateTime": "2024-02-24T09:55:00.000Z",
-      "departureCity": "Gabrovo",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Kardzhali",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1708509528575
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "А2455СА",
-      "selectedDateTime": "2024-02-24T09:55:00.000Z",
-      "departureCity": "Kostandovo",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Nikolaevo",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1708509704674
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "С2233АА",
-      "selectedDateTime": "2024-02-25T10:12:00.000Z",
-      "departureCity": "Sofia",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Panagyurishte",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1708510366071
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "С2233АА",
-      "selectedDateTime": "2024-02-25T10:12:00.000Z",
-      "departureCity": "Brestovitsa",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Plovdiv",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1708510728824
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        4
-      ],
-      "registrationNumber": "С2233АА",
-      "selectedDateTime": "2024-02-25T10:12:00.000Z",
-      "departureCity": "Sofia",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Varna",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1708511207411
     },
     {
       "selectedVehicle": "Лек автомобил",
@@ -1584,26 +1096,6 @@
       "markedSeats": [
         3
       ],
-      "registrationNumber": "A1111AA",
-      "selectedDateTime": "2024-04-12T08:03:00.000Z",
-      "departureCity": "Sofia",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Aleksandrovo",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1712822668970
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        3
-      ],
       "registrationNumber": "СВ2211АА",
       "selectedDateTime": "2024-04-19T20:23:00.000Z",
       "departureCity": "Sofia",
@@ -2207,23 +1699,6 @@
       "userEmail": "shushkata7@gmail.com",
       "id": 1714571951035,
       "userRouteId": "completed"
-    },
-    {
-      "route": {
-        "username": "Shushkata7@gmail.com",
-        "userFname": "Velichka",
-        "userLname": "Spasova",
-        "userEmail": "shushkata7@gmail.com",
-        "userID": 1711358014466,
-        "userRouteId": 1711358014466,
-        "departureCity": "Plovdiv",
-        "arrivalCity": "Stara Zagora",
-        "routeId": 1714571951035,
-        "dataTime": "2024-05-04T13:32:00.000Z",
-        "id": 1714571958418
-      },
-      "userId": "{userId}",
-      "id": 1714571951036
     },
     {
       "selectedVehicle": "Motorcycle",
@@ -3246,66 +2721,6 @@
     {
       "selectedVehicle": "Car",
       "markedSeats": [
-        3
-      ],
-      "registrationNumber": "A2111AA",
-      "selectedDateTime": "2024-07-11T16:38:00.000Z",
-      "departureCity": "Burgas",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Sofia",
-      "arrivalStreet": "1",
-      "arrivalNumber": "1",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1720111140319
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        3
-      ],
-      "registrationNumber": "С2111АА",
-      "selectedDateTime": "2024-07-30T13:28:00.000Z",
-      "departureCity": "Burgas",
-      "departureStreet": "11",
-      "departureNumber": "111",
-      "arrivalCity": "Asenovgrad",
-      "arrivalStreet": "1",
-      "arrivalNumber": "11111",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1722173379953
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
-        3
-      ],
-      "registrationNumber": "С2156ДЕ",
-      "selectedDateTime": "2024-07-30T13:00:00.000Z",
-      "departureCity": "Stara Zagora",
-      "departureStreet": "1",
-      "departureNumber": "1",
-      "arrivalCity": "Sofia",
-      "arrivalStreet": "1",
-      "arrivalNumber": "122",
-      "userId": 1705513295033,
-      "username": "dani ",
-      "userFname": "vili",
-      "userLname": "aria",
-      "userEmail": "devmasterstech@gmail.com",
-      "id": 1722258047750
-    },
-    {
-      "selectedVehicle": "Car",
-      "markedSeats": [
         5
       ],
       "registrationNumber": "A2121AA",
@@ -3559,19 +2974,6 @@
       "routeId": 1712242301693,
       "dataTime": "2024-04-07T14:51:00.000Z",
       "id": 1712243612668
-    },
-    {
-      "username": "Shushkata7@gmail.com",
-      "userFname": "Velichka",
-      "userLname": "Spasova",
-      "userEmail": "shushkata7@gmail.com",
-      "userID": 1711358014466,
-      "userRouteId": 1705513295033,
-      "departureCity": "Sofia",
-      "arrivalCity": "Aleksandrovo",
-      "routeId": 1712822668970,
-      "dataTime": "2024-04-12T08:03:00.000Z",
-      "id": 1712822720909
     },
     {
       "username": "dani ",

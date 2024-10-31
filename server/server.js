@@ -54,8 +54,9 @@ server.post('/register', (req, res) => {
         lName,
         userImage,
         confirmationCode,
+        isActive: false, // ново поле за статус
         routes: [],
-        freinds: []
+        friends: []
     };
 
     router.db.get('users').push(user).write();
@@ -147,24 +148,17 @@ server.post('/approve-friend-request', (req, res) => {
 // Verification endpoint
 server.post('/verify-confirmation-code', (req, res) => {
     const { email, confirmationCode } = req.body;
-    console.log('Verification Request:', { email, confirmationCode });
 
-    // Retrieve the user by email
-    const user = router.db.get('users').find({ email }).value();
-    console.log('User:', user);
+    const user = router.db.get('users').find({ email, confirmationCode }).value();
 
-    const providedCode = parseInt(confirmationCode);
+    if (user) {
+        // Обнови статус на потребителя на активен
+        router.db.get('users').find({ email }).assign({ isActive: true }).write();
 
-    if (!user || !user.confirmationCode || user.confirmationCode !== providedCode) {
-        console.error('Invalid confirmation code');
+        return res.status(200).json({ message: 'Confirmation code verified successfully.' });
+    } else {
         return res.status(400).json({ error: 'Invalid confirmation code.' });
     }
-
-    // Clear the confirmation code after successful verification
-    router.db.get('users').find({ email }).assign({ confirmationCode: null }).write();
-    console.log('Verification successful');
-
-    return res.status(200).json({ message: 'Confirmation code verified.' });
 });
 
 // New endpoint to send a request to the "imala" server
@@ -266,14 +260,21 @@ server.get('/get-requests', (req, res) => {
 server.post('/login', (req, res) => {
     const { useremail, userpassword } = req.body;
 
-    // Find the user by email and password (you might want to hash passwords in a real scenario)
+    // Намираме потребителя по email и password (препоръчително е паролите да бъдат хеширани)
     const user = router.db.get('users').find({ email: useremail, password: userpassword }).value();
     console.log('sss', user);
+
     if (user) {
-        // Successful login
+        // Проверка дали потребителят е потвърден
+        if (user.confirmationCode) {
+            // Ако confirmationCode не е null, отказва достъп
+            return res.status(403).json({ error: 'Account not confirmed. Please verify your account first.' });
+        }
+
+        // Успешен логин
         return res.status(200).json({ user });
     } else {
-        // Login failed
+        // Грешка при логин
         return res.status(401).json({ error: 'Invalid email or password' });
     }
 });
