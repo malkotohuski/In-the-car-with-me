@@ -24,27 +24,15 @@
       "freinds": []
     },
     {
-      "id": 1730388600772,
-      "username": "gasdf",
+      "id": 1730713699917,
+      "username": "sdds",
       "email": "devmasterstech@gmail.com",
       "password": "123",
-      "fName": "asdasdads",
-      "lName": "asdasdasd",
+      "fName": "asdasd",
+      "lName": "sdsd",
       "userImage": "",
       "confirmationCode": null,
-      "routes": [],
-      "freinds": []
-    },
-    {
-      "id": 1730390004025,
-      "username": "asdadsads",
-      "email": "qwerty@gmail.com",
-      "password": "123",
-      "fName": "asdasdasd",
-      "lName": "adsadsasd",
-      "userImage": "",
-      "confirmationCode": 510908,
-      "isActive": false,
+      "isActive": true,
       "routes": [],
       "friends": []
     }
