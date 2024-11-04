@@ -149,11 +149,18 @@ server.post('/approve-friend-request', (req, res) => {
 server.post('/verify-confirmation-code', (req, res) => {
     const { email, confirmationCode } = req.body;
 
-    const user = router.db.get('users').find({ email, confirmationCode }).value();
+    // Намери потребителя по имейл
+    const user = router.db.get('users').find({ email }).value();
 
-    if (user) {
+    if (!user) {
+        // Потребителят не е намерен
+        return res.status(404).json({ error: 'User not found.' });
+    }
+
+    // Провери дали съвпада confirmationCode
+    if (user.confirmationCode === parseInt(confirmationCode, 10)) {
         // Обнови статус на потребителя на активен
-        router.db.get('users').find({ email }).assign({ isActive: true }).write();
+        router.db.get('users').find({ email }).assign({ isActive: true, confirmationCode: null }).write();
 
         return res.status(200).json({ message: 'Confirmation code verified successfully.' });
     } else {
