@@ -2881,6 +2881,26 @@
       "arrivalStreet": "123",
       "arrivalNumber": "1",
       "id": 1728323402728
+    },
+    {
+      "selectedVehicle": "Car",
+      "markedSeats": [
+        4
+      ],
+      "registrationNumber": "С2121АА",
+      "selectedDateTime": "2024-11-08T10:45:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Ruse",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1730713699917,
+      "username": "sdds",
+      "userFname": "asdasd",
+      "userLname": "sdsd",
+      "userEmail": "devmasterstech@gmail.com",
+      "id": 1730890350954
     }
   ],
   "requests": [

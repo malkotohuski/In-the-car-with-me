@@ -132,7 +132,7 @@ function RouteDetails({ route }) {
                 <Text style={styles.buttonText}>{t('Trip request')}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackToViewRoute}>
+            <TouchableOpacity style={styles.buttonBack} onPress={handlerBackToViewRoute}>
                 <Text style={styles.buttonText}>{t('Back')}</Text>
             </TouchableOpacity>
         </View>
@@ -166,6 +166,17 @@ const styles = StyleSheet.create({
         marginTop: 10,
         padding: 15,
         backgroundColor: '#27ae60',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: 18,
+        fontWeight: 'bold',
+        width: '90%',
+        borderRadius: 10,
+    },
+    buttonBack: {
+        marginTop: 10,
+        padding: 15,
+        backgroundColor: '#AE2727FF',
         alignItems: 'center',
         justifyContent: 'center',
         fontSize: 18,
