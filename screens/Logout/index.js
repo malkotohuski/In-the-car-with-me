@@ -31,22 +31,25 @@ const LogoutScreen = ({ navigation }) => {
             >
                 <Text
                     style={styles.mainText}
-                >{t('Are you sure you want to logout?')}</Text>
-                <TouchableOpacity
-                    style={styles.submitButton}
-                    onPress={handleLogout}>
-                    <Text
-                        style={styles.sumbitTextYes}
-                    >{t('Yes')}</Text>
-                </TouchableOpacity>
-                <View style={styles.submitPadding}></View>
-                <TouchableOpacity
-                    style={styles.submitButton}
-                    onPress={handleHome}>
-                    <Text
-                        style={styles.sumbitTextYes}
-                    >{t('No')}</Text>
-                </TouchableOpacity>
+                >{t('Are you sure you want to logout?')}
+                </Text>
+                <View style={styles.containerYesNo}>
+                    <TouchableOpacity
+                        style={styles.submitButtonYes}
+                        onPress={handleLogout}>
+                        <Text
+                            style={styles.sumbitTextYes}
+                        >{t('Yes')}</Text>
+                    </TouchableOpacity>
+                    <View style={styles.submitPadding}></View>
+                    <TouchableOpacity
+                        style={styles.submitButtonNo}
+                        onPress={handleHome}>
+                        <Text
+                            style={styles.sumbitTextYes}
+                        >{t('No')}</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     );
@@ -64,6 +67,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         padding: 16,
     },
+    containerYesNo: {
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+        padding: 10,
+
+    },
     backgroundImage: {
         flex: 1,
         width: '100%',
@@ -77,11 +86,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 20
     },
-    submitButton: {
-        padding: 10,
+    submitButtonYes: {
+        padding: 20,
         alignItems: 'center',
         borderRadius: 50,
         borderWidth: 2,
+        margin: 10,
+        backgroundColor: '#27ae60',
+    },
+    submitButtonNo: {
+        padding: 20,
+        alignItems: 'center',
+        borderRadius: 50,
+        borderWidth: 2,
+        margin: 10,
+        backgroundColor: '#AE2727FF',
     },
     sumbitTextYes: {
         color: 'black',
