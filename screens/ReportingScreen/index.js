@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
-import { View, TextInput, Button, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView } from 'react-native';
+import { View, TextInput, Button, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from '../Authentication/AuthContext';
@@ -98,68 +98,62 @@ const ReportingScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-            <Image
-                source={require('../../images/road-wallpapers-reporting.jpg')}
-                style={{
-                    flex: 1,
-                    width: '100%',
-                    height: '100%',
-                    resizeMode: 'cover',
-                    position: 'absolute',
-                }}
-            />
-            <View style={{ flex: 1, justifyContent: 'flex-start', }}>
-                <View style={styles.header}  >
-                    <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
-                        {t('Reporting')}
-                    </Text>
-                    <View style={{ width: 60 }} />
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                        <Icons name="keyboard-backspace" size={24} color="white" />
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={t("Describe the problem")}
-                        placeholderTextColor={'#F1F1F1'}
-                        multiline
-                        value={problemDescription}
-                        onChangeText={(text) => setProblemDescription(text)}
-                    />
-                    <TextInput
-                        style={[styles.inputVehicle, !isValidVehicleNumber && styles.invalidInput]}
-                        placeholder={t("Enter the vehicle number")}
-                        placeholderTextColor={'#F1F1F1'}
-                        value={vehicleNumber}
-                        onChangeText={validateVehicleNumber}
-                    />
-                    <TouchableOpacity onPress={chooseImage} style={styles.imagePicker}>
-                        <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
-                            {t('Choose Photo or Video')}
-                        </Text>
-                    </TouchableOpacity>
-                    {profilePicture &&
-                        <View style={styles.show_image}>
-                            <Image source={{ uri: profilePicture }} style={styles.attachmentPreview} />
-                        </View>
-                    }
-                </View>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+                <Image
+                    source={require('../../images/road-wallpapers-reporting.jpg')}
+                    style={styles.backgroundImage}
+                />
+                <View style={{ flex: 1, justifyContent: 'flex-start', }}>
+                    <View style={styles.header}  >
+                        <Text style={styles.headerText}>{t('Reporting')}</Text>
+                        <View style={{ width: 60 }} />
+                        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                            <Icons name="keyboard-backspace" size={24} color="white" />
+                        </TouchableOpacity>
+                    </View>
+                    <View style={{ flex: 1 }}>
+                        <TextInput
+                            style={styles.input}
+                            placeholder={t("Describe the problem")}
+                            placeholderTextColor={'#F1F1F1'}
+                            multiline
+                            value={problemDescription}
+                            onChangeText={(text) => setProblemDescription(text)}
+                        />
+                        <TextInput
+                            style={[styles.inputVehicle, !isValidVehicleNumber && styles.invalidInput]}
+                            placeholder={t("Enter the vehicle number")}
+                            placeholderTextColor={'#F1F1F1'}
+                            value={vehicleNumber}
+                            onChangeText={validateVehicleNumber}
+                        />
+                        <TouchableOpacity onPress={chooseImage} style={styles.imagePicker}>
+                            <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
+                                {t('Choose Photo or Video')}
+                            </Text>
+                        </TouchableOpacity>
+                        {profilePicture &&
+                            <View style={styles.show_image}>
+                                <Image source={{ uri: profilePicture }} style={styles.attachmentPreview} />
+                            </View>
+                        }
+                    </View>
 
-                <View style={styles.footer_container}>
-                    <TouchableOpacity
-                        onPress={sendReport}
-                        style={styles.send_button}
-                    >
-                        <Text
-                            style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
+                    <View style={styles.footer_container}>
+                        <TouchableOpacity
+                            onPress={sendReport}
+                            style={styles.send_button}
                         >
-                            {t("Send the Signal")}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+                            <Text
+                                style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
+                            >
+                                {t("Send the Signal")}
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
 
-            </View>
+                </View>
+            </ScrollView>
         </SafeAreaView >
     );
 };
@@ -167,6 +161,13 @@ const ReportingScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
     },
     header: {
         flexDirection: 'row',
@@ -176,23 +177,26 @@ const styles = StyleSheet.create({
         padding: 16,
         backgroundColor: '#f4511e',
     },
+    headerText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
     input: {
         height: 120,
-        borderColor: 'gray',
+        borderColor: 'white',
         borderWidth: 2,
         marginBottom: 16,
         padding: 8,
-        borderColor: 'white',
         fontSize: 20,
         fontWeight: 'bold',
     },
     inputVehicle: {
         height: 40,
-        borderColor: 'gray',
+        borderColor: 'white',
         borderWidth: 2,
         marginBottom: 16,
         padding: 8,
-        borderColor: 'white',
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -212,11 +216,9 @@ const styles = StyleSheet.create({
         borderColor: '#f1f1f1',
         borderWidth: 2,
     },
-    show_image: {
-
-    },
+    show_image: {},
     invalidInput: {
-        borderColor: 'red', // Customize the style for invalid input
+        borderColor: 'red',
     },
     send_button: {
         backgroundColor: '#f4511e',
@@ -232,7 +234,13 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
         padding: 10,
         marginTop: 'auto',
-    }
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
 });
+
 
 export default ReportingScreen;
