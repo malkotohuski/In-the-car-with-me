@@ -17,7 +17,7 @@ const { width, height } = Dimensions.get('window'); // За адаптивнос
 const AccountManager = ({ navigation }) => {
     const { user } = useAuth();
     const { profilePicture } = useAuth();
-    const defaultProfilePicture = user?.user?.userImage;
+    const defaultProfilePicture = require('../../images/emptyUserImage.png')
     const { t } = useTranslation();
 
     const handlerCommendSection = () => navigation.navigate('Comments');
@@ -35,7 +35,7 @@ const AccountManager = ({ navigation }) => {
 
             <View style={styles.profilePictureContainer}>
                 <Image
-                    source={{ uri: profilePicture || defaultProfilePicture }}
+                    source={profilePicture ? { uri: profilePicture } : defaultProfilePicture}
                     style={styles.profilePicture}
                 />
             </View>
