@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ActivityIndicator, SafeAreaView, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
@@ -24,7 +24,6 @@ function Confirm() {
     }
 
     const selectedVehicle = route.params.selectedVehicle;
-    const markedSeats = route.params.markedSeats;
     const registrationNumber = route.params.registrationNumber;
     const departureCity = route.params.departureCity;
     const departureStreet = route.params.departureStreet;
@@ -55,7 +54,6 @@ function Confirm() {
     const handleConfirm = async () => {
         const newRoute = {
             selectedVehicle,
-            markedSeats,
             registrationNumber,
             selectedDateTime,
             departureCity,
@@ -110,66 +108,65 @@ function Confirm() {
         navigation.navigate('View routes');
     };
 
-    const handlerRouteRequest = () => {
-        navigation.navigate('RouteDetails', { markedSeats });
-    };
-
     return (
-        <View style={styles.container}>
-            <Image
-                source={require('../../images/d8.png')}
-                style={styles.backgroundImage}
-            />
-            <Text style={styles.headerText}>{t('Review')}:</Text>
-            <Text style={styles.text}>{t('Username')}: {username}</Text>
-            <Text style={styles.text}>{t('Names')}: {userFname} {userLname}</Text>
-            <Text style={styles.text}>{registrationNumber} - {t('Free seats')}: {markedSeats.length}</Text>
-            <Text style={styles.text}>{t('Time and date of departure')}: {String(selectedDateTime.toLocaleString())}</Text>
+        <SafeAreaView style={styles.mainContainer}>
+            <ScrollView contentContainerStyle={styles.scrollContent}>
+                <View style={styles.container}>
+                    <Image
+                        source={require('../../images/d8.png')}
+                        style={styles.backgroundImage}
+                    />
+                    <Text style={styles.headerText}>{t('Review')}:</Text>
+                    <Text style={styles.text}>{t('Username')}: {username}</Text>
+                    <Text style={styles.text}>{t('Names')}: {userFname} {userLname}</Text>
+                    <Text style={styles.text}>{t('Time and date of departure')}: {String(selectedDateTime.toLocaleString())}</Text>
 
-            {/* Departure Section */}
-            <View style={styles.sectionContainer}>
-                <Text style={styles.sectionHeaderText}>{t('Departure')}:</Text>
-                <Text style={styles.text}>{t('Town/Village')}: {departureCity}</Text>
-                <Text style={styles.text}>{t('Street')}: {departureStreet} {departureNumber}</Text>
-            </View>
+                    {/* Departure Section */}
+                    <View style={styles.sectionContainer}>
+                        <Text style={styles.sectionHeaderText}>{t('Departure')}:</Text>
+                        <Text style={styles.text}>{t('Town/Village')}: {departureCity}</Text>
+                        <Text style={styles.text}>{t('Street')}: {departureStreet} {departureNumber}</Text>
+                    </View>
 
-            {/* Arrival Section */}
-            <View style={styles.sectionContainer}>
-                <Text style={styles.sectionHeaderText}>{t('Arrival')}:</Text>
-                <Text style={styles.text}>{t('Town/Village')}: {arrivalCity}</Text>
-                <Text style={styles.text}>{t('Street')}: {arrivalStreet} {arrivalNumber}</Text>
-            </View>
+                    {/* Arrival Section */}
+                    <View style={styles.sectionContainer}>
+                        <Text style={styles.sectionHeaderText}>{t('Arrival')}:</Text>
+                        <Text style={styles.text}>{t('Town/Village')}: {arrivalCity}</Text>
+                        <Text style={styles.text}>{t('Street')}: {arrivalStreet} {arrivalNumber}</Text>
+                    </View>
 
-            {showChangesButton && (
-                <TouchableOpacity style={styles.button} onPress={handleGoBack}>
-                    <Text style={styles.buttonText}>{t('Make changes')}</Text>
-                </TouchableOpacity>
-            )}
-            {showConfirmButton && (
-                <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
-                    <Text style={styles.buttonText}>{t('Confirm')}</Text>
-                </TouchableOpacity>
-            )}
-            {showBackButton && (
-                <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackRoutes}>
-                    <Text style={styles.buttonText}>{t('Back')}</Text>
-                </TouchableOpacity>
-            )}
-            {routeRequestButton && (
-                <TouchableOpacity style={styles.buttonConfirm} onPress={handlerRouteRequest}>
-                    <Text style={styles.buttonText}>{t('Route request')}</Text>
-                </TouchableOpacity>
-            )}
-
-            {/* Success message */}
-            {successMessage && (
-                <Text style={styles.successMessage}>{successMessage}</Text>
-            )}
-        </View>
+                    {showChangesButton && (
+                        <TouchableOpacity style={styles.button} onPress={handleGoBack}>
+                            <Text style={styles.buttonText}>{t('Make changes')}</Text>
+                        </TouchableOpacity>
+                    )}
+                    {showConfirmButton && (
+                        <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
+                            <Text style={styles.buttonText}>{t('Confirm')}</Text>
+                        </TouchableOpacity>
+                    )}
+                    {showBackButton && (
+                        <TouchableOpacity style={styles.buttonConfirm} onPress={handlerBackRoutes}>
+                            <Text style={styles.buttonText}>{t('Back')}</Text>
+                        </TouchableOpacity>
+                    )}
+                    {/* Success message */}
+                    {successMessage && (
+                        <Text style={styles.successMessage}>{successMessage}</Text>
+                    )}
+                </View>
+            </ScrollView>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    mainContainer: {
+        flex: 1
+    },
+    scrollContent: {
+        flexGrow: 1
+    },
     container: {
         flex: 1,
         justifyContent: 'flex-start',

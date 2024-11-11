@@ -18,14 +18,12 @@ const ReportingScreen = ({ navigation }) => {
     const userName = user?.user?.username;
     const userId = user?.user?.id;
 
-
     const validateVehicleNumber = (text) => {
         const regex = /^([A-ZА-Я]{1,2})([0-9]{4})([A-ZА-Я]{2})$/;
         const isValid = regex.test(text);
         setValidVehicleNumber(isValid);
         setVehicleNumber(text);
     };
-
     const chooseImage = async () => {
         try {
             const image = await ImagePicker.openPicker({
@@ -42,8 +40,6 @@ const ReportingScreen = ({ navigation }) => {
             console.warn('Image picker error:', error);
         }
     };
-
-
     const sendReport = async () => {
         try {
             const serverEndpoint = 'http://10.0.2.2:3000/send-request-to-email';
@@ -52,14 +48,12 @@ const ReportingScreen = ({ navigation }) => {
                 vehicleNumber,
                 profilePicture,
             };
-
             const emailBody = `
                 ${t('Problem Description')}: ${reportData.problemDescription}
                 ${t('Vehicle Number')}: ${reportData.vehicleNumber}
                 ${t('User email:')}: ${userEmail || 'N/A'} ${t('Username:')}: ${userName} with ID : ${userId}
                 ${profilePicture ? '' : t('Please choose a photo or video')}
             `;
-
             const options = {
                 subject: t('Reporting Issue'),
                 body: emailBody,
@@ -72,7 +66,6 @@ const ReportingScreen = ({ navigation }) => {
                     }
                     : null,
             };
-
             // fetch за изпращане на заявка към сървъра
             const response = await fetch(serverEndpoint, {
                 method: 'POST',
@@ -95,7 +88,6 @@ const ReportingScreen = ({ navigation }) => {
             console.error('Error sending report:', error);
         }
     };
-
     return (
         <SafeAreaView style={styles.mainContainer}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -138,7 +130,6 @@ const ReportingScreen = ({ navigation }) => {
                             </View>
                         }
                     </View>
-
                     <View style={styles.footer_container}>
                         <TouchableOpacity
                             onPress={sendReport}
@@ -151,7 +142,6 @@ const ReportingScreen = ({ navigation }) => {
                             </Text>
                         </TouchableOpacity>
                     </View>
-
                 </View>
             </ScrollView>
         </SafeAreaView >

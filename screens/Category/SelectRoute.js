@@ -9,7 +9,7 @@ import CitySelector from '../../server/Cities/cities';
 
 function SelectRouteScreen({ route, navigation }) {
     const { t } = useTranslation();
-    const { selectedVehicle, markedSeats, registrationNumber } = route.params;
+    const { selectedVehicle, registrationNumber } = route.params;
 
     const cities = CitySelector();
     const [filteredCities, setFilteredCities] = useState(cities.slice(0, 7)); // Load the first 7 cities initially
@@ -100,7 +100,6 @@ function SelectRouteScreen({ route, navigation }) {
         // If all validations pass, proceed to the next screen
         console.log(
             selectedVehicle,
-            markedSeats,
             registrationNumber,
             selectedDateTime,
             departureCity,
@@ -116,7 +115,6 @@ function SelectRouteScreen({ route, navigation }) {
             const formattedDateTime = selectedDateTime.toISOString();
             navigation.navigate('Confirm', {
                 selectedVehicle,
-                markedSeats,
                 registrationNumber,
                 selectedDateTime: formattedDateTime,
                 departureCity,
