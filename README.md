@@ -3,11 +3,10 @@
 
 ## Technologies Used
 
-- HTML/CSS
-- JavaScript
 - React Native
 - Node JS
-
+- i18next
+  
 <h2 align="center"> Screenshots </h2> 
 
 <div align="center">
