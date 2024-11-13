@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Image, ActivityIndicator, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Image, SafeAreaView, ScrollView, Animated } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import styles from '../Home/styles';
 import i18next from 'i18next';
-import { useAuth } from '../Authentication/AuthContext'; // Коментирай това, ако не се използва
+import { useAuth } from '../Authentication/AuthContext';
 
 const API_BASE_URL = 'http://10.0.2.2:3000';
 
@@ -13,8 +13,9 @@ export default function Login({ navigation, route }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { t } = useTranslation();
-    const { login } = useAuth(); // Закоментирай, ако вече не използваш
+    const { login } = useAuth();
     const [isLoading, setIsLoading] = useState(true);
+    const opacity = useState(new Animated.Value(0))[0];
 
     const [isBulgaria, setisBulgaria] = useState(false);
 
@@ -24,16 +25,23 @@ export default function Login({ navigation, route }) {
     };
 
     useEffect(() => {
-        // Изчакайте 3 секунди преди да смените isLoading на false
         const timer = setTimeout(() => {
             setIsLoading(false);
         }, 3000);
 
-        // Очистете таймера, за да избегнете изтичане на памет
+        const animateOpacity = () => {
+            Animated.loop(
+                Animated.sequence([
+                    Animated.timing(opacity, { toValue: 1, duration: 500, useNativeDriver: true }),
+                    Animated.timing(opacity, { toValue: 0, duration: 500, useNativeDriver: true }),
+                ])
+            ).start();
+        };
+        animateOpacity();
+
         return () => clearTimeout(timer);
     }, []);
 
-    // Закоментирай логиката за логване
     const handleLogin = async () => {
         try {
             setIsLoading(true);
@@ -56,27 +64,31 @@ export default function Login({ navigation, route }) {
         }
     };
 
-    // Добави нова функция, която да прескача логването
     const skipLogin = () => {
-        navigation.navigate('Home');
+        navigation.navigate('Home'); // да се премахне за тестване само !!!
     };
 
     return (
-        <SafeAreaView style={{ flex: 1, }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <View style={styles.container}>
                     {isLoading ? (
-                        <Image
-                            source={require('../../images/loading_image.png')}
-                            style={styles.backgroundImage}
-                        />
+                        <>
+                            <Image
+                                source={require('../../images/loading_image.png')}
+                                style={styles.backgroundImage}
+                            />
+                            <Animated.Text style={{ fontSize: 18, color: 'white', fontWeight: 'bold', position: 'absolute', top: '50%', alignSelf: 'center', opacity }}>
+                                {t('Loading...')}
+                            </Animated.Text>
+                        </>
                     ) : (
                         <>
                             <Image
                                 source={require('../../images/login-background.jpg')}
                                 style={styles.backgroundImage}
                             />
-                            <View >
+                            <View>
                                 <View style={styles.languageSwitchContainer}>
                                     <TouchableOpacity
                                         style={styles.languageButton}
@@ -86,13 +98,9 @@ export default function Login({ navigation, route }) {
                                             source={require('../../images/eng1-flag.png')}
                                             style={styles.flagImage}
                                         />
-                                        <Text
-                                            style={styles.languageText}
-                                        >{t('English')}</Text>
+                                        <Text style={styles.languageText}>{t('English')}</Text>
                                     </TouchableOpacity>
-                                    <View style={{ margin: 60 }}>
-
-                                    </View>
+                                    <View style={{ margin: 60 }} />
                                     <TouchableOpacity
                                         style={styles.languageButton}
                                         onPress={() => changeLanguage('bg')}
@@ -101,13 +109,10 @@ export default function Login({ navigation, route }) {
                                             source={require('../../images/bulg-flag.png')}
                                             style={styles.flagImage}
                                         />
-                                        <Text
-                                            style={styles.languageText}
-                                        >{t('Bulgarian')}</Text>
+                                        <Text style={styles.languageText}>{t('Bulgarian')}</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                            {/* Променяме onPress на новата функция skipLogin */}
                             <TouchableOpacity onPress={skipLogin}>
                                 <Text style={styles.title}>{t('Login')}</Text>
                             </TouchableOpacity>
@@ -129,19 +134,16 @@ export default function Login({ navigation, route }) {
                             <View style={styles.buttonsContent}>
                                 <TouchableOpacity
                                     style={styles.loginButtons}
-                                    onPress={handleLogin} /* Използваме skipLogin вместо handleLogin */
+                                    onPress={handleLogin}
                                 >
-                                    <Text style={styles.textButtons}>
-                                        {t("Log in")}
-                                    </Text>
+                                    <Text style={styles.textButtons}>{t("Log in")}</Text>
                                 </TouchableOpacity>
                                 <View style={styles.buttonSeparator} />
                                 <TouchableOpacity
                                     style={styles.loginButtons}
-                                    onPress={() => navigation.navigate('Register')} >
-                                    <Text style={styles.textButtons}>
-                                        {t("Create your account")}
-                                    </Text>
+                                    onPress={() => navigation.navigate('Register')}
+                                >
+                                    <Text style={styles.textButtons}>{t("Create your account")}</Text>
                                 </TouchableOpacity>
                             </View>
                         </>
