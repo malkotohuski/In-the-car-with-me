@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, FlatList, SafeAreaView, StyleSheet, TouchableOpacity, Modal, Image } from 'react-native';
+import { View, Text, TextInput, FlatList, SafeAreaView, StyleSheet, TouchableOpacity, Modal, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import axios from 'axios';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTranslation } from 'react-i18next';
@@ -10,7 +10,7 @@ const API_BASE_URL = 'http://10.0.2.2:3000';
 const AddFriendScreen = ({ navigation }) => {
     const { user } = useAuth();
     const currentUserId = user?.user?.username;
-    const noImage = require('../../images/no_image.png'); // Използваме require за изображението
+    const noImage = require('../../images/no_image.png');
 
     const [users, setUsers] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -44,18 +44,14 @@ const AddFriendScreen = ({ navigation }) => {
         })
             .then(response => {
                 console.log('Friend request approved successfully:', response.data);
-                // Можете да добавите допълнителна логика за обновяване на интерфейса или друга функционалност тук
             })
             .catch(error => {
                 console.error('Error approving friend request:', error);
-                // Обработка на грешката при изпращане на заявката
             });
-        console.log(`Add Friend ${selectedUser.username}`);
-        console.log(`${currentUserId}`);
+        setModalVisible(false);
     };
 
     const handleIgnore = () => {
-        console.log(`Ignore ${selectedUser.username}`);
         setModalVisible(false);
     };
 
@@ -69,40 +65,44 @@ const AddFriendScreen = ({ navigation }) => {
                 source={require('../../images/d2.png')}
                 style={styles.backgroundImage}
             />
-            <View style={styles.header}>
-                <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
-                    {t("Find Friends")}
-                </Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
-                    <Icons name="keyboard-backspace" size={24} color="white" />
-                </TouchableOpacity>
-            </View>
-            <View style={styles.container}>
-                <TextInput
-                    style={styles.searchInput}
-                    placeholder="Search users..."
-                    value={searchTerm}
-                    onChangeText={text => setSearchTerm(text)}
-                />
-                <FlatList
-                    data={filteredUsers}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => handleUserPress(item)}>
-                            <View style={styles.userItem}>
-                                <Text style={styles.username}>{item.username}</Text>
-                            </View>
-                        </TouchableOpacity>
-                    )}
-                />
-            </View>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+                style={styles.keyboardAvoidingView}
+            >
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>
+                        {t("Find Friends")}
+                    </Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                        <Icons name="keyboard-backspace" size={24} color="white" />
+                    </TouchableOpacity>
+                </View>
+                <View style={styles.container}>
+                    <TextInput
+                        style={styles.searchInput}
+                        placeholder="Search users..."
+                        value={searchTerm}
+                        onChangeText={text => setSearchTerm(text)}
+                    />
+                    <FlatList
+                        data={filteredUsers}
+                        keyExtractor={item => item.id.toString()}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity onPress={() => handleUserPress(item)}>
+                                <View style={styles.userItem}>
+                                    <Text style={styles.username}>{item.username}</Text>
+                                </View>
+                            </TouchableOpacity>
+                        )}
+                        contentContainerStyle={styles.flatListContainer}
+                    />
+                </View>
+            </KeyboardAvoidingView>
             <Modal
                 animationType="slide"
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                }}>
+                onRequestClose={() => setModalVisible(!modalVisible)}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={styles.modalText}>{t("Username")}: {selectedUser?.username}</Text>
@@ -139,19 +139,24 @@ const styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
     },
+    keyboardAvoidingView: {
+        flex: 1,
+    },
     container: {
         flex: 1,
         padding: 20,
-        width: '100%',
-        height: '100%',
     },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'flex-start',
-        width: '100%',
+        alignItems: 'center',
         padding: 16,
         backgroundColor: '#f4511e',
+    },
+    headerText: {
+        color: 'white',
+        fontSize: 18,
+        fontWeight: 'bold',
     },
     searchInput: {
         borderWidth: 2,
@@ -163,11 +168,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     backgroundImage: {
-        flex: 1,
+        position: 'absolute',
         width: '100%',
         height: '100%',
         resizeMode: 'cover',
-        position: 'absolute',
     },
     userItem: {
         padding: 15,
@@ -187,7 +191,7 @@ const styles = StyleSheet.create({
     },
     modalView: {
         margin: 20,
-        backgroundColor: 'black',
+        backgroundColor: 'rgba(255, 255, 255, 0.6)',
         borderRadius: 20,
         padding: 25,
         alignItems: 'center',
@@ -199,7 +203,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 1,
         elevation: 3,
-        backgroundColor: 'rgba(255, 255, 255, 0.6)',
     },
     modalText: {
         color: '#010101',
@@ -207,15 +210,6 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         textAlign: 'center',
         fontSize: 18,
-    },
-    modalNameText: {
-        color: '#010101',
-        fontWeight: 'bold',
-        marginBottom: 15,
-        textAlign: 'center',
-        fontSize: 18,
-        borderBottomWidth: 1,
-        borderBottomColor: '#eee',
     },
     modalButton: {
         backgroundColor: '#f4511e',
@@ -245,13 +239,6 @@ const styles = StyleSheet.create({
         flex: 1,
         marginHorizontal: 5,
     },
-    imageNotFoundText: {
-        color: 'red',
-        marginBottom: 15,
-        textAlign: 'center',
-        fontSize: 18,
-    },
 });
-
 
 export default AddFriendScreen;
