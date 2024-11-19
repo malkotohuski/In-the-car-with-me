@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, Switch, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
+import { DarkModeContext } from '../Authentication/DarkModeContext';
 
 const SettingsScreen = () => {
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
     const [toggleValues, setToggleValues] = useState({});
-    const [darkMode, setDarkMode] = useState(false);
     const { t } = useTranslation();
 
     const SECTIONS = [
@@ -86,7 +87,7 @@ const SettingsScreen = () => {
         }));
 
         if (id === 'darkMode') {
-            setDarkMode(!toggleValues[id]);
+            toggleDarkMode();
         }
     };
 
