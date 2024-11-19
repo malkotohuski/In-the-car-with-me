@@ -125,7 +125,6 @@ function SelectRouteScreen({ route, navigation }) {
                 arrivalNumber,
             });
         } else {
-            // Може да решите какво да правите в този случай, например:
             console.error('selectedDateTime is null or undefined');
         };
     }
