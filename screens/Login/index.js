@@ -78,7 +78,7 @@ export default function Login({ navigation, route }) {
                                 source={require('../../images/loading_image.png')}
                                 style={styles.backgroundImage}
                             />
-                            <Animated.Text style={{ fontSize: 18, color: 'white', fontWeight: 'bold', position: 'absolute', top: '50%', alignSelf: 'center', opacity }}>
+                            <Animated.Text style={{ fontSize: 22, color: '#010101', fontWeight: 'bold', position: 'absolute', top: '50%', alignSelf: 'center', opacity }}>
                                 {t('Loading...')}
                             </Animated.Text>
                         </>
