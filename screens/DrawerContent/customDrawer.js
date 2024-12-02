@@ -187,25 +187,15 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         borderWidth: 2, // Премахване на границата
-        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+        backgroundColor: 'rgba(255, 255, 255, 0.4)',
         width: '100%',
         flexDirection: 'row',
         borderRadius: 15, // Закръглени ръбове
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 4 },
-        shadowOpacity: 0.3,
-        shadowRadius: 4,
-        elevation: 8, // Добавяне на сянка
-    },
-    textButtons: {
-        marginLeft: 10,
-        color: '#0721B6',
-        fontSize: 18, // По-малък текст за минималистичен вид
-        fontWeight: 'bold',
+
     },
     textButtons: {
         marginLeft: 10, // adjust as needed
-        color: '#FFFFFF', // text color
+        color: '#0F0F0FFF', // text color
         fontSize: 20, // text size
         fontWeight: 'bold', // text weight
     },
