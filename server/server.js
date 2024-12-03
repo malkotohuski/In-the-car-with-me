@@ -289,7 +289,7 @@ server.post('/login', (req, res) => {
 // Use default router
 server.use(router);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const host = '0.0.0.0';
 server.listen(port, host, () => {
     console.log(`JSON Server is running on http://${host}:${port}`);

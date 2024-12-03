@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
     SafeAreaView,
     Dimensions,
+    ScrollView
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
@@ -25,60 +26,64 @@ const AccountManager = ({ navigation }) => {
     const handlerHomeScreen = () => navigation.navigate('Home');
 
     return (
-        <SafeAreaView style={styles.container}>
-            <Image
-                source={require('../../images/user-background.jpg')}
-                style={styles.backgroundImage}
-            />
-            <View style={styles.overlay} />
-            {/* Profile Picture Section */}
-
-            <View style={styles.profilePictureContainer}>
+        <SafeAreaView style={{ flex: 1 }}>
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}  >
                 <Image
-                    source={profilePicture ? { uri: profilePicture } : defaultProfilePicture}
-                    style={styles.profilePicture}
+                    source={require('../../images/user-background.jpg')}
+                    style={styles.backgroundImage}
                 />
-            </View>
+                <View style={styles.mainContainer}>
+                    <View style={styles.overlay} />
+                    {/* Profile Picture Section */}
 
-            {/* User Info */}
-            <View style={styles.userInfoSection}>
-                <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('Username')}:</Text>
-                    <Text style={styles.infoText}>{user?.user?.username}</Text>
-                </View>
-                <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('Names')}:</Text>
-                    <Text style={styles.infoText}>{user?.user?.fName} {user?.user?.lName}</Text>
-                </View>
-                <View style={styles.infoRow}>
-                    <Text style={styles.infoLabel}>{t('Email')}:</Text>
-                    <Text style={styles.infoText}>{user?.user?.email}</Text>
-                </View>
-            </View>
+                    <View style={styles.profilePictureContainer}>
+                        <Image
+                            source={profilePicture ? { uri: profilePicture } : defaultProfilePicture}
+                            style={styles.profilePicture}
+                        />
+                    </View>
 
-            {/* Rating Section */}
-            <View style={styles.ratingSection}>
-                <Text style={styles.ratingTitle}>{t('Your rating')}</Text>
-                <View style={styles.ratingStars}>
-                    <Icons name="star" size={54} color="gold" />
-                    <Icons name="star" size={54} color="gold" />
-                    <Icons name="star" size={54} color="gold" />
-                    <Icons name="star-half" size={54} color="gold" />
-                </View>
-            </View>
+                    {/* User Info */}
+                    <View style={styles.userInfoSection}>
+                        <View style={styles.infoRow}>
+                            <Text style={styles.infoLabel}>{t('Username')}:</Text>
+                            <Text style={styles.infoText}>{user?.user?.username}</Text>
+                        </View>
+                        <View style={styles.infoRow}>
+                            <Text style={styles.infoLabel}>{t('Names')}:</Text>
+                            <Text style={styles.infoText}>{user?.user?.fName} {user?.user?.lName}</Text>
+                        </View>
+                        <View style={styles.infoRow}>
+                            <Text style={styles.infoLabel}>{t('Email')}:</Text>
+                            <Text style={styles.infoText}>{user?.user?.email}</Text>
+                        </View>
+                    </View>
 
-            {/* Buttons Section */}
-            <View style={styles.buttonsContainer}>
-                <TouchableOpacity style={styles.button} onPress={handlerCommendSection}>
-                    <Text style={styles.buttonText}>{t('Comments')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={handlerChangeAcountSettings}>
-                    <Text style={styles.buttonText}>{t('Change user settings')}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={handlerHomeScreen}>
-                    <Text style={styles.buttonText}>{t('Lets travel')}</Text>
-                </TouchableOpacity>
-            </View>
+                    {/* Rating Section */}
+                    <View style={styles.ratingSection}>
+                        <Text style={styles.ratingTitle}>{t('Your rating')}</Text>
+                        <View style={styles.ratingStars}>
+                            <Icons name="star" size={54} color="gold" />
+                            <Icons name="star" size={54} color="gold" />
+                            <Icons name="star" size={54} color="gold" />
+                            <Icons name="star-half" size={54} color="gold" />
+                        </View>
+                    </View>
+
+                    {/* Buttons Section */}
+                    <View style={styles.buttonsContainer}>
+                        <TouchableOpacity style={styles.button} onPress={handlerCommendSection}>
+                            <Text style={styles.buttonText}>{t('Comments')}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={handlerChangeAcountSettings}>
+                            <Text style={styles.buttonText}>{t('Change user settings')}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.button} onPress={handlerHomeScreen}>
+                            <Text style={styles.buttonText}>{t('Lets travel')}</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </ScrollView>
         </SafeAreaView>
     );
 };
@@ -89,6 +94,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'grey',
         alignItems: 'center',
         justifyContent: 'space-between', // Прави подравняване на секциите по вертикала
+    },
+    mainContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     backgroundImage: {
         position: 'absolute',
