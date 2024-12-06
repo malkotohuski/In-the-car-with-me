@@ -39,15 +39,23 @@ const AccountSettings = ({ navigation }) => {
     };
 
     const handleSaveChanges = async () => {
-        updateProfilePicture(profilePicture);
         try {
+            // Актуализиране на профилната снимка в контекста
+            updateProfilePicture(profilePicture);
+
+            // Изпращане на промените към сървъра
             await api.patch('/user-changes', {
                 userId: user.user.id,
                 userImage: profilePicture,
             });
-            navigation.navigate('AccountManager', { profilePicture });
+
+            // Навигация към екрана AccountManager
+            navigation.navigate('AccountManager');
         } catch (error) {
-            Alert.alert(t('Profile picture change error'), t('There was an error while changing the profile picture'));
+            Alert.alert(
+                t('Profile picture change error'),
+                t('There was an error while changing the profile picture')
+            );
         }
     };
 
