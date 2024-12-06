@@ -32,7 +32,7 @@ function RouteDetails({ route }) {
         try {
             // Check if requesterUsername is the same as the username of the requesting user
             if (requesterUsername === username) {
-                Alert.alert('Error', 'не става');
+                Alert.alert(t('Error'), t('This route was created by you, and you cannot request it!'));
                 return;
             }
 
@@ -135,6 +135,12 @@ function RouteDetails({ route }) {
             <TouchableOpacity style={styles.buttonBack} onPress={handlerBackToViewRoute}>
                 <Text style={styles.buttonText}>{t('Back')}</Text>
             </TouchableOpacity>
+
+            {requesterUsername === username && (
+                <Text style={styles.warningText}>
+                    {t('This route was created by you, and you cannot request it!')}
+                </Text>
+            )}
         </View>
     );
 }
@@ -195,6 +201,13 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         borderWidth: 1,
         borderRadius: 5,
+    },
+    warningText: {
+        marginTop: 10,
+        fontSize: 16,
+        color: 'red',
+        textAlign: 'center',
+        fontWeight: 'bold',
     },
 });
 
