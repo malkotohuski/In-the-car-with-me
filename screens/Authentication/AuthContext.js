@@ -50,7 +50,13 @@ const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const updateProfilePicture = (newPicture) => {
-        setProfilePicture(newPicture);
+        setUser((prevUser) => ({
+            ...prevUser,
+            user: {
+                ...prevUser.user,
+                userImage: newPicture,
+            },
+        }));
     };
 
     const login = (user) => {

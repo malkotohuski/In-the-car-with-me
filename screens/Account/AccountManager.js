@@ -38,7 +38,11 @@ const AccountManager = ({ navigation }) => {
 
                     <View style={styles.profilePictureContainer}>
                         <Image
-                            source={profilePicture ? { uri: profilePicture } : defaultProfilePicture}
+                            source={
+                                user?.user?.userImage
+                                    ? { uri: user.user.userImage } // Използва снимката от userImage, ако съществува
+                                    : defaultProfilePicture // В противен случай, използва снимката по подразбиране
+                            }
                             style={styles.profilePicture}
                         />
                     </View>

@@ -55,7 +55,7 @@ function CustomerDrawer({ navigation }) {
         <SafeAreaView style={{ flex: 1 }}>
             <ScrollView
                 contentContainerStyle={{ flexGrow: 1 }}
-                style={{ flex: 1 }}
+                style={{ flex: 1, backgroundColor: 'grey' }}
                 showsVerticalScrollIndicator={false} // Скрива скрол индикатора (по желание)
             >
                 <View style={styles.mainContainer}>
