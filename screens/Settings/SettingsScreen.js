@@ -31,14 +31,14 @@ const SettingsScreen = () => {
                 {
                     id: 'wifi',
                     icon: 'wifi',
-                    color: '#007afe',
+                    color: '#13C791FF',
                     label: t('Use Wi-Fi'),
                     type: 'toggle',
                 },
                 {
                     id: 'navigation',
                     icon: 'navigation',
-                    color: '#191A19',
+                    color: '#535353FF',
                     label: t('Location'),
                     type: 'link',
                 },
@@ -52,12 +52,12 @@ const SettingsScreen = () => {
                 {
                     id: 'accessibilityMode',
                     icon: 'airplanemode-on',
-                    color: '#32c759',
+                    color: '#C6D317FF',
                     label: t('Accessibility Mode'),
                     type: 'toggle',
                 },
                 { icon: 'library-music', color: '#fd2d54', label: t('Sounds'), type: 'link' },
-                { icon: 'home-repair-service', color: '#fd2d54', label: t('Tools'), type: 'link' },
+                { icon: 'home-repair-service', color: '#82009CFF', label: t('Tools'), type: 'link' },
             ],
         },
         {

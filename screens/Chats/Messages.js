@@ -23,6 +23,10 @@ const Messages = ({ navigation }) => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
+            <Image
+                source={require('../../images/confirm_test.jpeg')}
+                style={styles.backgroundImage}
+            />
             <View style={{ flex: 1 }}>
                 <View style={styles.header}>
                     <Text style={styles.headerText}>Messages</Text>
@@ -30,6 +34,7 @@ const Messages = ({ navigation }) => {
                         <Icons name="keyboard-backspace" size={24} color="white" />
                     </TouchableOpacity>
                 </View>
+
                 <ScrollView
                     contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end' }}
                     ref={(scrollView) => { this.scrollView = scrollView; }}
@@ -71,6 +76,13 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'grey'
     },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        backgroundColor: 'grey'
+    },
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -100,6 +112,9 @@ const styles = StyleSheet.create({
     userName: {
         fontWeight: 'bold',
         marginLeft: 4,
+        color: '#050505FF',
+        fontSize: 17,
+        fontWeight: 'bold',
     },
     messageContent: {
         backgroundColor: '#f0f0f0',
@@ -109,6 +124,10 @@ const styles = StyleSheet.create({
     },
     messageText: {
         fontSize: 16,
+        backgroundColor: '#fff',
+        padding: 8,
+        borderRadius: 8,
+        color: '#000000FF'
     },
     timeText: {
         fontSize: 12,
@@ -128,5 +147,12 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         paddingHorizontal: 16,
         marginRight: 8,
+    },
+    backgroundImage: {
+        flex: 1,
+        width: '100%',
+        height: '100%',
+        resizeMode: 'cover',
+        position: 'absolute',
     },
 });
