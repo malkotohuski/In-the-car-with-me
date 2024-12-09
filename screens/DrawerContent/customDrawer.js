@@ -65,7 +65,7 @@ function CustomerDrawer({ navigation }) {
                     />
                     <View style={styles.drawerContainer}>
                         <TouchableOpacity style={styles.userInfoContainer} onPress={handlerAccountScreen}>
-                            <Icons name="account-circle" size={30} color="#fff" style={styles.userIcon} />
+                            <Image source={{ uri: user?.user?.userImage }} style={styles.userImage} />
                             <Text style={styles.userInfo}>
                                 {user?.user?.username}
                             </Text>
@@ -171,6 +171,11 @@ const styles = StyleSheet.create({
         shadowRadius: 2,
         elevation: 5,
     },
+    userImage: {
+        width: 45,
+        height: 45,
+        borderRadius: 50,
+    },
     userIcon: {
         marginRight: 10,
     },
@@ -178,6 +183,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 18,
         fontWeight: 'bold',
+        marginLeft: 10,
     },
     topLeft: {
         flex: 1,
