@@ -127,12 +127,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         padding: 8,
         borderRadius: 8,
-        color: '#000000FF'
+        color: '#010101',
+        fontWeight: 'bold',
     },
     timeText: {
-        fontSize: 12,
-        color: 'gray',
+        fontSize: 14,
+        color: '#010101',
         alignSelf: 'flex-end',
+        fontWeight: 'bold',
     },
     inputContainer: {
         flexDirection: 'row',

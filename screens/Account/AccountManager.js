@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
     },
     profilePictureContainer: {
         marginTop: height * 0.05,
+        marginBottom: 20,
         alignItems: 'center',
     },
     profilePicture: {
