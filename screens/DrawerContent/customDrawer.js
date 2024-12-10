@@ -10,6 +10,8 @@ const { width, height } = Dimensions.get('window'); // За адаптивнос
 function CustomerDrawer({ navigation }) {
     const { t } = useTranslation();
     const { user } = useAuth();
+    const noImage = require('../../images/emptyUserImage.png');
+    const profilePicture = user?.user?.userImage;
 
     const handlerAccountScreen = () => {
         navigation.navigate('AccountManager');
@@ -65,7 +67,7 @@ function CustomerDrawer({ navigation }) {
                     />
                     <View style={styles.drawerContainer}>
                         <TouchableOpacity style={styles.userInfoContainer} onPress={handlerAccountScreen}>
-                            <Image source={{ uri: user?.user?.userImage }} style={styles.userImage} />
+                            <Image source={profilePicture ? { uri: profilePicture } : noImage} style={styles.userImage} />
                             <Text style={styles.userInfo}>
                                 {user?.user?.username}
                             </Text>
@@ -170,6 +172,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 5,
+        overflow: 'hidden', // предотвратява излизането на съдържание
     },
     userImage: {
         width: 45,
@@ -184,6 +187,9 @@ const styles = StyleSheet.create({
         fontSize: 18,
         fontWeight: 'bold',
         marginLeft: 10,
+        flexShrink: 1, // ограничава размера на текста
+        flexWrap: 'wrap', // пренася текста на нов ред, ако е нужно
+        maxWidth: '75%', // задава максимална ширина за текста
     },
     topLeft: {
         flex: 1,
