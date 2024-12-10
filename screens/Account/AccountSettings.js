@@ -22,6 +22,7 @@ const AccountSettings = ({ navigation }) => {
     const { user, updateProfilePicture } = useAuth();
     const [profilePicture, setProfilePicture] = useState(null);
     const { t } = useTranslation();
+    const noImage = require('../../images/emptyUserImage.png')
 
     const handleImagePicker = async () => {
         try {
@@ -78,11 +79,10 @@ const AccountSettings = ({ navigation }) => {
             </View>
             <View style={styles.userInfoContainerPhoto}>
                 <TouchableOpacity onPress={handleImagePicker} style={styles.profilePictureContainer}>
-                    {profilePicture ? (
-                        <Image source={{ uri: profilePicture }} style={styles.profilePicture} />
-                    ) : (
-                        <Text style={styles.addPhotoText}>{t('Change photo')}</Text>
-                    )}
+                    <Image
+                        source={profilePicture ? { uri: profilePicture } : noImage}
+                        style={styles.profilePicture}
+                    />
                 </TouchableOpacity>
             </View>
             <View style={styles.userInfoContainerChanges}>
