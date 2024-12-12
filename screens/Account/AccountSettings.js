@@ -84,6 +84,7 @@ const AccountSettings = ({ navigation }) => {
                         style={styles.profilePicture}
                     />
                 </TouchableOpacity>
+                <Text style={styles.photoText}>{t('Change Photo')}</Text>
             </View>
             <View style={styles.userInfoContainerChanges}>
                 <TouchableOpacity style={styles.saveButton} onPress={handleSaveChanges}>
@@ -166,6 +167,13 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         borderRadius: 60,
+    },
+    photoText: {
+        fontSize: 18,
+        alignItems: 'center',
+        justifyContent: 'center',
+        color: '#010101',
+        fontWeight: 'bold'
     },
     addPhotoText: {
         fontSize: 16,

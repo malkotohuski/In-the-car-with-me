@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
         marginRight: 8,
     },
     userImage: {
-        width: 75,
-        height: 75,
+        width: 45,
+        height: 45,
         borderRadius: 50,
     },
     userName: {
@@ -115,9 +115,13 @@ const styles = StyleSheet.create({
         color: '#050505FF',
         fontSize: 17,
         fontWeight: 'bold',
+        backgroundColor: '#fff',
+        padding: 5,
+        borderRadius: 8,
+        margin: 10
     },
     messageContent: {
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#D8D5D5FF',
         borderRadius: 8,
         padding: 8,
         maxWidth: '80%',
