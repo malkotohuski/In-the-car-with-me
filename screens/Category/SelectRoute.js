@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, TouchableOpacity, Button, TextInput, StyleSheet, Alert, Image, FlatList, Modal, ScrollView, SafeAreaView } from 'react-native';
 import DatePicker from 'react-native-date-picker';
-import { Dropdown } from 'react-native-element-dropdown';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTranslation } from 'react-i18next';
 import CitySelector from '../../server/Cities/cities';
 
@@ -29,16 +27,29 @@ function SelectRouteScreen({ route, navigation }) {
     const [arrivalStreet, setArrivalStreet] = useState('');
     const [arrivalNumber, setArrivalNumber] = useState('');
 
-    const [value, setValue] = useState(null);
-    const [isFocus, setIsFocus] = useState(false);
-    const [isFocuses, setIsFocuses] = useState(false);
-
     const [modalVisibleDeparture, setModalVisibleDeparture] = useState(false);
     const [modalVisibleArrival, setModalVisibleArrival] = useState(false);
-    const [isModalVisible, setIsModalVisible] = useState(false);
 
     const [searchText, setSearchText] = useState('');
-    const [showAllCities, setShowAllCities] = useState(false);
+
+    useFocusEffect(
+        React.useCallback(() => {
+            // Нулиране на състоянието, когато екранът стане активен
+            setDepartureSearchText('');
+            setArrivalSearchText('');
+            setdepartureCity(null);
+            setDepartureStreet('');
+            setDepartureNumber('');
+            setarrivalCity(null);
+            setArrivalStreet('');
+            setArrivalNumber('');
+            setSelectedDateTime(null);
+            // Връщане на функция за "почистване", ако е нужно
+            return () => {
+                // Тук може да се добавят действия за почистване (ако има такива)
+            };
+        }, [])
+    );
 
     const continueButtonStyle = {
         marginTop: 20,
@@ -129,13 +140,7 @@ function SelectRouteScreen({ route, navigation }) {
         };
     }
 
-    const openModal = () => {
-        setIsModalVisible(true);
-    };
 
-    const closeModal = () => {
-        setIsModalVisible(false);
-    };
 
     const renderCityItem = ({ item, setModalVisible }) => (
         item && (
