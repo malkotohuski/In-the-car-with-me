@@ -5,9 +5,11 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 import { useRouteContext } from './RouteContext';
 import { useAuth } from '../Authentication/AuthContext';
 
+
 function Confirm() {
     const { t } = useTranslation();
     const navigation = useNavigation();
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const routeContext = useRouteContext();
     const { userRoutes, addRoute } = routeContext;
     const { user } = useAuth();
@@ -52,6 +54,13 @@ function Confirm() {
     };
 
     const handleConfirm = async () => {
+        if (isSubmitting) {
+            console.warn("Duplicate submission attempt prevented.");
+            return; // Предотвратява повторно натискане на бутона
+        }
+
+        setIsSubmitting(true); // Деактивира бутон веднага след натискане
+
         const newRoute = {
             selectedVehicle,
             registrationNumber,
@@ -72,35 +81,30 @@ function Confirm() {
         };
 
         try {
-            // Make a POST request to the server to create a new route
             const response = await fetch('http://10.0.2.2:3000/create-route', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    route: newRoute,
-                }),
+                body: JSON.stringify({ route: newRoute }),
             });
 
             if (response.ok) {
-                // Route created successfully
                 console.log('Route created successfully');
                 const responseData = await response.json();
-                const newRoute = responseData.route;
-                addRoute(newRoute); // Save the route using the context
-                setSuccessMessage(t('The route has been created!')); // Set success message
-                setTimeout(() => {
-                    setSuccessMessage(''); // Clear success message after navigating
-                    navigation.navigate('View routes'); // Navigate to ViewRoutes after 3 seconds
-                }, 3000);
+                addRoute(responseData.route); // Записва маршрута в контекста
+                setSuccessMessage(t('The route has been created!'));
+
+                // Навигиране към "View routes" след успешното създаване
+                navigation.navigate('View routes');
             } else {
-                // Handle error response
                 const errorData = await response.json();
                 console.error('Failed to create route:', errorData.error);
             }
         } catch (error) {
             console.error('Error creating route:', error);
+        } finally {
+            setIsSubmitting(false); // Разрешава натискане на бутона отново след завършване
         }
     };
 
@@ -140,8 +144,11 @@ function Confirm() {
                             <Text style={styles.buttonText}>{t('Make changes')}</Text>
                         </TouchableOpacity>
                     )}
-                    {showConfirmButton && (
-                        <TouchableOpacity style={styles.buttonConfirm} onPress={handleConfirm}>
+                    {showConfirmButton && !isSubmitting && (
+                        <TouchableOpacity
+                            style={styles.buttonConfirm}
+                            onPress={handleConfirm}
+                        >
                             <Text style={styles.buttonText}>{t('Confirm')}</Text>
                         </TouchableOpacity>
                     )}
@@ -223,6 +230,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         width: '90%',
         borderRadius: 10,
+    },
+    buttonDisabled: {
+        backgroundColor: '#95a5a6', // Сив цвят за деактивирания бутон
     },
     buttonText: {
         color: '#F1F1F1',
