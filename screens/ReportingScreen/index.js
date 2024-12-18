@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
-import { View, TextInput, Button, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
+import { View, TextInput, Alert, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from '../Authentication/AuthContext';
@@ -41,6 +41,14 @@ const ReportingScreen = ({ navigation }) => {
         }
     };
     const sendReport = async () => {
+        if (!problemDescription.trim() || !vehicleNumber.trim()) {
+            Alert.alert(
+                t('Missing Fields'),
+                t('Please fill out all fields!')
+            );
+            return; // Спираме изпълнението, ако има празни полета
+        }
+
         try {
             const serverEndpoint = 'http://10.0.2.2:3000/send-request-to-email';
             const reportData = {
@@ -54,6 +62,7 @@ const ReportingScreen = ({ navigation }) => {
                 ${t('User email:')}: ${userEmail || 'N/A'} ${t('Username:')}: ${userName} with ID : ${userId}
                 ${profilePicture ? '' : t('Please choose a photo or video')}
             `;
+
             const options = {
                 subject: t('Reporting Issue'),
                 body: emailBody,
@@ -88,6 +97,7 @@ const ReportingScreen = ({ navigation }) => {
             console.error('Error sending report:', error);
         }
     };
+
     return (
         <SafeAreaView style={styles.mainContainer}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
