@@ -60,7 +60,7 @@ function MarkSeatsScreen() {
                         <Text style={styles.buttonText}>{t('Continue')}</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={handlerBackToVehicle} style={styles.button}>
+                    <TouchableOpacity onPress={handlerBackToVehicle} style={styles.backButton}>
                         <Text style={styles.buttonText}>{t('Back to Vehicle')}</Text>
                     </TouchableOpacity>
                 </View>
@@ -93,7 +93,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         width: '80%',
         marginTop: 50,
-
     },
     label: { color: '#F1F1F1', fontSize: 20, fontWeight: 'bold' },
     value: { fontSize: 20, fontWeight: 'bold', color: '#F1F1F1' },
@@ -114,7 +113,19 @@ const styles = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#f1f1f1',
     },
-    buttonText: { color: 'white', fontSize: 18, fontWeight: 'bold' },
+    backButton: {
+        marginTop: 10,
+        backgroundColor: '#f4511e',
+        height: 70,
+        borderRadius: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+        width: 250,
+        borderWidth: 2,
+        borderColor: '#f1f1f1',
+    },
+    buttonText: { color: 'white', fontSize: 18, fontWeight: 'bold', textAlign: 'center', },
 });
 
 export default MarkSeatsScreen;
