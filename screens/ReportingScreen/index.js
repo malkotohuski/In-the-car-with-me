@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, TextInput, Alert, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as Animatable from 'react-native-animatable';
 import { useAuth } from '../Authentication/AuthContext';
 
 const ReportingScreen = ({ navigation }) => {
@@ -11,6 +12,8 @@ const ReportingScreen = ({ navigation }) => {
     const [attachment, setAttachment] = useState(null);
     const [profilePicture, setProfilePicture] = useState('');
     const [isValidVehicleNumber, setValidVehicleNumber] = useState(true);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false); // Добавено състояние
     const { t } = useTranslation();
 
     const { user } = useAuth();
@@ -24,77 +27,60 @@ const ReportingScreen = ({ navigation }) => {
         setValidVehicleNumber(isValid);
         setVehicleNumber(text);
     };
+
     const chooseImage = async () => {
         try {
             const image = await ImagePicker.openPicker({
                 cropping: true,
             });
             if (image.path) {
-                // Local image
                 setProfilePicture(image.path);
             } else if (image.uri) {
-                // Remote image
                 setProfilePicture(image.uri);
             }
         } catch (error) {
             console.warn('Image picker error:', error);
         }
     };
+
     const sendReport = async () => {
+        if (isButtonDisabled) return; // Бутонът не е активен
+
         if (!problemDescription.trim() || !vehicleNumber.trim()) {
             Alert.alert(
                 t('Missing Fields'),
                 t('Please fill out all fields!')
             );
-            return; // Спираме изпълнението, ако има празни полета
+            return;
         }
 
         try {
+            setIsButtonDisabled(true); // Деактивиране на бутона
             const serverEndpoint = 'http://10.0.2.2:3000/send-request-to-email';
-            const reportData = {
-                problemDescription,
-                vehicleNumber,
-                profilePicture,
-            };
             const emailBody = `
-                ${t('Problem Description')}: ${reportData.problemDescription}
-                ${t('Vehicle Number')}: ${reportData.vehicleNumber}
-                ${t('User email:')}: ${userEmail || 'N/A'} ${t('Username:')}: ${userName} with ID : ${userId}
-                ${profilePicture ? '' : t('Please choose a photo or video')}
+                ${t('Problem Description')}: ${problemDescription}
+                ${t('Vehicle Number')}: ${vehicleNumber}
+                ${t('User email:')}: ${userEmail || 'N/A'} ${t('Username:')}: ${userName} with ID: ${userId}
             `;
 
-            const options = {
-                subject: t('Reporting Issue'),
-                body: emailBody,
-                recipients: ['malkotohuski@gmail.com'],
-                attachment: attachment
-                    ? {
-                        path: reportData.attachment.uri,
-                        type: reportData.attachment.type,
-                        name: reportData.attachment.name,
-                    }
-                    : null,
-            };
-            // fetch за изпращане на заявка към сървъра
-            const response = await fetch(serverEndpoint, {
+            await fetch(serverEndpoint, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: 'malkotohuski@gmail.com',
-                    text: emailBody, //  изпраща целият текст
-                }),
-            })
-                .then(response => response.json())
-                .catch(error => {
-                    console.error('Error:', error);
-                    throw error;
-                });
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: 'malkotohuski@gmail.com', text: emailBody }),
+            });
 
-            console.log(t('Report sent successfully:'), response);
+            setShowSuccessMessage(true);
+
+            setTimeout(() => {
+                setShowSuccessMessage(false);
+                setProblemDescription(''); // Изчистване на полето
+                setVehicleNumber(''); // Изчистване на полето
+                setIsButtonDisabled(false); // Активиране на бутона отново, ако е нужно
+                navigation.navigate('Home');
+            }, 5000);
         } catch (error) {
             console.error('Error sending report:', error);
+            setIsButtonDisabled(false); // Активиране на бутона при грешка
         }
     };
 
@@ -105,15 +91,23 @@ const ReportingScreen = ({ navigation }) => {
                     source={require('../../images/road-wallpapers-reporting.jpg')}
                     style={styles.backgroundImage}
                 />
-                <View style={{ flex: 1, justifyContent: 'flex-start', }}>
-                    <View style={styles.header}  >
+                <View style={{ flex: 1, justifyContent: 'flex-start' }}>
+                    <View style={styles.header}>
                         <Text style={styles.headerText}>{t('Reporting')}</Text>
-                        <View style={{ width: 60 }} />
                         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                             <Icons name="keyboard-backspace" size={24} color="white" />
                         </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1 }}>
+                        {showSuccessMessage && (
+                            <Animatable.Text
+                                animation="pulse"
+                                iterationCount="infinite"
+                                style={styles.successMessage}
+                            >
+                                {t('The signal has been sent!')}
+                            </Animatable.Text>
+                        )}
                         <TextInput
                             style={styles.input}
                             placeholder={t("Describe the problem")}
@@ -124,37 +118,38 @@ const ReportingScreen = ({ navigation }) => {
                         />
                         <TextInput
                             style={[styles.inputVehicle, !isValidVehicleNumber && styles.invalidInput]}
-                            placeholder={t("Enter the vehicle number")}
+                            placeholder={t("Enter your vehicle registration number or username!")}
                             placeholderTextColor={'#F1F1F1'}
                             value={vehicleNumber}
                             onChangeText={validateVehicleNumber}
+                            multiline
+                            textAlignVertical="center"
                         />
                         <TouchableOpacity onPress={chooseImage} style={styles.imagePicker}>
                             <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
                                 {t('Choose Photo or Video')}
                             </Text>
                         </TouchableOpacity>
-                        {profilePicture &&
+                        {profilePicture && (
                             <View style={styles.show_image}>
                                 <Image source={{ uri: profilePicture }} style={styles.attachmentPreview} />
                             </View>
-                        }
+                        )}
                     </View>
                     <View style={styles.footer_container}>
                         <TouchableOpacity
                             onPress={sendReport}
-                            style={styles.send_button}
+                            style={[styles.send_button, isButtonDisabled && styles.disabledButton]} // Стил за деактивиран бутон
+                            disabled={isButtonDisabled} // Деактивиране на бутона
                         >
-                            <Text
-                                style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}
-                            >
+                            <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>
                                 {t("Send the Signal")}
                             </Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </ScrollView>
-        </SafeAreaView >
+        </SafeAreaView>
     );
 };
 
@@ -190,15 +185,17 @@ const styles = StyleSheet.create({
         padding: 8,
         fontSize: 20,
         fontWeight: 'bold',
+        textAlign: 'center', // Центриране на текста
     },
     inputVehicle: {
-        height: 40,
+        height: 100,
         borderColor: 'white',
         borderWidth: 2,
         marginBottom: 16,
         padding: 8,
         fontSize: 20,
         fontWeight: 'bold',
+        textAlign: 'center', // Центриране на текста
     },
     imagePicker: {
         backgroundColor: '#f4511e',
@@ -228,6 +225,9 @@ const styles = StyleSheet.create({
         borderColor: '#f1f1f1',
         borderWidth: 2,
     },
+    disabledButton: {
+        backgroundColor: 'gray', // Стил за неактивен бутон
+    },
     footer_container: {
         flexDirection: 'row',
         justifyContent: 'space-around',
@@ -240,7 +240,13 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
     },
+    successMessage: {
+        color: 'red',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginVertical: 10,
+    },
 });
-
 
 export default ReportingScreen;

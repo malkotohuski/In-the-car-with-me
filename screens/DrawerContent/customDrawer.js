@@ -210,10 +210,9 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         borderRadius: 15, // Закръглени ръбове
-
     },
     textButtons: {
-        marginLeft: 10, // adjust as needed
+        marginLeft: 5, // adjust as needed
         color: '#0F0F0FFF', // text color
         fontSize: 20, // text size
         fontWeight: 'bold', // text weight
