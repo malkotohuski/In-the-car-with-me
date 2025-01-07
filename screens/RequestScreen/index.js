@@ -30,14 +30,10 @@ function RouteDetails({ route }) {
 
     const handlerTripRequest = async () => {
         try {
-            // Check if requesterUsername is the same as the username of the requesting user
             if (requesterUsername === username) {
                 Alert.alert(t('Error'), t('This route was created by you, and you cannot request it!'));
                 return;
             }
-
-            // Ensure that you have the correct user data
-            console.log('Sending trip request to:', route);
 
             Alert.alert(
                 t('Confirm'),
@@ -50,47 +46,40 @@ function RouteDetails({ route }) {
                     {
                         text: 'OK',
                         onPress: async () => {
-                            const message = tripRequestText ? `${tripRequestText}\n\n${t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`)}` : t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`);
-                            const emailResponse = await api.post('/send-request-to-email', {
+                            const message = tripRequestText
+                                ? `${tripRequestText}\n\n${t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`)}`
+                                : t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`);
+
+                            // Изпращане на имейл
+                            await api.post('/send-request-to-email', {
                                 email: userEmail,
                                 text: message,
                             });
 
-                            // Handle the response from the Email server if needed
-                            console.log('Email Response:', emailResponse);
-                            Alert.alert('Success', 'Trip request sent successfully.');
-
-                            const response = await api.post('/send-request-to-user', {
-                                requestingUser: {
-                                    username: user?.user?.username,
-                                    userFname: user?.user?.fName,
-                                    userLname: user?.user?.lName,
-                                    userEmail: requestUserEmail,
-                                    userID: user?.user?.id,
-                                    userRouteId: route.params.userId,
-                                    departureCity: route.params.departureCity,
-                                    arrivalCity: route.params.arrivalCity,
-                                    routeId: route.params.routeId,
-                                    dataTime: route.params.selectedDateTime
+                            // Съхранение на нотификация
+                            await api.post('/notifications', {
+                                recipient: username, // Потребител, който е създал маршрута
+                                message: t(`You have a new request for your route from ${requesterUsername}.`),
+                                routeId: route.params.routeId,
+                                requester: {
+                                    username: requesterUsername,
+                                    userFname: requestUserFirstName,
+                                    userLname: requestUserLastName,
+                                    email: requestUserEmail,
                                 },
+                                createdAt: new Date().toISOString(),
                             });
 
-                            // Handle the response from the server if needed
-                            console.log('Route Approval Response:', response);
-
-                            // After handling the request, you can navigate back to the previous screen
+                            Alert.alert('Success', 'Trip request sent successfully.');
                             navigation.navigate('Home');
                         },
                     },
                 ],
                 { cancelable: false }
             );
-
-        } catch (emailError) {
-            // Handle any error that occurred during the Email server request
-            console.error('Email Server Error:', emailError);
+        } catch (error) {
+            console.error('Error:', error);
             Alert.alert('Error', 'Failed to send trip request.');
-            // You can show an alert or handle the error in a way that fits your application
         }
     };
 
