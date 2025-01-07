@@ -286,6 +286,14 @@ server.post('/login', (req, res) => {
     }
 });
 
+// Custom route for fetching notifications for a specific user
+server.get('/notifications/:username', (req, res) => {
+    const { username } = req.params;
+    const db = router.db; // Access to the lowdb instance
+    const notifications = db.get('notifications').filter({ recipient: username }).value();
+    res.json(notifications);
+});
+
 // Use default router
 server.use(router);
 

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useRoute, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../Authentication/AuthContext';
-import { useRouteContext } from '../Category/RouteContext';
 import axios from 'axios';
 
 const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
@@ -15,29 +14,50 @@ function RouteDetails({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const { user } = useAuth();
-    const routeInfo = useRoute();
-    const loggedInUser = route.params.loggedInUser;
-    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, } = route.params;
-    // request user data :
+
+    const {
+        username, // Създател на маршрута
+        userFname,
+        userLname,
+        userEmail,
+        departureCity,
+        arrivalCity,
+        routeId,
+    } = route.params;
+
     const requesterUsername = user?.user?.username;
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
     const requestUserEmail = user?.user?.email;
-    const departureCityEmail = route.params.departureCity;
-    const arrivalCityEmail = route.params.arrivalCity;
+
+    const routeDateTime = route.params.selectedDateTime;
+    const formattedDateTime = routeDateTime.replace('T', ' ').replace('.000Z', '');
 
     const [tripRequestText, setTripRequestText] = useState('');
+    const [hasRequested, setHasRequested] = useState(false);
+
+    // Проверка за съществуваща заявка
+    useEffect(() => {
+        const checkExistingRequest = async () => {
+            try {
+                const response = await api.get(`/notifications?routeId=${routeId}&requester.username=${requesterUsername}`);
+                if (response.data.length > 0) {
+                    setHasRequested(true);
+                }
+            } catch (error) {
+                console.error('Failed to check existing request:', error);
+            }
+        };
+
+        checkExistingRequest();
+    }, [routeId, requesterUsername]);
 
     const handlerTripRequest = async () => {
         try {
-            // Check if requesterUsername is the same as the username of the requesting user
-            if (requesterUsername === username) {
-                Alert.alert(t('Error'), t('This route was created by you, and you cannot request it!'));
+            if (hasRequested) {
+                Alert.alert(t('Error'), t('You have already submitted a request for this route.'));
                 return;
             }
-
-            // Ensure that you have the correct user data
-            console.log('Sending trip request to:', route);
 
             Alert.alert(
                 t('Confirm'),
@@ -50,53 +70,53 @@ function RouteDetails({ route }) {
                     {
                         text: 'OK',
                         onPress: async () => {
-                            const message = tripRequestText ? `${tripRequestText}\n\n${t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`)}` : t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCityEmail}-${arrivalCityEmail}`);
-                            const emailResponse = await api.post('/send-request-to-email', {
-                                email: userEmail,
-                                text: message,
+                            const message = tripRequestText
+                                ? `${tripRequestText}\n\n${t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCity}-${arrivalCity}`)}`
+                                : t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCity}-${arrivalCity}`);
+
+                            // Съхранение на заявката
+                            await api.post('/requests', {
+                                routeId,
+                                requester: requesterUsername,
+                                requesterEmail: requestUserEmail,
+                                requesterName: `${requestUserFirstName} ${requestUserLastName}`,
+                                message: tripRequestText,
+                                createdAt: new Date().toISOString(),
                             });
 
-                            // Handle the response from the Email server if needed
-                            console.log('Email Response:', emailResponse);
-                            Alert.alert('Success', 'Trip request sent successfully.');
-
-                            const response = await api.post('/send-request-to-user', {
-                                requestingUser: {
-                                    username: user?.user?.username,
-                                    userFname: user?.user?.fName,
-                                    userLname: user?.user?.lName,
-                                    userEmail: requestUserEmail,
-                                    userID: user?.user?.id,
-                                    userRouteId: route.params.userId,
-                                    departureCity: route.params.departureCity,
-                                    arrivalCity: route.params.arrivalCity,
-                                    routeId: route.params.routeId,
-                                    dataTime: route.params.selectedDateTime
+                            // Съхранение на нотификация
+                            await api.post('/notifications', {
+                                recipient: username, // Потребител, който е създал маршрута
+                                message: t(`You have a new request for your route from: ${requesterUsername}.
+                                            About the route: ${departureCity}-${arrivalCity}.
+                                            For date: ${formattedDateTime}`),
+                                routeId,
+                                requester: {
+                                    username: requesterUsername,
+                                    userFname: requestUserFirstName,
+                                    userLname: requestUserLastName,
+                                    email: requestUserEmail,
                                 },
+                                createdAt: new Date().toISOString(),
                             });
 
-                            // Handle the response from the server if needed
-                            console.log('Route Approval Response:', response);
-
-                            // After handling the request, you can navigate back to the previous screen
+                            Alert.alert('Success', 'Trip request sent successfully.');
+                            setHasRequested(true);
                             navigation.navigate('Home');
                         },
                     },
                 ],
                 { cancelable: false }
             );
-
-        } catch (emailError) {
-            // Handle any error that occurred during the Email server request
-            console.error('Email Server Error:', emailError);
+        } catch (error) {
+            console.error('Error:', error);
             Alert.alert('Error', 'Failed to send trip request.');
-            // You can show an alert or handle the error in a way that fits your application
         }
     };
 
     const handlerBackToViewRoute = () => {
-        navigation.navigate('View routes')
-    }
+        navigation.navigate('View routes');
+    };
 
     return (
         <View style={styles.container}>
@@ -116,8 +136,6 @@ function RouteDetails({ route }) {
             <Text style={styles.text}> {t('Names')} :  {userFname} {userLname}</Text>
             <Text style={styles.text}> {t('Route')} :  {departureCity}-{arrivalCity} </Text>
 
-            {/* Display other route details here based on your requirements */}
-            {/* Add a TextInput for entering trip request */}
             <TextInput
                 style={styles.input}
                 onChangeText={text => setTripRequestText(text)}
@@ -127,7 +145,6 @@ function RouteDetails({ route }) {
                 numberOfLines={4}
             />
 
-            {/* Add a button to navigate back to the Confirm screen */}
             <TouchableOpacity style={styles.buttonConfirm} onPress={handlerTripRequest}>
                 <Text style={styles.buttonText}>{t('Trip request')}</Text>
             </TouchableOpacity>
