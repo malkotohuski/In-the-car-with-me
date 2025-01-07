@@ -4207,6 +4207,24 @@
       "routeId": 1734119435962,
       "dataTime": "2024-12-17T18:12:00.000Z",
       "id": 1734119529316
+    },
+    {
+      "routeId": 1736262638663,
+      "requester": "Shushkata7@gmail.com",
+      "requesterEmail": "shushkata7@gmail.com",
+      "requesterName": "Velichka Spasova",
+      "message": "",
+      "createdAt": "2025-01-07T19:02:33.314Z",
+      "id": 1734119529317
+    },
+    {
+      "routeId": 1736262638663,
+      "requester": "sdds",
+      "requesterEmail": "devmasterstech@gmail.com",
+      "requesterName": "asdasd sdsd",
+      "message": "",
+      "createdAt": "2025-01-07T19:11:41.178Z",
+      "id": 1734119529318
     }
   ],
   "userChanges": [],
@@ -4223,6 +4241,97 @@
       },
       "createdAt": "2025-01-07T15:51:57.846Z",
       "id": 1
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from : sdds.\n About the route : Plovdiv-Ruse. ",
+      "routeId": 1736262638663,
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-07T17:59:28.332Z",
+      "id": 2
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from : sdds.\n About the route : Plovdiv-Ruse.For date: undefined ",
+      "routeId": 1736262638663,
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-07T18:25:33.622Z",
+      "id": 3
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from : sdds.\n About the route : Plovdiv-Ruse.For date: 2025-01-15T15:10:00.000Z ",
+      "routeId": 1736262638663,
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-07T18:30:25.797Z",
+      "id": 4
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from : sdds.\n About the route : Plovdiv-Ruse.\nFor date: 2025-01-15T15:10:00 ",
+      "routeId": 1736262638663,
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-07T18:37:23.903Z",
+      "id": 5
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from : sdds.\n About the route : Plovdiv-Ruse.\nFor date: 2025-01-15 15:10:00 ",
+      "routeId": 1736262638663,
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-07T18:41:30.287Z",
+      "id": 6
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from: Shushkata7@gmail.com.\nAbout the route: Plovdiv-Ruse.\nFor date: 2025-01-15 15:10:00",
+      "routeId": 1736262638663,
+      "requester": {
+        "username": "Shushkata7@gmail.com",
+        "userFname": "Velichka",
+        "userLname": "Spasova",
+        "email": "shushkata7@gmail.com"
+      },
+      "createdAt": "2025-01-07T19:02:33.353Z",
+      "id": 7
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from: sdds.\nAbout the route: Plovdiv-Ruse.\nFor date: 2025-01-15 15:10:00",
+      "routeId": 1736262638663,
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-07T19:11:41.215Z",
+      "id": 8
     }
   ]
 }

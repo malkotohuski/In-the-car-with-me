@@ -61,7 +61,7 @@ const Notifications = ({ navigation }) => {
                 ) : (
                     // No notifications message
                     <View style={styles.emptyState}>
-                        <Icons name="bell-off-outline" size={80} color="#aaa" />
+                        <Icons name="bell-off-outline" size={80} color="#010101" />
                         <Text style={styles.emptyMessage}>{t('No new notifications')}</Text>
                     </View>
                 )}
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     emptyMessage: {
         marginTop: 10,
         fontSize: 18,
-        color: '#666',
+        color: '#010101',
         textAlign: 'center',
     },
 });
