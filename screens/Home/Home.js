@@ -1,15 +1,67 @@
 import i18n from './i18n';
 import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TextInput, TouchableOpacity, Alert, ScrollView, SafeAreaView } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import styles from './styles';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import axios from 'axios';
+import { useAuth } from '../Authentication/AuthContext';
+
+const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
+const api = axios.create({
+    baseURL: API_BASE_URL,
+});
 
 function HomePage({ navigation }) {
+    const route = useRoute();
+    const { user } = useAuth();
     const { t } = useTranslation();
     const [isBulgaria, setisBulgaria] = useState(false);
+    const [notificationCount, setNotificationCount] = useState(0);
+
+    const loginUser = user?.user?.username;
+
+    useEffect(() => {
+        const fetchNotifications = async () => {
+            try {
+                if (!loginUser) {
+                    console.error('No logged-in username found.');
+                    return;
+                }
+
+                // Извличане на всички нотификации
+                const response = await api.get('/notifications');
+
+                // Филтриране на нотификациите за логнатия потребител
+                const userNotifications = response.data.filter(
+                    notification =>
+                        notification.recipient === loginUser &&         // Проверка дали recipient съвпада
+                        !notification.read                              // Проверка дали нотификацията е непрочетена
+                );
+
+                // Актуализация на броя нотификации
+                setNotificationCount(userNotifications.length > 9 ? '9+' : userNotifications.length);
+            } catch (error) {
+                console.error('Failed to fetch notifications:', error);
+            }
+        };
+
+        fetchNotifications();
+    }, [loginUser]);
+
+    useEffect(() => {
+        const unsubscribe = navigation.addListener('focus', () => {
+            // Проверка за параметри от Notifications, които показват, че броят на нотификациите трябва да бъде занулен
+            if (route.params?.resetNotificationCount) {
+                setNotificationCount(0);
+            }
+        });
+
+        return unsubscribe;
+    }, [navigation, route.params]);
 
     const changeLanguage = async (lng) => {
         await i18next.changeLanguage(lng);
@@ -42,8 +94,9 @@ function HomePage({ navigation }) {
     }
 
     const handlerNotificationScreen = () => {
-        navigation.navigate('Notifications');
+        navigation.navigate('Notifications', { resetNotificationCount: true });
         console.log('View routes clicked !!!');
+        setNotificationCount(0); // Зануляваме броя на нотификациите
     }
 
     return (
@@ -144,9 +197,16 @@ function HomePage({ navigation }) {
                 <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
                     <Icons name="chat" size={34} color="#080808" />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                    <Icons name="bell" size={34} color="#000000" />
-                </TouchableOpacity>
+                <View style={styles.notificationWrapper}>
+                    <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
+                        <Icons name="bell" size={34} color="#000000" />
+                        {notificationCount > 0 && (
+                            <View style={styles.notificationBadge}>
+                                <Text style={styles.notificationText}>{notificationCount}</Text>
+                            </View>
+                        )}
+                    </TouchableOpacity>
+                </View>
             </View>
         </SafeAreaView>
     );

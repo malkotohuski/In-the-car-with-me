@@ -11,10 +11,10 @@ const api = axios.create({
     baseURL: API_BASE_URL,
 });
 
-const Notifications = ({ navigation }) => {
+const Notifications = ({ navigation, route }) => {
     const { user } = useAuth();
     const [notifications, setNotifications] = useState([]);
-    const routeData = useRoute();
+    const [notificationCount, setNotificationCount] = useState(0);  // Добави тук
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -29,6 +29,13 @@ const Notifications = ({ navigation }) => {
 
         fetchNotifications();
     }, [user]);
+
+    // Ако параметърът 'resetNotificationCount' е подаден, зануливаме броя на нотификациите
+    useEffect(() => {
+        if (route.params?.resetNotificationCount) {
+            setNotificationCount(0); // Променяй notificationCount по необходимост
+        }
+    }, [route.params]);
 
     return (
         <SafeAreaView style={styles.mainContainer}>
