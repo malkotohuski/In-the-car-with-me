@@ -322,6 +322,22 @@ export default StyleSheet.create({
         backgroundColor: '#f1f1f1', // Цветът на иконките, промени го според нуждите си
         justifyContent: 'center',
     },
+    notificationBadge: {
+        position: 'absolute',
+        top: -5,
+        right: -10,
+        backgroundColor: '#FF0000',
+        borderRadius: 10,
+        width: 20,
+        height: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    notificationText: {
+        color: '#fff',
+        fontSize: 12,
+        fontWeight: 'bold',
+    },
     overlay: {
         position: 'absolute',
         top: 0,

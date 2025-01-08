@@ -14,6 +14,7 @@ function RouteDetails({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const { user } = useAuth();
+    const loginUser = user?.user?.username;
 
     const {
         username, // Създател на маршрута
@@ -34,23 +35,36 @@ function RouteDetails({ route }) {
     const formattedDateTime = routeDateTime.replace('T', ' ').replace('.000Z', '');
 
     const [tripRequestText, setTripRequestText] = useState('');
+    const [notificationCount, setNotificationCount] = useState(0);
     const [hasRequested, setHasRequested] = useState(false);
 
     // Проверка за съществуваща заявка
     useEffect(() => {
-        const checkExistingRequest = async () => {
+        const fetchNotifications = async () => {
             try {
-                const response = await api.get(`/notifications?routeId=${routeId}&requester.username=${requesterUsername}`);
-                if (response.data.length > 0) {
-                    setHasRequested(true);
+                if (!loginUser) {
+                    console.error('No logged-in username found.');
+                    return;
                 }
+
+                // Извличане на всички нотификации
+                const response = await api.get('/notifications');
+
+                // Филтриране на нотификациите за логнатия потребител
+                const userNotifications = response.data.filter(
+                    notification => notification.requester.username === loginUser && !notification.read
+                );
+
+                // Актуализация на броя нотификации
+                setNotificationCount(userNotifications.length > 9 ? '9+' : userNotifications.length);
             } catch (error) {
-                console.error('Failed to check existing request:', error);
+                console.error('Failed to fetch notifications:', error);
             }
         };
 
-        checkExistingRequest();
-    }, [routeId, requesterUsername]);
+        fetchNotifications();
+    }, [loginUser]);
+
 
     const handlerTripRequest = async () => {
         try {

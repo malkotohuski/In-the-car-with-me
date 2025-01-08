@@ -3685,6 +3685,57 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1736262638663
+    },
+    {
+      "selectedVehicle": "Car",
+      "registrationNumber": "С3223АА",
+      "selectedDateTime": "2025-01-10T18:09:00.000Z",
+      "departureCity": "Stara Zagora",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Varna",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1736359795434
+    },
+    {
+      "selectedVehicle": "Car",
+      "registrationNumber": "А2112АС",
+      "selectedDateTime": "2025-01-13T18:52:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Butan",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1730713699917,
+      "username": "sdds",
+      "userFname": "asdasd",
+      "userLname": "sdsd",
+      "userEmail": "devmasterstech@gmail.com",
+      "id": 1736362368963
+    },
+    {
+      "selectedVehicle": "Car",
+      "registrationNumber": "А2112АС",
+      "selectedDateTime": "2025-01-16T18:52:00.000Z",
+      "departureCity": "Pleven",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Ruse",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1730713699917,
+      "username": "sdds",
+      "userFname": "asdasd",
+      "userLname": "sdsd",
+      "userEmail": "devmasterstech@gmail.com",
+      "id": 1736362568939
     }
   ],
   "requests": [
@@ -4225,6 +4276,24 @@
       "message": "",
       "createdAt": "2025-01-07T19:11:41.178Z",
       "id": 1734119529318
+    },
+    {
+      "routeId": 1736362368963,
+      "requester": "Shushkata7@gmail.com",
+      "requesterEmail": "shushkata7@gmail.com",
+      "requesterName": "Velichka Spasova",
+      "message": "",
+      "createdAt": "2025-01-08T18:53:35.491Z",
+      "id": 1734119529319
+    },
+    {
+      "routeId": 1736362568939,
+      "requester": "Shushkata7@gmail.com",
+      "requesterEmail": "shushkata7@gmail.com",
+      "requesterName": "Velichka Spasova",
+      "message": "",
+      "createdAt": "2025-01-08T18:56:46.440Z",
+      "id": 1734119529320
     }
   ],
   "userChanges": [],
@@ -4332,6 +4401,32 @@
       },
       "createdAt": "2025-01-07T19:11:41.215Z",
       "id": 8
+    },
+    {
+      "recipient": "sdds",
+      "message": "You have a new request for your route from: Shushkata7@gmail.com.\n                                            About the route: Sofia-Butan.\n                                            For date: 2025-01-13 18:52:00",
+      "routeId": 1736362368963,
+      "requester": {
+        "username": "Shushkata7@gmail.com",
+        "userFname": "Velichka",
+        "userLname": "Spasova",
+        "email": "shushkata7@gmail.com"
+      },
+      "createdAt": "2025-01-08T18:53:35.541Z",
+      "id": 9
+    },
+    {
+      "recipient": "sdds",
+      "message": "You have a new request for your route from: Shushkata7@gmail.com.\n                                            About the route: Pleven-Ruse.\n                                            For date: 2025-01-16 18:52:00",
+      "routeId": 1736362568939,
+      "requester": {
+        "username": "Shushkata7@gmail.com",
+        "userFname": "Velichka",
+        "userLname": "Spasova",
+        "email": "shushkata7@gmail.com"
+      },
+      "createdAt": "2025-01-08T18:56:46.485Z",
+      "id": 10
     }
   ]
 }
