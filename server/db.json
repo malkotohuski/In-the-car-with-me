@@ -3736,6 +3736,40 @@
       "userLname": "sdsd",
       "userEmail": "devmasterstech@gmail.com",
       "id": 1736362568939
+    },
+    {
+      "selectedVehicle": "Лек автомобил",
+      "registrationNumber": "СА2154ДЕ",
+      "selectedDateTime": "2025-01-12T12:15:00.000Z",
+      "departureCity": "Бургас",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "София",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1730713699917,
+      "username": "sdds",
+      "userFname": "asdasd",
+      "userLname": "sdsd",
+      "userEmail": "devmasterstech@gmail.com",
+      "id": 1736424954333
+    },
+    {
+      "selectedVehicle": "Car",
+      "registrationNumber": "АЕ2442АЕ",
+      "selectedDateTime": "2025-01-12T18:36:00.000Z",
+      "departureCity": "Sofia",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Pernik",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1736447844510
     }
   ],
   "requests": [
@@ -4294,6 +4328,15 @@
       "message": "",
       "createdAt": "2025-01-08T18:56:46.440Z",
       "id": 1734119529320
+    },
+    {
+      "routeId": 1736447844510,
+      "requester": "sdds",
+      "requesterEmail": "devmasterstech@gmail.com",
+      "requesterName": "asdasd sdsd",
+      "message": "",
+      "createdAt": "2025-01-09T18:38:02.989Z",
+      "id": 1734119529321
     }
   ],
   "userChanges": [],
@@ -4309,7 +4352,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-07T15:51:57.846Z",
-      "id": 1
+      "id": 1,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4322,7 +4366,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-07T17:59:28.332Z",
-      "id": 2
+      "id": 2,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4335,7 +4380,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-07T18:25:33.622Z",
-      "id": 3
+      "id": 3,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4348,7 +4394,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-07T18:30:25.797Z",
-      "id": 4
+      "id": 4,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4361,7 +4408,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-07T18:37:23.903Z",
-      "id": 5
+      "id": 5,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4374,7 +4422,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-07T18:41:30.287Z",
-      "id": 6
+      "id": 6,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4387,7 +4436,8 @@
         "email": "shushkata7@gmail.com"
       },
       "createdAt": "2025-01-07T19:02:33.353Z",
-      "id": 7
+      "id": 7,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4400,7 +4450,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-07T19:11:41.215Z",
-      "id": 8
+      "id": 8,
+      "read": true
     },
     {
       "recipient": "sdds",
@@ -4413,7 +4464,8 @@
         "email": "shushkata7@gmail.com"
       },
       "createdAt": "2025-01-08T18:53:35.541Z",
-      "id": 9
+      "id": 9,
+      "read": true
     },
     {
       "recipient": "sdds",
@@ -4426,7 +4478,23 @@
         "email": "shushkata7@gmail.com"
       },
       "createdAt": "2025-01-08T18:56:46.485Z",
-      "id": 10
+      "id": 10,
+      "read": true
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from: sdds.\n                                            About the route: Sofia-Pernik.\n                                            For date: 2025-01-12 18:36:00",
+      "routeId": 1736447844510,
+      "routeChecker": true,
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-09T18:38:03.023Z",
+      "id": 11,
+      "read": true
     }
   ]
 }

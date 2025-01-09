@@ -93,11 +93,30 @@ function HomePage({ navigation }) {
         console.log('Chats screen clicked !!!');
     }
 
-    const handlerNotificationScreen = () => {
-        navigation.navigate('Notifications', { resetNotificationCount: true });
-        console.log('View routes clicked !!!');
-        setNotificationCount(0); // Зануляваме броя на нотификациите
-    }
+    const handlerNotificationScreen = async () => {
+        try {
+            // Актуализиране на нотификациите на сървъра
+            const response = await api.get('/notifications');
+            const userNotifications = response.data.filter(
+                notification =>
+                    notification.recipient === loginUser &&
+                    !notification.read
+            );
+
+            for (const notification of userNotifications) {
+                await api.patch(`/notifications/${notification.id}`, { read: true });
+            }
+
+            // Пренасочване към екрана с нотификациите
+            navigation.navigate('Notifications', { resetNotificationCount: true });
+            console.log('Notifications screen clicked!');
+            setNotificationCount(0); // Зануляваме броя на нотификациите на клиента
+        } catch (error) {
+            console.error('Failed to mark notifications as read:', error);
+            Alert.alert('Error', 'Failed to update notifications.');
+        }
+    };
+
 
     return (
         <SafeAreaView style={{ flex: 1, }}>
