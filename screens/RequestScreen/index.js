@@ -105,6 +105,7 @@ function RouteDetails({ route }) {
                                             About the route: ${departureCity}-${arrivalCity}.
                                             For date: ${formattedDateTime}`),
                                 routeId,
+                                routeChecker: true,
                                 requester: {
                                     username: requesterUsername,
                                     userFname: requestUserFirstName,
