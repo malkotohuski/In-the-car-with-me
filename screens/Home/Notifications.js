@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, FlatList, Modal } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from "../Authentication/AuthContext";
@@ -15,6 +15,8 @@ const Notifications = ({ navigation, route }) => {
     const { user } = useAuth();
     const [notifications, setNotifications] = useState([]);
     const [notificationCount, setNotificationCount] = useState(0);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [selectedNotification, setSelectedNotification] = useState(null);
     const { t } = useTranslation();
 
     useEffect(() => {
@@ -40,7 +42,6 @@ const Notifications = ({ navigation, route }) => {
         }
     }, [route.params]);
 
-    // Функция за форматиране на датата
     const formatDate = (dateString) => {
         const now = new Date();
         const notificationDate = new Date(dateString);
@@ -50,12 +51,27 @@ const Notifications = ({ navigation, route }) => {
         const diffInDays = Math.floor(diffInHours / 24);
 
         if (diffInDays >= 1) {
-            return `${diffInDays}d`; // Показва дни, ако е над 24 часа
+            return `${diffInDays}d`;
         } else if (diffInHours >= 1) {
-            return `${diffInHours}h`; // Показва часове, ако е над 1 час
+            return `${diffInHours}h`;
         } else {
-            return `${diffInMinutes}min`; // Показва минути, ако е под 1 час
+            return `${diffInMinutes}min`;
         }
+    };
+
+    const handleDotsPress = (item) => {
+        setSelectedNotification(item);
+        setModalVisible(true);
+    };
+
+    const markAsRead = (id) => {
+        console.log(`Mark notification ${id} as read`);
+        setModalVisible(false);
+    };
+
+    const deleteNotification = (id) => {
+        console.log(`Delete notification ${id}`);
+        setModalVisible(false);
     };
 
     return (
@@ -85,6 +101,9 @@ const Notifications = ({ navigation, route }) => {
                                 ]}
                             >
                                 {index === 0 && <Text style={styles.newLabel}>{t('New')}</Text>}
+                                <TouchableOpacity style={styles.dotsButton} onPress={() => handleDotsPress(item)}>
+                                    <Icons name="dots-vertical" size={20} color="#000" />
+                                </TouchableOpacity>
                                 <Text style={styles.message}>{item.message}</Text>
                                 <Text style={styles.date}>{formatDate(item.createdAt)}</Text>
                             </View>
@@ -96,6 +115,39 @@ const Notifications = ({ navigation, route }) => {
                         <Text style={styles.emptyMessage}>{t('No new notifications')}</Text>
                     </View>
                 )}
+
+                {/* Modal for notification actions */}
+                <Modal
+                    transparent={true}
+                    visible={modalVisible}
+                    animationType="fade"
+                    onRequestClose={() => setModalVisible(false)}
+                >
+                    <View style={styles.modalOverlay}>
+                        <View style={styles.modalContent}>
+                            <Text style={styles.modalTitle}>{t('Notification Options')}</Text>
+                            <Text style={styles.modalMessage}>{selectedNotification?.message}</Text>
+                            <TouchableOpacity
+                                style={styles.modalButton}
+                                onPress={() => markAsRead(selectedNotification.id)}
+                            >
+                                <Text style={styles.modalButtonText}>{t('Mark as Read')}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={styles.modalButton}
+                                onPress={() => deleteNotification(selectedNotification.id)}
+                            >
+                                <Text style={styles.modalButtonText}>{t('Delete')}</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[styles.modalButton, styles.cancelButton]}
+                                onPress={() => setModalVisible(false)}
+                            >
+                                <Text style={styles.modalButtonText}>{t('Cancel')}</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </Modal>
             </View>
         </SafeAreaView>
     );
@@ -182,7 +234,55 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontWeight: 'bold',
     },
-
+    dotsButton: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        zIndex: 1,
+        padding: 5,
+    },
+    modalOverlay: {
+        flex: 1,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Затъмнен фон
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    modalContent: {
+        width: '80%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        padding: 20,
+        alignItems: 'center',
+        elevation: 5,
+    },
+    modalTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        marginBottom: 10,
+        color: '#333',
+    },
+    modalMessage: {
+        fontSize: 16,
+        color: '#666',
+        marginBottom: 20,
+        textAlign: 'center',
+    },
+    modalButton: {
+        width: '100%',
+        padding: 15,
+        backgroundColor: '#f4511e',
+        borderRadius: 5,
+        marginVertical: 5,
+        alignItems: 'center',
+    },
+    cancelButton: {
+        backgroundColor: '#ccc',
+    },
+    modalButtonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
 });
 
 export default Notifications;
