@@ -3787,6 +3787,23 @@
       "userLname": "Spasova",
       "userEmail": "shushkata7@gmail.com",
       "id": 1736616676488
+    },
+    {
+      "selectedVehicle": "Car",
+      "registrationNumber": "С2245АА",
+      "selectedDateTime": "2025-01-15T17:05:00.000Z",
+      "departureCity": "Varna",
+      "departureStreet": "",
+      "departureNumber": "",
+      "arrivalCity": "Sofia",
+      "arrivalStreet": "",
+      "arrivalNumber": "",
+      "userId": 1711358014466,
+      "username": "Shushkata7@gmail.com",
+      "userFname": "Velichka",
+      "userLname": "Spasova",
+      "userEmail": "shushkata7@gmail.com",
+      "id": 1736701583295
     }
   ],
   "requests": [
@@ -4354,6 +4371,24 @@
       "message": "",
       "createdAt": "2025-01-09T18:38:02.989Z",
       "id": 1734119529321
+    },
+    {
+      "routeId": 1736701583295,
+      "requester": "sdds",
+      "requesterEmail": "devmasterstech@gmail.com",
+      "requesterName": "asdasd sdsd",
+      "message": "",
+      "createdAt": "2025-01-12T17:06:58.468Z",
+      "id": 1734119529322
+    },
+    {
+      "routeId": 1736362568939,
+      "requester": "Shushkata7@gmail.com",
+      "requesterEmail": "shushkata7@gmail.com",
+      "requesterName": "Velichka Spasova",
+      "message": "",
+      "createdAt": "2025-01-12T17:11:01.923Z",
+      "id": 1734119529323
     }
   ],
   "userChanges": [],
@@ -4511,6 +4546,38 @@
       },
       "createdAt": "2025-01-09T18:38:03.023Z",
       "id": 11,
+      "read": true
+    },
+    {
+      "recipient": "Shushkata7@gmail.com",
+      "message": "You have a new request for your route from: sdds.\n                                            About the route: Varna-Sofia.\n                                            For date: 2025-01-15 17:05:00",
+      "routeId": 1736701583295,
+      "routeChecker": true,
+      "status": "deleted",
+      "requester": {
+        "username": "sdds",
+        "userFname": "asdasd",
+        "userLname": "sdsd",
+        "email": "devmasterstech@gmail.com"
+      },
+      "createdAt": "2025-01-12T17:06:58.518Z",
+      "id": 12,
+      "read": true
+    },
+    {
+      "recipient": "sdds",
+      "message": "You have a new request for your route from: Shushkata7@gmail.com.\n                                            About the route: Pleven-Ruse.\n                                            For date: 2025-01-16 18:52:00",
+      "routeId": 1736362568939,
+      "routeChecker": true,
+      "status": "active",
+      "requester": {
+        "username": "Shushkata7@gmail.com",
+        "userFname": "Velichka",
+        "userLname": "Spasova",
+        "email": "shushkata7@gmail.com"
+      },
+      "createdAt": "2025-01-12T17:11:01.973Z",
+      "id": 13,
       "read": true
     }
   ]
