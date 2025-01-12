@@ -106,6 +106,7 @@ function RouteDetails({ route }) {
                                             For date: ${formattedDateTime}`),
                                 routeId,
                                 routeChecker: true,
+                                status: 'active',
                                 requester: {
                                     username: requesterUsername,
                                     userFname: requestUserFirstName,

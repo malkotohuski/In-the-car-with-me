@@ -23,8 +23,10 @@ const Notifications = ({ navigation, route }) => {
         const fetchNotifications = async () => {
             try {
                 const response = await api.get(`/notifications?recipient=${user?.user?.username}`);
+                // Филтриране само на нотификациите със статус 'active'
+                const activeNotifications = response.data.filter((notification) => notification.status === 'active');
                 // Сортиране на нотификациите по дата (от най-новата към най-старата)
-                const sortedNotifications = response.data.sort(
+                const sortedNotifications = activeNotifications.sort(
                     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
                 );
                 setNotifications(sortedNotifications);
@@ -35,6 +37,24 @@ const Notifications = ({ navigation, route }) => {
 
         fetchNotifications();
     }, [user]);
+
+    const deleteNotification = async (id) => {
+        try {
+            // Актуализиране на статуса в базата данни
+            await api.patch(`/notifications/${id}`, { status: 'deleted' });
+
+            // Обновяване на списъка с нотификации в state
+            setNotifications((prevNotifications) =>
+                prevNotifications.filter((notification) => notification.id !== id)
+            );
+
+            setModalVisible(false);
+            console.log(`Notification ${id} marked as deleted.`);
+        } catch (error) {
+            console.error(`Failed to delete notification ${id}:`, error);
+        }
+    };
+
 
     useEffect(() => {
         if (route.params?.resetNotificationCount) {
@@ -66,11 +86,6 @@ const Notifications = ({ navigation, route }) => {
 
     const markAsRead = (id) => {
         console.log(`Mark notification ${id} as read`);
-        setModalVisible(false);
-    };
-
-    const deleteNotification = (id) => {
-        console.log(`Delete notification ${id}`);
         setModalVisible(false);
     };
 
@@ -222,7 +237,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#cce7ff',
         color: '#005fcb',
         fontWeight: 'bold',
-        paddingHorizontal: 5,
+        paddingHorizontal: 10,
         borderRadius: 3,
         fontSize: 12,
     },
@@ -237,7 +252,7 @@ const styles = StyleSheet.create({
     dotsButton: {
         position: 'absolute',
         top: 10,
-        right: 10,
+        right: -30,
         zIndex: 1,
         padding: 5,
     },
