@@ -84,9 +84,12 @@ const Notifications = ({ navigation, route }) => {
         setModalVisible(true);
     };
 
-    const markAsRead = (id) => {
-        console.log(`Mark notification ${id} as read`);
-        setModalVisible(false);
+    const isNewNotification = (createdAt) => {
+        const now = new Date();
+        const notificationDate = new Date(createdAt);
+        const diffInMilliseconds = now - notificationDate;
+        const diffInHours = diffInMilliseconds / (1000 * 60 * 60);
+        return diffInHours < 24; // Проверява дали са минали по-малко от 24 часа
     };
 
     return (
@@ -112,12 +115,14 @@ const Notifications = ({ navigation, route }) => {
                             <View
                                 style={[
                                     styles.notification,
-                                    index === 0 && styles.newNotification,
+                                    isNewNotification(item.createdAt) && styles.newNotification,
                                 ]}
                             >
-                                {index === 0 && <Text style={styles.newLabel}>{t('New')}</Text>}
+                                <Text style={styles.newLabel}>
+                                    {isNewNotification(item.createdAt) ? t('New') : t('Earlier')}
+                                </Text>
                                 <TouchableOpacity style={styles.dotsButton} onPress={() => handleDotsPress(item)}>
-                                    <Icons name="dots-vertical" size={20} color="#000" />
+                                    <Icons name="dots-vertical" size={25} color="#000" />
                                 </TouchableOpacity>
                                 <Text style={styles.message}>{item.message}</Text>
                                 <Text style={styles.date}>{formatDate(item.createdAt)}</Text>
@@ -142,12 +147,6 @@ const Notifications = ({ navigation, route }) => {
                         <View style={styles.modalContent}>
                             <Text style={styles.modalTitle}>{t('Notification Options')}</Text>
                             <Text style={styles.modalMessage}>{selectedNotification?.message}</Text>
-                            <TouchableOpacity
-                                style={styles.modalButton}
-                                onPress={() => markAsRead(selectedNotification.id)}
-                            >
-                                <Text style={styles.modalButtonText}>{t('Mark as Read')}</Text>
-                            </TouchableOpacity>
                             <TouchableOpacity
                                 style={styles.modalButton}
                                 onPress={() => deleteNotification(selectedNotification.id)}
