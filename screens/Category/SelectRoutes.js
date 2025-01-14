@@ -4,7 +4,7 @@ import DatePicker from 'react-native-date-picker';
 import { useTranslation } from 'react-i18next';
 import CitySelector from '../../server/Cities/cities';
 
-function SelectRouteScreen({ route, navigation }) {
+function SelectRouteScreens({ route, navigation }) {
     const { t } = useTranslation();
     const { selectedVehicle, markedSeats, registrationNumber } = route.params;
 
@@ -350,7 +350,7 @@ function SelectRouteScreen({ route, navigation }) {
     );
 }
 
-export default SelectRouteScreen;
+export default SelectRouteScreens;
 
 const styles = StyleSheet.create({
     container: {
