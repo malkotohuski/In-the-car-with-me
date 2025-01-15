@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Alert, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { useAuth } from '../Authentication/AuthContext';
 import axios from 'axios';
 
@@ -14,25 +14,20 @@ function RouteDetails({ route }) {
     const { t } = useTranslation();
     const navigation = useNavigation();
     const { user } = useAuth();
+    const routeInfo = useRoute();
+    const loggedInUser = route.params.loggedInUser;
+    const { username, userFname, userLname, userEmail, departureCity, arrivalCity, routeId } = route.params;
     const loginUser = user?.user?.username;
-
-    const {
-        username, // Създател на маршрута
-        userFname,
-        userLname,
-        userEmail,
-        departureCity,
-        arrivalCity,
-        routeId,
-    } = route.params;
 
     const requesterUsername = user?.user?.username;
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
     const requestUserEmail = user?.user?.email;
+    const departureCityEmail = route.params.departureCity;
+    const arrivalCityEmail = route.params.arrivalCity;
 
     const routeDateTime = route.params.selectedDateTime;
-    const formattedDateTime = routeDateTime.replace('T', ' ').replace('.000Z', '');
+    const dataTime = routeDateTime.replace('T', ' ').replace('.000Z', '');
 
     const [tripRequestText, setTripRequestText] = useState('');
     const [notificationCount, setNotificationCount] = useState(0);
@@ -89,21 +84,27 @@ function RouteDetails({ route }) {
                                 : t(`You have a new request for your route. From: ${requesterUsername} ${requestUserFirstName} ${requestUserLastName}. About the route: ${departureCity}-${arrivalCity}`);
 
                             // Съхранение на заявката
-                            await api.post('/requests', {
-                                routeId,
-                                requester: requesterUsername,
-                                requesterEmail: requestUserEmail,
-                                requesterName: `${requestUserFirstName} ${requestUserLastName}`,
-                                message: tripRequestText,
-                                createdAt: new Date().toISOString(),
-                            });
+                            const response = await api.post('/send-request-to-user', {
+                                requestingUser: {
+                                    username: user?.user?.username,
+                                    userFname: user?.user?.fName,
+                                    userLname: user?.user?.lName,
+                                    userEmail: requestUserEmail,
+                                    userID: user?.user?.id,
+                                    userRouteId: route.params.userId,
+                                    departureCity: route.params.departureCity,
+                                    arrivalCity: route.params.arrivalCity,
+                                    routeId: route.params.routeId,
+                                    dataTime: route.params.selectedDateTime
+                                },
+                            });;
 
                             // Съхранение на нотификация
                             await api.post('/notifications', {
                                 recipient: username, // Потребител, който е създал маршрута
                                 message: t(`You have a new request for your route from: ${requesterUsername}.
                                             About the route: ${departureCity}-${arrivalCity}.
-                                            For date: ${formattedDateTime}`),
+                                            For date: ${dataTime}`),
                                 routeId,
                                 routeChecker: true,
                                 status: 'active',
