@@ -18,13 +18,13 @@ function RouteRequestScreen({ route, navigation }) {
     const [routeRequests, setRouteRequests] = useState([]);
     const requestUserFirstName = user?.user?.fName;
     const requestUserLastName = user?.user?.lName;
-    console.log("IA", requests);
+    const userNow = user?.user?.id;
 
     const getRequestsForCurrentUser = () => {
 
         return requests.filter(request => {
 
-            if (request.userRouteId === user?.user?.id) {
+            if (request.userRouteId === userNow) {
                 const currentDate = new Date();
                 return new Date(request.dataTime) >= currentDate;
             }
