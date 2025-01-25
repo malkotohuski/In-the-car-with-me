@@ -43,12 +43,15 @@ const RouteHistory = ({ navigation }) => {
     }, [user]);
 
     useEffect(() => {
-        // Филтрирай маршрути на база на текста за търсене
-        const filteredRoutes = originalRoutesState.filter(route => {
-            const matchesDeparture = route.departureCity?.toLowerCase().includes(searchDepartureText.toLowerCase());
-            const matchesArrival = route.arrivalCity?.toLowerCase().includes(searchArrivalText.toLowerCase());
-            return matchesDeparture && matchesArrival;
-        });
+        // Филтрирай маршрути на база на текста за търсене и сортирай по дата
+        const filteredRoutes = originalRoutesState
+            .filter(route => {
+                const matchesDeparture = route.departureCity?.toLowerCase().includes(searchDepartureText.toLowerCase());
+                const matchesArrival = route.arrivalCity?.toLowerCase().includes(searchArrivalText.toLowerCase());
+                return matchesDeparture && matchesArrival;
+            })
+            .sort((a, b) => new Date(b.selectedDateTime) - new Date(a.selectedDateTime)); // Сортирай по най-нова дата
+
         setFilteredRoutesState(filteredRoutes);
     }, [searchDepartureText, searchArrivalText, originalRoutesState]);
 
@@ -228,72 +231,53 @@ const styles = StyleSheet.create({
         height: 40,
         borderColor: '#ccc',
         borderWidth: 1,
-        marginVertical: 5,
-        paddingHorizontal: 10,
         borderRadius: 5,
-        backgroundColor: '#fff',
-        color: '#000',
-        fontWeight: 'bold',
+        paddingHorizontal: 10,
+        marginVertical: 5,
+        backgroundColor: 'white',
+    },
+    scrollView: {
+        width: '100%',
     },
     container: {
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-between',
         alignItems: 'center',
-        justifyContent: 'center',
-        height: '100%',
     },
     routeContainer: {
-        width: 380,
-        height: 180,
-        margin: 10,
-        borderWidth: 2,
-        borderColor: '#000000',
-        backgroundColor: 'rgba(255, 255, 255, 0.4)',
+        width: '90%',
+        backgroundColor: '#f8f8f8',
+        padding: 10,
         borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
+        marginVertical: 5,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.3,
+        shadowRadius: 3,
+        elevation: 3,
     },
     routeText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: '#010101',
-        textAlign: 'center',
-        marginBottom: 5,
+        fontSize: 16,
+        color: '#333',
     },
     buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginTop: 10,
-        width: '100%',
-        paddingHorizontal: 20,
     },
     button_delete: {
-        alignItems: 'center',
+        backgroundColor: '#e74c3c',
         padding: 10,
-        marginHorizontal: 5,
-        backgroundColor: '#D12121',
         borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#000000',
-        width: '45%',
-        justifyContent: 'center'
     },
     button_completed: {
-        alignItems: 'center',
+        backgroundColor: '#2ecc71',
         padding: 10,
-        marginHorizontal: 5,
-        backgroundColor: '#16B638',
         borderRadius: 5,
-        borderWidth: 1,
-        borderColor: '#000000',
-        width: '45%',
-        justifyContent: 'center'
     },
     buttonText: {
-        fontSize: 16,
+        color: 'white',
+        fontSize: 14,
         fontWeight: 'bold',
-        color: '#010101',
         textAlign: 'center',
     },
 });
