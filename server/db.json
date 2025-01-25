@@ -4949,7 +4949,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-15T15:17:25.831Z",
-      "id": 18
+      "id": 18,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4964,7 +4965,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-15T15:20:35.530Z",
-      "id": 19
+      "id": 19,
+      "read": true
     },
     {
       "recipient": "Shushkata7@gmail.com",
@@ -4979,7 +4981,8 @@
         "email": "devmasterstech@gmail.com"
       },
       "createdAt": "2025-01-15T15:23:19.956Z",
-      "id": 20
+      "id": 20,
+      "read": true
     },
     {
       "recipient": "sdds",
