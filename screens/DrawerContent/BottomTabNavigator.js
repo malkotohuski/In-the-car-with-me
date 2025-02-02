@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Video from '../Video';
 import Vehicle from '../Category/Vehicle';
-import HomePage from '../Home/Home';
+import HomePage from '../Screens/Home/Home';
 
 const Tab = createBottomTabNavigator();
 

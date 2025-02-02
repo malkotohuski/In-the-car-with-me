@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Alert, Image, ScrollView, SafeAreaView } from 'react-native';
 import axios from 'axios';
-import styles from '../Home/styles';
+import styles from '../Screens/styles';
 import { useTranslation } from 'react-i18next';
 import ImagePicker from 'react-native-image-crop-picker';
 import { useAuth } from '../Authentication/AuthContext';

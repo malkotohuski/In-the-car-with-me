@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, Switch, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, Switch, StyleSheet, ScrollView } from 'react-native';
 import { ListItem, Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
-import { DarkModeContext } from '../Authentication/DarkModeContext';
+import { DarkModeContext } from '../DrawerContent/DarkModeContext'; // Път към DarkModeContext
 
 const SettingsScreen = () => {
-    const { darkMode, toggleDarkMode } = useContext(DarkModeContext);
+    const { darkMode, toggleDarkMode } = useContext(DarkModeContext); // Използване на контекста тук
+    console.log(darkMode, toggleDarkMode);
     const [toggleValues, setToggleValues] = useState({});
     const { t } = useTranslation();
 
@@ -91,65 +92,49 @@ const SettingsScreen = () => {
         }
     };
 
-    const getContainerStyle = () => {
-        return {
-            ...styles.container,
-            backgroundColor: darkMode ? '#5A5A5AFF' : '#fff',
-        };
-    };
+    const getContainerStyle = () => ({
+        ...styles.container,
+        backgroundColor: darkMode ? '#121212' : '#fff',
+    });
 
-    const getSectionHeaderStyle = () => {
-        return {
-            ...styles.sectionHeader,
-            color: darkMode ? '#fff' : '#000',
-        };
-    };
+    const getSectionHeaderStyle = () => ({
+        ...styles.sectionHeader,
+        color: darkMode ? '#E0E0E0' : '#000',
+    });
 
-    const getListItemContainerStyle = () => {
-        return {
-            ...styles.listItemContainer,
-            backgroundColor: darkMode ? '#1D1D1DFF' : '#fff',  // Adjust background color for dark mode
-            borderColor: darkMode ? '#404040' : '#ddd',
-        };
-    };
+    const getListItemContainerStyle = () => ({
+        ...styles.listItemContainer,
+        backgroundColor: darkMode ? '#1E1E1E' : '#fff',
+        borderColor: darkMode ? '#333333' : '#ddd',
+        shadowColor: darkMode ? '#000' : '#ccc',
+        elevation: darkMode ? 4 : 1,
+        borderRadius: 10,
+        marginVertical: 5,
+    });
 
-    const getTextStyle = () => {
-        return {
-            color: darkMode ? '#fff' : '#000',
-        };
-    };
+    const getTextStyle = () => ({
+        color: darkMode ? '#E0E0E0' : '#000',
+    });
 
     const renderItem = (item) => {
         switch (item.type) {
             case 'language':
             case 'link':
                 return (
-                    <ListItem
-                        key={item.id}
-                        containerStyle={getListItemContainerStyle()}
-                        onPress={() => console.log(`Pressed ${item.label}`)}
-                    >
+                    <ListItem key={item.id} containerStyle={getListItemContainerStyle()} onPress={() => console.log(`Pressed ${item.label}`)}>
                         <Icon name={item.icon} color={item.color} />
                         <ListItem.Content>
-                            <ListItem.Title style={getTextStyle()}>
-                                {item.label}
-                            </ListItem.Title>
+                            <ListItem.Title style={getTextStyle()}>{item.label}</ListItem.Title>
                         </ListItem.Content>
                         <ListItem.Chevron />
                     </ListItem>
                 );
-
             case 'toggle':
                 return (
-                    <ListItem
-                        key={item.id}
-                        containerStyle={getListItemContainerStyle()}
-                    >
+                    <ListItem key={item.id} containerStyle={getListItemContainerStyle()}>
                         <Icon name={item.icon} color={item.color} />
                         <ListItem.Content>
-                            <ListItem.Title style={getTextStyle()}>
-                                {item.label}
-                            </ListItem.Title>
+                            <ListItem.Title style={getTextStyle()}>{item.label}</ListItem.Title>
                         </ListItem.Content>
                         <Switch
                             value={toggleValues[item.id] || false}
@@ -157,7 +142,6 @@ const SettingsScreen = () => {
                         />
                     </ListItem>
                 );
-
             default:
                 return null;
         }
@@ -180,7 +164,6 @@ const SettingsScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f4f4f4',
         padding: 15,
     },
     sectionHeader: {
@@ -191,7 +174,7 @@ const styles = StyleSheet.create({
     },
     listItemContainer: {
         borderBottomWidth: 1,
-        borderColor: '#f6f5f2',
+        padding: 10,
     },
 });
 

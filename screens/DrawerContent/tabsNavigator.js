@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import HomePage from '../Home/Home';
+import HomePage from '../Screens/Home/Home';
 import Login from '../Login';
 import MyAccount from '../Account';
 import Basket from '../Basket';

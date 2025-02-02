@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, Image, SafeAreaView, ScrollVie
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import styles from '../Home/styles';
+import styles from '../Screens/styles';
 import i18next from 'i18next';
 import { useAuth } from '../Authentication/AuthContext';
 
