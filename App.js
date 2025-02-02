@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Navigator } from './screens/DrawerContent/drawerContent';
 import { RouteProvider } from './screens/Category/RouteContext'
 import { AuthProvider } from './screens/Authentication/AuthContext';
-import { DarkModeProvider } from './screens/Authentication/DarkModeContext';
+import { DarkModeProvider } from './screens/DrawerContent/DarkModeContext';
 
 const Drawer = createDrawerNavigator();
 

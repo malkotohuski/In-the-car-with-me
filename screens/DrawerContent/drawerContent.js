@@ -3,7 +3,7 @@ import { TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import Register from '../Register';
 import Login from '../Login';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import HomePage from '../Home/Home';
+import HomePage from '../Screens/Home/Home';
 import MyTabs from './tabsNavigator';
 import MarkSeatsScreen from '../Category/MarkSeatsScreen';
 import Vehicle from '../Category/Vehicle';
@@ -21,13 +21,13 @@ import WelcomeScreen from '../Account/Welcome';
 import LogoutScreen from '../Logout';
 import SettingsScreen from '../Settings/SettingsScreen';
 import { RouteDetails } from '../RequestScreen/index'
-import ChatScreen from '../Home/ChatScreen';
+import ChatScreen from '../Screens/ChatScreen';
 import AddFriendScreen from '../Chats/AddFriendScreen';
 import Messages from '../Chats/Messages';
 import CustomerDrawer from './customDrawer';
 import RouteHistory from '../Category/RouteHistory';
 import UsersScreen from '../Users/UsersScreen';
-import Notifications from '../Home/Notifications';
+import Notifications from '../Screens/Notifications';
 import Comments from '../Category/Comments';
 
 const Drawer = createDrawerNavigator();

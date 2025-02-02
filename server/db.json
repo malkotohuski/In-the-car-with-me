@@ -4997,7 +4997,8 @@
         "email": "shushkata7@gmail.com"
       },
       "createdAt": "2025-01-15T15:58:18.848Z",
-      "id": 21
+      "id": 21,
+      "read": true
     },
     {
       "recipient": "sdds",
@@ -5012,7 +5013,8 @@
         "email": "shushkata7@gmail.com"
       },
       "createdAt": "2025-01-15T16:04:46.436Z",
-      "id": 22
+      "id": 22,
+      "read": true
     }
   ]
 }

@@ -1,4 +1,3 @@
-/* // DarkModeContext.js
 import React, { createContext, useState } from 'react';
 
 export const DarkModeContext = createContext();
@@ -10,14 +9,9 @@ export const DarkModeProvider = ({ children }) => {
         setDarkMode((prevMode) => !prevMode);
     };
 
-    const backgroundImage = darkMode
-        ? require('../../images/d6.png')
-        : require('../../images/home2-background.jpg');
-
     return (
-        <DarkModeContext.Provider value={{ darkMode, toggleDarkMode, backgroundImage }}>
+        <DarkModeContext.Provider value={{ darkMode, toggleDarkMode }}>
             {children}
         </DarkModeContext.Provider>
     );
 };
- */
