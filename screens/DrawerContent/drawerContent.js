@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableOpacity, ImageBackground, StyleSheet } from 'react-native';
 import Register from '../Register';
 import Login from '../Login';
@@ -29,15 +29,9 @@ import RouteHistory from '../Category/RouteHistory';
 import UsersScreen from '../Users/UsersScreen';
 import Notifications from '../Screens/Notifications';
 import Comments from '../Category/Comments';
+import { DarkModeContext } from './DarkModeContext';
 
 const Drawer = createDrawerNavigator();
-
-const screenStyles = {
-    headerStyle: {
-        backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#F1F1F1',
-};
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -50,8 +44,15 @@ const styles = StyleSheet.create({
 
 export const Navigator = ({ isLoggedIn }) => {
     const { t } = useTranslation();
-
+    const { darkMode } = useContext(DarkModeContext);
     const backgroundImage = require('../../images/drawer.jpg');
+
+    const screenStyles = {
+        headerStyle: {
+            backgroundColor: darkMode ? '#333232FF' : '#f4511e', // Промяна на цвета при darkMode
+        },
+        headerTintColor: darkMode ? '#f1f1f1' : '#F1F1F1', // Промяна на цвета на текста
+    };
 
     const dynamicScreens = [
         // ... other screens

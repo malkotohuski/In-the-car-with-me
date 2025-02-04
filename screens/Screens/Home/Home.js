@@ -45,7 +45,7 @@ function HomePage({ navigation }) {
         fontWeight: 'bold',
         textAlign: 'center',
         marginBottom: 10,
-        color: darkMode ? '#f1f1f1' : '#010101', // Текстовият цвят ще бъде по-светъл в тъмния режим
+        color: darkMode ? '#FFFDFDFF' : '#010101', // Текстовият цвят ще бъде по-светъл в тъмния режим
     });
 
     const getButtonStyle = (color = '#000') => ({
@@ -79,6 +79,19 @@ function HomePage({ navigation }) {
         paddingHorizontal: 0,
     });
 
+    const getNotificationIconBackground = () => ({
+        alignItems: 'center',
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: darkMode ? '#010101' : '#f1f1f1',// Цветът на иконките, промени го според нуждите си
+        justifyContent: 'center',
+    });
+
+    const getNotificationIconColor = () => ({
+        color: darkMode ? '#f1f1f1' : '#010101',
+        size: 34,
+    })
 
     useEffect(() => {
         const fetchNotifications = async () => {
@@ -246,15 +259,15 @@ function HomePage({ navigation }) {
                 </View>
             </ScrollView>
             <View style={getFooterStyle()}>
-                <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                    <Icons name="routes" size={34} color="#000000" />
+                <TouchableOpacity style={getNotificationIconBackground()} onPress={handlerNotificationScreen}>
+                    <Icons name="routes" {...getNotificationIconColor()} />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.footerIcon} onPress={handlerChatScreen}>
-                    <Icons name="chat" size={34} color="#080808" />
+                <TouchableOpacity style={getNotificationIconBackground()} onPress={handlerChatScreen}>
+                    <Icons name="chat" {...getNotificationIconColor()} />
                 </TouchableOpacity>
                 <View style={styles.notificationWrapper}>
-                    <TouchableOpacity style={styles.footerIcon} onPress={handlerNotificationScreen}>
-                        <Icons name="bell" size={34} color="#000000" />
+                    <TouchableOpacity style={getNotificationIconBackground()} onPress={handlerNotificationScreen}>
+                        <Icons name="bell" {...getNotificationIconColor()} />
                         {notificationCount > 0 && (
                             <View style={styles.notificationBadge}>
                                 <Text style={styles.notificationText}>{notificationCount}</Text>
