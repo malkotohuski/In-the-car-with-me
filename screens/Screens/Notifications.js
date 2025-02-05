@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, FlatList, Modal } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from "../Authentication/AuthContext";
 import axios from 'axios';
+import { DarkModeContext } from '../DrawerContent/DarkModeContext';
 
 const API_BASE_URL = 'http://10.0.2.2:3000'; // JSON server
 const api = axios.create({
@@ -13,6 +14,7 @@ const api = axios.create({
 
 const Notifications = ({ navigation, route }) => {
     const { user } = useAuth();
+    const { darkMode } = useContext(DarkModeContext);
     const [notifications, setNotifications] = useState([]);
     const [notificationCount, setNotificationCount] = useState(0);
     const [modalVisible, setModalVisible] = useState(false);
@@ -37,6 +39,15 @@ const Notifications = ({ navigation, route }) => {
 
         fetchNotifications();
     }, [user]);
+
+    const getHeaderStyles = () => ({
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 16,
+        backgroundColor: darkMode ? '#333232FF' : '#f4511e',
+    });
 
     const deleteNotification = async (id) => {
         try {
@@ -99,7 +110,7 @@ const Notifications = ({ navigation, route }) => {
                 style={styles.backgroundImage}
             />
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-                <View style={styles.header}>
+                <View style={getHeaderStyles()}>
                     <Text style={styles.headerTitle}>{t('Notifications')}</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Icons name="keyboard-backspace" size={24} color="white" />
