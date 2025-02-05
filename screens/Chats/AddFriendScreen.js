@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, TextInput, FlatList, SafeAreaView, StyleSheet, TouchableOpacity, Modal, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import axios from 'axios';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../Authentication/AuthContext';
+import { DarkModeContext } from '../DrawerContent/DarkModeContext';
 
 const API_BASE_URL = 'http://10.0.2.2:3000';
 
 const AddFriendScreen = ({ navigation }) => {
+    const { darkMode } = useContext(DarkModeContext);
     const { user } = useAuth();
     const currentUserId = user?.user?.username;
     const noImage = require('../../images/no_image.png');
@@ -27,6 +29,15 @@ const AddFriendScreen = ({ navigation }) => {
                 console.error('Error fetching users:', error);
             });
     }, []);
+
+    const getHeaderStyles = () => ({
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 16,
+        backgroundColor: darkMode ? '#333232FF' : '#f4511e',
+    });
 
     const filteredUsers = users.filter(user =>
         user.username !== currentUserId && user.username.toLowerCase().includes(searchTerm.toLowerCase())
@@ -69,11 +80,11 @@ const AddFriendScreen = ({ navigation }) => {
                 behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                 style={styles.keyboardAvoidingView}
             >
-                <View style={styles.header}>
+                <View style={getHeaderStyles()}>
                     <Text style={styles.headerText}>
                         {t("Find Friends")}
                     </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
                         <Icons name="keyboard-backspace" size={24} color="white" />
                     </TouchableOpacity>
                 </View>

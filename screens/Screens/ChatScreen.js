@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, Image, TextInput, FlatList } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from '../Category/RouteContext';
 import { useTranslation } from 'react-i18next';
+import { DarkModeContext } from '../DrawerContent/DarkModeContext';
 
 const ChatScreen = ({ navigation }) => {
+    const { darkMode } = useContext(DarkModeContext);
     const { user } = useAuth();
     const { t } = useTranslation();
     const username = user?.user?.username;
@@ -32,6 +34,15 @@ const ChatScreen = ({ navigation }) => {
             });
     };
 
+    const getHeaderStyles = () => ({
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 16,
+        backgroundColor: darkMode ? '#333232FF' : '#f4511e',
+    })
+
     const startChatWithFriend = (friend) => {
         // Тук трябва да добавите логика за започване на чат с приятел
     };
@@ -43,7 +54,7 @@ const ChatScreen = ({ navigation }) => {
                 style={styles.backgroundImage}
             />
             <View style={{ flex: 1, justifyContent: 'flex-start', alignItems: 'center' }}>
-                <View style={styles.header}  >
+                <View style={getHeaderStyles()}  >
                     <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
                         {t("Chats")}
                     </Text>

@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Pressable, StyleSheet, Text, Image, View, SafeAreaView, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { useAuth } from "../Authentication/AuthContext";
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DarkModeContext } from "../DrawerContent/DarkModeContext";
 
 const Messages = ({ navigation }) => {
     const { user } = useAuth();
+    const { darkMode } = useContext(DarkModeContext);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
 
@@ -21,6 +23,15 @@ const Messages = ({ navigation }) => {
         }
     };
 
+    const getHeaderStyles = () => ({
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 16,
+        backgroundColor: darkMode ? '#333232FF' : '#f4511e',
+    });
+
     return (
         <SafeAreaView style={styles.mainContainer}>
             <Image
@@ -28,7 +39,7 @@ const Messages = ({ navigation }) => {
                 style={styles.backgroundImage}
             />
             <View style={{ flex: 1 }}>
-                <View style={styles.header}>
+                <View style={getHeaderStyles()}>
                     <Text style={styles.headerText}>Messages</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
                         <Icons name="keyboard-backspace" size={24} color="white" />

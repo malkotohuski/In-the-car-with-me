@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, Image, StyleSheet, ScrollView, Alert, SafeAreaView, TextInput } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useAuth } from '../Authentication/AuthContext';
 import { useRouteContext } from './RouteContext';
 import axios from 'axios';
+import { DarkModeContext } from '../DrawerContent/DarkModeContext';
 
 const API_BASE_URL = 'http://10.0.2.2:3000';
 
 const RouteHistory = ({ navigation }) => {
     const { user } = useAuth();
+    const { darkMode } = useContext(DarkModeContext);
     const { requests } = useRouteContext();
     const { t } = useTranslation();
     const [originalRoutesState, setOriginalRoutesState] = useState([]);
@@ -17,6 +19,15 @@ const RouteHistory = ({ navigation }) => {
     const [completedRoutes, setCompletedRoutes] = useState([]);
     const [searchDepartureText, setSearchDepartureText] = useState('');
     const [searchArrivalText, setSearchArrivalText] = useState('');
+
+    const getHeaderStyles = () => ({
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 16,
+        backgroundColor: darkMode ? '#333232FF' : '#f4511e',
+    })
 
     useEffect(() => {
         const fetchRoutes = async () => {
@@ -143,7 +154,7 @@ const RouteHistory = ({ navigation }) => {
                 style={styles.backgroundImage}
             />
             <View style={styles.mainContent}>
-                <View style={styles.header}>
+                <View style={getHeaderStyles()}>
                     <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
                         {t('Routes History')}
                     </Text>

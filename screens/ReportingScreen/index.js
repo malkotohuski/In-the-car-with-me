@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, TextInput, Alert, Image, TouchableOpacity, StyleSheet, Text, SafeAreaView, ScrollView } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Animatable from 'react-native-animatable';
 import { useAuth } from '../Authentication/AuthContext';
+import { DarkModeContext } from '../DrawerContent/DarkModeContext';
 
 const ReportingScreen = ({ navigation }) => {
+    const { darkMode } = useContext(DarkModeContext);
     const [problemDescription, setProblemDescription] = useState('');
     const [vehicleNumber, setVehicleNumber] = useState('');
     const [attachment, setAttachment] = useState(null);
@@ -20,6 +22,15 @@ const ReportingScreen = ({ navigation }) => {
     const userEmail = user?.user?.email;
     const userName = user?.user?.username;
     const userId = user?.user?.id;
+
+    const getHeaderStyles = () => ({
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 16,
+        backgroundColor: darkMode ? '#333232FF' : '#f4511e',
+    })
 
     const validateVehicleNumber = (text) => {
         const regex = /^([A-ZА-Я]{1,2})([0-9]{4})([A-ZА-Я]{2})$/;
@@ -92,7 +103,7 @@ const ReportingScreen = ({ navigation }) => {
                     style={styles.backgroundImage}
                 />
                 <View style={{ flex: 1, justifyContent: 'flex-start' }}>
-                    <View style={styles.header}>
+                    <View style={getHeaderStyles()}>
                         <Text style={styles.headerText}>{t('Reporting')}</Text>
                         <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                             <Icons name="keyboard-backspace" size={24} color="white" />

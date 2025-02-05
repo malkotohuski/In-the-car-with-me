@@ -1,11 +1,22 @@
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { DarkModeContext } from '../DrawerContent/DarkModeContext';
 
 const Comments = ({ navigation }) => {
     const { t } = useTranslation();
+    const { darkMode } = useContext(DarkModeContext);
+
+    const getHeaderStyles = () => ({
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 16,
+        backgroundColor: darkMode ? '#333232FF' : '#f4511e',
+    });
 
     return (
         <SafeAreaView style={styles.mainContainer}>
@@ -14,9 +25,9 @@ const Comments = ({ navigation }) => {
                 style={styles.backgroundImage}
             />
             <View style={styles.mainContent}>
-                <View style={styles.header}>
+                <View style={getHeaderStyles()}>
                     <Text style={{ color: 'white', fontSize: 18, fontWeight: 'bold' }}>
-                        {t('Routes History')}
+                        {t('Comments')}
                     </Text>
                     <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                         <Icons name="keyboard-backspace" size={24} color="white" />
